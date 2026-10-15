@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tastenbelegung · Life In Wilderness</title>
+<meta name="description" content="Alle Tasten von Life In Wilderness auf einen Blick. / Every Life In Wilderness key at a glance.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%2314100c' stroke='%23c8a35a'/%3E%3Ctext x='16' y='20.5' font-family='Georgia' font-size='11' text-anchor='middle' fill='%23c8a35a'%3ELiW%3C/text%3E%3C/svg%3E">
+<style>
+/* Same fonts and palette as index.html (served from this site, SIL Open Font License). */
+@font-face { font-family: 'IM Fell English'; src: url('assets/fonts/imfell.woff2') format('woff2'); font-style: normal; font-display: swap; }
+@font-face { font-family: 'IM Fell English SC'; src: url('assets/fonts/imfell-sc.woff2') format('woff2'); font-display: swap; }
+@font-face { font-family: 'Crimson Pro'; src: url('assets/fonts/crimson.woff2') format('woff2'); font-weight: 400 600; font-style: normal; font-display: swap; }
+/* Layout: a plate on dark earth - title, the keyboard as the specimen, a legend of groups, then the full list. */
+:root {
+  color-scheme: dark;
+  --page: #14100c; --panel: #1d1712; --panel-2: #241c15; --ink: #ece3d2; --muted: #a99b84;
+  --gold: #c8a35a; --gold-hi: #e3c27a; --rust: #c8694a; --moss: #8fb878; --sky: #7ea6cc;
+  --line: rgba(200, 163, 90, 0.24); --cap: #2b231b; --cap-edge: #4a3d2e; --cap-off: #1a1510;
+  --display: 'IM Fell English SC', Georgia, serif; --old: 'IM Fell English', Georgia, serif;
+  --body: 'Crimson Pro', Georgia, 'Times New Roman', serif;
+}
+* { box-sizing: border-box; }
+html, body { background: var(--page); color: var(--ink); }
+body { margin: 0; font-family: var(--body); font-size: 1.125rem; line-height: 1.55; }
+a { color: var(--gold-hi); }
+.wrap {
+  max-width: 72rem; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: calc(1.5rem + env(safe-area-inset-top, 0px)) 3rem;
+  display: flex; flex-direction: column; gap: 1.75rem;
+}
+.top { display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+.top a { font-family: var(--old); text-decoration: none; }
+header { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 1rem; border-bottom: 1px solid var(--line); padding-bottom: 1rem; }
+header .eyebrow { font-family: var(--display); letter-spacing: 0.12em; color: var(--gold); font-size: 0.95rem; }
+h1 { font-family: var(--display); font-weight: normal; font-size: clamp(2.2rem, 5vw, 3.2rem); line-height: 1.05; margin: 0.15rem 0 0; letter-spacing: 0.03em; text-wrap: balance; }
+.intro { margin: 0.5rem 0 0; color: var(--muted); max-width: 40rem; }
+.lang { display: flex; border: 1px solid var(--line); }
+.lang button { font-family: var(--display); font-size: 0.85rem; letter-spacing: 0.1em; background: none; color: var(--muted); border: 0; padding: 0.3rem 0.7rem; cursor: pointer; }
+.lang button[aria-pressed="true"] { background: var(--gold); color: var(--page); }
+a:focus-visible, .lang button:focus-visible, .key:focus-visible, .legend button:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+.legend { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.legend button { display: inline-flex; align-items: center; gap: 0.45rem; font: 1rem var(--old); color: var(--ink); background: transparent; border: 1px solid var(--line); border-radius: 999px; padding: 0.25rem 0.85rem; cursor: pointer; }
+.legend button[aria-pressed="false"] { opacity: 0.4; }
+.dot { width: 0.7rem; height: 0.7rem; border-radius: 50%; background: var(--c); }
+
+.board-box { overflow-x: auto; padding-bottom: 0.25rem; }
+.board-row { display: flex; gap: 1rem; align-items: flex-start; min-width: max-content; }
+.board { --u: 3.5rem; display: flex; flex-direction: column; gap: 0.3rem; padding: 0.9rem; background: var(--panel); border: 1px solid var(--line); }
+.row { display: flex; gap: 0.3rem; }
+.gap { width: calc(var(--u) * 0.5); }
+.key {
+  --c: var(--cap-edge);
+  position: relative; width: calc(var(--u) * var(--w, 1) + 0.3rem * (var(--w, 1) - 1)); height: var(--u);
+  background: var(--cap-off); border: 1px solid var(--cap-edge); border-bottom-width: 3px; border-radius: 0.35rem;
+  color: var(--muted); font: 0.85rem/1 var(--body); padding: 0.3rem 0.35rem; text-align: left;
+  display: flex; flex-direction: column; justify-content: space-between; cursor: default;
+}
+.key .cap { font-size: 0.85rem; }
+.key .what { font-size: 0.7rem; line-height: 1.1; color: var(--ink); overflow-wrap: anywhere; hyphens: auto; }
+.key.on { background: var(--cap); border-color: var(--c); color: var(--ink); cursor: pointer; box-shadow: inset 0 0.22rem 0 var(--c); }
+.key.on .cap { font-weight: 600; }
+.key.dim { opacity: 0.3; }
+.key.active { background: var(--c); color: var(--page); }
+.key.active .what { color: var(--page); }
+.key .hold { position: absolute; top: 0.25rem; right: 0.3rem; font-size: 0.6rem; }
+
+.mouse { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; padding: 0.9rem; background: var(--panel); border: 1px solid var(--line); }
+.mouse-body { --u: 3.5rem; width: 8rem; display: grid; grid-template-columns: 1fr 1fr; gap: 0.3rem; }
+.mouse-body .key { width: auto; height: 5rem; border-radius: 2.4rem 0.5rem 0.4rem 0.4rem; padding: 1.4rem 0.5rem 0.4rem; }
+.mouse-body .key + .key { border-radius: 0.5rem 2.4rem 0.4rem 0.4rem; }
+.mouse-body .palm { grid-column: 1 / 3; height: 4.2rem; border: 1px solid var(--cap-edge); border-radius: 0.4rem 0.4rem 3rem 3rem; background: var(--cap-off); }
+.mouse-label { font-family: var(--display); color: var(--muted); font-size: 0.9rem; letter-spacing: 0.08em; }
+
+.detail { min-height: 3.4rem; border-left: 3px solid var(--detail-c, var(--line)); padding: 0.4rem 0 0.4rem 0.9rem; color: var(--muted); }
+.detail strong { color: var(--ink); font-weight: 600; }
+
+.groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); gap: 1.5rem 2rem; }
+.group h2 { font-family: var(--display); font-weight: normal; font-size: 1.35rem; letter-spacing: 0.04em; margin: 0 0 0.5rem; display: flex; align-items: center; gap: 0.5rem; color: var(--c); }
+.group ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.group li { display: grid; grid-template-columns: 8.5rem 1fr; gap: 0.75rem; padding: 0.45rem 0.3rem; border-top: 1px dotted var(--line); min-width: 0; }
+.group li.hl { background: color-mix(in srgb, var(--c) 16%, transparent); }
+kbd { font: 600 0.85rem var(--body); display: inline-block; padding: 0.05rem 0.45rem; border: 1px solid var(--cap-edge); border-bottom-width: 2px; border-radius: 0.3rem; background: var(--cap); color: var(--ink); white-space: nowrap; justify-self: start; align-self: start; }
+.group small { display: block; color: var(--muted); font-size: 0.95rem; }
+.note { border-top: 1px solid var(--line); padding-top: 1rem; color: var(--muted); display: grid; gap: 0.4rem; max-width: 46rem; }
+.note b { color: var(--ink); font-weight: 600; }
+@media (max-width: 40rem) { .board, .mouse-body { --u: 3rem; } }
+@media (prefers-reduced-motion: no-preference) { .key, .legend button { transition: background-color 0.15s, opacity 0.15s; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <a href="index.html" data-t="back"></a>
+    <div class="lang" role="group" aria-label="Sprache / Language">
+      <button type="button" id="lang-de" data-lang="de">DE</button>
+      <button type="button" id="lang-en" data-lang="en">EN</button>
+    </div>
+  </div>
+  <header>
+    <div>
+      <div class="eyebrow" data-t="eyebrow"></div>
+      <h1 data-t="title"></h1>
+      <p class="intro" data-t="intro"></p>
+    </div>
+  </header>
+
+  <div class="legend" id="legend"></div>
+
+  <div class="board-box">
+    <div class="board-row">
+      <div class="board" id="board"></div>
+      <div class="mouse">
+        <div class="mouse-body" id="mouse"></div>
+        <div class="mouse-label" data-t="mouse"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="detail" id="detail" aria-live="polite"></div>
+
+  <div class="groups" id="groups"></div>
+
+  <div class="note">
+    <div data-t="note1"></div>
+    <div data-t="note2"></div>
+    <div data-t="note3"></div>
+  </div>
+</div>
+
+<script>
+(() => {
+  const TEXT = {
+    de: {
+      eyebrow: 'Life In Wilderness · RedM',
+      title: 'Tastenbelegung', back: '← Zur Startseite',
+      intro: 'Alle Tasten auf einen Blick, auf einer deutschen Tastatur (QWERTZ). Fahr über eine farbige Taste oder tipp sie an, um zu sehen, was sie tut.',
+      mouse: 'Maus',
+      hint: 'Taste antippen oder darüberfahren für Details.',
+      hold: 'halten',
+      groups: { move: 'Bewegung', combat: 'Kampf', survive: 'Überleben', pack: 'Rudel & Stimme', menu: 'Menüs & Anzeige' },
+      note1: '<b>Eigene Belegung:</b> Alle LiW-Tasten lassen sich im Spiel ändern: Einstellungen → Tastenbelegung → RedM (Einträge beginnen mit „LiW:“).',
+      note2: '<b>HUD aus- und einblenden</b> hat keine feste Taste. Leg sie dort selbst auf „LiW: HUD aus-/einblenden“, oder schalte Teile im Charaktermenü (J) unter „Einstellungen“ ab.',
+      note3: '<b>Sprechen</b> geht über die Push-to-Talk-Taste von RedM (Standard N). Wie weit man dich hört, stellst du mit Z ein.',
+    },
+    en: {
+      eyebrow: 'Life In Wilderness · RedM',
+      title: 'Key bindings', back: '← Back to the homepage',
+      intro: 'Every key at a glance, on an English keyboard (QWERTY). Hover or tap a coloured key to see what it does.',
+      mouse: 'Mouse',
+      hint: 'Tap or hover a key for details.',
+      hold: 'hold',
+      groups: { move: 'Movement', combat: 'Combat', survive: 'Survival', pack: 'Pack & voice', menu: 'Menus & display' },
+      note1: '<b>Your own bindings:</b> every LiW key can be changed in game: Settings → Key Bindings → RedM (entries start with "LiW:").',
+      note2: '<b>Hide / show HUD</b> has no default key. Bind "LiW: Hide / show HUD" there yourself, or switch parts off in the character menu (J) under "Settings".',
+      note3: '<b>Talking</b> uses RedM\'s push-to-talk key (default N). Z sets how far you can be heard.',
+    },
+  };
+
+  const GROUPS = { move: '--muted', combat: '--rust', survive: '--moss', pack: '--gold', menu: '--sky' };
+
+  // Every action: key id, group, hold?, short label for the key cap, full description.
+  const ACTIONS = [
+    { key: 'W', also: ['A', 'S', 'D'], group: 'move', short: { de: 'Laufen', en: 'Move' },
+      de: ['W A S D', 'Laufen', 'Die Kamera bestimmt die Richtung.'], en: ['W A S D', 'Move', 'The camera sets the direction.'] },
+    { key: 'LSHIFT', group: 'move', short: { de: 'Rennen', en: 'Sprint' },
+      de: ['Shift', 'Rennen', 'Kostet Ausdauer; das Attribut Ausdauer lässt dich länger rennen.'], en: ['Shift', 'Sprint', 'Uses stamina; the Stamina attribute lets you run longer.'] },
+    { key: 'LMB', group: 'combat', short: { de: 'Leicht', en: 'Light' },
+      de: ['Linke Maustaste', 'Leichter Angriff', 'Schnell und günstig. Wölfe, Kojoten und Füchse lassen Beute damit manchmal bluten.'],
+      en: ['Left mouse button', 'Light attack', 'Quick and cheap. Wolves, coyotes and foxes sometimes make prey bleed with it.'] },
+    { key: 'RMB', group: 'combat', short: { de: 'Schwer', en: 'Heavy' },
+      de: ['Rechte Maustaste', 'Schwerer Angriff', 'Mehr Schaden, mehr Ausdauer. Kann Beute am Bein verletzen, dann wird sie langsamer.'],
+      en: ['Right mouse button', 'Heavy attack', 'More damage, more stamina. Can hurt prey\'s leg so it slows down.'] },
+    { key: 'Q', group: 'combat', short: { de: 'Ausweichen', en: 'Dodge' },
+      de: ['Q', 'Ausweichen', 'Ein Angriff, der dich im Ausweichen trifft, geht ins Leere.'], en: ['Q', 'Dodge', 'An attack that lands while you dodge misses.'] },
+    { key: 'R', group: 'combat', short: { de: 'Brüllen', en: 'Roar' },
+      de: ['R', 'Brüllen / Heulen', 'Drohen und Laut geben.'], en: ['R', 'Roar / howl', 'Threaten and call out.'] },
+    { key: 'CAPS', group: 'combat', short: { de: 'Spezial', en: 'Special' },
+      de: ['Feststelltaste', 'Sonderfähigkeit der Art', 'Puma: Sprung, Bär: Prankenhieb, Wolf: Rudelheulen, Hirsch: Sprint …'],
+      en: ['Caps Lock', 'Species special', 'Cougar: pounce, bear: maul, wolf: pack howl, deer: burst …'] },
+    { key: 'X', group: 'combat', short: { de: 'Fähigkeit 2', en: 'Ability 2' },
+      de: ['X', 'Zweite Fähigkeit', 'Nach dem passenden Art-Skill: z. B. Rudelwut, Lauern, Haken schlagen, Raserei.'],
+      en: ['X', 'Second ability', 'Once you learn the species skill: e.g. pack rage, stalk, evade, frenzy.'] },
+    { key: 'V', group: 'survive', short: { de: 'Sinne', en: 'Senses' },
+      de: ['V', 'Sinne', 'Witterung bzw. Nachtsicht: zeigt Beute, Gefahr und Spuren in der Nähe.'], en: ['V', 'Senses', 'Scent or night vision: shows prey, danger and trails nearby.'] },
+    { key: 'E', group: 'survive', hold: true, short: { de: 'Fressen', en: 'Eat' },
+      de: ['E halten', 'Fressen, Trinken, Grasen, Aufhelfen', 'Am Kadaver, am Wasser, auf Gras, am Beerenbusch oder bei einem niedergestreckten Tier.'],
+      en: ['Hold E', 'Eat, drink, graze, help up', 'At a carcass, water, grass, a berry bush or a downed animal.'] },
+    { key: 'LCTRL', group: 'survive', short: { de: 'Ruhen', en: 'Rest' },
+      de: ['Strg', 'Ausruhen / Schlafen', 'Füllt Ruhe und Ausdauer schneller auf.'], en: ['Ctrl', 'Rest / sleep', 'Recovers rest and stamina faster.'] },
+    { key: 'G', group: 'survive', short: { de: 'Markieren', en: 'Mark' },
+      de: ['G', 'Revier markieren', 'Duftmarke setzen, um ein Revier einzunehmen oder zu halten.'], en: ['G', 'Mark territory', 'Leave a scent mark to claim or hold a territory.'] },
+    { key: 'F', group: 'pack', short: { de: 'Emotes', en: 'Emotes' },
+      de: ['F', 'Emote-Rad', 'Gesten und Tierlaute.'], en: ['F', 'Emote wheel', 'Gestures and animal sounds.'] },
+    { key: 'Z', group: 'pack', short: { de: 'Reichweite', en: 'Range' },
+      de: ['Z', 'Sprachreichweite', 'Flüstern, normal, rufen.'], en: ['Z', 'Voice range', 'Whisper, normal, shout.'] },
+    { key: 'B', group: 'pack', hold: true, short: { de: 'Rudelruf', en: 'Pack call' },
+      de: ['B halten', 'Rudelruf', 'Nur dein Rudel im Umkreis von 150 m hört dich.'], en: ['Hold B', 'Pack call', 'Only your pack within 150 m hears you.'] },
+    { key: 'N', group: 'pack', short: { de: 'Sprechen', en: 'Talk' },
+      de: ['N', 'Sprechen', 'Push-to-Talk von RedM.'], en: ['N', 'Talk', 'RedM push-to-talk.'] },
+    { key: 'H', group: 'pack', short: { de: 'Begleiter', en: 'Follow' },
+      de: ['H', 'Begleiter: folgen / bleiben', 'Deine NPC-Begleiter folgen dir oder warten.'], en: ['H', 'Companions: follow / stay', 'Your NPC companions follow you or wait.'] },
+    { key: 'L', group: 'menu', short: { de: 'Rudel', en: 'Pack' },
+      de: ['L', 'Rudelmenü', 'Mitglieder, Ränge, Perks, Revier, Rangliste.'], en: ['L', 'Pack menu', 'Members, ranks, perks, territory, ranking.'] },
+    { key: 'J', group: 'menu', short: { de: 'Charakter', en: 'Char menu' },
+      de: ['J', 'Charaktermenü', 'Attribute, Fähigkeiten, Tier wechseln, Einstellungen, Abmelden.'], en: ['J', 'Character menu', 'Attributes, skills, switch animal, settings, log out.'] },
+    { key: 'K', group: 'menu', short: { de: 'Aufgaben', en: 'Quests' },
+      de: ['K', 'Aufgaben', 'Tages-, Wochen- und Nebenquests, Errungenschaften, Titel.'], en: ['K', 'Quests', 'Daily, weekly and side quests, achievements, titles.'] },
+    { key: 'O', group: 'menu', short: { de: 'Familie', en: 'Family' },
+      de: ['O', 'Familienbuch', 'Partner, Würfe und Nachwuchs.'], en: ['O', 'Family book', 'Mates, litters and offspring.'] },
+    { key: 'LALT', group: 'menu', hold: true, short: { de: 'Alle Ringe', en: 'All rings' },
+      de: ['Alt halten', 'Alle HUD-Ringe zeigen', 'Sonst erscheinen Ringe nur, wenn sie wichtig werden.'], en: ['Hold Alt', 'Show all HUD rings', 'Otherwise rings only show up when they matter.'] },
+    { key: 'M', group: 'menu', short: { de: 'Karte', en: 'Map' },
+      de: ['M', 'Karte', 'Mit Revieren und deinem Rudel (im Charaktermenü ausblendbar).'], en: ['M', 'Map', 'With territories and your pack (can be hidden in the character menu).'] },
+    { key: 'F4', group: 'menu', short: { de: 'Tests', en: 'Tests' },
+      de: ['F4', 'Testaufgaben & Feedback', 'Während der Testphase.'], en: ['F4', 'Test tasks & feedback', 'During the test phase.'] },
+  ];
+
+  // Physical rows: [id, width]. Labels per layout; ids are the key's meaning (Z stays Z).
+  const ROWS = {
+    de: [
+      [['ESC', 1, 'Esc'], ['_', 0.5], ['F1', 1], ['F2', 1], ['F3', 1], ['F4', 1], ['_', 0.5], ['F5', 1], ['F6', 1], ['F7', 1], ['F8', 1]],
+      [['^', 1], ['1', 1], ['2', 1], ['3', 1], ['4', 1], ['5', 1], ['6', 1], ['7', 1], ['8', 1], ['9', 1], ['0', 1], ['ß', 1], ['´', 1], ['BACK', 2, '⟵']],
+      [['TAB', 1.5, 'Tab'], ['Q', 1], ['W', 1], ['E', 1], ['R', 1], ['T', 1], ['Z', 1], ['U', 1], ['I', 1], ['O', 1], ['P', 1], ['Ü', 1], ['+', 1], ['ENTER', 1.5, '↵']],
+      [['CAPS', 1.75, 'Feststell'], ['A', 1], ['S', 1], ['D', 1], ['F', 1], ['G', 1], ['H', 1], ['J', 1], ['K', 1], ['L', 1], ['Ö', 1], ['Ä', 1], ['#', 1], ['_', 0.25]],
+      [['LSHIFT', 1.25, 'Shift'], ['<', 1], ['Y', 1], ['X', 1], ['C', 1], ['V', 1], ['B', 1], ['N', 1], ['M', 1], [',', 1], ['.', 1], ['-', 1], ['RSHIFT', 2.75, 'Shift']],
+      [['LCTRL', 1.5, 'Strg'], ['WIN', 1.25, '⊞'], ['LALT', 1.25, 'Alt'], ['SPACE', 6.25, ''], ['ALTGR', 1.25, 'Alt Gr'], ['RCTRL', 1.5, 'Strg']],
+    ],
+    en: [
+      [['ESC', 1, 'Esc'], ['_', 0.5], ['F1', 1], ['F2', 1], ['F3', 1], ['F4', 1], ['_', 0.5], ['F5', 1], ['F6', 1], ['F7', 1], ['F8', 1]],
+      [['`', 1], ['1', 1], ['2', 1], ['3', 1], ['4', 1], ['5', 1], ['6', 1], ['7', 1], ['8', 1], ['9', 1], ['0', 1], ['-', 1], ['=', 1], ['BACK', 2, '⟵']],
+      [['TAB', 1.5, 'Tab'], ['Q', 1], ['W', 1], ['E', 1], ['R', 1], ['T', 1], ['Y', 1], ['U', 1], ['I', 1], ['O', 1], ['P', 1], ['[', 1], [']', 1], ['\\', 1.5]],
+      [['CAPS', 1.75, 'Caps'], ['A', 1], ['S', 1], ['D', 1], ['F', 1], ['G', 1], ['H', 1], ['J', 1], ['K', 1], ['L', 1], [';', 1], ['\'', 1], ['ENTER', 2.25, '↵']],
+      [['LSHIFT', 2.25, 'Shift'], ['Z', 1], ['X', 1], ['C', 1], ['V', 1], ['B', 1], ['N', 1], ['M', 1], [',', 1], ['.', 1], ['/', 1], ['RSHIFT', 2.75, 'Shift']],
+      [['LCTRL', 1.5, 'Ctrl'], ['WIN', 1.25, '⊞'], ['LALT', 1.25, 'Alt'], ['SPACE', 6.25, ''], ['RALT', 1.25, 'Alt'], ['RCTRL', 1.5, 'Ctrl']],
+    ],
+  };
+
+  const byKey = {};
+  ACTIONS.forEach((a) => { [a.key, ...(a.also || [])].forEach((k) => { byKey[k] = a; }); });
+
+  let lang = (navigator.language || 'de').toLowerCase().startsWith('de') ? 'de' : 'en';
+  try { const saved = localStorage.getItem('liw_lang'); if (saved === 'en' || saved === 'de') lang = saved; } catch (e) { /* no storage */ }
+  const hidden = new Set();
+  let current = null;
+
+  const $ = (id) => document.getElementById(id);
+  const color = (group) => `var(${GROUPS[group]})`;
+
+  function keyButton(id, width, label, extraClass) {
+    const action = byKey[id];
+    const el = document.createElement(action ? 'button' : 'div');
+    el.className = `key${extraClass ? ` ${extraClass}` : ''}`;
+    el.style.setProperty('--w', width);
+    const cap = document.createElement('span');
+    cap.className = 'cap';
+    cap.textContent = label ?? id;
+    el.append(cap);
+    if (action) {
+      el.type = 'button';
+      el.classList.add('on');
+      el.style.setProperty('--c', color(action.group));
+      el.dataset.action = ACTIONS.indexOf(action);
+      if (hidden.has(action.group)) el.classList.add('dim');
+      const what = document.createElement('span');
+      what.className = 'what';
+      what.textContent = action.short[lang];
+      el.append(what);
+      if (action.hold) {
+        const hold = document.createElement('span');
+        hold.className = 'hold';
+        hold.textContent = '⏷';
+        hold.title = TEXT[lang].hold;
+        el.append(hold);
+      }
+      el.setAttribute('aria-label', `${action[lang][0]}: ${action[lang][1]}`);
+      el.addEventListener('mouseenter', () => show(action));
+      el.addEventListener('focus', () => show(action));
+      el.addEventListener('click', () => show(action));
+    }
+    return el;
+  }
+
+  function renderBoard() {
+    const board = $('board');
+    board.replaceChildren(...ROWS[lang].map((row) => {
+      const r = document.createElement('div');
+      r.className = 'row';
+      row.forEach(([id, width, label]) => {
+        if (id === '_') {
+          const g = document.createElement('div');
+          g.className = 'gap';
+          g.style.width = `calc(var(--u) * ${width})`;
+          r.append(g);
+        } else {
+          r.append(keyButton(id, width, label));
+        }
+      });
+      return r;
+    }));
+    const palm = document.createElement('div');
+    palm.className = 'palm';
+    $('mouse').replaceChildren(keyButton('LMB', 1, lang === 'de' ? 'Links' : 'Left'), keyButton('RMB', 1, lang === 'de' ? 'Rechts' : 'Right'), palm);
+  }
+
+  function renderLegend() {
+    $('legend').replaceChildren(...Object.keys(GROUPS).map((group) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.setAttribute('aria-pressed', hidden.has(group) ? 'false' : 'true');
+      const dot = document.createElement('span');
+      dot.className = 'dot';
+      dot.style.setProperty('--c', color(group));
+      b.append(dot, TEXT[lang].groups[group]);
+      b.addEventListener('click', () => {
+        if (hidden.has(group)) hidden.delete(group); else hidden.add(group);
+        render();
+      });
+      return b;
+    }));
+  }
+
+  function renderGroups() {
+    $('groups').replaceChildren(...Object.keys(GROUPS).map((group) => {
+      const box = document.createElement('section');
+      box.className = 'group';
+      box.style.setProperty('--c', color(group));
+      const h = document.createElement('h2');
+      const dot = document.createElement('span');
+      dot.className = 'dot';
+      h.append(dot, TEXT[lang].groups[group]);
+      const ul = document.createElement('ul');
+      ACTIONS.filter((a) => a.group === group).forEach((a) => {
+        const li = document.createElement('li');
+        li.dataset.action = ACTIONS.indexOf(a);
+        if (a === current) li.classList.add('hl');
+        const k = document.createElement('kbd');
+        k.textContent = a[lang][0];
+        const text = document.createElement('div');
+        text.style.minWidth = '0';
+        const name = document.createElement('span');
+        name.textContent = a[lang][1];
+        const small = document.createElement('small');
+        small.textContent = a[lang][2];
+        text.append(name, small);
+        li.append(k, text);
+        li.addEventListener('mouseenter', () => show(a));
+        ul.append(li);
+      });
+      box.append(h, ul);
+      return box;
+    }));
+  }
+
+  function show(action) {
+    current = action;
+    const d = $('detail');
+    if (!action) {
+      d.style.removeProperty('--detail-c');
+      d.textContent = TEXT[lang].hint;
+    } else {
+      d.style.setProperty('--detail-c', color(action.group));
+      d.replaceChildren();
+      const strong = document.createElement('strong');
+      strong.textContent = `${action[lang][0]} · ${action[lang][1]}`;
+      d.append(strong, document.createElement('br'), action[lang][2]);
+    }
+    const idx = String(ACTIONS.indexOf(action));
+    document.querySelectorAll('.key.on').forEach((k) => k.classList.toggle('active', k.dataset.action === idx));
+    document.querySelectorAll('.group li').forEach((li) => li.classList.toggle('hl', li.dataset.action === idx));
+  }
+
+  function render() {
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-t]').forEach((el) => { el.innerHTML = TEXT[lang][el.dataset.t]; });
+    document.querySelectorAll('.lang button').forEach((b) => b.setAttribute('aria-pressed', b.dataset.lang === lang ? 'true' : 'false'));
+    document.title = `${TEXT[lang].title} · Life In Wilderness`;
+    renderLegend();
+    renderBoard();
+    renderGroups();
+    show(current);
+  }
+
+  document.querySelectorAll('.lang button').forEach((b) => b.addEventListener('click', () => {
+    lang = b.dataset.lang;
+    try { localStorage.setItem('liw_lang', lang); } catch (e) { /* no storage */ }
+    render();
+  }));
+
+  render();
+})();
+</script>
+</body>
+</html>
