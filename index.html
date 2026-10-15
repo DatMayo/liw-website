@@ -1,0 +1,623 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Life In Wilderness</title>
+<meta name="description" content="Life In Wilderness – ein RedM-Roleplay-Server, auf dem jeder Spieler ein Tier ist.">
+<meta property="og:title" content="Life In Wilderness">
+<meta property="og:description" content="Ein RedM-Roleplay-Server, auf dem jeder Spieler ein Tier ist. / A RedM roleplay server where every player is an animal.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%2314100c' stroke='%23c8a35a'/%3E%3Ctext x='16' y='20.5' font-family='Georgia' font-size='11' text-anchor='middle' fill='%23c8a35a'%3ELiW%3C/text%3E%3C/svg%3E">
+<style>
+/* Fonts are served from this site (no third-party requests); SIL Open Font License, see assets/fonts/OFL-*.txt. */
+@font-face { font-family: 'IM Fell English'; src: url('assets/fonts/imfell.woff2') format('woff2'); font-style: normal; font-display: swap; }
+@font-face { font-family: 'IM Fell English'; src: url('assets/fonts/imfell-italic.woff2') format('woff2'); font-style: italic; font-display: swap; }
+@font-face { font-family: 'IM Fell English SC'; src: url('assets/fonts/imfell-sc.woff2') format('woff2'); font-display: swap; }
+@font-face { font-family: 'Crimson Pro'; src: url('assets/fonts/crimson.woff2') format('woff2'); font-weight: 400 600; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Crimson Pro'; src: url('assets/fonts/crimson-italic.woff2') format('woff2'); font-weight: 400; font-style: italic; font-display: swap; }
+/* Layout: full-bleed night landscape hero, then one centred column of sections on dark earth; species as a filterable grid. */
+:root {
+    color-scheme: dark;
+    --page: #14100c;
+    --panel: #1d1712;
+    --panel-2: #241c15;
+    --ink: #ece3d2;
+    --muted: #a99b84;
+    --gold: #c8a35a;
+    --gold-hi: #e3c27a;
+    --rust: #b8603f;
+    --moss: #8fb878;
+    --line: rgba(200, 163, 90, 0.24);
+    --display: 'IM Fell English SC', Georgia, serif;
+    --old: 'IM Fell English', Georgia, serif;
+    --body: 'Crimson Pro', Georgia, 'Times New Roman', serif;
+    --gutter-l: max(16px, env(safe-area-inset-left, 0px));
+    --gutter-r: max(16px, env(safe-area-inset-right, 0px));
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+html, body { background: var(--page); color: var(--ink); }
+body { margin: 0; font-family: var(--body); font-size: 1.125rem; line-height: 1.6; }
+a { color: var(--gold-hi); }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+h1, h2, h3 { font-family: var(--display); font-weight: 400; letter-spacing: 0.03em; text-wrap: balance; margin: 0; }
+p { margin: 0; }
+
+/* Top bar */
+.bar { position: absolute; top: 0; left: 0; right: 0; z-index: 5; display: flex; align-items: center; gap: 1.5rem;
+    padding: calc(1rem + env(safe-area-inset-top, 0px)) var(--gutter-r) 1rem var(--gutter-l); }
+.bar .mark { font-family: var(--display); font-size: 1.15rem; letter-spacing: 0.12em; color: var(--ink); text-decoration: none; display: flex; align-items: center; gap: 0.6rem; }
+.bar .mark span { display: grid; place-items: center; width: 2.1rem; height: 2.1rem; border: 1px solid var(--gold); border-radius: 50%; font-size: 0.85rem; color: var(--gold); }
+.bar nav { display: flex; gap: 1.25rem; margin-left: auto; flex-wrap: wrap; }
+.bar nav a { color: var(--ink); text-decoration: none; font-family: var(--old); font-size: 1rem; opacity: 0.85; }
+.bar nav a:hover { color: var(--gold-hi); opacity: 1; }
+.lang { display: flex; border: 1px solid var(--line); }
+.lang button { font: inherit; font-family: var(--display); font-size: 0.85rem; letter-spacing: 0.1em; background: none; color: var(--muted); border: 0; padding: 0.25rem 0.6rem; cursor: pointer; }
+.lang button[aria-pressed="true"] { background: var(--gold); color: var(--page); }
+@media (max-width: 52rem) { .bar nav { display: none; } .lang { margin-left: auto; } }
+
+/* Hero */
+.hero { position: relative; min-height: min(92vh, 52rem); display: grid; align-items: end; overflow: hidden;
+    background: linear-gradient(180deg, #121a26 0%, #26303c 34%, #5d5348 62%, #8c6a45 74%, #2a2218 75%, #14100c 100%); }
+.hero svg.scene { position: absolute; inset: auto 0 0 0; width: 100%; height: 62%; }
+.hero .moon { position: absolute; top: 16%; right: 18%; width: clamp(4rem, 9vw, 7.5rem); aspect-ratio: 1; border-radius: 50%;
+    background: radial-gradient(circle at 38% 38%, #fbf3dd, #e6d6b3 55%, #c9b48a); box-shadow: 0 0 4rem 1rem rgba(240, 225, 190, 0.18); }
+.hero .mist { position: absolute; left: -10%; right: -10%; bottom: 20%; height: 18%; background: radial-gradient(ellipse at center, rgba(220, 210, 190, 0.16), transparent 70%);
+    animation: drift 26s ease-in-out infinite alternate; }
+@keyframes drift { to { transform: translateX(6%); } }
+.hero-copy { position: relative; z-index: 2; display: grid; gap: 1.2rem; max-width: 46rem;
+    padding: 7rem var(--gutter-r) clamp(3rem, 9vh, 6rem) var(--gutter-l); margin-left: max(var(--gutter-l), calc((100vw - 68rem) / 2)); }
+.eyebrow { font-family: var(--display); font-size: 0.9rem; letter-spacing: 0.2em; color: var(--gold); }
+.hero h1 { font-size: clamp(2.8rem, 8vw, 5.6rem); line-height: 0.95; text-shadow: 0 0.2rem 1.5rem rgba(0, 0, 0, 0.6); }
+.hero .lede { font-size: clamp(1.15rem, 2.2vw, 1.4rem); max-width: 36rem; color: #e8decb; text-shadow: 0 0.1rem 0.8rem rgba(0, 0, 0, 0.7); }
+.actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.4rem; }
+.btn { display: inline-flex; align-items: center; gap: 0.55rem; padding: 0.75rem 1.4rem; font-family: var(--display); font-size: 1.05rem; letter-spacing: 0.08em; text-decoration: none; border: 1px solid var(--gold); }
+.btn.primary { background: var(--gold); color: #1a130c; }
+.btn.primary:hover { background: var(--gold-hi); }
+.btn.ghost { color: var(--ink); background: rgba(20, 16, 12, 0.5); }
+.btn.ghost:hover { border-color: var(--gold-hi); color: var(--gold-hi); }
+.btn svg { width: 1.25rem; height: 1.25rem; fill: currentColor; }
+.status { display: inline-flex; align-items: center; gap: 0.5rem; font-family: var(--old); font-size: 0.98rem; color: var(--muted); }
+.status i { width: 0.55rem; height: 0.55rem; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0.6rem var(--gold); }
+
+/* Sections */
+main { display: grid; gap: clamp(4rem, 9vw, 7rem); padding-block: clamp(3rem, 7vw, 5rem) 4rem; }
+.wrap { width: 100%; max-width: 68rem; margin: 0 auto; padding-left: var(--gutter-l); padding-right: var(--gutter-r); }
+.section-head { display: grid; gap: 0.6rem; margin-bottom: 2rem; max-width: 44rem; }
+.section-head h2 { font-size: clamp(2rem, 4.5vw, 2.8rem); line-height: 1.05; }
+.section-head p { color: var(--muted); }
+
+/* Intro facts */
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+.fact { background: var(--page); padding: 1.4rem 1.5rem; display: grid; gap: 0.2rem; }
+.fact b { font-family: var(--display); font-weight: 400; font-size: 2.4rem; line-height: 1; color: var(--gold); font-variant-numeric: tabular-nums; }
+.fact span { color: var(--muted); font-size: 1rem; }
+.manifest { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 2rem 3rem; margin-top: 2.5rem; }
+.manifest p { font-size: 1.2rem; }
+.manifest p:first-child::first-letter { font-family: var(--display); float: left; font-size: 3.6rem; line-height: 0.85; padding: 0.3rem 0.5rem 0 0; color: var(--gold); }
+@media (max-width: 44rem) { .manifest { grid-template-columns: 1fr; } }
+
+/* Gameplay */
+.pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr)); gap: 1.25rem; }
+.pillar { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0.4rem 1rem; align-content: start; padding: 1.4rem 1.4rem 1.5rem; background: var(--panel); border-top: 2px solid var(--line); }
+.pillar svg { grid-row: span 2; width: 2.4rem; height: 2.4rem; fill: none; stroke: var(--gold); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.pillar h3 { font-size: 1.35rem; color: var(--ink); }
+.pillar p { color: #cfc4b0; font-size: 1.03rem; }
+
+/* Species */
+.filters { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
+.filters button { font: inherit; font-family: var(--old); font-size: 1rem; color: var(--muted); background: none; border: 1px solid var(--line); padding: 0.3rem 0.9rem; cursor: pointer; }
+.filters button[aria-pressed="true"] { color: var(--page); background: var(--gold); border-color: var(--gold); }
+.species { display: grid; grid-template-columns: repeat(auto-fill, minmax(16.5rem, 1fr)); gap: 1rem; }
+.animal { display: grid; gap: 0.7rem; padding: 1.2rem 1.25rem 1.3rem; background: var(--panel); border: 1px solid transparent; }
+.animal:hover { border-color: var(--line); }
+.animal header { display: flex; justify-content: space-between; align-items: baseline; gap: 0.5rem; }
+.animal h3 { font-size: 1.35rem; }
+.animal .cls { font-family: var(--display); font-size: 0.72rem; letter-spacing: 0.12em; padding: 0.05rem 0.45rem; border: 1px solid currentColor; white-space: nowrap; }
+.cls.carnivore { color: var(--rust); } .cls.herbivore { color: var(--moss); } .cls.omnivore { color: var(--gold); }
+.animal p { color: #cfc4b0; font-size: 1rem; line-height: 1.45; }
+.stats { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0.2rem 0.6rem; font-size: 0.82rem; color: var(--muted); align-items: center; }
+.stats .bar-track { height: 0.3rem; background: rgba(255, 255, 255, 0.08); }
+.stats .bar-fill { height: 100%; background: var(--gold); opacity: 0.8; }
+
+/* Life cycle */
+.life { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); position: relative; }
+.life::before { content: ''; position: absolute; top: 1.05rem; left: 12.5%; right: 12.5%; height: 1px; background: var(--line); }
+.stage { display: grid; justify-items: center; text-align: center; gap: 0.6rem; padding: 0 0.75rem; }
+.stage i { position: relative; width: 2.1rem; height: 2.1rem; border-radius: 50%; border: 1px solid var(--gold); background: var(--page); display: grid; place-items: center; font-style: normal; font-family: var(--display); color: var(--gold); }
+.stage h3 { font-size: 1.25rem; }
+.stage p { color: var(--muted); font-size: 0.98rem; }
+.stage.dead i { border-color: var(--rust); color: var(--rust); }
+.life-note { margin-top: 2rem; padding: 1.1rem 1.4rem; border-left: 2px solid var(--rust); background: var(--panel); color: #d8cdb8; }
+@media (max-width: 44rem) {
+    .life { grid-template-columns: 1fr; gap: 1.5rem; }
+    .life::before { top: 0; bottom: 0; left: 1.05rem; right: auto; width: 1px; height: auto; }
+    .stage { grid-template-columns: auto minmax(0, 1fr); justify-items: start; text-align: left; column-gap: 1rem; padding: 0; }
+    .stage i { grid-row: span 2; }
+}
+
+/* Join */
+.steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 1.25rem; counter-reset: step; }
+.step { position: relative; padding: 1.4rem 1.3rem 1.4rem; background: var(--panel-2); counter-increment: step; display: grid; gap: 0.5rem; align-content: start; }
+.step::before { content: counter(step); font-family: var(--display); font-size: 2.6rem; line-height: 1; color: var(--gold); }
+.step h3 { font-size: 1.25rem; }
+.step p { color: #cfc4b0; font-size: 1rem; }
+.step code { font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace; font-size: 0.9rem; background: rgba(0, 0, 0, 0.35); padding: 0.1rem 0.4rem; color: var(--gold-hi); overflow-wrap: anywhere; }
+.join-cta { margin-top: 1.75rem; display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }
+.join-cta p { color: var(--muted); }
+
+/* Rules */
+.rules { display: grid; grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr)); gap: 0 3rem; margin: 0; padding: 0; list-style: none; counter-reset: rule; }
+.rules li { counter-increment: rule; display: grid; grid-template-columns: 2.2rem minmax(0, 1fr); gap: 0.2rem 0.75rem; padding: 1rem 0; border-bottom: 1px solid var(--line); }
+.rules li::before { content: counter(rule, upper-roman); grid-row: span 2; font-family: var(--display); color: var(--gold); font-size: 1.2rem; }
+.rules b { font-family: var(--old); font-weight: 400; font-size: 1.15rem; }
+.rules span { color: var(--muted); font-size: 1rem; }
+
+/* Roadmap */
+.road { display: grid; gap: 0; border-left: 1px solid var(--line); margin-left: 0.5rem; }
+.phase { position: relative; padding: 0 0 2rem 1.75rem; display: grid; gap: 0.35rem; }
+.phase::before { content: ''; position: absolute; left: -0.45rem; top: 0.45rem; width: 0.8rem; height: 0.8rem; border-radius: 50%; background: var(--page); border: 2px solid var(--muted); }
+.phase.done::before { background: var(--gold); border-color: var(--gold); }
+.phase.now::before { border-color: var(--gold); box-shadow: 0 0 0 0.3rem rgba(200, 163, 90, 0.2); }
+.phase .tag { font-family: var(--display); font-size: 0.78rem; letter-spacing: 0.14em; color: var(--muted); }
+.phase.done .tag, .phase.now .tag { color: var(--gold); }
+.phase h3 { font-size: 1.35rem; }
+.phase p { color: #cfc4b0; font-size: 1rem; max-width: 46rem; }
+
+/* FAQ */
+.faq { display: grid; gap: 0.5rem; }
+.faq details { background: var(--panel); padding: 0 1.25rem; }
+.faq summary { cursor: pointer; padding: 1rem 0; font-family: var(--old); font-size: 1.15rem; list-style: none; display: flex; justify-content: space-between; gap: 1rem; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: '+'; color: var(--gold); font-family: var(--display); }
+.faq details[open] summary::after { content: '–'; }
+.faq details p { padding: 0 0 1.1rem; color: #cfc4b0; }
+
+/* Footer */
+footer { border-top: 1px solid var(--line); padding-block: 2rem calc(2rem + env(safe-area-inset-bottom, 0px)); }
+footer .wrap { display: flex; flex-wrap: wrap; gap: 1rem 2rem; justify-content: space-between; align-items: center; color: var(--muted); font-size: 0.95rem; }
+footer nav { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+footer a { color: var(--muted); }
+footer small { flex-basis: 100%; font-size: 0.85rem; opacity: 0.8; }
+
+@media (prefers-reduced-motion: reduce) { .hero .mist { animation: none; } html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+<header class="bar">
+    <a class="mark" href="#top"><span>LiW</span>Life In Wilderness</a>
+    <nav>
+        <a href="#spiel" data-t="nav_game"></a>
+        <a href="#arten" data-t="nav_species"></a>
+        <a href="#einstieg" data-t="nav_join"></a>
+        <a href="#regeln" data-t="nav_rules"></a>
+        <a href="#entwicklung" data-t="nav_dev"></a>
+        <a href="#faq">FAQ</a>
+    </nav>
+    <div class="lang" role="group" aria-label="Sprache / Language">
+        <button type="button" id="lang-de" data-lang="de">DE</button>
+        <button type="button" id="lang-en" data-lang="en">EN</button>
+    </div>
+</header>
+
+<section class="hero" id="top">
+    <div class="moon" aria-hidden="true"></div>
+    <svg class="scene" viewBox="0 0 1600 600" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+        <path d="M0 260 L110 200 L230 240 L360 150 L480 220 L600 170 L740 240 L880 140 L1010 210 L1150 160 L1290 230 L1420 180 L1600 230 V600 H0z" fill="#3a3a3c" opacity="0.55"/>
+        <path d="M0 340 L120 300 L260 330 L400 270 L540 320 L700 285 L860 335 L1020 280 L1180 325 L1340 290 L1480 330 L1600 300 V600 H0z" fill="#2c2721"/>
+        <path id="trees" d="M0 430 L30 380 L45 400 L60 350 L80 395 L100 360 L120 410 L150 370 L170 405 L200 345 L225 400 L260 385 L300 420 L360 405 L430 430 L520 415 L600 440 L700 425 L800 445 L900 428 L1000 440 L1080 420 L1130 380 L1150 400 L1175 340 L1200 395 L1225 355 L1250 405 L1280 365 L1305 410 L1340 375 L1370 415 L1420 395 L1480 425 L1540 405 L1600 420 V600 H0z" fill="#1a1611"/>
+        <g fill="#0f0c09">
+            <path d="M560 470 c8-6 14-6 22-8 l12-14 4 6 -6 10 c10 2 20 6 26 14 l8 22 -6 1 -8-16 -14 0 -4 18 -6 0 0-18 -20 0 -6 18 -6 0 2-20 c-6-4-8-8-4-13z"/>
+            <path d="M0 520 C200 500 400 515 600 505 C800 495 1000 520 1200 505 C1400 495 1500 510 1600 500 V600 H0z"/>
+        </g>
+    </svg>
+    <div class="mist" aria-hidden="true"></div>
+    <div class="hero-copy">
+        <p class="eyebrow" data-t="hero_eyebrow"></p>
+        <h1>Life In<br>Wilderness</h1>
+        <p class="lede" data-t="hero_lede"></p>
+        <div class="actions">
+            <a class="btn primary" href="#einstieg" data-discord>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.3 4.4A19.6 19.6 0 0015.4 3l-.6 1.3a18 18 0 00-5.6 0L8.6 3a19.6 19.6 0 00-4.9 1.5C.6 9.2-.3 13.8.1 18.3a19.8 19.8 0 006 3l1.3-2a12.7 12.7 0 01-2-1l.5-.4a14 14 0 0012.2 0l.5.4-2 1 1.3 2a19.7 19.7 0 006-3c.5-5.2-.8-9.8-3.6-13.9zM8 15.6c-1.2 0-2.2-1.1-2.2-2.4S6.8 10.8 8 10.8s2.2 1.1 2.2 2.4-1 2.4-2.2 2.4zm8 0c-1.2 0-2.2-1.1-2.2-2.4s1-2.4 2.2-2.4 2.2 1.1 2.2 2.4-1 2.4-2.2 2.4z"/></svg>
+                <span data-t="cta_discord"></span>
+            </a>
+            <a class="btn ghost" href="#einstieg" data-t="cta_join"></a>
+            <a class="btn ghost" href="#einstieg" data-connect data-t="cta_connect"></a>
+        </div>
+        <p class="status"><i aria-hidden="true"></i><span data-t="status"></span></p>
+    </div>
+</section>
+
+<main>
+    <section class="wrap" id="spiel" aria-labelledby="intro-title">
+        <div class="section-head">
+            <p class="eyebrow" data-t="intro_eyebrow"></p>
+            <h2 id="intro-title" data-t="intro_title"></h2>
+        </div>
+        <div class="facts">
+            <div class="fact"><b>15</b><span data-t="fact_species"></span></div>
+            <div class="fact"><b>3</b><span data-t="fact_slots"></span></div>
+            <div class="fact"><b>221</b><span data-t="fact_quests"></span></div>
+            <div class="fact"><b>61</b><span data-t="fact_titles"></span></div>
+        </div>
+        <div class="manifest">
+            <p data-t="manifest_1"></p>
+            <p data-t="manifest_2"></p>
+        </div>
+    </section>
+
+    <section class="wrap" aria-labelledby="pillars-title">
+        <div class="section-head">
+            <p class="eyebrow" data-t="pillars_eyebrow"></p>
+            <h2 id="pillars-title" data-t="pillars_title"></h2>
+        </div>
+        <div class="pillars">
+            <article class="pillar">
+                <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 4c-4 6-8 10-8 15a8 8 0 0016 0c0-5-4-9-8-15z"/><path d="M12 20a4 4 0 004 4"/></svg>
+                <h3 data-t="p_survive_h"></h3><p data-t="p_survive"></p>
+            </article>
+            <article class="pillar">
+                <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="10" cy="12" r="3"/><circle cx="22" cy="12" r="3"/><circle cx="16" cy="7" r="3"/><path d="M4 26c1-5 4-8 6-8s4 2 6 2 4-2 6-2 5 3 6 8"/></svg>
+                <h3 data-t="p_pack_h"></h3><p data-t="p_pack"></p>
+            </article>
+            <article class="pillar">
+                <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 9l7-4 8 4 7-4v18l-7 4-8-4-7 4z"/><path d="M12 5v18M20 9v18"/></svg>
+                <h3 data-t="p_territory_h"></h3><p data-t="p_territory"></p>
+            </article>
+            <article class="pillar">
+                <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="6" r="3"/><circle cx="8" cy="24" r="3"/><circle cx="24" cy="24" r="3"/><path d="M16 9v6M16 15l-8 6M16 15l8 6"/></svg>
+                <h3 data-t="p_lineage_h"></h3><p data-t="p_lineage"></p>
+            </article>
+            <article class="pillar">
+                <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="5"/><path d="M16 3v4M16 25v4M3 16h4M25 16h4M7 7l3 3M22 22l3 3M25 7l-3 3M10 22l-3 3"/></svg>
+                <h3 data-t="p_seasons_h"></h3><p data-t="p_seasons"></p>
+            </article>
+            <article class="pillar">
+                <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M8 4h13l4 4v20H8z"/><path d="M12 12h9M12 17h9M12 22h5"/></svg>
+                <h3 data-t="p_quests_h"></h3><p data-t="p_quests"></p>
+            </article>
+            <article class="pillar">
+                <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M6 13v6M10 10v12M14 7v18M18 10v12M22 13v6M26 15v2"/></svg>
+                <h3 data-t="p_voice_h"></h3><p data-t="p_voice"></p>
+            </article>
+            <article class="pillar">
+                <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M3 16c4-6 8-9 13-9s9 3 13 9c-4 6-8 9-13 9s-9-3-13-9z"/><circle cx="16" cy="16" r="4"/></svg>
+                <h3 data-t="p_senses_h"></h3><p data-t="p_senses"></p>
+            </article>
+        </div>
+    </section>
+
+    <section class="wrap" id="arten" aria-labelledby="species-title">
+        <div class="section-head">
+            <p class="eyebrow" data-t="species_eyebrow"></p>
+            <h2 id="species-title" data-t="species_title"></h2>
+            <p data-t="species_lede"></p>
+        </div>
+        <div class="filters" role="group" data-t-label="species_filter">
+            <button type="button" data-filter="all" aria-pressed="true" data-t="f_all"></button>
+            <button type="button" data-filter="carnivore" aria-pressed="false" data-t="cls_carnivore"></button>
+            <button type="button" data-filter="herbivore" aria-pressed="false" data-t="cls_herbivore"></button>
+            <button type="button" data-filter="omnivore" aria-pressed="false" data-t="cls_omnivore"></button>
+        </div>
+        <div class="species" id="species"></div>
+    </section>
+
+    <section class="wrap" aria-labelledby="life-title">
+        <div class="section-head">
+            <p class="eyebrow" data-t="life_eyebrow"></p>
+            <h2 id="life-title" data-t="life_title"></h2>
+            <p data-t="life_lede"></p>
+        </div>
+        <div class="life">
+            <div class="stage"><i>I</i><h3 data-t="st_young_h"></h3><p data-t="st_young"></p></div>
+            <div class="stage"><i>II</i><h3 data-t="st_adult_h"></h3><p data-t="st_adult"></p></div>
+            <div class="stage"><i>III</i><h3 data-t="st_old_h"></h3><p data-t="st_old"></p></div>
+            <div class="stage dead"><i>✝</i><h3 data-t="st_dead_h"></h3><p data-t="st_dead"></p></div>
+        </div>
+        <p class="life-note" data-t="life_note"></p>
+    </section>
+
+    <section class="wrap" id="einstieg" aria-labelledby="join-title">
+        <div class="section-head">
+            <p class="eyebrow" data-t="join_eyebrow"></p>
+            <h2 id="join-title" data-t="join_title"></h2>
+        </div>
+        <div class="steps">
+            <div class="step"><h3 data-t="s1_h"></h3><p data-t="s1"></p></div>
+            <div class="step"><h3 data-t="s2_h"></h3><p data-t="s2"></p></div>
+            <div class="step"><h3 data-t="s3_h"></h3><p data-t="s3"></p></div>
+            <div class="step"><h3 data-t="s4_h"></h3><p data-t="s4"></p></div>
+        </div>
+        <div class="join-cta">
+            <a class="btn primary" href="#einstieg" data-discord><span data-t="cta_discord"></span></a>
+            <a class="btn ghost" href="#einstieg" data-connect data-t="cta_connect"></a>
+            <p data-t="join_note"></p>
+        </div>
+    </section>
+
+    <section class="wrap" id="regeln" aria-labelledby="rules-title">
+        <div class="section-head">
+            <p class="eyebrow" data-t="rules_eyebrow"></p>
+            <h2 id="rules-title" data-t="rules_title"></h2>
+            <p data-t="rules_lede"></p>
+        </div>
+        <ol class="rules">
+            <li><b data-t="r1_h"></b><span data-t="r1"></span></li>
+            <li><b data-t="r2_h"></b><span data-t="r2"></span></li>
+            <li><b data-t="r3_h"></b><span data-t="r3"></span></li>
+            <li><b data-t="r4_h"></b><span data-t="r4"></span></li>
+            <li><b data-t="r5_h"></b><span data-t="r5"></span></li>
+            <li><b data-t="r6_h"></b><span data-t="r6"></span></li>
+        </ol>
+    </section>
+
+    <section class="wrap" id="entwicklung" aria-labelledby="dev-title">
+        <div class="section-head">
+            <p class="eyebrow" data-t="dev_eyebrow"></p>
+            <h2 id="dev-title" data-t="dev_title"></h2>
+            <p data-t="dev_lede"></p>
+        </div>
+        <div class="road">
+            <div class="phase done"><span class="tag" data-t="ph_done"></span><h3 data-t="ph0_h"></h3><p data-t="ph0"></p></div>
+            <div class="phase now"><span class="tag" data-t="ph_test"></span><h3 data-t="ph1_h"></h3><p data-t="ph1"></p></div>
+            <div class="phase now"><span class="tag" data-t="ph_test"></span><h3 data-t="ph2_h"></h3><p data-t="ph2"></p></div>
+            <div class="phase"><span class="tag" data-t="ph_planned"></span><h3 data-t="ph3_h"></h3><p data-t="ph3"></p></div>
+            <div class="phase"><span class="tag" data-t="ph_planned"></span><h3 data-t="ph4_h"></h3><p data-t="ph4"></p></div>
+        </div>
+    </section>
+
+    <section class="wrap" id="faq" aria-labelledby="faq-title">
+        <div class="section-head">
+            <p class="eyebrow">FAQ</p>
+            <h2 id="faq-title" data-t="faq_title"></h2>
+        </div>
+        <div class="faq">
+            <details><summary data-t="q1"></summary><p data-t="a1"></p></details>
+            <details><summary data-t="q2"></summary><p data-t="a2"></p></details>
+            <details><summary data-t="q3"></summary><p data-t="a3"></p></details>
+            <details><summary data-t="q4"></summary><p data-t="a4"></p></details>
+            <details><summary data-t="q5"></summary><p data-t="a5"></p></details>
+            <details><summary data-t="q6"></summary><p data-t="a6"></p></details>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="wrap">
+        <span>© Life In Wilderness</span>
+        <nav>
+            <a href="#top" data-t="imprint"></a>
+            <a href="#top" data-t="privacy"></a>
+            <a href="#top" data-discord>Discord</a>
+        </nav>
+        <small data-t="disclaimer"></small>
+    </div>
+</footer>
+
+<script>
+(() => {
+    const DISCORD_URL = 'https://discord.gg/jzYN3zEEyz';
+    const CONNECT_URL = 'https://cfx.re/join/4ggl8rq';
+
+    const SPECIES = [
+        ['wolf', 'carnivore', [6, 7, 7, 8, 5, 5], 'Wolf', 'Wolf', 'Ein Rudeljäger mit feinen Sinnen und großer Ausdauer. Gemeinsam am stärksten.', 'A pack hunter with keen senses and great endurance. Strongest together.'],
+        ['coyote', 'carnivore', [4, 8, 8, 8, 6, 4], 'Kojote', 'Coyote', 'Ein schlauer, ausdauernder Rudelläufer. Klein, aber nie allein und nie lange hungrig.', 'A cunning, tireless pack runner. Small, but never alone and never hungry for long.'],
+        ['fox', 'carnivore', [2, 6, 8, 9, 9, 3], 'Rotfuchs', 'Red Fox', 'Klein, listig und kaum zu sehen. Lebt von seinen Sinnen und meidet jeden offenen Kampf.', 'Small, sly and nearly invisible. Lives by its senses and avoids every fair fight.'],
+        ['cougar', 'carnivore', [7, 5, 8, 7, 8, 5], 'Puma', 'Cougar', 'Ein lautloser Einzelgänger. Tödlich aus dem Hinterhalt, verwundbar im langen Kampf.', 'A silent solitary stalker. Deadly from ambush, vulnerable in a long fight.'],
+        ['panther', 'carnivore', [7, 5, 8, 7, 10, 4], 'Panther', 'Panther', 'Ein schwarzer Schatten der Sümpfe und Wälder. Der leiseste Jäger – man sieht ihn erst, wenn es zu spät ist.', 'A black shadow of the swamps and forests. The most silent hunter – seen only when it is too late.'],
+        ['alligator', 'carnivore', [9, 4, 3, 6, 7, 9], 'Alligator', 'Alligator', 'Ein gepanzerter Urzeitjäger des Bayous. Langsam an Land, tödlich am Wasser.', 'An armoured ancient of the bayou. Slow on land, deadly at the water’s edge.'],
+        ['deer', 'herbivore', [3, 8, 9, 8, 6, 4], 'Weißwedelhirsch', 'Whitetail Deer', 'Schnell und wachsam. Lebt in Herden und überlebt, weil er Gefahr zuerst sieht.', 'Fast and alert. Lives in herds and survives by seeing danger first.'],
+        ['elk', 'herbivore', [6, 8, 8, 7, 4, 6], 'Wapiti', 'Elk', 'Ein großer Herdenhirsch. Ausdauernd und stolz; Bullen verteidigen ihre Herde mit dem Geweih.', 'A large herd deer. Enduring and proud; bulls defend their herd with their antlers.'],
+        ['moose', 'herbivore', [8, 6, 6, 6, 3, 8], 'Elch', 'Moose', 'Der Riese der nördlichen Wälder. Ein Einzelgänger, der nichts fürchtet und niedertrampelt, was ihn bedroht.', 'The giant of the northern woods. A loner that fears nothing and tramples what threatens it.'],
+        ['bison', 'herbivore', [8, 6, 5, 6, 2, 10], 'Bison', 'Bison', 'Ein Berg aus Muskeln in der Herde. Schwer zu Fall zu bringen und gefährlich, wenn er angreift.', 'A mountain of muscle in a herd. Hard to bring down and dangerous when it charges.'],
+        ['horse', 'herbivore', [5, 9, 10, 6, 2, 6], 'Wildpferd', 'Wild Horse', 'Frei und ungezähmt. Der schnellste Läufer der Ebenen, stark in der Herde.', 'Free and untamed. The fastest runner of the plains, strong in the herd.'],
+        ['bear', 'omnivore', [9, 5, 5, 6, 3, 9], 'Schwarzbär', 'Black Bear', 'Kräftig und zäh. Frisst fast alles und fürchtet fast nichts.', 'Powerful and tough. Eats almost anything and fears almost nothing.'],
+        ['grizzly', 'omnivore', [10, 5, 5, 7, 2, 10], 'Grizzlybär', 'Grizzly Bear', 'Das stärkste Tier der Wildnis. Schwer zu reizen – und dann nicht mehr aufzuhalten.', 'The strongest animal of the wilderness. Slow to anger, unstoppable once it is.'],
+        ['boar', 'omnivore', [5, 6, 6, 8, 5, 7], 'Wildschwein', 'Wild Boar', 'Zäh, jähzornig und frisst alles. Eine Rotte Wildschweine fürchtet keinen Wolf.', 'Tough, quick-tempered and eats everything. A group of boars fears no wolf.'],
+        ['raccoon', 'omnivore', [2, 6, 5, 7, 8, 3], 'Waschbär', 'Raccoon', 'Klein, schlau und immer hungrig. Findet überall Futter und entwischt jeder Gefahr.', 'Small, clever and always hungry. Finds food everywhere and slips away from every danger.'],
+    ];
+    const STAT_KEYS = ['st_strength', 'st_stamina', 'st_speed', 'st_senses', 'st_stealth', 'st_constitution'];
+
+    const T = {
+        de: {
+            nav_game: 'Das Spiel', nav_species: 'Arten', nav_join: 'Einstieg', nav_rules: 'Regeln', nav_dev: 'Entwicklung',
+            hero_eyebrow: 'RedM-Roleplay-Server',
+            hero_lede: 'Kein Mensch, kein Revolver, keine Stadt. Du bist ein Tier in der Wildnis von Red Dead Redemption 2 – und musst überleben.',
+            cta_discord: 'Discord beitreten', cta_join: 'So kommst du rein', cta_connect: 'Verbinden',
+            status: 'In Entwicklung · offene Testphase',
+            intro_eyebrow: 'Das Spiel', intro_title: 'Überleben. Jagen. Fortpflanzen. Reviere halten.',
+            fact_species: 'spielbare Arten, vom Waschbär bis zum Grizzly', fact_slots: 'Tiere gleichzeitig pro Account',
+            fact_quests: 'Nebenquests, dazu Tages-, Wochen- und Rudelquests', fact_titles: 'Titel, die man sich verdienen kann',
+            manifest_1: 'Auf Life In Wilderness gibt es keine spielbaren Menschen. Jeder Spieler ist ein Tier aus der Welt von RDR2: Wolf, Puma, Bison, Alligator. Die Städte sind leer, auf den Straßen fährt keine Kutsche. Was bleibt, ist die Wildnis – und alle, die darin leben.',
+            manifest_2: 'Es gibt kein Geld und kein Inventar. Du hast deinen Körper, deine Sinne, dein Rudel und dein Revier. Jedes Tier lebt nur einmal: Wer stirbt, ist fort. Was bleibt, sind seine Nachkommen und sein Name im Stammbaum.',
+            pillars_eyebrow: 'Was dich erwartet', pillars_title: 'Ein Leben in der Wildnis',
+            p_survive_h: 'Überleben', p_survive: 'Hunger, Durst, Ruhe und Temperatur. Fleischfresser reißen Beute und fressen Aas, Pflanzenfresser grasen, Allesfresser plündern Beerensträucher. Blutung und Humpeln machen jede Wunde zur Gefahr.',
+            p_pack_h: 'Rudel und Ränge', p_pack_h2: '', p_pack: 'Schließ dich deiner Art an – vom Omega bis zum Alpha. Wer führen will, fordert den Alpha zum Duell. Rudel sammeln Ruhm, schalten Perks frei und messen sich in der Rangliste.',
+            p_territory_h: 'Reviere', p_territory: 'Reviere nimmst du durch Anwesenheit und Duftmarken ein. Sie bringen Beute und Regeneration – und Eindringlinge, die sie dir streitig machen wollen.',
+            p_lineage_h: 'Blutlinien', p_lineage: 'Zwei Tiere derselben Art können einen Wurf zeugen. Aus den Jungtieren werden neue Charaktere, mit Fell, kleinen Boni und dem Namen ihrer Blutlinie.',
+            p_seasons_h: 'Jahreszeiten', p_seasons: 'Die Jahreszeiten folgen dem echten Kalender. Der Winter ist kalt und die Beute knapp, im Herbst beginnt die Brunft.',
+            p_quests_h: 'Quests und Titel', p_quests: 'Tägliche und wöchentliche Aufgaben, Nebenquests für jede Art, Errungenschaften, Titel und seltene Fellvarianten als Belohnung.',
+            p_voice_h: 'Stimme statt Chat', p_voice: 'Proximity Voice mit Reichweiten von leise bis Rudelruf, dazu Heulen, Brüllen und Fauchen über das Emote-Rad. Einen Text-Chat gibt es im Spiel nicht.',
+            p_senses_h: 'Sinne', p_senses: 'Jede Art nimmt die Welt anders wahr: Witterung zeigt Spuren und Blutfährten, andere Arten sehen in der Nacht.',
+            species_eyebrow: 'Die Arten', species_title: 'Fünfzehn Arten, drei Lebensweisen',
+            species_lede: 'Jede Art hat eigene Stärken, eine Sonderfähigkeit und einen eigenen Fähigkeitsbaum. Die Balken zeigen die Grundwerte von 1 bis 10.',
+            species_filter: 'Nach Ernährung filtern', f_all: 'Alle',
+            cls_carnivore: 'Fleischfresser', cls_herbivore: 'Pflanzenfresser', cls_omnivore: 'Allesfresser',
+            st_strength: 'Stärke', st_stamina: 'Ausdauer', st_speed: 'Tempo', st_senses: 'Sinne', st_stealth: 'Tarnung', st_constitution: 'Konstitution',
+            life_eyebrow: 'Ein Leben', life_title: 'Jedes Tier lebt nur einmal',
+            life_lede: 'Ein Tier lebt je nach Art 30 bis 60 Stunden Spielzeit. Gezählt wird nur, solange du online bist.',
+            st_young_h: 'Jungtier', st_young: 'Kleiner und schwächer. Es wächst mit jeder Stunde.',
+            st_adult_h: 'Ausgewachsen', st_adult: 'Volle Kraft. Zeit für Rudel, Revier und Nachwuchs.',
+            st_old_h: 'Alt', st_old: 'Erfahren, aber die Kräfte lassen langsam nach.',
+            st_dead_h: 'Tod', st_dead: 'Endgültig. Das Tier bleibt im Stammbaum, der Platz wird frei.',
+            life_note: 'Bevor ein Tier stirbt, liegt es eine Minute niedergestreckt am Boden. In dieser Zeit kann das Rudel ihm aufhelfen. Wer sich mitten im Kampf ausloggt, lässt sein Tier noch 30 Sekunden verwundbar zurück.',
+            join_eyebrow: 'Einstieg', join_title: 'So kommst du in die Wildnis',
+            s1_h: 'Red Dead Redemption 2', s1: 'Du brauchst RDR2 für den PC (Steam, Epic oder Rockstar Launcher).',
+            s2_h: 'RedM installieren', s2: 'RedM ist der kostenlose Multiplayer-Client für RDR2. Download auf redm.net.',
+            s3_h: 'Discord beitreten', s3: 'Ohne Discord kein Zugang: Tritt unserem Server bei, dort findest du auch Regeln, Neuigkeiten und Hilfe.',
+            s4_h: 'Verbinden', s4: 'Klick auf „Verbinden“, such in RedM nach „Life In Wilderness“ oder drück F8 und gib <code>connect cfx.re/join/4ggl8rq</code> ein.',
+            join_note: 'Eine Bewerbung gibt es nicht: Wer auf dem Discord ist, kann direkt spielen.',
+            rules_eyebrow: 'Regeln', rules_title: 'Die Gesetze der Wildnis',
+            rules_lede: 'Die Kurzfassung. Die vollständigen Regeln stehen auf dem Discord.',
+            r1_h: 'Du bist ein Tier', r1: 'Spiel dein Tier so, wie es sich verhalten würde. Keine Menschen, kein Wissen von außerhalb der Wildnis.',
+            r2_h: 'Respekt', r2: 'Im Spiel darf es rau zugehen, untereinander nicht. Beleidigungen, Hetze und Belästigung haben keinen Platz.',
+            r3_h: 'Kein Powergaming', r3: 'Keine Bugs ausnutzen, keine Tricks, um dem Tod oder einem Kampf zu entgehen.',
+            r4_h: 'Kein Metagaming', r4: 'Was du außerhalb des Spiels erfährst, weiß dein Tier nicht.',
+            r5_h: 'Fair kämpfen', r5: 'Kein grundloses Töten. Pflanzenfresser verteidigen sich, sie jagen keine Spieler.',
+            r6_h: 'Hilfe holen', r6: 'Bei Problemen oder Fehlern: Ticket auf dem Discord statt Streit im Spiel.',
+            dev_eyebrow: 'Entwicklung', dev_title: 'Wo wir stehen',
+            dev_lede: 'Life In Wilderness wird komplett selbst entwickelt, ohne fertiges Framework. Testspieler helfen jede Woche dabei, es besser zu machen.',
+            ph_done: 'Abgeschlossen', ph_test: 'Im Test', ph_planned: 'Geplant',
+            ph0_h: 'Fundament', ph0: 'Spieler als Tiere, eine Welt ohne Menschen, Kamera, Kampf und Animationen für jede Art.',
+            ph1_h: 'Das Grundspiel', ph1: 'Charaktere, Bedürfnisse, Gesundheit, Fressen, Kampf, Sinne, Rudel, Fortschritt, Stimme und HUD.',
+            ph2_h: 'Langzeitmotivation', ph2: 'Alter, Jahreszeiten, Reviere, Blutlinien und Nachwuchs, Begleiter, Quests, Errungenschaften und Titel, Rudel-Ruhm und zehn weitere Arten.',
+            ph3_h: 'Erweiterungen', ph3: 'Krankheiten wie Tollwut, legendäre Tiere, Allianzen zwischen Rudeln, Events zu Halloween und Weihnachten, weitere Arten.',
+            ph4_h: 'Später', ph4: 'Vögel mit eigenem Flugsystem, Wassertiere und saisonale Ranglisten.',
+            faq_title: 'Häufige Fragen',
+            q1: 'Brauche ich Red Dead Redemption 2?', a1: 'Ja, die PC-Version. RedM selbst ist kostenlos.',
+            q2: 'Kann ich auch einen Menschen spielen?', a2: 'Nein. Auf Life In Wilderness ist jeder Spieler ein Tier.',
+            q3: 'Was passiert, wenn mein Tier stirbt?', a3: 'Es ist endgültig fort. Du kannst ein neues Tier erschaffen oder ein Jungtier aus einem Wurf übernehmen – vielleicht sogar aus deiner eigenen Blutlinie.',
+            q4: 'Wie viele Tiere kann ich haben?', a4: 'Drei Plätze pro Account. Ein Platz wird frei, wenn ein Tier stirbt.',
+            q5: 'Muss ich Deutsch sprechen?', a5: 'Nein. Das Spiel gibt es auf Deutsch und Englisch, die Sprache wird automatisch erkannt.',
+            q6: 'Gibt es einen Text-Chat?', a6: 'Im Spiel nicht. Ihr verständigt euch über Proximity Voice, Tierlaute und das Emote-Rad.',
+            imprint: 'Impressum', privacy: 'Datenschutz',
+            disclaimer: 'Life In Wilderness ist ein Fanprojekt und steht in keiner Verbindung zu Rockstar Games oder Take-Two Interactive.',
+        },
+        en: {
+            nav_game: 'The game', nav_species: 'Species', nav_join: 'Join', nav_rules: 'Rules', nav_dev: 'Development',
+            hero_eyebrow: 'RedM roleplay server',
+            hero_lede: 'No humans, no revolvers, no towns. You are an animal in the wilderness of Red Dead Redemption 2 – and you have to survive.',
+            cta_discord: 'Join the Discord', cta_join: 'How to join', cta_connect: 'Connect',
+            status: 'In development · open testing',
+            intro_eyebrow: 'The game', intro_title: 'Survive. Hunt. Breed. Hold your territory.',
+            fact_species: 'playable species, from raccoon to grizzly', fact_slots: 'animals at once per account',
+            fact_quests: 'side quests, plus daily, weekly and pack quests', fact_titles: 'titles to earn',
+            manifest_1: 'On Life In Wilderness there are no playable humans. Every player is an animal from the world of RDR2: wolf, cougar, bison, alligator. The towns are empty and no coach rides the roads. What is left is the wilderness – and everything that lives in it.',
+            manifest_2: 'There is no money and no inventory. You have your body, your senses, your pack and your territory. Every animal lives only once: when it dies, it is gone. What remains are its offspring and its name in the family tree.',
+            pillars_eyebrow: 'What awaits you', pillars_title: 'A life in the wild',
+            p_survive_h: 'Survival', p_survive: 'Hunger, thirst, rest and temperature. Carnivores take prey and eat carrion, herbivores graze, omnivores raid berry bushes. Bleeding and limping turn every wound into a threat.',
+            p_pack_h: 'Packs and ranks', p_pack: 'Join your own kind – from omega to alpha. Whoever wants to lead challenges the alpha to a duel. Packs earn fame, unlock perks and compete on the ranking.',
+            p_territory_h: 'Territories', p_territory: 'You take a territory by being there and leaving scent marks. It brings prey and regeneration – and intruders who want it for themselves.',
+            p_lineage_h: 'Bloodlines', p_lineage: 'Two animals of the same species can have a litter. The young become new characters, with their fur, small bonuses and the name of their bloodline.',
+            p_seasons_h: 'Seasons', p_seasons: 'The seasons follow the real calendar. Winter is cold and prey is scarce, autumn brings the rut.',
+            p_quests_h: 'Quests and titles', p_quests: 'Daily and weekly tasks, side quests for every species, achievements, titles and rare fur variants as rewards.',
+            p_voice_h: 'Voice, not chat', p_voice: 'Proximity voice with ranges from quiet to pack call, plus howls, roars and hisses on the emote wheel. There is no text chat in the game.',
+            p_senses_h: 'Senses', p_senses: 'Every species perceives the world differently: scent shows tracks and blood trails, others see in the dark.',
+            species_eyebrow: 'The species', species_title: 'Fifteen species, three ways of life',
+            species_lede: 'Every species has its own strengths, a special ability and its own skill tree. The bars show the base values from 1 to 10.',
+            species_filter: 'Filter by diet', f_all: 'All',
+            cls_carnivore: 'Carnivore', cls_herbivore: 'Herbivore', cls_omnivore: 'Omnivore',
+            st_strength: 'Strength', st_stamina: 'Stamina', st_speed: 'Speed', st_senses: 'Senses', st_stealth: 'Stealth', st_constitution: 'Constitution',
+            life_eyebrow: 'One life', life_title: 'Every animal lives only once',
+            life_lede: 'Depending on its species, an animal lives 30 to 60 hours of play. Only the time you are online counts.',
+            st_young_h: 'Juvenile', st_young: 'Smaller and weaker. It grows with every hour.',
+            st_adult_h: 'Adult', st_adult: 'Full strength. Time for a pack, a territory and young.',
+            st_old_h: 'Old', st_old: 'Experienced, but its strength slowly fades.',
+            st_dead_h: 'Death', st_dead: 'Final. The animal stays in the family tree and its slot is freed.',
+            life_note: 'Before an animal dies, it lies downed for a minute. In that time its pack can help it up. Logging out in the middle of a fight leaves your animal behind and vulnerable for another 30 seconds.',
+            join_eyebrow: 'Join', join_title: 'How to get into the wild',
+            s1_h: 'Red Dead Redemption 2', s1: 'You need RDR2 for PC (Steam, Epic or the Rockstar Launcher).',
+            s2_h: 'Install RedM', s2: 'RedM is the free multiplayer client for RDR2. Download it at redm.net.',
+            s3_h: 'Join the Discord', s3: 'No Discord, no access: join our server, where you also find the rules, news and help.',
+            s4_h: 'Connect', s4: 'Click “Connect”, search for “Life In Wilderness” in RedM or press F8 and type <code>connect cfx.re/join/4ggl8rq</code>.',
+            join_note: 'There is no application: if you are on the Discord, you can play right away.',
+            rules_eyebrow: 'Rules', rules_title: 'The laws of the wild',
+            rules_lede: 'The short version. The full rules are on the Discord.',
+            r1_h: 'You are an animal', r1: 'Play your animal the way it would behave. No humans, no knowledge from outside the wild.',
+            r2_h: 'Respect', r2: 'The game may be rough, people may not. Insults, hate and harassment have no place here.',
+            r3_h: 'No powergaming', r3: 'No exploiting bugs, no tricks to escape death or a fight.',
+            r4_h: 'No metagaming', r4: 'What you learn outside the game, your animal does not know.',
+            r5_h: 'Fight fair', r5: 'No killing without a reason. Herbivores defend themselves, they do not hunt players.',
+            r6_h: 'Get help', r6: 'Problems or bugs: open a ticket on the Discord instead of arguing in the game.',
+            dev_eyebrow: 'Development', dev_title: 'Where we are',
+            dev_lede: 'Life In Wilderness is built entirely in-house, without a ready-made framework. Testers help make it better every week.',
+            ph_done: 'Done', ph_test: 'In testing', ph_planned: 'Planned',
+            ph0_h: 'Foundation', ph0: 'Players as animals, a world without humans, camera, combat and animations for every species.',
+            ph1_h: 'The core game', ph1: 'Characters, needs, health, feeding, combat, senses, packs, progression, voice and HUD.',
+            ph2_h: 'Long-term play', ph2: 'Aging, seasons, territories, bloodlines and litters, companions, quests, achievements and titles, pack fame and ten more species.',
+            ph3_h: 'Expansions', ph3: 'Diseases like rabies, legendary animals, alliances between packs, Halloween and Christmas events, more species.',
+            ph4_h: 'Later', ph4: 'Birds with their own flight system, water animals and seasonal rankings.',
+            faq_title: 'Frequently asked questions',
+            q1: 'Do I need Red Dead Redemption 2?', a1: 'Yes, the PC version. RedM itself is free.',
+            q2: 'Can I play a human?', a2: 'No. On Life In Wilderness every player is an animal.',
+            q3: 'What happens when my animal dies?', a3: 'It is gone for good. You can create a new animal or take over a juvenile from a litter – maybe even from your own bloodline.',
+            q4: 'How many animals can I have?', a4: 'Three slots per account. A slot is freed when an animal dies.',
+            q5: 'Do I have to speak German?', a5: 'No. The game is in English and German, the language is detected automatically.',
+            q6: 'Is there a text chat?', a6: 'Not in the game. You talk through proximity voice, animal sounds and the emote wheel.',
+            imprint: 'Imprint', privacy: 'Privacy',
+            disclaimer: 'Life In Wilderness is a fan project and is not affiliated with Rockstar Games or Take-Two Interactive.',
+        },
+    };
+
+    let lang = 'de';
+    let filter = 'all';
+    try {
+        const saved = localStorage.getItem('liw_lang');
+        lang = saved === 'en' || saved === 'de' ? saved : (navigator.language || 'de').toLowerCase().startsWith('de') ? 'de' : 'en';
+    } catch { lang = (navigator.language || 'de').toLowerCase().startsWith('de') ? 'de' : 'en'; }
+
+    const t = (key) => T[lang][key] ?? T.de[key] ?? '';
+
+    function renderSpecies() {
+        const grid = document.getElementById('species');
+        grid.replaceChildren(...SPECIES.filter((s) => filter === 'all' || s[1] === filter).map(([key, cls, stats, de, en, dDe, dEn]) => {
+            const card = document.createElement('article');
+            card.className = 'animal';
+            card.dataset.species = key;
+            const head = document.createElement('header');
+            const h = document.createElement('h3');
+            h.textContent = lang === 'de' ? de : en;
+            const c = document.createElement('span');
+            c.className = `cls ${cls}`;
+            c.textContent = t(`cls_${cls}`);
+            head.append(h, c);
+            const p = document.createElement('p');
+            p.textContent = lang === 'de' ? dDe : dEn;
+            const list = document.createElement('div');
+            list.className = 'stats';
+            stats.forEach((v, i) => {
+                const label = document.createElement('span');
+                label.textContent = t(STAT_KEYS[i]);
+                const track = document.createElement('div');
+                track.className = 'bar-track';
+                track.setAttribute('role', 'img');
+                track.setAttribute('aria-label', `${t(STAT_KEYS[i])} ${v}/10`);
+                const fill = document.createElement('div');
+                fill.className = 'bar-fill';
+                fill.style.width = `${v * 10}%`;
+                track.append(fill);
+                list.append(label, track);
+            });
+            card.append(head, p, list);
+            return card;
+        }));
+    }
+
+    function render() {
+        document.documentElement.lang = lang;
+        document.querySelectorAll('[data-t]').forEach((el) => {
+            const value = t(el.dataset.t);
+            if (value.includes('<code>')) el.innerHTML = value; else el.textContent = value;
+        });
+        document.querySelectorAll('[data-t-label]').forEach((el) => el.setAttribute('aria-label', t(el.dataset.tLabel)));
+        document.querySelectorAll('.lang button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
+        renderSpecies();
+    }
+
+    document.querySelectorAll('.lang button').forEach((b) => b.addEventListener('click', () => {
+        lang = b.dataset.lang;
+        try { localStorage.setItem('liw_lang', lang); } catch { /* private window */ }
+        render();
+    }));
+    document.querySelectorAll('.filters button').forEach((b) => b.addEventListener('click', () => {
+        filter = b.dataset.filter;
+        document.querySelectorAll('.filters button').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+        renderSpecies();
+    }));
+    document.querySelectorAll('[data-discord]').forEach((a) => { a.href = DISCORD_URL; a.target = '_blank'; a.rel = 'noopener'; });
+    document.querySelectorAll('[data-connect]').forEach((a) => { a.href = CONNECT_URL; });
+    render();
+})();
+</script>
+</body>
+</html>
