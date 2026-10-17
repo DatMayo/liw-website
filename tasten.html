@@ -68,10 +68,12 @@ a:focus-visible, .lang button:focus-visible, .key:focus-visible, .legend button:
 .key .hold { position: absolute; top: 0.25rem; right: 0.3rem; font-size: 0.6rem; }
 
 .mouse { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; padding: 0.9rem; background: var(--panel); border: 1px solid var(--line); }
-.mouse-body { --u: 3.5rem; width: 8rem; display: grid; grid-template-columns: 1fr 1fr; gap: 0.3rem; }
+.mouse-body { --u: 3.5rem; width: 9rem; display: grid; grid-template-columns: 1fr 2.4rem 1fr; gap: 0.3rem; }
 .mouse-body .key { width: auto; height: 5rem; border-radius: 2.4rem 0.5rem 0.4rem 0.4rem; padding: 1.4rem 0.5rem 0.4rem; }
-.mouse-body .key + .key { border-radius: 0.5rem 2.4rem 0.4rem 0.4rem; }
-.mouse-body .palm { grid-column: 1 / 3; height: 4.2rem; border: 1px solid var(--cap-edge); border-radius: 0.4rem 0.4rem 3rem 3rem; background: var(--cap-off); }
+.mouse-body .key.right { border-radius: 0.5rem 2.4rem 0.4rem 0.4rem; }
+.mouse-body .key.wheel { border-radius: 1.2rem; padding: 0.5rem 0.25rem; align-items: center; text-align: center; height: 3.6rem; align-self: start; margin-top: 0.4rem; }
+.mouse-body .key.wheel .what { font-size: 0.62rem; }
+.mouse-body .palm { grid-column: 1 / 4; height: 4.2rem; border: 1px solid var(--cap-edge); border-radius: 0.4rem 0.4rem 3rem 3rem; background: var(--cap-off); }
 .mouse-label { font-family: var(--display); color: var(--muted); font-size: 0.9rem; letter-spacing: 0.08em; }
 
 .detail { min-height: 3.4rem; border-left: 3px solid var(--detail-c, var(--line)); padding: 0.4rem 0 0.4rem 0.9rem; color: var(--muted); }
@@ -127,6 +129,7 @@ kbd { font: 600 0.85rem var(--body); display: inline-block; padding: 0.05rem 0.4
     <div data-t="note1"></div>
     <div data-t="note2"></div>
     <div data-t="note3"></div>
+    <div data-t="note4"></div>
   </div>
 </div>
 
@@ -140,10 +143,11 @@ kbd { font: 600 0.85rem var(--body); display: inline-block; padding: 0.05rem 0.4
       mouse: 'Maus',
       hint: 'Taste antippen oder darüberfahren für Details.',
       hold: 'halten',
-      groups: { move: 'Bewegung', combat: 'Kampf', survive: 'Überleben', pack: 'Rudel & Stimme', menu: 'Menüs & Anzeige' },
+      groups: { move: 'Bewegung & Kamera', combat: 'Kampf', survive: 'Überleben', pack: 'Rudel & Stimme', menu: 'Menüs & Anzeige' },
       note1: '<b>Eigene Belegung:</b> Alle LiW-Tasten lassen sich im Spiel ändern: Einstellungen → Tastenbelegung → RedM (Einträge beginnen mit „LiW:“).',
       note2: '<b>HUD aus- und einblenden</b> hat keine feste Taste. Leg sie dort selbst auf „LiW: HUD aus-/einblenden“, oder schalte Teile im Charaktermenü (J) unter „Einstellungen“ ab.',
       note3: '<b>Sprechen</b> geht über die Push-to-Talk-Taste von RedM (Standard N). Wie weit man dich hört, stellst du mit Z ein.',
+      note4: '<b>Kameraabstand:</b> Alt halten und am Mausrad drehen. Die Wahl bleibt gespeichert; <code>/liw_camera_reset</code> lässt wieder das Spiel wählen.',
     },
     en: {
       eyebrow: 'Life In Wilderness · RedM',
@@ -152,10 +156,11 @@ kbd { font: 600 0.85rem var(--body); display: inline-block; padding: 0.05rem 0.4
       mouse: 'Mouse',
       hint: 'Tap or hover a key for details.',
       hold: 'hold',
-      groups: { move: 'Movement', combat: 'Combat', survive: 'Survival', pack: 'Pack & voice', menu: 'Menus & display' },
+      groups: { move: 'Movement & camera', combat: 'Combat', survive: 'Survival', pack: 'Pack & voice', menu: 'Menus & display' },
       note1: '<b>Your own bindings:</b> every LiW key can be changed in game: Settings → Key Bindings → RedM (entries start with "LiW:").',
       note2: '<b>Hide / show HUD</b> has no default key. Bind "LiW: Hide / show HUD" there yourself, or switch parts off in the character menu (J) under "Settings".',
       note3: '<b>Talking</b> uses RedM\'s push-to-talk key (default N). Z sets how far you can be heard.',
+      note4: '<b>Camera distance:</b> hold Alt and turn the mouse wheel. Your choice is kept; <code>/liw_camera_reset</code> lets the game pick again.',
     },
   };
 
@@ -167,6 +172,9 @@ kbd { font: 600 0.85rem var(--body); display: inline-block; padding: 0.05rem 0.4
       de: ['W A S D', 'Laufen', 'Die Kamera bestimmt die Richtung.'], en: ['W A S D', 'Move', 'The camera sets the direction.'] },
     { key: 'LSHIFT', group: 'move', short: { de: 'Rennen', en: 'Sprint' },
       de: ['Shift', 'Rennen', 'Kostet Ausdauer; das Attribut Ausdauer lässt dich länger rennen.'], en: ['Shift', 'Sprint', 'Uses stamina; the Stamina attribute lets you run longer.'] },
+    { key: 'WHEEL', group: 'move', hold: true, short: { de: 'Zoom', en: 'Zoom' },
+      de: ['Alt + Mausrad', 'Kameraabstand', 'Mausrad hoch = weiter weg, runter = näher, bis zum doppelten Abstand der Art. Wird gespeichert.'],
+      en: ['Alt + mouse wheel', 'Camera distance', 'Wheel up = farther, down = closer, up to twice the species distance. Kept for next time.'] },
     { key: 'LMB', group: 'combat', short: { de: 'Leicht', en: 'Light' },
       de: ['Linke Maustaste', 'Leichter Angriff', 'Schnell und günstig. Wölfe, Kojoten und Füchse lassen Beute damit manchmal bluten.'],
       en: ['Left mouse button', 'Light attack', 'Quick and cheap. Wolves, coyotes and foxes sometimes make prey bleed with it.'] },
@@ -184,12 +192,13 @@ kbd { font: 600 0.85rem var(--body); display: inline-block; padding: 0.05rem 0.4
       de: ['X', 'Zweite Fähigkeit', 'Nach dem passenden Art-Skill: z. B. Rudelwut, Lauern, Haken schlagen, Raserei.'],
       en: ['X', 'Second ability', 'Once you learn the species skill: e.g. pack rage, stalk, evade, frenzy.'] },
     { key: 'V', group: 'survive', short: { de: 'Sinne', en: 'Senses' },
-      de: ['V', 'Sinne', 'Witterung bzw. Nachtsicht: zeigt Beute, Gefahr und Spuren in der Nähe.'], en: ['V', 'Senses', 'Scent or night vision: shows prey, danger and trails nearby.'] },
+      de: ['V', 'Sinne', 'Witterung bzw. Nachtsicht: zeigt Beute, Gefahr und Spuren in der Nähe; bleib nah an einem unbekannten Tier, um seine Art kennenzulernen.'],
+      en: ['V', 'Senses', 'Scent or night vision: shows prey, danger and trails nearby; stay close to an unknown animal to learn its kind.'] },
     { key: 'E', group: 'survive', hold: true, short: { de: 'Fressen', en: 'Eat' },
-      de: ['E halten', 'Fressen, Trinken, Grasen, Aufhelfen', 'Am Kadaver, am Wasser, auf Gras, am Beerenbusch oder bei einem niedergestreckten Tier.'],
-      en: ['Hold E', 'Eat, drink, graze, help up', 'At a carcass, water, grass, a berry bush or a downed animal.'] },
+      de: ['E halten', 'Fressen, Trinken, Grasen, Aufhelfen', 'Am Kadaver, am Wasser, auf Gras, am Beerenbusch oder bei einem niedergestreckten Tier. Satt oder ohne Durst geht es nicht. Kurz drücken: Gedenkstein lesen, Osterei aufheben.'],
+      en: ['Hold E', 'Eat, drink, graze, help up', 'At a carcass, water, grass, a berry bush or a downed animal. Not when full or not thirsty. Short press: read a memorial stone, pick up an Easter egg.'] },
     { key: 'LCTRL', group: 'survive', short: { de: 'Ruhen', en: 'Rest' },
-      de: ['Strg', 'Ausruhen / Schlafen', 'Füllt Ruhe und Ausdauer schneller auf.'], en: ['Ctrl', 'Rest / sleep', 'Recovers rest and stamina faster.'] },
+      de: ['Strg', 'Ausruhen / Schlafen', 'Füllt Ruhe und Ausdauer schneller auf, in der eigenen Höhle noch schneller.'], en: ['Ctrl', 'Rest / sleep', 'Recovers rest and stamina faster, even faster in your own den.'] },
     { key: 'G', group: 'survive', short: { de: 'Markieren', en: 'Mark' },
       de: ['G', 'Revier markieren', 'Duftmarke setzen, um ein Revier einzunehmen oder zu halten.'], en: ['G', 'Mark territory', 'Leave a scent mark to claim or hold a territory.'] },
     { key: 'F', group: 'pack', short: { de: 'Emotes', en: 'Emotes' },
@@ -203,17 +212,20 @@ kbd { font: 600 0.85rem var(--body); display: inline-block; padding: 0.05rem 0.4
     { key: 'H', group: 'pack', short: { de: 'Begleiter', en: 'Follow' },
       de: ['H', 'Begleiter: folgen / bleiben', 'Deine NPC-Begleiter folgen dir oder warten.'], en: ['H', 'Companions: follow / stay', 'Your NPC companions follow you or wait.'] },
     { key: 'L', group: 'menu', short: { de: 'Rudel', en: 'Pack' },
-      de: ['L', 'Rudelmenü', 'Mitglieder, Ränge, Perks, Revier, Rangliste.'], en: ['L', 'Pack menu', 'Members, ranks, perks, territory, ranking.'] },
+      de: ['L', 'Rudelmenü', 'Mitglieder, Ränge, Perks, Revier und Höhle, Bündnisse, Rangliste.'], en: ['L', 'Pack menu', 'Members, ranks, perks, territory and den, alliances, ranking.'] },
     { key: 'J', group: 'menu', short: { de: 'Charakter', en: 'Char menu' },
-      de: ['J', 'Charaktermenü', 'Attribute, Fähigkeiten, Tier wechseln, Einstellungen, Abmelden.'], en: ['J', 'Character menu', 'Attributes, skills, switch animal, settings, log out.'] },
+      de: ['J', 'Charaktermenü', 'Attribute, Fähigkeiten, Tierkunde, Tier wechseln, Einstellungen, Abmelden.'], en: ['J', 'Character menu', 'Attributes, skills, animal lore, switch animal, settings, log out.'] },
     { key: 'K', group: 'menu', short: { de: 'Aufgaben', en: 'Quests' },
-      de: ['K', 'Aufgaben', 'Tages-, Wochen- und Nebenquests, Errungenschaften, Titel.'], en: ['K', 'Quests', 'Daily, weekly and side quests, achievements, titles.'] },
+      de: ['K', 'Aufgaben', 'Tages-, Wochen- und Nebenquests, Errungenschaften, Titel, Event-Kalender.'], en: ['K', 'Quests', 'Daily, weekly and side quests, achievements, titles, event calendar.'] },
     { key: 'O', group: 'menu', short: { de: 'Familie', en: 'Family' },
-      de: ['O', 'Familienbuch', 'Partner, Würfe und Nachwuchs.'], en: ['O', 'Family book', 'Mates, litters and offspring.'] },
-    { key: 'LALT', group: 'menu', hold: true, short: { de: 'Alle Ringe', en: 'All rings' },
-      de: ['Alt halten', 'Alle HUD-Ringe zeigen', 'Sonst erscheinen Ringe nur, wenn sie wichtig werden.'], en: ['Hold Alt', 'Show all HUD rings', 'Otherwise rings only show up when they matter.'] },
+      de: ['O', 'Familienbuch', 'Partner, Würfe, Nachwuchs, Begleiter und Stammbaum.'], en: ['O', 'Family book', 'Mates, litters, offspring, companions and family tree.'] },
+    { key: 'U', group: 'menu', short: { de: 'Ranglisten', en: 'Rankings' },
+      de: ['U', 'Ranglisten & Statistik', 'Tier und Rudel der Saison, Ruhmeshalle, deine Statistik.'], en: ['U', 'Rankings & statistics', 'Animal and pack of the season, hall of fame, your statistics.'] },
+    { key: 'LALT', group: 'menu', hold: true, short: { de: 'Ringe · Zoom', en: 'Rings · zoom' },
+      de: ['Alt halten', 'Alle HUD-Ringe zeigen', 'Sonst erscheinen Ringe nur, wenn sie wichtig werden. Mit dem Mausrad dazu: Kameraabstand.'],
+      en: ['Hold Alt', 'Show all HUD rings', 'Otherwise rings only show up when they matter. Together with the mouse wheel: camera distance.'] },
     { key: 'M', group: 'menu', short: { de: 'Karte', en: 'Map' },
-      de: ['M', 'Karte', 'Mit Revieren und deinem Rudel (im Charaktermenü ausblendbar).'], en: ['M', 'Map', 'With territories and your pack (can be hidden in the character menu).'] },
+      de: ['M', 'Karte', 'Mit Revieren, Höhlen und deinem Rudel (im Charaktermenü ausblendbar).'], en: ['M', 'Map', 'With territories, dens and your pack (can be hidden in the character menu).'] },
     { key: 'F4', group: 'menu', short: { de: 'Tests', en: 'Tests' },
       de: ['F4', 'Testaufgaben & Feedback', 'Während der Testphase.'], en: ['F4', 'Test tasks & feedback', 'During the test phase.'] },
   ];
@@ -268,7 +280,7 @@ kbd { font: 600 0.85rem var(--body); display: inline-block; padding: 0.05rem 0.4
       what.className = 'what';
       what.textContent = action.short[lang];
       el.append(what);
-      if (action.hold) {
+      if (action.hold && id !== 'WHEEL') {
         const hold = document.createElement('span');
         hold.className = 'hold';
         hold.textContent = '⏷';
@@ -302,7 +314,11 @@ kbd { font: 600 0.85rem var(--body); display: inline-block; padding: 0.05rem 0.4
     }));
     const palm = document.createElement('div');
     palm.className = 'palm';
-    $('mouse').replaceChildren(keyButton('LMB', 1, lang === 'de' ? 'Links' : 'Left'), keyButton('RMB', 1, lang === 'de' ? 'Rechts' : 'Right'), palm);
+    $('mouse').replaceChildren(
+      keyButton('LMB', 1, lang === 'de' ? 'Links' : 'Left'),
+      keyButton('WHEEL', 1, '⇕', 'wheel'),
+      keyButton('RMB', 1, lang === 'de' ? 'Rechts' : 'Right', 'right'),
+      palm);
   }
 
   function renderLegend() {
