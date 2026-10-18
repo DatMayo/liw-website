@@ -146,7 +146,7 @@ kbd { font: 600 0.85rem var(--body); display: inline-block; padding: 0.05rem 0.4
       groups: { move: 'Bewegung & Kamera', combat: 'Kampf', survive: 'Überleben', pack: 'Rudel & Stimme', menu: 'Menüs & Anzeige' },
       note1: '<b>Eigene Belegung:</b> Alle LiW-Tasten lassen sich im Spiel ändern: Einstellungen → Tastenbelegung → RedM (Einträge beginnen mit „LiW:“).',
       note2: '<b>HUD aus- und einblenden</b> hat keine feste Taste. Leg sie dort selbst auf „LiW: HUD aus-/einblenden“, oder schalte Teile im Charaktermenü (J) unter „Einstellungen“ ab.',
-      note3: '<b>Sprechen</b> geht über die Push-to-Talk-Taste von RedM (Standard N). Wie weit man dich hört, stellst du mit Z ein.',
+      note3: '<b>Sprechen</b> geht über die Push-to-Talk-Taste von RedM (Standard N). Wie weit man dich hört, stellst du mit Z ein: tippen für leise/normal/laut, halten + Mausrad für 1–25 m. Unten links zeigt das HUD Reichweite und Meter; das Mikrofon wird grün, wenn dich jemand hört.',
       note4: '<b>Kameraabstand:</b> Alt halten und am Mausrad drehen. Die Wahl bleibt gespeichert; <code>/liw_camera_reset</code> lässt wieder das Spiel wählen.',
     },
     en: {
@@ -159,7 +159,7 @@ kbd { font: 600 0.85rem var(--body); display: inline-block; padding: 0.05rem 0.4
       groups: { move: 'Movement & camera', combat: 'Combat', survive: 'Survival', pack: 'Pack & voice', menu: 'Menus & display' },
       note1: '<b>Your own bindings:</b> every LiW key can be changed in game: Settings → Key Bindings → RedM (entries start with "LiW:").',
       note2: '<b>Hide / show HUD</b> has no default key. Bind "LiW: Hide / show HUD" there yourself, or switch parts off in the character menu (J) under "Settings".',
-      note3: '<b>Talking</b> uses RedM\'s push-to-talk key (default N). Z sets how far you can be heard.',
+      note3: '<b>Talking</b> uses RedM\'s push-to-talk key (default N). Z sets how far you can be heard: tap for quiet/normal/loud, hold + mouse wheel for 1–25 m. Bottom left the HUD shows the range in metres; the microphone turns green while someone hears you.',
       note4: '<b>Camera distance:</b> hold Alt and turn the mouse wheel. Your choice is kept; <code>/liw_camera_reset</code> lets the game pick again.',
     },
   };
@@ -204,7 +204,8 @@ kbd { font: 600 0.85rem var(--body); display: inline-block; padding: 0.05rem 0.4
     { key: 'F', group: 'pack', short: { de: 'Emotes', en: 'Emotes' },
       de: ['F', 'Emote-Rad', 'Gesten und Tierlaute.'], en: ['F', 'Emote wheel', 'Gestures and animal sounds.'] },
     { key: 'Z', group: 'pack', short: { de: 'Reichweite', en: 'Range' },
-      de: ['Z', 'Sprachreichweite', 'Flüstern, normal, rufen.'], en: ['Z', 'Voice range', 'Whisper, normal, shout.'] },
+      de: ['Z', 'Sprachreichweite', 'Kurz tippen: leise (3 m), normal (10 m), laut (25 m). Halten und am Mausrad drehen: meterweise 1–25 m (hoch = weiter). Ein grüner Kreis am Boden zeigt, wie weit man dich hört.'],
+      en: ['Z', 'Voice range', 'Tap: quiet (3 m), normal (10 m), loud (25 m). Hold and turn the mouse wheel: 1–25 m, metre by metre (up = farther). A green circle on the ground shows how far you are heard.'] },
     { key: 'B', group: 'pack', hold: true, short: { de: 'Rudelruf', en: 'Pack call' },
       de: ['B halten', 'Rudelruf', 'Nur dein Rudel im Umkreis von 150 m hört dich.'], en: ['Hold B', 'Pack call', 'Only your pack within 150 m hears you.'] },
     { key: 'N', group: 'pack', short: { de: 'Sprechen', en: 'Talk' },
