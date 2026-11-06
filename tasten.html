@@ -32,6 +32,7 @@ a { color: var(--gold-hi); }
 }
 .top { display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
 .top a { font-family: var(--old); text-decoration: none; }
+.top .links { display: flex; flex-wrap: wrap; gap: 0.25rem 1.25rem; }
 header { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 1rem; border-bottom: 1px solid var(--line); padding-bottom: 1rem; }
 header .eyebrow { font-family: var(--display); letter-spacing: 0.12em; color: var(--gold); font-size: 0.95rem; }
 h1 { font-family: var(--display); font-weight: normal; font-size: clamp(2.2rem, 5vw, 3.2rem); line-height: 1.05; margin: 0.15rem 0 0; letter-spacing: 0.03em; text-wrap: balance; }
@@ -95,7 +96,7 @@ kbd { font: 600 0.85rem var(--body); display: inline-block; padding: 0.05rem 0.4
 <body>
 <div class="wrap">
   <div class="top">
-    <a href="index.html" data-t="back"></a>
+    <nav class="links"><a href="index.html" data-t="back"></a><a href="handbuch.html" data-t="handbook"></a></nav>
     <div class="lang" role="group" aria-label="Sprache / Language">
       <button type="button" id="lang-de" data-lang="de">DE</button>
       <button type="button" id="lang-en" data-lang="en">EN</button>
@@ -138,7 +139,7 @@ kbd { font: 600 0.85rem var(--body); display: inline-block; padding: 0.05rem 0.4
   const TEXT = {
     de: {
       eyebrow: 'Life In Wilderness · RedM',
-      title: 'Tastenbelegung', back: '← Zur Startseite',
+      title: 'Tastenbelegung', back: '← Zur Startseite', handbook: 'Handbuch',
       intro: 'Alle Tasten auf einen Blick, auf einer deutschen Tastatur (QWERTZ). Fahr über eine farbige Taste oder tipp sie an, um zu sehen, was sie tut.',
       mouse: 'Maus',
       hint: 'Taste antippen oder darüberfahren für Details.',
@@ -151,7 +152,7 @@ kbd { font: 600 0.85rem var(--body); display: inline-block; padding: 0.05rem 0.4
     },
     en: {
       eyebrow: 'Life In Wilderness · RedM',
-      title: 'Key bindings', back: '← Back to the homepage',
+      title: 'Key bindings', back: '← Back to the homepage', handbook: 'Handbook',
       intro: 'Every key at a glance, on an English keyboard (QWERTY). Hover or tap a coloured key to see what it does.',
       mouse: 'Mouse',
       hint: 'Tap or hover a key for details.',

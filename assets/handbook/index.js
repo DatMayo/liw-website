@@ -1,0 +1,26 @@
+// Chapter files of the player handbook (handbuch.html loads them in this order; a missing file is skipped).
+// Add a new chapter: create assets/handbook/<order>-<slug>.js (format in README.md) and list it here.
+window.LIW_HANDBOOK_FILES = [
+    '10-start.js',
+    '20-hud.js',
+    '30-life.js',
+    '40-needs.js',
+    '42-food.js',
+    '44-health.js',
+    '46-disease.js',
+    '48-senses.js',
+    '50-combat.js',
+    '52-voice.js',
+    '54-species.js',
+    '60-progress.js',
+    '62-pack.js',
+    '64-territory.js',
+    '66-family.js',
+    '68-companion.js',
+    '70-quests.js',
+    '72-events.js',
+    '74-mentor.js',
+    '76-ranking.js',
+    '78-world.js',
+    '90-help.js',
+];

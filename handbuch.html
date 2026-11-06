@@ -1,0 +1,892 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Handbuch · Life In Wilderness</title>
+<meta name="description" content="Das Spielerhandbuch von Life In Wilderness: alles zum Nachschlagen. / The Life In Wilderness player handbook: everything to look up.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%2314100c' stroke='%23c8a35a'/%3E%3Ctext x='16' y='20.5' font-family='Georgia' font-size='11' text-anchor='middle' fill='%23c8a35a'%3ELiW%3C/text%3E%3C/svg%3E">
+<style>
+/* Same fonts and palette as index.html (served from this site, SIL Open Font License). */
+@font-face { font-family: 'IM Fell English'; src: url('assets/fonts/imfell.woff2') format('woff2'); font-style: normal; font-display: swap; }
+@font-face { font-family: 'IM Fell English'; src: url('assets/fonts/imfell-italic.woff2') format('woff2'); font-style: italic; font-display: swap; }
+@font-face { font-family: 'IM Fell English SC'; src: url('assets/fonts/imfell-sc.woff2') format('woff2'); font-display: swap; }
+@font-face { font-family: 'Crimson Pro'; src: url('assets/fonts/crimson.woff2') format('woff2'); font-weight: 400 600; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Crimson Pro'; src: url('assets/fonts/crimson-italic.woff2') format('woff2'); font-weight: 400; font-style: italic; font-display: swap; }
+/* Layout: a sticky bar with the search, then a reference book - table of contents on the left, all chapters in one column. */
+:root {
+  color-scheme: dark;
+  --page: #14100c; --panel: #1d1712; --panel-2: #241c15; --ink: #ece3d2; --muted: #a99b84; --soft: #cfc4b0;
+  --gold: #c8a35a; --gold-hi: #e3c27a; --rust: #c8694a; --moss: #8fb878;
+  --line: rgba(200, 163, 90, 0.24); --cap: #2b231b; --cap-edge: #4a3d2e;
+  --display: 'IM Fell English SC', Georgia, serif; --old: 'IM Fell English', Georgia, serif;
+  --body: 'Crimson Pro', Georgia, 'Times New Roman', serif;
+  --gutter-l: max(16px, env(safe-area-inset-left, 0px)); --gutter-r: max(16px, env(safe-area-inset-right, 0px));
+  --bar-h: 4.5rem;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--bar-h) + 1rem); overflow-anchor: none; }
+html, body { background: var(--page); color: var(--ink); }
+body { margin: 0; font-family: var(--body); font-size: 1.125rem; line-height: 1.6; }
+a { color: var(--gold-hi); }
+a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+h1, h2, h3 { font-family: var(--display); font-weight: 400; letter-spacing: 0.03em; text-wrap: balance; margin: 0; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+svg.ico { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+
+/* Top bar */
+.bar { position: sticky; top: 0; z-index: 30; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 0.6rem 1.25rem;
+  padding: calc(0.6rem + env(safe-area-inset-top, 0px)) var(--gutter-r) 0.6rem var(--gutter-l);
+  background: var(--page); border-bottom: 1px solid var(--line); }
+.mark { font-family: var(--display); font-size: 1.05rem; letter-spacing: 0.1em; color: var(--ink); text-decoration: none; display: flex; align-items: center; gap: 0.6rem; white-space: nowrap; }
+.mark span { display: grid; place-items: center; width: 2.1rem; height: 2.1rem; border: 1px solid var(--gold); border-radius: 50%; font-size: 0.8rem; color: var(--gold); }
+.bar-end { display: flex; align-items: center; gap: 1rem; }
+.bar-end nav { display: flex; gap: 1rem; }
+.bar-end nav a { font-family: var(--old); font-size: 1rem; color: var(--ink); text-decoration: none; opacity: 0.85; white-space: nowrap; }
+.bar-end nav a:hover { color: var(--gold-hi); opacity: 1; }
+.lang { display: flex; border: 1px solid var(--line); }
+.lang button { font-family: var(--display); font-size: 0.85rem; letter-spacing: 0.1em; background: none; color: var(--muted); border: 0; padding: 0.3rem 0.65rem; cursor: pointer; }
+.lang button[aria-pressed="true"] { background: var(--gold); color: var(--page); }
+.menu-btn { display: none; align-items: center; gap: 0.4rem; font: 1rem var(--old); color: var(--ink); background: none; border: 1px solid var(--line); padding: 0.3rem 0.65rem; cursor: pointer; }
+.menu-btn svg { width: 1.1rem; height: 1.1rem; }
+
+/* Search */
+.search { position: relative; width: 100%; max-width: 40rem; justify-self: center; }
+.search > svg { position: absolute; left: 0.75rem; top: 50%; width: 1.15rem; height: 1.15rem; transform: translateY(-50%); color: var(--gold); pointer-events: none; }
+.search input { width: 100%; font: 1.08rem var(--body); color: var(--ink); background: var(--panel); border: 1px solid var(--line); border-radius: 0;
+  padding: 0.55rem 3rem 0.55rem 2.5rem; -webkit-appearance: none; appearance: none; }
+.search input::placeholder { color: var(--muted); opacity: 1; }
+.search input:focus { outline: none; border-color: var(--gold); background: var(--panel-2); }
+.search input::-webkit-search-cancel-button { -webkit-appearance: none; }
+.search .keyhint { position: absolute; right: 0.6rem; top: 50%; transform: translateY(-50%); pointer-events: none; }
+.search .clear { position: absolute; right: 0.35rem; top: 50%; transform: translateY(-50%); background: none; border: 0; color: var(--muted); font-size: 1.4rem; line-height: 1; padding: 0.2rem 0.45rem; cursor: pointer; }
+.search .clear:hover { color: var(--gold-hi); }
+.search.has-q .keyhint, .search:not(.has-q) .clear, .search:focus-within .keyhint { display: none; }
+.results { position: absolute; top: calc(100% + 0.4rem); left: 0; right: 0; z-index: 31; background: var(--panel); border: 1px solid var(--line);
+  max-height: min(70vh, 36rem); overflow-y: auto; overscroll-behavior: contain; box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.6); }
+.results[hidden] { display: none; }
+.results .count { padding: 0.45rem 0.9rem; font-size: 0.9rem; color: var(--muted); border-bottom: 1px solid var(--line); }
+.hit { display: block; padding: 0.6rem 0.9rem 0.65rem; border-bottom: 1px dotted var(--line); border-left: 3px solid transparent; color: var(--ink); text-decoration: none; }
+.hit:last-child { border-bottom: 0; }
+.hit .where { display: block; font-family: var(--old); font-size: 0.88rem; color: var(--muted); }
+.hit .t { display: block; font-weight: 600; font-size: 1.08rem; }
+.hit .snip { display: block; font-size: 0.97rem; color: var(--soft); line-height: 1.45; overflow-wrap: anywhere; }
+.hit.active, .hit:hover { background: var(--panel-2); border-left-color: var(--gold); }
+.none { padding: 0.9rem; color: var(--soft); display: grid; gap: 0.3rem; }
+.none small { color: var(--muted); font-size: 0.97rem; }
+mark { background: rgba(200, 163, 90, 0.32); color: inherit; padding: 0 0.06em; border-radius: 2px; }
+mark.hb-flash { background: var(--gold); color: var(--page); transition: background-color 0.8s, color 0.8s; }
+mark.hb-flash.fade { background: transparent; color: inherit; }
+
+/* Intro */
+.intro { max-width: 76rem; margin: 0 auto; padding: 2.5rem var(--gutter-r) 0 var(--gutter-l); display: grid; gap: 0.6rem; }
+.eyebrow { font-family: var(--display); letter-spacing: 0.16em; color: var(--gold); font-size: 0.9rem; }
+.intro h1 { font-size: clamp(2.4rem, 6vw, 3.6rem); line-height: 1; }
+.intro p { margin: 0; color: var(--muted); max-width: 44rem; }
+.intro p kbd { font-size: 0.8rem; }
+.chapters { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 10.5rem), 1fr)); margin-top: 1.25rem; padding: 1px 0 0 1px; }
+.chapters a { display: flex; align-items: center; gap: 0.7rem; padding: 0.7rem 0.9rem; background: var(--page); border: 1px solid var(--line); margin: -1px 0 0 -1px; color: var(--ink); text-decoration: none; font-family: var(--old); font-size: 1.02rem; line-height: 1.25; min-width: 0; }
+.chapters a:hover { background: var(--panel); color: var(--gold-hi); }
+.chapters svg { width: 1.6rem; height: 1.6rem; color: var(--gold); }
+.chapters small { display: block; font-family: var(--body); color: var(--muted); font-size: 0.85rem; }
+
+/* Book: contents + text */
+.layout { max-width: 76rem; margin: 0 auto; padding: 1rem var(--gutter-r) 5rem var(--gutter-l); display: grid; grid-template-columns: 16.5rem minmax(0, 1fr); gap: 3rem; align-items: start; }
+.toc { position: sticky; top: calc(var(--bar-h) + 1rem); max-height: calc(100vh - var(--bar-h) - 2rem); overflow-y: auto; overscroll-behavior: contain; padding: 1.5rem 0.5rem 1rem 0; scrollbar-width: thin; scrollbar-color: var(--cap-edge) transparent; }
+.toc-head { display: flex; justify-content: space-between; align-items: center; font-family: var(--display); letter-spacing: 0.12em; color: var(--gold); font-size: 0.9rem; margin-bottom: 0.5rem; }
+.toc-head button { display: none; background: none; border: 0; color: var(--muted); font-size: 1.5rem; line-height: 1; cursor: pointer; padding: 0 0.3rem; }
+.toc ol { list-style: none; margin: 0; padding: 0; }
+.toc-row { display: flex; align-items: center; gap: 0.25rem; }
+.toc-row a { flex: 1; min-width: 0; display: flex; align-items: center; gap: 0.5rem; padding: 0.3rem 0.2rem; color: var(--ink); text-decoration: none; font-family: var(--old); font-size: 1.02rem; line-height: 1.25; }
+.toc-row a svg { width: 1.15rem; height: 1.15rem; color: var(--gold); }
+.toc-row a:hover { color: var(--gold-hi); }
+.toc-row button { flex: none; width: 1.8rem; height: 1.8rem; display: grid; place-items: center; background: none; border: 0; color: var(--muted); cursor: pointer; }
+.toc-row button svg { width: 0.9rem; height: 0.9rem; transition: transform 0.15s; }
+.toc-row button[aria-expanded="true"] svg { transform: rotate(90deg); }
+.toc-secs { margin: 0 0 0.4rem 0.75rem !important; border-left: 1px solid var(--line); }
+.toc-secs[hidden] { display: none; }
+.toc-secs a { display: block; padding: 0.18rem 0.5rem 0.18rem 0.8rem; margin-left: -1px; border-left: 2px solid transparent; color: var(--muted); text-decoration: none; font-size: 0.98rem; line-height: 1.3; }
+.toc-secs a:hover { color: var(--ink); }
+.toc-secs a.current { color: var(--gold-hi); border-left-color: var(--gold); }
+.toc-ch.current > .toc-row a { color: var(--gold-hi); }
+.toc .toc-none { color: var(--muted); font-size: 0.98rem; padding: 0.3rem 0.2rem; }
+.scrim { display: none; }
+
+.content { min-width: 0; max-width: 47rem; }
+.state { padding: 2rem 0; color: var(--muted); }
+.hb-chapter { padding-top: 2.5rem; }
+.hb-chapter + .hb-chapter { margin-top: 2.5rem; border-top: 1px solid var(--line); }
+.hb-chapter > h2 { display: flex; align-items: center; gap: 0.8rem; font-size: clamp(1.9rem, 4.5vw, 2.5rem); line-height: 1.1; }
+.hb-chapter > h2 svg { width: 2.4rem; height: 2.4rem; color: var(--gold); }
+.hb-section { margin-top: 2.1rem; }
+.hb-section > h3 { font-size: 1.45rem; line-height: 1.2; color: var(--ink); display: flex; align-items: baseline; gap: 0.5rem; }
+.hb-anchor { font-family: var(--body); font-size: 1rem; color: var(--muted); text-decoration: none; opacity: 0; transition: opacity 0.15s; }
+.hb-section:hover .hb-anchor, .hb-anchor:focus-visible { opacity: 1; }
+.hb-section:target > h3 { color: var(--gold-hi); }
+.hb-body { overflow-wrap: break-word; }
+.hb-body > :first-child { margin-top: 0.6rem; }
+.hb-body p, .hb-body ul, .hb-body ol, .hb-body dl { margin: 0.7rem 0 0; }
+.hb-body ul, .hb-body ol { padding-left: 1.35rem; }
+.hb-body li { margin-top: 0.25rem; }
+.hb-body li::marker { color: var(--gold); }
+.hb-body strong, .hb-body b { font-weight: 600; color: var(--ink); }
+.hb-body dl { display: grid; grid-template-columns: minmax(7rem, max-content) minmax(0, 1fr); gap: 0.45rem 1.1rem; }
+.hb-body dt { font-weight: 600; color: var(--gold-hi); }
+.hb-body dd { margin: 0; color: var(--soft); }
+.hb-body code { font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace; font-size: 0.88rem; background: rgba(0, 0, 0, 0.35); padding: 0.1rem 0.35rem; color: var(--gold-hi); overflow-wrap: anywhere; }
+.hb-table-wrap { overflow-x: auto; margin: 0.9rem 0 0; }
+.hb-table { border-collapse: collapse; width: 100%; font-size: 1.02rem; line-height: 1.4; }
+.hb-table th { text-align: left; font-family: var(--old); font-weight: 400; color: var(--gold); border-bottom: 1px solid var(--line); padding: 0.4rem 0.7rem 0.4rem 0; }
+.hb-table td { border-bottom: 1px dotted var(--line); padding: 0.45rem 0.7rem 0.45rem 0; vertical-align: top; }
+.hb-table tr:last-child td { border-bottom: 0; }
+kbd { font: 600 0.85rem var(--body); display: inline-block; padding: 0.02rem 0.42rem; border: 1px solid var(--cap-edge); border-bottom-width: 2px; border-radius: 0.3rem; background: var(--cap); color: var(--ink); white-space: nowrap; line-height: 1.4; }
+.hb-tip, .hb-warn { margin: 1rem 0 0; padding: 0.75rem 1rem 0.8rem 1.1rem; background: var(--panel); border-left: 3px solid var(--moss); }
+.hb-warn { border-left-color: var(--rust); }
+.hb-tip::before, .hb-warn::before { display: block; font-family: var(--display); letter-spacing: 0.12em; font-size: 0.82rem; color: var(--moss); content: 'Tipp'; }
+.hb-warn::before { color: var(--rust); content: 'Achtung'; }
+:lang(en) .hb-tip::before { content: 'Tip'; }
+:lang(en) .hb-warn::before { content: 'Warning'; }
+.hb-tip > :first-child, .hb-warn > :first-child { margin-top: 0.15rem; }
+
+.to-top { position: fixed; right: var(--gutter-r); bottom: calc(1rem + env(safe-area-inset-bottom, 0px)); z-index: 25; display: flex; align-items: center; gap: 0.4rem;
+  font: 0.95rem var(--old); color: var(--ink); background: var(--panel); border: 1px solid var(--line); padding: 0.45rem 0.8rem; cursor: pointer;
+  opacity: 0; pointer-events: none; transform: translateY(0.5rem); transition: opacity 0.2s, transform 0.2s; }
+.to-top.show { opacity: 1; pointer-events: auto; transform: none; }
+.to-top:hover { border-color: var(--gold); color: var(--gold-hi); }
+.to-top svg { width: 1rem; height: 1rem; }
+footer { border-top: 1px solid var(--line); padding: 1.5rem var(--gutter-r) calc(1.5rem + env(safe-area-inset-bottom, 0px)) var(--gutter-l); color: var(--muted); font-size: 0.92rem; text-align: center; }
+footer a { color: var(--muted); }
+
+@media (max-width: 64rem) {
+  .layout { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .content { max-width: none; }
+  .menu-btn { display: inline-flex; }
+  .toc { position: fixed; top: 0; bottom: 0; left: 0; z-index: 41; width: min(21rem, 86vw); max-height: none; background: var(--panel);
+    padding: calc(1rem + env(safe-area-inset-top, 0px)) 1rem 2rem max(1rem, env(safe-area-inset-left, 0px)); transform: translateX(-102%); visibility: hidden;
+    transition: transform 0.2s, visibility 0s 0.2s; border-right: 1px solid var(--line); }
+  .toc.open { transform: none; visibility: visible; transition: transform 0.2s; }
+  .toc-head button { display: block; }
+  .scrim { position: fixed; inset: 0; z-index: 40; background: rgba(0, 0, 0, 0.55); }
+  .scrim.show { display: block; }
+}
+@media (max-width: 52rem) {
+  .bar { grid-template-columns: auto minmax(0, 1fr); }
+  .bar .search { grid-column: 1 / -1; order: 3; max-width: none; }
+  .bar-end { justify-self: end; gap: 0.6rem; }
+  .bar-end nav { display: none; }
+  .mark { font-size: 0; gap: 0; }
+  .search .keyhint { display: none; }
+  .hb-body dl { grid-template-columns: minmax(0, 1fr); gap: 0.1rem; }
+  .hb-body dd { margin-bottom: 0.5rem; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .toc, .to-top, mark.hb-flash { transition: none; } }
+@media print {
+  .bar, .toc, .scrim, .to-top, .chapters, footer { display: none !important; }
+  html, body { background: #fff; color: #000; }
+  .layout { display: block; padding: 0; }
+  .hb-chapter { break-before: page; }
+  .hb-body dd, .hb-table td, .hb-tip, .hb-warn { color: #000; background: none; }
+  a { color: #000; }
+}
+</style>
+</head>
+<body>
+<header class="bar" id="bar">
+  <a class="mark" href="index.html"><span>LiW</span>Life In Wilderness</a>
+  <div class="search" id="search" role="search">
+    <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg>
+    <label class="sr" for="q" data-t="search_label"></label>
+    <input id="q" type="search" autocomplete="off" spellcheck="false" enterkeyhint="search"
+      role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="results">
+    <kbd class="keyhint" aria-hidden="true">/</kbd>
+    <button type="button" class="clear" id="clear" data-t-label="clear">×</button>
+    <div class="results" id="results" role="listbox" hidden></div>
+  </div>
+  <div class="bar-end">
+    <nav>
+      <a href="index.html" data-t="home"></a>
+      <a href="tasten.html" data-t="keys"></a>
+    </nav>
+    <button type="button" class="menu-btn" id="menu-btn" aria-controls="toc" aria-expanded="false">
+      <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><span data-t="toc"></span>
+    </button>
+    <div class="lang" role="group" aria-label="Sprache / Language">
+      <button type="button" data-lang="de">DE</button>
+      <button type="button" data-lang="en">EN</button>
+    </div>
+  </div>
+</header>
+
+<section class="intro" aria-labelledby="hb-title">
+  <div class="eyebrow" data-t="eyebrow"></div>
+  <h1 id="hb-title" data-t="title"></h1>
+  <p data-t="intro"></p>
+  <nav class="chapters" id="chapters" data-t-label="chapters"></nav>
+</section>
+
+<div class="layout">
+  <aside class="toc" id="toc" data-t-label="toc">
+    <div class="toc-head"><span data-t="toc"></span><button type="button" id="toc-close" data-t-label="close">×</button></div>
+    <ol id="toc-list"></ol>
+  </aside>
+  <div class="scrim" id="scrim"></div>
+  <main class="content" id="content">
+    <p class="state" data-t="loading"></p>
+  </main>
+</div>
+
+<button type="button" class="to-top" id="to-top">
+  <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg><span data-t="top"></span>
+</button>
+
+<footer>
+  <a href="index.html" data-t="home"></a> · <a href="tasten.html" data-t="keys"></a> · <span data-t="footer"></span>
+</footer>
+
+<script src="assets/handbook/index.js"></script>
+<script>
+(() => {
+  const TEXT = {
+    de: {
+      eyebrow: 'Life In Wilderness · Spielerhandbuch', title: 'Handbuch',
+      intro: 'Alles, was du als Tier in der Wildnis wissen musst, zum Nachschlagen. Such oben nach einem Begriff (Taste <kbd>/</kbd>) oder stöbere in den Kapiteln.',
+      search_label: 'Handbuch durchsuchen', search_ph: 'Suchen … z. B. Aas, Duftmarke',
+      clear: 'Suche leeren', home: '← Startseite', keys: 'Tastenbelegung', toc: 'Inhalt', close: 'Schließen', chapters: 'Kapitel',
+      top: 'Nach oben', loading: 'Das Handbuch lädt …', empty: 'Das Handbuch konnte nicht geladen werden. Lade die Seite bitte neu.',
+      sections: (n) => (n === 1 ? '1 Abschnitt' : `${n} Abschnitte`),
+      hits: (n) => (n === 1 ? '1 Treffer' : `${n} Treffer`),
+      none: (q) => `Nichts gefunden für „${q}“.`,
+      none_hint: 'Versuch ein anderes oder kürzeres Wort (z. B. „Revier“ statt „Reviereinnahme“) oder schau ins <a href="#help-glossary" data-jump="help-glossary">Glossar</a>.',
+      toc_none: 'Keine passenden Abschnitte.', anchor: 'Link zu diesem Abschnitt',
+      footer: 'Werte können sich mit dem Balancing ändern.',
+      page: 'Handbuch',
+    },
+    en: {
+      eyebrow: 'Life In Wilderness · Player handbook', title: 'Handbook',
+      intro: 'Everything you need to know as an animal in the wild, ready to look up. Search for a term above (key <kbd>/</kbd>) or browse the chapters.',
+      search_label: 'Search the handbook', search_ph: 'Search … e.g. carrion, scent mark',
+      clear: 'Clear search', home: '← Homepage', keys: 'Key bindings', toc: 'Contents', close: 'Close', chapters: 'Chapters',
+      top: 'Back to top', loading: 'Loading the handbook …', empty: 'The handbook could not be loaded. Please reload the page.',
+      sections: (n) => (n === 1 ? '1 section' : `${n} sections`),
+      hits: (n) => (n === 1 ? '1 result' : `${n} results`),
+      none: (q) => `Nothing found for “${q}”.`,
+      none_hint: 'Try another or shorter word (e.g. “territory” instead of “territory claiming”) or have a look at the <a href="#help-glossary" data-jump="help-glossary">glossary</a>.',
+      toc_none: 'No matching sections.', anchor: 'Link to this section',
+      footer: 'Values can change with balancing.',
+      page: 'Handbook',
+    },
+  };
+
+  // Line icons (32 x 32, stroked like the pillars on the homepage), one per chapter icon name.
+  const ICONS = {
+    start: '<path d="M9 28V4"/><path d="M9 5h15l-3.5 4.5L24 14H9"/><path d="M5 28h8"/>',
+    hud: '<circle cx="10" cy="20" r="6"/><circle cx="23" cy="21" r="4"/><path d="M10 14a6 6 0 016 6"/><path d="M23 17a4 4 0 014 4"/><path d="M5 7h22"/>',
+    life: '<path d="M9 4h14M9 28h14"/><path d="M10 4c0 7 12 8 12 12s-12 5-12 12M22 4c0 7-12 8-12 12s12 5 12 12"/><path d="M13 25h6"/>',
+    needs: '<path d="M16 4c-4 6-8 10-8 15a8 8 0 0016 0c0-5-4-9-8-15z"/><path d="M12 20a4 4 0 004 4"/>',
+    food: '<circle cx="11" cy="21" r="4"/><circle cx="20" cy="23" r="4"/><circle cx="16" cy="14.5" r="4"/><path d="M16 10.5V6l5-2"/><path d="M16 6c-2-2-5-2-7 0"/>',
+    health: '<path d="M16 27S5 20 5 12a5.5 5.5 0 0111-2.5A5.5 5.5 0 0127 12c0 8-11 15-11 15z"/><path d="M8.5 15h4l2-3 2.5 6 2-3h4.5"/>',
+    disease: '<circle cx="16" cy="16" r="7"/><path d="M16 9V5M16 27v-4M9 16H5M27 16h-4M11 11L8.2 8.2M21 21l2.8 2.8M21 11l2.8-2.8M11 21l-2.8 2.8"/><circle cx="14" cy="14.5" r="1"/><circle cx="18.5" cy="17.5" r="1.3"/>',
+    senses: '<path d="M3 16c4-6 8-9 13-9s9 3 13 9c-4 6-8 9-13 9s-9-3-13-9z"/><circle cx="16" cy="16" r="4"/>',
+    combat: '<path d="M9 5c2.5 8 1.5 15-3 22M16 4c2.5 9 1.5 16-2 24M23 5c2.5 8 2 14-1 21"/>',
+    voice: '<path d="M6 13v6M10 10v12M14 7v18M18 10v12M22 13v6M26 15v2"/>',
+    species: '<path d="M16 17c-4 0-7 4-7 7 0 2.5 2.5 3.5 4 3 1.5-.4 2-1 3-1s1.5.6 3 1c1.5.5 4-.5 4-3 0-3-3-7-7-7z"/><ellipse cx="8" cy="13" rx="2.2" ry="2.8"/><ellipse cx="13" cy="7.5" rx="2.2" ry="2.9"/><ellipse cx="19" cy="7.5" rx="2.2" ry="2.9"/><ellipse cx="24" cy="13" rx="2.2" ry="2.8"/>',
+    progress: '<path d="M4 27h6v-6h6v-6h6V9h6"/><path d="M20 4h8v8"/><path d="M28 4l-9 9"/>',
+    pack: '<circle cx="10" cy="12" r="3"/><circle cx="22" cy="12" r="3"/><circle cx="16" cy="7" r="3"/><path d="M4 26c1-5 4-8 6-8s4 2 6 2 4-2 6-2 5 3 6 8"/>',
+    territory: '<path d="M5 9l7-4 8 4 7-4v18l-7 4-8-4-7 4z"/><path d="M12 5v18M20 9v18"/>',
+    family: '<circle cx="16" cy="6" r="3"/><circle cx="8" cy="24" r="3"/><circle cx="24" cy="24" r="3"/><path d="M16 9v6M16 15l-8 6M16 15l8 6"/>',
+    companion: '<circle cx="11" cy="11" r="4"/><circle cx="23" cy="15" r="3"/><path d="M3 27c1-6 4-10 8-10s7 4 8 10"/><path d="M18 27c.8-4 2.5-6.5 5-6.5s4.2 2.5 5 6.5"/>',
+    quest: '<path d="M8 4h13l4 4v20H8z"/><path d="M12 12h9M12 17h9M12 22h5"/>',
+    event: '<rect x="5" y="7" width="22" height="20" rx="1"/><path d="M5 13h22M11 4v6M21 4v6"/><path d="M16 15.5l1.5 3.1 3.3.5-2.4 2.3.6 3.3-3-1.6-3 1.6.6-3.3-2.4-2.3 3.3-.5z"/>',
+    mentor: '<path d="M16 9c-3-2-7-3-11-3v19c4 0 8 1 11 3 3-2 7-3 11-3V6c-4 0-8 1-11 3z"/><path d="M16 9v19"/>',
+    ranking: '<path d="M10 5h12v6a6 6 0 01-12 0z"/><path d="M10 7H6c0 4 2 6 4 6M22 7h4c0 4-2 6-4 6M16 17v5M11 27h10M12 27c0-3 2-5 4-5s4 2 4 5"/>',
+    world: '<circle cx="16" cy="16" r="12"/><path d="M4 16h24M16 4c4 4 5 8 5 12s-1 8-5 12c-4-4-5-8-5-12s1-8 5-12z"/>',
+    help: '<circle cx="16" cy="16" r="12"/><path d="M12.5 12.5a3.5 3.5 0 117 0c0 2.5-3.5 3-3.5 5.5"/><path d="M16 22.5v.5"/>',
+    _: '<circle cx="16" cy="16" r="10"/><path d="M16 11v10M11 16h10"/>',
+  };
+  const icon = (name) => `<svg class="ico" viewBox="0 0 32 32" aria-hidden="true">${ICONS[name] || ICONS._}</svg>`;
+  const CARET = '<svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3l5 5-5 5"/></svg>';
+
+  const $ = (id) => document.getElementById(id);
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const escapeHtml = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+  let lang = (navigator.language || 'de').toLowerCase().startsWith('de') ? 'de' : 'en';
+  try { const saved = localStorage.getItem('liw_lang'); if (saved === 'de' || saved === 'en') lang = saved; } catch (e) { /* no storage */ }
+
+  let chapters = [];          // sorted, validated chapters
+  const indexes = {};         // search index per language, built once
+  let current = null;         // id of the section in view
+  let hits = [];              // current search results
+  let active = -1;            // keyboard selection in the results
+  let terms = [];             // current search terms (normalised)
+  let sectionTops = [];       // [{ id, chapter, top }] for the scroll spy
+  const expanded = new Set(); // chapters opened by hand in the contents
+
+  const tx = (value) => (value && typeof value === 'object' ? (value[lang] ?? value.de ?? value.en ?? '') : (value ?? ''));
+  const body = (section) => section[lang] ?? section.de ?? section.en ?? '';
+
+  // ---------------------------------------------------------------- loading
+  function loadChapters(done) {
+    const files = Array.isArray(window.LIW_HANDBOOK_FILES) ? window.LIW_HANDBOOK_FILES : [];
+    let i = 0;
+    const next = () => {
+      if (i >= files.length) { done(); return; }
+      const script = document.createElement('script');
+      script.src = `assets/handbook/${files[i++]}`;
+      script.onload = script.onerror = () => { script.remove(); next(); };
+      document.head.append(script);
+    };
+    next();
+  }
+
+  function collect() {
+    const seenChapters = new Set();
+    const seenSections = new Set();
+    const list = [];
+    (Array.isArray(window.LIW_HANDBOOK) ? window.LIW_HANDBOOK : []).forEach((ch) => {
+      if (!ch || typeof ch.id !== 'string' || !Array.isArray(ch.sections) || seenChapters.has(ch.id)) return;
+      seenChapters.add(ch.id);
+      const sections = ch.sections.filter((s) => {
+        if (!s || typeof s.id !== 'string' || seenSections.has(s.id)) return false;
+        seenSections.add(s.id);
+        return true;
+      });
+      list.push({ ...ch, order: Number(ch.order) || 0, sections });
+    });
+    list.sort((a, b) => a.order - b.order || a.id.localeCompare(b.id));
+    return list;
+  }
+
+  // ---------------------------------------------------------------- search helpers
+  // Case- and diacritic-insensitive: lower case, accents removed (ä = a), ß = ss. map[i] is the index of the
+  // original character that produced normalised character i, so matches can be marked in the original text.
+  function normChar(c) {
+    const l = c.toLowerCase();
+    if (l === 'ß') return 'ss';
+    if (l === 'æ') return 'ae';
+    if (l === 'œ') return 'oe';
+    return l.normalize('NFD').replace(/[̀-ͯ]/g, '');
+  }
+  function normMap(str) {
+    let out = '';
+    const map = [];
+    for (let i = 0; i < str.length; i++) {
+      const n = normChar(str[i]);
+      for (let k = 0; k < n.length; k++) { out += n[k]; map.push(i); }
+    }
+    map.push(str.length);
+    return { out, map };
+  }
+  const norm = (str) => normMap(str).out;
+  const isWord = (c) => !!c && /[a-z0-9]/.test(c);
+
+  function stripHtml(html) {
+    const tpl = document.createElement('template');
+    tpl.innerHTML = String(html).replace(/<\/dt>/gi, ':</dt>').replace(/<(br|\/p|\/li|\/td|\/th|\/tr|\/h\d|\/div|\/dt|\/dd|\/ul|\/ol|\/table)\b[^>]*>/gi, ' $&');
+    return tpl.content.textContent.replace(/\s+/g, ' ').trim();
+  }
+
+  function buildIndex() {
+    if (indexes[lang]) return indexes[lang];
+    const entries = [];
+    chapters.forEach((ch, ci) => {
+      const chTitle = tx(ch.title);
+      ch.sections.forEach((s) => {
+        const title = tx(s.title);
+        const text = stripHtml(body(s));
+        const nText = normMap(text);
+        entries.push({ ci, ch: ch.id, sec: s.id, chTitle, title, text, nTitle: norm(title), nTags: norm(tx(s.tags)), nCh: norm(chTitle), nText: nText.out, map: nText.map });
+      });
+    });
+    indexes[lang] = entries;
+    return entries;
+  }
+
+  function countMatches(hay, term, limit) {
+    let n = 0;
+    let starts = 0;
+    let from = 0;
+    while (n < limit) {
+      const i = hay.indexOf(term, from);
+      if (i < 0) break;
+      n++;
+      if (!isWord(hay[i - 1])) starts++;
+      from = i + term.length;
+    }
+    return { n, starts };
+  }
+
+  function search(query) {
+    terms = [...new Set(norm(query).split(/[^a-z0-9]+/).filter(Boolean))];
+    if (!terms.length) return [];
+    const results = [];
+    buildIndex().forEach((e) => {
+      let score = 0;
+      for (const term of terms) {
+        const t = e.nTitle.indexOf(term);
+        const g = e.nTags.indexOf(term);
+        const c = e.nCh.indexOf(term);
+        const b = countMatches(e.nText, term, 8);
+        if (t < 0 && g < 0 && c < 0 && b.n === 0) return;
+        if (t >= 0) score += isWord(e.nTitle[t - 1]) ? 40 : 25;
+        if (g >= 0) score += isWord(e.nTags[g - 1]) ? 12 : 16;
+        if (c >= 0) score += 5;
+        // Body: whole words and word starts weigh much more than hits inside a word ("bar" in "sichtbar").
+        score += b.starts * 3 + (b.n - b.starts) * 0.5;
+      }
+      if (terms.every((term) => e.nTitle.includes(term))) score += 20;
+      if (e.nTitle === terms.join(' ')) score += 30;
+      results.push({ e, score });
+    });
+    results.sort((a, b) => b.score - a.score || a.e.ci - b.e.ci);
+    return results.map((r) => r.e);
+  }
+
+  // Ranges [start, end) of the terms in the original text of a normalised string with its map.
+  function ranges(n, map, from = 0, to = n.length) {
+    const found = [];
+    terms.forEach((term) => {
+      let i = n.indexOf(term, from);
+      while (i >= 0 && i < to) {
+        found.push([map[i], map[Math.min(i + term.length, map.length - 1)]]);
+        i = n.indexOf(term, i + term.length);
+      }
+    });
+    found.sort((a, b) => a[0] - b[0]);
+    const merged = [];
+    found.forEach((r) => {
+      const last = merged[merged.length - 1];
+      if (last && r[0] <= last[1]) last[1] = Math.max(last[1], r[1]); else merged.push([...r]);
+    });
+    return merged;
+  }
+
+  function markText(text, rs, offset = 0) {
+    let out = '';
+    let at = 0;
+    rs.forEach(([a, b]) => {
+      a -= offset; b -= offset;
+      if (b <= 0 || a >= text.length) return;
+      a = Math.max(a, at); b = Math.min(b, text.length);
+      if (b <= a) return;
+      out += `${escapeHtml(text.slice(at, a))}<mark>${escapeHtml(text.slice(a, b))}</mark>`;
+      at = b;
+    });
+    return out + escapeHtml(text.slice(at));
+  }
+
+  function snippet(e) {
+    const SPAN = 150;
+    let first = -1;
+    terms.forEach((term) => { const i = e.nText.indexOf(term); if (i >= 0 && (first < 0 || i < first)) first = i; });
+    if (first < 0) {
+      const text = e.text.length > SPAN ? `${e.text.slice(0, SPAN).replace(/\s+\S*$/, '')} …` : e.text;
+      return escapeHtml(text);
+    }
+    const origFirst = e.map[first];
+    let start = Math.max(0, origFirst - 55);
+    let end = Math.min(e.text.length, start + SPAN);
+    if (start > 0) { const sp = e.text.indexOf(' ', start); if (sp >= 0 && sp < origFirst) start = sp + 1; }
+    if (end < e.text.length) { const sp = e.text.lastIndexOf(' ', end); if (sp > origFirst) end = sp; }
+    const piece = e.text.slice(start, end);
+    const rs = ranges(e.nText, e.map).filter(([a, b]) => b > start && a < end);
+    return `${start > 0 ? '… ' : ''}${markText(piece, rs, start)}${end < e.text.length ? ' …' : ''}`;
+  }
+
+  function highlightTitle(title) {
+    const { out, map } = normMap(title);
+    return markText(title, ranges(out, map));
+  }
+
+  // ---------------------------------------------------------------- rendering
+  function renderStatic() {
+    const T = TEXT[lang];
+    document.documentElement.lang = lang;
+    document.title = `${T.page} · Life In Wilderness`;
+    document.querySelectorAll('[data-t]').forEach((el) => {
+      const value = T[el.dataset.t];
+      if (typeof value === 'string') el.innerHTML = value;
+    });
+    document.querySelectorAll('[data-t-label]').forEach((el) => el.setAttribute('aria-label', T[el.dataset.tLabel]));
+    $('q').placeholder = T.search_ph;
+    $('to-top').setAttribute('aria-label', T.top);
+    document.querySelectorAll('.lang button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
+  }
+
+  function renderChapters() {
+    $('chapters').innerHTML = chapters.map((ch) =>
+      `<a href="#${ch.id}">${icon(ch.icon)}<span>${escapeHtml(tx(ch.title))}<small>${TEXT[lang].sections(ch.sections.length)}</small></span></a>`).join('');
+  }
+
+  function renderContent() {
+    const content = $('content');
+    if (!chapters.length) {
+      content.innerHTML = `<p class="state">${escapeHtml(TEXT[lang].empty)}</p>`;
+      return;
+    }
+    const anchor = escapeHtml(TEXT[lang].anchor);
+    content.innerHTML = chapters.map((ch) => `
+      <section class="hb-chapter" id="${ch.id}" aria-labelledby="h-${ch.id}">
+        <h2 id="h-${ch.id}">${icon(ch.icon)}<span>${escapeHtml(tx(ch.title))}</span></h2>
+        ${ch.sections.map((s) => `
+        <article class="hb-section" id="${s.id}" aria-labelledby="h-${s.id}">
+          <h3 id="h-${s.id}"><span>${escapeHtml(tx(s.title))}</span><a class="hb-anchor" href="#${s.id}" aria-label="${anchor}">#</a></h3>
+          <div class="hb-body">${body(s)}</div>
+        </article>`).join('')}
+      </section>`).join('');
+    content.querySelectorAll('.hb-body table').forEach((table) => {
+      const wrap = document.createElement('div');
+      wrap.className = 'hb-table-wrap';
+      table.replaceWith(wrap);
+      wrap.append(table);
+    });
+    measure();
+  }
+
+  // Contents: every chapter with its sections; with a search only the matching ones (quick filter).
+  function renderToc() {
+    const filter = terms.length ? new Set(hits.map((e) => e.sec)) : null;
+    const items = [];
+    chapters.forEach((ch) => {
+      const secs = filter ? ch.sections.filter((s) => filter.has(s.id)) : ch.sections;
+      if (filter && !secs.length) return;
+      const open = filter ? true : expanded.has(ch.id) || ch.sections.some((s) => s.id === current);
+      items.push(`
+        <li class="toc-ch" data-ch="${ch.id}">
+          <div class="toc-row">
+            <a href="#${ch.id}">${icon(ch.icon)}<span>${escapeHtml(tx(ch.title))}</span></a>
+            <button type="button" aria-expanded="${open}" aria-controls="toc-${ch.id}" aria-label="${escapeHtml(tx(ch.title))}">${CARET}</button>
+          </div>
+          <ol class="toc-secs" id="toc-${ch.id}"${open ? '' : ' hidden'}>
+            ${secs.map((s) => `<li><a href="#${s.id}" data-sec="${s.id}">${escapeHtml(tx(s.title))}</a></li>`).join('')}
+          </ol>
+        </li>`);
+    });
+    $('toc-list').innerHTML = items.length ? items.join('') : `<li class="toc-none">${escapeHtml(TEXT[lang].toc_none)}</li>`;
+    markCurrent();
+  }
+
+  function markCurrent() {
+    const list = $('toc-list');
+    list.querySelectorAll('a.current').forEach((a) => { a.classList.remove('current'); a.removeAttribute('aria-current'); });
+    list.querySelectorAll('.toc-ch.current').forEach((li) => li.classList.remove('current'));
+    if (!current) return;
+    const link = list.querySelector(`a[data-sec="${CSS.escape(current)}"]`);
+    const chId = sectionTops.find((s) => s.id === current)?.chapter;
+    const li = chId && list.querySelector(`.toc-ch[data-ch="${CSS.escape(chId)}"]`);
+    if (li) {
+      li.classList.add('current');
+      const secs = li.querySelector('.toc-secs');
+      if (secs.hidden && !terms.length) {
+        secs.hidden = false;
+        li.querySelector('button').setAttribute('aria-expanded', 'true');
+      }
+    }
+    if (link) {
+      link.classList.add('current');
+      link.setAttribute('aria-current', 'location');
+      const toc = $('toc');
+      const top = link.offsetTop - toc.offsetTop;
+      if (top < toc.scrollTop + 40 || top > toc.scrollTop + toc.clientHeight - 60) toc.scrollTop = top - toc.clientHeight / 3;
+    }
+  }
+
+  // ---------------------------------------------------------------- scroll spy
+  function measure() {
+    const y = window.scrollY;
+    sectionTops = [];
+    chapters.forEach((ch) => ch.sections.forEach((s) => {
+      const el = document.getElementById(s.id);
+      if (el) sectionTops.push({ id: s.id, chapter: ch.id, top: el.getBoundingClientRect().top + y });
+    }));
+    const bar = $('bar').offsetHeight;
+    document.documentElement.style.setProperty('--bar-h', `${bar}px`);
+  }
+
+  let spyQueued = false;
+  function spy() {
+    if (spyQueued) return;
+    spyQueued = true;
+    requestAnimationFrame(() => {
+      spyQueued = false;
+      const line = window.scrollY + $('bar').offsetHeight + 90;
+      let found = null;
+      for (const s of sectionTops) { if (s.top <= line) found = s.id; else break; }
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4 && sectionTops.length) {
+        found = sectionTops[sectionTops.length - 1].id;
+      }
+      if (found !== current) { current = found; markCurrent(); }
+      $('to-top').classList.toggle('show', window.scrollY > 700);
+    });
+  }
+
+  // ---------------------------------------------------------------- navigation
+  // A link to a section that does not exist (chapter not there yet) falls back to its chapter.
+  function resolve(id) {
+    if (!id) return null;
+    if (document.getElementById(id)) return id;
+    const chapter = id.split('-')[0];
+    return document.getElementById(chapter) ? chapter : null;
+  }
+
+  function scrollToId(id, smooth) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.scrollIntoView({ behavior: smooth && !reduceMotion ? 'smooth' : 'instant', block: 'start' });
+  }
+
+  function goTo(id, flash) {
+    const target = resolve(id);
+    if (!target) return;
+    closeResults();
+    closeToc();
+    if (location.hash !== `#${target}`) history.pushState(null, '', `#${target}`);
+    scrollToId(target, true);
+    if (flash && terms.length) setTimeout(() => flashTerms(document.getElementById(target)), reduceMotion ? 0 : 350);
+  }
+
+  // Marks the search words in the section for a moment.
+  function flashTerms(root) {
+    if (!root) return;
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode: (n) => (n.parentElement.closest('.hb-anchor, svg') ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT),
+    });
+    const nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    const marks = [];
+    nodes.forEach((node) => {
+      const { out, map } = normMap(node.data);
+      const rs = ranges(out, map);
+      if (!rs.length) return;
+      const frag = document.createDocumentFragment();
+      let at = 0;
+      rs.forEach(([a, b]) => {
+        if (a > at) frag.append(node.data.slice(at, a));
+        const m = document.createElement('mark');
+        m.className = 'hb-flash';
+        m.textContent = node.data.slice(a, b);
+        frag.append(m);
+        marks.push(m);
+        at = b;
+      });
+      if (at < node.data.length) frag.append(node.data.slice(at));
+      node.replaceWith(frag);
+    });
+    if (!marks.length) return;
+    setTimeout(() => marks.forEach((m) => m.classList.add('fade')), 2600);
+    setTimeout(() => {
+      marks.forEach((m) => { const parent = m.parentNode; if (parent) { m.replaceWith(m.textContent); parent.normalize(); } });
+    }, 3600);
+  }
+
+  // ---------------------------------------------------------------- search UI
+  function renderResults(query) {
+    const box = $('results');
+    const T = TEXT[lang];
+    active = -1;
+    if (!terms.length) { closeResults(); return; }
+    if (!hits.length) {
+      box.innerHTML = `<div class="none"><span>${escapeHtml(T.none(query.trim()))}</span><small>${T.none_hint}</small></div>`;
+    } else {
+      box.innerHTML = `<div class="count">${T.hits(hits.length)}</div>${hits.slice(0, 40).map((e, i) => `
+        <a class="hit" role="option" id="hit-${i}" href="#${e.sec}" data-i="${i}" aria-selected="false">
+          <span class="where">${escapeHtml(e.chTitle)} ›</span>
+          <span class="t">${highlightTitle(e.title)}</span>
+          <span class="snip">${snippet(e)}</span>
+        </a>`).join('')}`;
+    }
+    box.hidden = false;
+    box.scrollTop = 0;
+    $('q').setAttribute('aria-expanded', 'true');
+    $('q').removeAttribute('aria-activedescendant');
+  }
+
+  function closeResults() {
+    $('results').hidden = true;
+    $('q').setAttribute('aria-expanded', 'false');
+    $('q').removeAttribute('aria-activedescendant');
+    active = -1;
+  }
+
+  function setActive(i) {
+    const items = [...$('results').querySelectorAll('.hit')];
+    if (!items.length) return;
+    active = (i + items.length) % items.length;
+    items.forEach((el, k) => { el.classList.toggle('active', k === active); el.setAttribute('aria-selected', String(k === active)); });
+    items[active].scrollIntoView({ block: 'nearest' });
+    $('q').setAttribute('aria-activedescendant', items[active].id);
+  }
+
+  let searchTimer = null;
+  function runSearch(show = true) {
+    const query = $('q').value;
+    $('search').classList.toggle('has-q', query.length > 0);
+    hits = search(query);
+    if (show) renderResults(query);
+    renderToc();
+  }
+
+  function clearSearch() {
+    $('q').value = '';
+    runSearch(false);
+    closeResults();
+  }
+
+  // ---------------------------------------------------------------- drawer (phones)
+  function openToc() {
+    $('toc').classList.add('open');
+    $('scrim').classList.add('show');
+    $('menu-btn').setAttribute('aria-expanded', 'true');
+    const link = $('toc-list').querySelector('a.current') || $('toc-list').querySelector('a');
+    if (link) link.focus({ preventScroll: true });
+  }
+  function closeToc() {
+    if (!$('toc').classList.contains('open')) return;
+    $('toc').classList.remove('open');
+    $('scrim').classList.remove('show');
+    $('menu-btn').setAttribute('aria-expanded', 'false');
+  }
+
+  // ---------------------------------------------------------------- language
+  function render(keep) {
+    renderStatic();
+    if (!chapters.length && !window.LIW_HANDBOOK_READY) return;
+    renderChapters();
+    renderContent();
+    if ($('q').value) { hits = search($('q').value); if (!$('results').hidden) renderResults($('q').value); }
+    renderToc();
+    if (keep) scrollToId(keep, false);
+    spy();
+  }
+
+  function setLang(next) {
+    if (next === lang) return;
+    const keep = current || resolve(decodeURIComponent(location.hash.slice(1)));
+    // Keep the reader on the same section: stay at the same offset from its top.
+    const el = keep && document.getElementById(keep);
+    const offset = el ? el.getBoundingClientRect().top : 0;
+    lang = next;
+    try { localStorage.setItem('liw_lang', lang); } catch (e) { /* no storage */ }
+    render(null);
+    const again = keep && document.getElementById(keep);
+    if (again) window.scrollTo({ top: again.getBoundingClientRect().top + window.scrollY - offset, behavior: 'instant' });
+    measure();
+    spy();
+  }
+
+  // ---------------------------------------------------------------- events
+  function bind() {
+    document.querySelectorAll('.lang button').forEach((b) => b.addEventListener('click', () => setLang(b.dataset.lang)));
+
+    const q = $('q');
+    q.addEventListener('input', () => { clearTimeout(searchTimer); searchTimer = setTimeout(runSearch, 70); });
+    q.addEventListener('focus', () => { if (q.value.trim()) runSearch(); });
+    q.addEventListener('keydown', (ev) => {
+      const open = !$('results').hidden;
+      if (ev.key === 'ArrowDown') { ev.preventDefault(); if (!open && q.value.trim()) runSearch(); setActive(active + 1); }
+      else if (ev.key === 'ArrowUp') { ev.preventDefault(); setActive(active - 1); }
+      else if (ev.key === 'Enter') {
+        ev.preventDefault();
+        clearTimeout(searchTimer);
+        if (!open || $('q').value !== q.value) runSearch();
+        const pick = hits[active >= 0 ? active : 0];
+        if (pick) { goTo(pick.sec, true); q.blur(); }
+      } else if (ev.key === 'Escape') {
+        ev.preventDefault();
+        if (q.value) clearSearch(); else { closeResults(); q.blur(); }
+      }
+    });
+    $('clear').addEventListener('click', () => { clearSearch(); q.focus(); });
+
+    $('results').addEventListener('mousedown', (ev) => ev.preventDefault()); // keep the focus in the field
+    $('results').addEventListener('click', (ev) => {
+      const link = ev.target.closest('a');
+      if (!link) return;
+      ev.preventDefault();
+      const hit = link.dataset.i !== undefined ? hits[Number(link.dataset.i)] : null;
+      goTo(hit ? hit.sec : link.dataset.jump || link.getAttribute('href').slice(1), !!hit);
+      q.blur();
+    });
+    document.addEventListener('click', (ev) => {
+      if (!ev.target.closest('#search')) closeResults();
+    });
+
+    // In-page links (contents, chapter list, links between sections).
+    document.addEventListener('click', (ev) => {
+      const link = ev.target.closest('a[href^="#"]');
+      if (!link || link.closest('#results') || ev.defaultPrevented || ev.button !== 0 || ev.metaKey || ev.ctrlKey || ev.shiftKey) return;
+      const id = decodeURIComponent(link.getAttribute('href').slice(1));
+      if (!id) return;
+      ev.preventDefault();
+      goTo(id, false);
+    });
+
+    $('toc-list').addEventListener('click', (ev) => {
+      const button = ev.target.closest('.toc-row button');
+      if (!button) return;
+      const li = button.closest('.toc-ch');
+      const secs = li.querySelector('.toc-secs');
+      secs.hidden = !secs.hidden;
+      button.setAttribute('aria-expanded', String(!secs.hidden));
+      if (secs.hidden) expanded.delete(li.dataset.ch); else expanded.add(li.dataset.ch);
+    });
+
+    $('menu-btn').addEventListener('click', () => ($('toc').classList.contains('open') ? closeToc() : openToc()));
+    $('toc-close').addEventListener('click', closeToc);
+    $('scrim').addEventListener('click', closeToc);
+    $('to-top').addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: reduceMotion ? 'instant' : 'smooth' });
+      history.replaceState(null, '', location.pathname + location.search);
+    });
+
+    document.addEventListener('keydown', (ev) => {
+      const typing = ev.target.closest('input, textarea, select, [contenteditable="true"]');
+      if ((ev.key === 'k' || ev.key === 'K') && (ev.ctrlKey || ev.metaKey)) {
+        ev.preventDefault();
+        q.focus();
+        q.select();
+      } else if (ev.key === '/' && !typing && !ev.ctrlKey && !ev.metaKey && !ev.altKey) {
+        ev.preventDefault();
+        q.focus();
+        q.select();
+      } else if (ev.key === 'Escape' && $('toc').classList.contains('open')) {
+        closeToc();
+        $('menu-btn').focus();
+      }
+    });
+
+    window.addEventListener('scroll', spy, { passive: true });
+    window.addEventListener('resize', () => { measure(); spy(); });
+    window.addEventListener('hashchange', () => {
+      const id = resolve(decodeURIComponent(location.hash.slice(1)));
+      if (id) scrollToId(id, true);
+    });
+    window.addEventListener('popstate', () => {
+      const id = resolve(decodeURIComponent(location.hash.slice(1)));
+      if (id) scrollToId(id, false); else if (!location.hash) window.scrollTo({ top: 0, behavior: 'instant' });
+    });
+  }
+
+  renderStatic();
+  bind();
+  loadChapters(() => {
+    chapters = collect();
+    window.LIW_HANDBOOK_READY = true;
+    render(null);
+    const target = resolve(decodeURIComponent(location.hash.slice(1)));
+    if (target) scrollToId(target, false);
+    // Fonts change the heights: measure again and keep a deep link in place.
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(() => {
+        const el = target && document.getElementById(target);
+        const moved = el && Math.abs(el.getBoundingClientRect().top - $('bar').offsetHeight - 16) > 4;
+        measure();
+        if (moved) scrollToId(target, false);
+        spy();
+      });
+    }
+  });
+})();
+</script>
+</body>
+</html>
