@@ -237,10 +237,10 @@ footer small { flex-basis: 100%; font-size: 0.85rem; opacity: 0.8; }
             <h2 id="intro-title" data-t="intro_title"></h2>
         </div>
         <div class="facts">
-            <div class="fact"><b>15</b><span data-t="fact_species"></span></div>
+            <div class="fact"><b>27</b><span data-t="fact_species"></span></div>
             <div class="fact"><b>3</b><span data-t="fact_slots"></span></div>
-            <div class="fact"><b>221</b><span data-t="fact_quests"></span></div>
-            <div class="fact"><b>61</b><span data-t="fact_titles"></span></div>
+            <div class="fact"><b>460</b><span data-t="fact_quests"></span></div>
+            <div class="fact"><b>130</b><span data-t="fact_titles"></span></div>
         </div>
         <div class="manifest">
             <p data-t="manifest_1"></p>
@@ -419,6 +419,18 @@ footer small { flex-basis: 100%; font-size: 0.85rem; opacity: 0.8; }
         ['grizzly', 'omnivore', [10, 5, 5, 7, 2, 10], 'Grizzlybär', 'Grizzly Bear', 'Das stärkste Tier der Wildnis. Schwer zu reizen – und dann nicht mehr aufzuhalten.', 'The strongest animal of the wilderness. Slow to anger, unstoppable once it is.'],
         ['boar', 'omnivore', [5, 6, 6, 8, 5, 7], 'Wildschwein', 'Wild Boar', 'Zäh, jähzornig und frisst alles. Eine Rotte Wildschweine fürchtet keinen Wolf.', 'Tough, quick-tempered and eats everything. A group of boars fears no wolf.'],
         ['raccoon', 'omnivore', [2, 6, 5, 7, 8, 3], 'Waschbär', 'Raccoon', 'Klein, schlau und immer hungrig. Findet überall Futter und entwischt jeder Gefahr.', 'Small, clever and always hungry. Finds food everywhere and slips away from every danger.'],
+        ['badger', 'carnivore', [4, 6, 4, 7, 6, 6], 'Dachs', 'Badger', 'Klein, gedrungen und furchtlos. Ein Dachs beißt weit über seiner Größe und weicht keinem Kampf aus.', 'Small, stocky and fearless. A badger bites far above its size and backs down from no fight.'],
+        ['pronghorn', 'herbivore', [2, 9, 10, 8, 5, 3], 'Gabelbock', 'Pronghorn', 'Kein Tier der Ebenen ist schneller. Schwach im Kampf, aber kaum einzuholen – und die Herde warnt sich gegenseitig.', 'No animal of the plains is faster. Weak in a fight but hard to catch - and the herd warns each other.'],
+        ['bighorn', 'herbivore', [5, 8, 7, 7, 4, 7], 'Dickhornschaf', 'Bighorn Sheep', 'Ein trittsicherer Kletterer der Berge. Die Hörner sind eine Waffe, die selbst Wölfe fürchten.', 'A sure-footed climber of the mountains. Its horns are a weapon even wolves fear.'],
+        ['beaver', 'herbivore', [3, 7, 3, 6, 5, 6], 'Biber', 'Beaver', 'Ein unermüdlicher Baumeister und starker Schwimmer, der in Familien lebt. Ein Schlag mit der Kelle warnt sie alle.', 'A tireless builder and strong swimmer that lives in families. A slap of its tail warns them all.'],
+        ['rabbit', 'herbivore', [1, 6, 10, 9, 7, 2], 'Kaninchen', 'Rabbit', 'Winzig, schwach und schneller als fast alles. Lebt in Gruppen, hat viele Junge und entkommt mit scharfen Haken.', 'Tiny, weak and faster than almost anything. Lives in groups, has many young and escapes with sharp hooks.'],
+        ['possum', 'omnivore', [1, 5, 4, 7, 9, 3], 'Opossum', 'Opossum', 'Klein, schwach und leicht zu übersehen. Frisst, was es findet – und droht Gefahr, stellt es sich einfach tot.', 'Small, weak and easily overlooked. Eats whatever it finds - and when danger comes, it simply plays dead.'],
+        ['skunk', 'omnivore', [2, 5, 4, 7, 6, 4], 'Stinktier', 'Skunk', 'Klein und langsam, aber niemand will sich mit ihm anlegen. Sein Strahl betäubt Angreifer, sein Gestank hält sie fern.', 'Small and slow, but nobody wants to fight it. Its spray stuns attackers, its stench keeps them at bay.'],
+        ['armadillo', 'omnivore', [2, 5, 3, 5, 5, 8], 'Gürteltier', 'Armadillo', 'Klein, langsam und gepanzert. Gräbt im warmen Süden nach Maden – und droht Gefahr, rollt es sich zur Kugel ein.', 'Small, slow and clad in armour. Digs for grubs in the warm south - and when danger comes, it curls up into a ball.'],
+        ['squirrel', 'herbivore', [1, 6, 8, 9, 7, 1], 'Eichhörnchen', 'Squirrel', 'Winzig, flink und wachsam. Lebt allein in seinem kleinen Reich – droht Gefahr, erstarrt es wie ein Astknoten in der Rinde.', 'Tiny, quick and watchful. Lives alone in its small realm - when danger comes, it freezes like a knot in the bark.'],
+        ['chipmunk', 'herbivore', [1, 6, 7, 8, 9, 1], 'Streifenhörnchen', 'Chipmunk', 'Das kleinste von allen und kaum zu entdecken. Stopft sich die Backen voll und ist weg, bevor es jemand bemerkt.', 'The smallest of them all and hard to spot. Stuffs its cheeks full and is gone before anyone notices it.'],
+        ['muskrat', 'herbivore', [2, 7, 4, 6, 6, 3], 'Bisamratte', 'Muskrat', 'Ein kleiner Schwimmer der Sümpfe, der in Familien lebt. Taucht vor Gefahr ab und verschwindet im Schilf.', 'A small swimmer of the marshes that lives in families. Dives away from danger and vanishes in the reeds.'],
+        ['rat', 'omnivore', [2, 7, 6, 8, 8, 3], 'Ratte', 'Rat', 'Klein, zäh und schlau. Frisst alles, lebt in Kolonien – und eine Kolonie, die ausschwärmt, beißt härter als jede einzelne Ratte.', 'Small, tough and clever. Eats anything, lives in colonies - and a colony that swarms out bites harder than any single rat.'],
     ];
     const STAT_KEYS = ['st_strength', 'st_stamina', 'st_speed', 'st_senses', 'st_stealth', 'st_constitution'];
 
@@ -449,7 +461,7 @@ footer small { flex-basis: 100%; font-size: 0.85rem; opacity: 0.8; }
             cls_carnivore: 'Fleischfresser', cls_herbivore: 'Pflanzenfresser', cls_omnivore: 'Allesfresser',
             st_strength: 'Stärke', st_stamina: 'Ausdauer', st_speed: 'Tempo', st_senses: 'Sinne', st_stealth: 'Tarnung', st_constitution: 'Konstitution',
             life_eyebrow: 'Ein Leben', life_title: 'Jedes Tier lebt nur einmal',
-            life_lede: 'Ein Tier lebt je nach Art 30 bis 60 Stunden Spielzeit. Gezählt wird nur, solange du online bist.',
+            life_lede: 'Dein Tier altert nur, solange du online bist: In den ersten Stunden wächst es heran, nach etwa 70 Stunden wird es alt und lässt langsam nach. An Altersschwäche stirbt es nicht – aber Hunger, Kälte, Krankheit und Kämpfe können jedes Leben beenden.',
             st_young_h: 'Jungtier', st_young: 'Kleiner und schwächer. Es wächst mit jeder Stunde.',
             st_adult_h: 'Ausgewachsen', st_adult: 'Volle Kraft. Zeit für Rudel, Revier und Nachwuchs.',
             st_old_h: 'Alt', st_old: 'Erfahren, aber die Kräfte lassen langsam nach.',
@@ -513,7 +525,7 @@ footer small { flex-basis: 100%; font-size: 0.85rem; opacity: 0.8; }
             cls_carnivore: 'Carnivore', cls_herbivore: 'Herbivore', cls_omnivore: 'Omnivore',
             st_strength: 'Strength', st_stamina: 'Stamina', st_speed: 'Speed', st_senses: 'Senses', st_stealth: 'Stealth', st_constitution: 'Constitution',
             life_eyebrow: 'One life', life_title: 'Every animal lives only once',
-            life_lede: 'Depending on its species, an animal lives 30 to 60 hours of play. Only the time you are online counts.',
+            life_lede: 'Your animal only ages while you are online: it grows up during its first hours and becomes old after about 70 hours, slowly losing strength. It never dies of old age – but hunger, cold, disease and fights can end any life.',
             st_young_h: 'Juvenile', st_young: 'Smaller and weaker. It grows with every hour.',
             st_adult_h: 'Adult', st_adult: 'Full strength. Time for a pack, a territory and young.',
             st_old_h: 'Old', st_old: 'Experienced, but its strength slowly fades.',
