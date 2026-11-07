@@ -63,19 +63,20 @@ h1, h2, h3 { font-family: var(--display); font-weight: normal; line-height: 1.05
 .bar .discord { background: var(--gold); color: #14110c; text-decoration: none; border-radius: 999px; padding: 0.4rem 1.1rem; font-family: var(--display); letter-spacing: 0.08em; white-space: nowrap; }
 .menu { display: none; }
 
-/* Night-sky head of the inner pages (the homepage has its own full-screen version) */
+/* Night-sky head of the inner pages: the homepage hero in small - moon, mountains, tree line, centred title. */
 .page-hero {
-    position: relative; overflow: hidden; padding: 8.5rem 0 5.5rem;
+    position: relative; overflow: hidden; display: grid; place-items: center; min-height: clamp(24rem, 52vh, 34rem); padding: 7rem 0 6.5rem;
+    text-align: center;
     background:
-        radial-gradient(ellipse 40% 60% at 80% 10%, rgba(240, 226, 190, 0.14), transparent 62%),
-        linear-gradient(180deg, #131923 0%, #1c1b1f 50%, #241c14 80%, #0f0d0b 100%);
+        radial-gradient(ellipse 45% 45% at 74% 18%, rgba(240, 226, 190, 0.15), transparent 62%),
+        linear-gradient(180deg, #131923 0%, #1c1b1f 45%, #2a2016 75%, #0f0d0b 100%);
 }
-.page-hero .moon { position: absolute; top: 5.5rem; right: 12%; width: clamp(2.6rem, 5vw, 4.2rem); aspect-ratio: 1; border-radius: 50%;
-    background: radial-gradient(circle at 38% 36%, #fbf3dc, #e2d3ad 60%, #c9b88e); box-shadow: 0 0 60px 14px rgba(240, 226, 190, 0.22); }
-.page-hero svg.ridge { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 7rem; }
-.page-hero .wrap { position: relative; }
-.page-hero h1 { font-size: clamp(2.6rem, 6vw, 4.4rem); text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5); }
-.page-hero .lede { margin: 1rem 0 0; max-width: 42rem; color: var(--soft); font-size: 1.2rem; line-height: 1.55; }
+.page-hero .moon { position: absolute; top: 22%; right: 19%; width: clamp(2.8rem, 5vw, 4.5rem); aspect-ratio: 1; border-radius: 50%;
+    background: radial-gradient(circle at 38% 36%, #fbf3dc, #e2d3ad 60%, #c9b88e); box-shadow: 0 0 70px 16px rgba(240, 226, 190, 0.24); }
+.page-hero svg.scene { position: absolute; inset: auto 0 0 0; width: 100%; height: 62%; }
+.page-hero .wrap { position: relative; z-index: 1; }
+.page-hero h1 { font-size: clamp(2.8rem, 7vw, 5.6rem); line-height: 0.95; letter-spacing: 0.02em; margin: 0.4rem 0 1.1rem; text-shadow: 0 12px 60px rgba(0, 0, 0, 0.6); }
+.page-hero .lede { margin: 0 auto; max-width: 40rem; color: #ddd3c0; font-size: clamp(1.1rem, 1.6vw, 1.35rem); line-height: 1.5; }
 
 /* Footer */
 footer { margin-top: 5rem; border-top: 1px solid var(--line); padding: 2rem 0 3rem; color: var(--muted); font-size: 0.95rem; }
@@ -92,8 +93,8 @@ footer small { flex-basis: 100%; font-size: 0.85rem; opacity: 0.8; }
 }
 @media (max-width: 720px) {
     .bar .discord { display: none; }
-    .page-hero { padding: 7rem 0 4.5rem; }
-    .page-hero .moon { top: 5rem; right: 8%; }
+    .page-hero { min-height: 0; padding: 9rem 0 5.5rem; }
+    .page-hero .moon { top: 5rem; right: 10%; width: 2.6rem; }
 }
 @media (max-width: 560px) {
     .bar { gap: 0.6rem; }
@@ -103,5 +104,5 @@ footer small { flex-basis: 100%; font-size: 0.85rem; opacity: 0.8; }
 @media print {
     .bar, footer { display: none !important; }
     .page-hero { background: none; padding: 0 0 1rem; }
-    .page-hero .moon, .page-hero svg.ridge { display: none; }
+    .page-hero .moon, .page-hero svg.scene { display: none; }
 }
