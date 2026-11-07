@@ -8,66 +8,12 @@
 <meta property="og:title" content="Life In Wilderness">
 <meta property="og:description" content="Ein RedM-Roleplay-Server, auf dem jeder Spieler ein Tier ist. / A RedM roleplay server where every player is an animal.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%2314100c' stroke='%23c8a35a'/%3E%3Ctext x='16' y='20.5' font-family='Georgia' font-size='11' text-anchor='middle' fill='%23c8a35a'%3ELiW%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/site.css">
 <style>
-/* Fonts are served from this site (no third-party requests); SIL Open Font License, see assets/fonts/OFL-*.txt. */
-@font-face { font-family: 'IM Fell English'; src: url('assets/fonts/imfell.woff2') format('woff2'); font-style: normal; font-display: swap; }
-@font-face { font-family: 'IM Fell English'; src: url('assets/fonts/imfell-italic.woff2') format('woff2'); font-style: italic; font-display: swap; }
-@font-face { font-family: 'IM Fell English SC'; src: url('assets/fonts/imfell-sc.woff2') format('woff2'); font-display: swap; }
-@font-face { font-family: 'Crimson Pro'; src: url('assets/fonts/crimson.woff2') format('woff2'); font-weight: 400 600; font-style: normal; font-display: swap; }
-@font-face { font-family: 'Crimson Pro'; src: url('assets/fonts/crimson-italic.woff2') format('woff2'); font-weight: 400; font-style: italic; font-display: swap; }
 /* Layout: a full-screen night sky with a floating bar on top, a strip of numbers over its lower edge, then
    one column of card sections; species as small picture tiles with one detail panel. */
-:root {
-    color-scheme: dark;
-    --page: #0f0d0b;
-    --panel: #191512;
-    --panel-2: #211b15;
-    --ink: #efe7d8;
-    --muted: #9f927e;
-    --gold: #d6ae5e;
-    --gold-hi: #e8c47a;
-    --rust: #c8694a;
-    --moss: #8fb878;
-    --line: rgba(239, 231, 216, 0.09);
-    --line-gold: rgba(214, 174, 94, 0.3);
-    --radius: 18px;
-    --display: 'IM Fell English SC', Georgia, serif;
-    --old: 'IM Fell English', Georgia, serif;
-    --body: 'Crimson Pro', Georgia, 'Times New Roman', serif;
-    --gutter-l: max(16px, env(safe-area-inset-left, 0px));
-    --gutter-r: max(16px, env(safe-area-inset-right, 0px));
-}
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-html, body { background: var(--page); color: var(--ink); }
-body { margin: 0; font-family: var(--body); font-size: 1.125rem; line-height: 1.6; overflow-x: hidden; }
-a { color: var(--gold); }
-h1, h2, h3 { font-family: var(--display); font-weight: normal; line-height: 1.05; margin: 0; }
 p { margin: 0; }
-.wrap { width: min(1180px, 100% - var(--gutter-l) - var(--gutter-r)); margin: 0 auto; }
-.eyebrow { font-family: var(--display); font-size: 0.95rem; letter-spacing: 0.28em; color: var(--gold); text-transform: lowercase; margin-bottom: 0.6rem; }
-:focus-visible { outline: 2px solid var(--gold-hi); outline-offset: 3px; }
 
-/* Floating bar */
-.bar {
-    position: fixed; z-index: 10; top: 14px; left: 50%; transform: translateX(-50%);
-    width: min(1180px, 100% - var(--gutter-l) - var(--gutter-r));
-    display: flex; align-items: center; gap: 1.25rem; padding: 0.5rem 0.6rem 0.5rem 1.1rem;
-    border: 1px solid rgba(239, 231, 216, 0.12); border-radius: 999px;
-    background: rgba(15, 13, 11, 0.6); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-    transition: background 0.2s;
-}
-.bar.scrolled { background: rgba(15, 13, 11, 0.88); }
-.mark { display: flex; align-items: center; gap: 0.6rem; color: var(--ink); text-decoration: none; font-family: var(--display); font-size: 1.2rem; letter-spacing: 0.12em; white-space: nowrap; }
-.mark span { display: grid; place-items: center; width: 2.1rem; height: 2.1rem; border: 1px solid var(--gold); border-radius: 50%; font-size: 0.75rem; letter-spacing: 0.04em; color: var(--gold); }
-.bar nav { display: flex; gap: 1.1rem; margin-left: auto; }
-.bar nav a { color: var(--muted); text-decoration: none; font-size: 1.05rem; white-space: nowrap; }
-.bar nav a:hover { color: var(--ink); }
-.lang { display: flex; border: 1px solid var(--line); border-radius: 999px; padding: 3px; gap: 2px; }
-.lang button { border: none; background: none; color: var(--muted); font: inherit; font-size: 0.85rem; letter-spacing: 0.08em; padding: 0.15rem 0.65rem; border-radius: 999px; cursor: pointer; }
-.lang button[aria-pressed="true"] { background: var(--gold); color: #14110c; }
-.bar .discord { background: var(--gold); color: #14110c; text-decoration: none; border-radius: 999px; padding: 0.4rem 1.1rem; font-family: var(--display); letter-spacing: 0.08em; white-space: nowrap; }
-.menu { display: none; }
 
 /* Hero */
 .hero {
@@ -197,24 +143,14 @@ main section { padding: 6.5rem 0 0; }
 .closing { margin-top: 6.5rem; border-radius: 26px; padding: 3rem 2rem; text-align: center; border: 1px solid var(--line-gold);
     background: radial-gradient(ellipse 60% 80% at 50% 0%, rgba(214, 174, 94, 0.16), transparent 70%), var(--panel); }
 .closing h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1.2rem; }
-footer { margin-top: 5rem; border-top: 1px solid var(--line); padding: 2rem 0 3rem; color: var(--muted); font-size: 0.95rem; }
-footer .wrap { display: flex; flex-wrap: wrap; gap: 1rem 2rem; align-items: center; }
-footer nav { display: flex; gap: 1.2rem; margin-left: auto; }
-footer a { color: var(--muted); }
-footer small { flex-basis: 100%; font-size: 0.85rem; opacity: 0.8; }
 
 @media (max-width: 1080px) {
-    .bar nav { display: none; }
-    .menu { display: inline-flex; margin-left: auto; font: inherit; background: none; border: 1px solid var(--line); color: var(--ink); border-radius: 999px; padding: 0.3rem 0.9rem; cursor: pointer; }
-    .bar.open { border-radius: 22px; flex-wrap: wrap; }
-    .bar.open nav { display: flex; flex-direction: column; gap: 0.6rem; flex-basis: 100%; order: 10; padding: 0.6rem 0.4rem 0.8rem; }
     .pillars { grid-template-columns: repeat(2, 1fr); }
     .road { grid-template-columns: repeat(2, 1fr); }
     .detail { grid-template-columns: 1fr 1fr; }
     .detail .pic { grid-column: span 2; max-height: 16rem; }
 }
 @media (max-width: 720px) {
-    .bar .discord { display: none; }
     .facts { grid-template-columns: repeat(2, 1fr); margin-top: -3rem; }
     .fact:nth-child(2) { border-right: none; }
     .fact:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
@@ -230,15 +166,15 @@ footer small { flex-basis: 100%; font-size: 0.85rem; opacity: 0.8; }
 <body>
 <header class="bar" id="bar">
     <a class="mark" href="#top"><span>LiW</span>Life In Wilderness</a>
-    <button type="button" class="menu" aria-expanded="false" aria-controls="nav" data-t="nav_menu"></button>
+    <button type="button" class="menu" aria-expanded="false" aria-controls="nav" data-s="nav_menu"></button>
     <nav id="nav">
-        <a href="#spiel" data-t="nav_game"></a>
-        <a href="#arten" data-t="nav_species"></a>
-        <a href="#einstieg" data-t="nav_join"></a>
-        <a href="#regeln" data-t="nav_rules"></a>
-        <a href="#entwicklung" data-t="nav_dev"></a>
-        <a href="tasten.html" data-t="nav_keys"></a>
-        <a href="handbuch.html" data-t="nav_handbook"></a>
+        <a href="#spiel" data-s="nav_game"></a>
+        <a href="#arten" data-s="nav_species"></a>
+        <a href="#einstieg" data-s="nav_join"></a>
+        <a href="#regeln" data-s="nav_rules"></a>
+        <a href="#entwicklung" data-s="nav_dev"></a>
+        <a href="tasten.html" data-s="nav_keys"></a>
+        <a href="handbuch.html" data-s="nav_handbook"></a>
         <a href="#faq">FAQ</a>
     </nav>
     <div class="lang" role="group" aria-label="Sprache / Language">
@@ -423,17 +359,19 @@ footer small { flex-basis: 100%; font-size: 0.85rem; opacity: 0.8; }
     <div class="wrap">
         <span>© Life In Wilderness</span>
         <nav>
-            <a href="#top" data-t="imprint"></a>
-            <a href="#top" data-t="privacy"></a>
-            <a href="#top" data-discord>Discord</a>
+            <a href="tasten.html" data-s="nav_keys"></a>
+            <a href="handbuch.html" data-s="nav_handbook"></a>
+            <a href="#top" data-s="imprint"></a>
+            <a href="#top" data-s="privacy"></a>
+            <a href="#einstieg" data-discord>Discord</a>
         </nav>
-        <small data-t="disclaimer"></small>
+        <small data-s="disclaimer"></small>
     </div>
 </footer>
 
+<script src="assets/site.js"></script>
 <script>
 (() => {
-    const DISCORD_URL = 'https://discord.gg/jzYN3zEEyz';
     const CONNECT_URL = 'https://cfx.re/join/4ggl8rq';
 
     const SPECIES = [
@@ -470,9 +408,9 @@ footer small { flex-basis: 100%; font-size: 0.85rem; opacity: 0.8; }
 
     const T = {
         de: {
-            nav_menu: 'Menü', species_pick: 'Art auswählen', copy: 'kopieren', copied: 'kopiert ✓', closing_title: 'Die Wildnis wartet.',
+            species_pick: 'Art auswählen', copy: 'kopieren', copied: 'kopiert ✓', closing_title: 'Die Wildnis wartet.',
             img_credit: 'Bilder: RedM Forge (redm-forge.com)',
-            nav_game: 'Das Spiel', nav_species: 'Arten', nav_join: 'Einstieg', nav_rules: 'Regeln', nav_dev: 'Entwicklung', nav_keys: 'Tasten', cta_keys: 'Tastenbelegung ansehen', nav_handbook: 'Handbuch', cta_handbook: 'Handbuch lesen',
+            cta_keys: 'Tastenbelegung ansehen', cta_handbook: 'Handbuch lesen',
             hero_eyebrow: 'RedM-Roleplay-Server',
             hero_lede: 'Kein Mensch, kein Revolver, keine Stadt. Du bist ein Tier in der Wildnis von Red Dead Redemption 2 – und musst überleben.',
             cta_discord: 'Discord beitreten', cta_join: 'So kommst du rein', cta_connect: 'Verbinden',
@@ -532,13 +470,11 @@ footer small { flex-basis: 100%; font-size: 0.85rem; opacity: 0.8; }
             q4: 'Wie viele Tiere kann ich haben?', a4: 'Drei Plätze pro Account. Ein Platz wird frei, wenn ein Tier stirbt.',
             q5: 'Muss ich Deutsch sprechen?', a5: 'Nein. Das Spiel gibt es auf Deutsch und Englisch, die Sprache wird automatisch erkannt.',
             q6: 'Gibt es einen Text-Chat?', a6: 'Im Spiel nicht. Ihr verständigt euch über Proximity Voice, Tierlaute und das Emote-Rad.',
-            imprint: 'Impressum', privacy: 'Datenschutz',
-            disclaimer: 'Life In Wilderness ist ein Fanprojekt und steht in keiner Verbindung zu Rockstar Games oder Take-Two Interactive.',
         },
         en: {
-            nav_menu: 'Menu', species_pick: 'Pick a species', copy: 'copy', copied: 'copied ✓', closing_title: 'The wild is waiting.',
+            species_pick: 'Pick a species', copy: 'copy', copied: 'copied ✓', closing_title: 'The wild is waiting.',
             img_credit: 'Pictures: RedM Forge (redm-forge.com)',
-            nav_game: 'The game', nav_species: 'Species', nav_join: 'Join', nav_rules: 'Rules', nav_dev: 'Development', nav_keys: 'Controls', cta_keys: 'See the key bindings', nav_handbook: 'Handbook', cta_handbook: 'Read the handbook',
+            cta_keys: 'See the key bindings', cta_handbook: 'Read the handbook',
             hero_eyebrow: 'RedM roleplay server',
             hero_lede: 'No humans, no revolvers, no towns. You are an animal in the wilderness of Red Dead Redemption 2 – and you have to survive.',
             cta_discord: 'Join the Discord', cta_join: 'How to join', cta_connect: 'Connect',
@@ -598,8 +534,6 @@ footer small { flex-basis: 100%; font-size: 0.85rem; opacity: 0.8; }
             q4: 'How many animals can I have?', a4: 'Three slots per account. A slot is freed when an animal dies.',
             q5: 'Do I have to speak German?', a5: 'No. The game is in English and German, the language is detected automatically.',
             q6: 'Is there a text chat?', a6: 'Not in the game. You talk through proximity voice, animal sounds and the emote wheel.',
-            imprint: 'Imprint', privacy: 'Privacy',
-            disclaimer: 'Life In Wilderness is a fan project and is not affiliated with Rockstar Games or Take-Two Interactive.',
         },
     };
 
@@ -683,6 +617,7 @@ footer small { flex-basis: 100%; font-size: 0.85rem; opacity: 0.8; }
 
     function render() {
         document.documentElement.lang = lang;
+        LiwSite.apply(lang);
         document.querySelectorAll('[data-t]').forEach((el) => {
             const value = t(el.dataset.t);
             if (value.includes('<code>')) el.innerHTML = value; else el.textContent = value;
@@ -702,26 +637,14 @@ footer small { flex-basis: 100%; font-size: 0.85rem; opacity: 0.8; }
         document.querySelectorAll('.filters button').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
         renderSpecies();
     }));
-    document.querySelectorAll('[data-discord]').forEach((a) => { a.href = DISCORD_URL; a.target = '_blank'; a.rel = 'noopener'; });
     document.querySelectorAll('[data-connect]').forEach((a) => { a.href = CONNECT_URL; });
-    // Copy the connect command; menu on small screens; the bar gets darker once the page scrolls.
+    // Copy the connect command.
     const copyButton = document.getElementById('copy');
     copyButton.addEventListener('click', async () => {
         try { await navigator.clipboard.writeText('connect cfx.re/join/4ggl8rq'); copyButton.textContent = t('copied'); }
         catch { copyButton.textContent = 'connect cfx.re/join/4ggl8rq'; }
         setTimeout(() => { copyButton.textContent = t('copy'); }, 2000);
     });
-    const bar = document.getElementById('bar');
-    const menu = bar.querySelector('.menu');
-    menu.addEventListener('click', () => {
-        const open = !bar.classList.contains('open');
-        bar.classList.toggle('open', open);
-        menu.setAttribute('aria-expanded', String(open));
-    });
-    bar.querySelectorAll('nav a').forEach((a) => a.addEventListener('click', () => { bar.classList.remove('open'); menu.setAttribute('aria-expanded', 'false'); }));
-    const onScroll = () => bar.classList.toggle('scrolled', window.scrollY > 40);
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
     render();
 })();
 </script>

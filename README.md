@@ -17,6 +17,8 @@ Eigene Domain später: Datei `CNAME` mit der Domain anlegen und beim Domain-Anbi
 index.html          die ganze Seite: Styles oben, Inhalt, unten das Skript mit allen Texten (T.de / T.en) und den Arten
 tasten.html         Tastenbelegung: Tastatur (QWERTZ / QWERTY je Sprache) und Liste aller Spieler-Tasten
 handbuch.html       Spielerhandbuch: Suche, Inhaltsverzeichnis, alle Kapitel (Gerüst; die Texte stehen in assets/handbook/)
+assets/site.css     gemeinsames Aussehen aller Seiten: Farben, Schriften, schwebende Leiste, Nachthimmel-Kopf, Fußzeile
+assets/site.js      gemeinsame Leiste/Fußzeile: Texte (data-s, DE/EN), Discord-Link, Menü auf kleinen Bildschirmen
 assets/handbook/    ein Kapitel des Handbuchs je Datei (<Reihenfolge>-<id>.js) und index.js mit der Liste der Dateien
 assets/fonts/       Schriften (IM Fell English, Crimson Pro; SIL Open Font License) – lokal, keine Anfragen an Google
 .nojekyll           Seite wird so ausgeliefert, wie sie ist
@@ -25,6 +27,7 @@ assets/fonts/       Schriften (IM Fell English, Crimson Pro; SIL Open Font Licen
 ## Texte ändern
 
 - Alle Texte stehen im Skript am Ende von `index.html` in `T.de` und `T.en` (gleiche Schlüssel in beiden Sprachen).
+  Ausnahme: Texte der Leiste und der Fußzeile (auf allen Seiten gleich) stehen in `assets/site.js`.
 - Die Arten stehen in `SPECIES` (Schlüssel, Ernährung, Grundwerte, Namen und Beschreibungen) und kommen aus
   `liw_species` des Server-Repos.
 - Die Tasten stehen in `tasten.html` in `ACTIONS` (Taste, Gruppe, Texte je Sprache); Quelle ist

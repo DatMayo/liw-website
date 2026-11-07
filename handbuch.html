@@ -6,63 +6,39 @@
 <title>Handbuch · Life In Wilderness</title>
 <meta name="description" content="Das Spielerhandbuch von Life In Wilderness: alles zum Nachschlagen. / The Life In Wilderness player handbook: everything to look up.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%2314100c' stroke='%23c8a35a'/%3E%3Ctext x='16' y='20.5' font-family='Georgia' font-size='11' text-anchor='middle' fill='%23c8a35a'%3ELiW%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/site.css">
 <style>
-/* Same fonts and palette as index.html (served from this site, SIL Open Font License). */
-@font-face { font-family: 'IM Fell English'; src: url('assets/fonts/imfell.woff2') format('woff2'); font-style: normal; font-display: swap; }
-@font-face { font-family: 'IM Fell English'; src: url('assets/fonts/imfell-italic.woff2') format('woff2'); font-style: italic; font-display: swap; }
-@font-face { font-family: 'IM Fell English SC'; src: url('assets/fonts/imfell-sc.woff2') format('woff2'); font-display: swap; }
-@font-face { font-family: 'Crimson Pro'; src: url('assets/fonts/crimson.woff2') format('woff2'); font-weight: 400 600; font-style: normal; font-display: swap; }
-@font-face { font-family: 'Crimson Pro'; src: url('assets/fonts/crimson-italic.woff2') format('woff2'); font-weight: 400; font-style: italic; font-display: swap; }
 /* Layout: a sticky bar with the search, then a reference book - table of contents on the left, all chapters in one column. */
-:root {
-  color-scheme: dark;
-  --page: #14100c; --panel: #1d1712; --panel-2: #241c15; --ink: #ece3d2; --muted: #a99b84; --soft: #cfc4b0;
-  --gold: #c8a35a; --gold-hi: #e3c27a; --rust: #c8694a; --moss: #8fb878;
-  --line: rgba(200, 163, 90, 0.24); --cap: #2b231b; --cap-edge: #4a3d2e;
-  --display: 'IM Fell English SC', Georgia, serif; --old: 'IM Fell English', Georgia, serif;
-  --body: 'Crimson Pro', Georgia, 'Times New Roman', serif;
-  --gutter-l: max(16px, env(safe-area-inset-left, 0px)); --gutter-r: max(16px, env(safe-area-inset-right, 0px));
-  --bar-h: 4.5rem;
-}
+:root { --bar-h: 8rem; --tools-top: 5rem; }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: calc(var(--bar-h) + 1rem); overflow-anchor: none; }
-html, body { background: var(--page); color: var(--ink); }
-body { margin: 0; font-family: var(--body); font-size: 1.125rem; line-height: 1.6; }
 a { color: var(--gold-hi); }
 a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
-h1, h2, h3 { font-family: var(--display); font-weight: 400; letter-spacing: 0.03em; text-wrap: balance; margin: 0; }
+h1, h2, h3 { letter-spacing: 0.03em; text-wrap: balance; }
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 svg.ico { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; flex: none; }
 
-/* Top bar */
-.bar { position: sticky; top: 0; z-index: 30; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 0.6rem 1.25rem;
-  padding: calc(0.6rem + env(safe-area-inset-top, 0px)) var(--gutter-r) 0.6rem var(--gutter-l);
-  background: var(--page); border-bottom: 1px solid var(--line); }
-.mark { font-family: var(--display); font-size: 1.05rem; letter-spacing: 0.1em; color: var(--ink); text-decoration: none; display: flex; align-items: center; gap: 0.6rem; white-space: nowrap; }
-.mark span { display: grid; place-items: center; width: 2.1rem; height: 2.1rem; border: 1px solid var(--gold); border-radius: 50%; font-size: 0.8rem; color: var(--gold); }
-.bar-end { display: flex; align-items: center; gap: 1rem; }
-.bar-end nav { display: flex; gap: 1rem; }
-.bar-end nav a { font-family: var(--old); font-size: 1rem; color: var(--ink); text-decoration: none; opacity: 0.85; white-space: nowrap; }
-.bar-end nav a:hover { color: var(--gold-hi); opacity: 1; }
-.lang { display: flex; border: 1px solid var(--line); }
-.lang button { font-family: var(--display); font-size: 0.85rem; letter-spacing: 0.1em; background: none; color: var(--muted); border: 0; padding: 0.3rem 0.65rem; cursor: pointer; }
-.lang button[aria-pressed="true"] { background: var(--gold); color: var(--page); }
-.menu-btn { display: none; align-items: center; gap: 0.4rem; font: 1rem var(--old); color: var(--ink); background: none; border: 1px solid var(--line); padding: 0.3rem 0.65rem; cursor: pointer; }
+.menu-btn { display: none; flex: none; align-items: center; gap: 0.4rem; font: 1rem var(--old); color: var(--ink); background: rgba(25, 21, 18, 0.92); border: 1px solid var(--line-gold); border-radius: 999px; padding: 0.55rem 0.9rem; cursor: pointer; box-shadow: 0 0.6rem 1.6rem rgba(0, 0, 0, 0.45); }
 .menu-btn svg { width: 1.1rem; height: 1.1rem; }
 
-/* Search */
-.search { position: relative; width: 100%; max-width: 40rem; justify-self: center; }
-.search > svg { position: absolute; left: 0.75rem; top: 50%; width: 1.15rem; height: 1.15rem; transform: translateY(-50%); color: var(--gold); pointer-events: none; }
-.search input { width: 100%; font: 1.08rem var(--body); color: var(--ink); background: var(--panel); border: 1px solid var(--line); border-radius: 0;
-  padding: 0.55rem 3rem 0.55rem 2.5rem; -webkit-appearance: none; appearance: none; }
+/* Search: a sticky strip right under the floating bar */
+.hb-tools { position: sticky; top: var(--tools-top); z-index: 20; display: flex; gap: 0.6rem; align-items: center; width: min(1180px, 100% - var(--gutter-l) - var(--gutter-r)); margin: -1.7rem auto 0; }
+.search { position: relative; flex: 1; min-width: 0; }
+/* Once stuck, a dark band behind bar and search keeps the scrolling text from showing between them. */
+.hb-tools::before { content: ''; position: absolute; z-index: -1; left: -50vw; right: -50vw; top: calc(-1 * var(--tools-top)); bottom: -0.6rem;
+  background: linear-gradient(180deg, var(--page) 85%, rgba(15, 13, 11, 0)); opacity: 0; transition: opacity 0.2s; pointer-events: none; }
+.hb-tools.stuck::before { opacity: 1; }
+.search > svg { position: absolute; z-index: 1; left: 1rem; top: 50%; width: 1.15rem; height: 1.15rem; transform: translateY(-50%); color: var(--gold); pointer-events: none; }
+.search input { width: 100%; font: 1.08rem var(--body); color: var(--ink); background: rgba(25, 21, 18, 0.92); border: 1px solid var(--line-gold); border-radius: 999px;
+  padding: 0.7rem 3rem 0.7rem 2.8rem; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: 0 0.6rem 1.6rem rgba(0, 0, 0, 0.45); -webkit-appearance: none; appearance: none; }
 .search input::placeholder { color: var(--muted); opacity: 1; }
 .search input:focus { outline: none; border-color: var(--gold); background: var(--panel-2); }
 .search input::-webkit-search-cancel-button { -webkit-appearance: none; }
-.search .keyhint { position: absolute; right: 0.6rem; top: 50%; transform: translateY(-50%); pointer-events: none; }
-.search .clear { position: absolute; right: 0.35rem; top: 50%; transform: translateY(-50%); background: none; border: 0; color: var(--muted); font-size: 1.4rem; line-height: 1; padding: 0.2rem 0.45rem; cursor: pointer; }
+.search .keyhint { position: absolute; right: 0.9rem; top: 50%; transform: translateY(-50%); pointer-events: none; }
+.search .clear { position: absolute; right: 0.6rem; top: 50%; transform: translateY(-50%); background: none; border: 0; color: var(--muted); font-size: 1.4rem; line-height: 1; padding: 0.2rem 0.45rem; cursor: pointer; }
 .search .clear:hover { color: var(--gold-hi); }
 .search.has-q .keyhint, .search:not(.has-q) .clear, .search:focus-within .keyhint { display: none; }
-.results { position: absolute; top: calc(100% + 0.4rem); left: 0; right: 0; z-index: 31; background: var(--panel); border: 1px solid var(--line);
+.results { position: absolute; top: calc(100% + 0.4rem); left: 0; right: 0; z-index: 31; background: var(--panel); border: 1px solid var(--line-gold); border-radius: 16px;
   max-height: min(70vh, 36rem); overflow-y: auto; overscroll-behavior: contain; box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.6); }
 .results[hidden] { display: none; }
 .results .count { padding: 0.45rem 0.9rem; font-size: 0.9rem; color: var(--muted); border-bottom: 1px solid var(--line); }
@@ -78,20 +54,16 @@ mark { background: rgba(200, 163, 90, 0.32); color: inherit; padding: 0 0.06em; 
 mark.hb-flash { background: var(--gold); color: var(--page); transition: background-color 0.8s, color 0.8s; }
 mark.hb-flash.fade { background: transparent; color: inherit; }
 
-/* Intro */
-.intro { max-width: 76rem; margin: 0 auto; padding: 2.5rem var(--gutter-r) 0 var(--gutter-l); display: grid; gap: 0.6rem; }
-.eyebrow { font-family: var(--display); letter-spacing: 0.16em; color: var(--gold); font-size: 0.9rem; }
-.intro h1 { font-size: clamp(2.4rem, 6vw, 3.6rem); line-height: 1; }
-.intro p { margin: 0; color: var(--muted); max-width: 44rem; }
-.intro p kbd { font-size: 0.8rem; }
-.chapters { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 10.5rem), 1fr)); margin-top: 1.25rem; padding: 1px 0 0 1px; }
-.chapters a { display: flex; align-items: center; gap: 0.7rem; padding: 0.7rem 0.9rem; background: var(--page); border: 1px solid var(--line); margin: -1px 0 0 -1px; color: var(--ink); text-decoration: none; font-family: var(--old); font-size: 1.02rem; line-height: 1.25; min-width: 0; }
-.chapters a:hover { background: var(--panel); color: var(--gold-hi); }
-.chapters svg { width: 1.6rem; height: 1.6rem; color: var(--gold); }
+/* Chapters as cards below the head */
+.page-hero .lede kbd { font-size: 0.8rem; }
+.chapters { width: min(1180px, 100% - var(--gutter-l) - var(--gutter-r)); margin: 1.6rem auto 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 10rem), 1fr)); gap: 0.6rem; }
+.chapters a { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 0.95rem; background: var(--panel); border: 1px solid var(--line); border-radius: 14px; color: var(--ink); text-decoration: none; font-family: var(--old); font-size: 1.02rem; line-height: 1.25; min-width: 0; transition: border-color 0.15s, background 0.15s; }
+.chapters a:hover { background: var(--panel-2); border-color: var(--line-gold); color: var(--gold-hi); }
+.chapters svg { width: 1.7rem; height: 1.7rem; color: var(--gold); }
 .chapters small { display: block; font-family: var(--body); color: var(--muted); font-size: 0.85rem; }
 
 /* Book: contents + text */
-.layout { max-width: 76rem; margin: 0 auto; padding: 1rem var(--gutter-r) 5rem var(--gutter-l); display: grid; grid-template-columns: 16.5rem minmax(0, 1fr); gap: 3rem; align-items: start; }
+.layout { width: min(1180px, 100% - var(--gutter-l) - var(--gutter-r)); margin: 1.5rem auto 0; padding: 0 0 1rem; display: grid; grid-template-columns: 16.5rem minmax(0, 1fr); gap: 3rem; align-items: start; }
 .toc { position: sticky; top: calc(var(--bar-h) + 1rem); max-height: calc(100vh - var(--bar-h) - 2rem); overflow-y: auto; overscroll-behavior: contain; padding: 1.5rem 0.5rem 1rem 0; scrollbar-width: thin; scrollbar-color: var(--cap-edge) transparent; }
 .toc-head { display: flex; justify-content: space-between; align-items: center; font-family: var(--display); letter-spacing: 0.12em; color: var(--gold); font-size: 0.9rem; margin-bottom: 0.5rem; }
 .toc-head button { display: none; background: none; border: 0; color: var(--muted); font-size: 1.5rem; line-height: 1; cursor: pointer; padding: 0 0.3rem; }
@@ -140,7 +112,7 @@ mark.hb-flash.fade { background: transparent; color: inherit; }
 .hb-table td { border-bottom: 1px dotted var(--line); padding: 0.45rem 0.7rem 0.45rem 0; vertical-align: top; }
 .hb-table tr:last-child td { border-bottom: 0; }
 kbd { font: 600 0.85rem var(--body); display: inline-block; padding: 0.02rem 0.42rem; border: 1px solid var(--cap-edge); border-bottom-width: 2px; border-radius: 0.3rem; background: var(--cap); color: var(--ink); white-space: nowrap; line-height: 1.4; }
-.hb-tip, .hb-warn { margin: 1rem 0 0; padding: 0.75rem 1rem 0.8rem 1.1rem; background: var(--panel); border-left: 3px solid var(--moss); }
+.hb-tip, .hb-warn { margin: 1rem 0 0; padding: 0.75rem 1rem 0.8rem 1.1rem; background: var(--panel); border-radius: 0 12px 12px 0; border-left: 3px solid var(--moss); }
 .hb-warn { border-left-color: var(--rust); }
 .hb-tip::before, .hb-warn::before { display: block; font-family: var(--display); letter-spacing: 0.12em; font-size: 0.82rem; color: var(--moss); content: 'Tipp'; }
 .hb-warn::before { color: var(--rust); content: 'Achtung'; }
@@ -149,13 +121,11 @@ kbd { font: 600 0.85rem var(--body); display: inline-block; padding: 0.02rem 0.4
 .hb-tip > :first-child, .hb-warn > :first-child { margin-top: 0.15rem; }
 
 .to-top { position: fixed; right: var(--gutter-r); bottom: calc(1rem + env(safe-area-inset-bottom, 0px)); z-index: 25; display: flex; align-items: center; gap: 0.4rem;
-  font: 0.95rem var(--old); color: var(--ink); background: var(--panel); border: 1px solid var(--line); padding: 0.45rem 0.8rem; cursor: pointer;
+  font: 0.95rem var(--old); color: var(--ink); background: var(--panel); border: 1px solid var(--line-gold); border-radius: 999px; padding: 0.45rem 0.9rem; cursor: pointer;
   opacity: 0; pointer-events: none; transform: translateY(0.5rem); transition: opacity 0.2s, transform 0.2s; }
 .to-top.show { opacity: 1; pointer-events: auto; transform: none; }
 .to-top:hover { border-color: var(--gold); color: var(--gold-hi); }
 .to-top svg { width: 1rem; height: 1rem; }
-footer { border-top: 1px solid var(--line); padding: 1.5rem var(--gutter-r) calc(1.5rem + env(safe-area-inset-bottom, 0px)) var(--gutter-l); color: var(--muted); font-size: 0.92rem; text-align: center; }
-footer a { color: var(--muted); }
 
 @media (max-width: 64rem) {
   .layout { grid-template-columns: minmax(0, 1fr); gap: 0; }
@@ -170,18 +140,13 @@ footer a { color: var(--muted); }
   .scrim.show { display: block; }
 }
 @media (max-width: 52rem) {
-  .bar { grid-template-columns: auto minmax(0, 1fr); }
-  .bar .search { grid-column: 1 / -1; order: 3; max-width: none; }
-  .bar-end { justify-self: end; gap: 0.6rem; }
-  .bar-end nav { display: none; }
-  .mark { font-size: 0; gap: 0; }
   .search .keyhint { display: none; }
   .hb-body dl { grid-template-columns: minmax(0, 1fr); gap: 0.1rem; }
   .hb-body dd { margin-bottom: 0.5rem; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .toc, .to-top, mark.hb-flash { transition: none; } }
 @media print {
-  .bar, .toc, .scrim, .to-top, .chapters, footer { display: none !important; }
+  .bar, .hb-tools, .toc, .scrim, .to-top, .chapters, footer { display: none !important; }
   html, body { background: #fff; color: #000; }
   .layout { display: block; padding: 0; }
   .hb-chapter { break-before: page; }
@@ -192,7 +157,43 @@ footer a { color: var(--muted); }
 </head>
 <body>
 <header class="bar" id="bar">
-  <a class="mark" href="index.html"><span>LiW</span>Life In Wilderness</a>
+    <a class="mark" href="index.html"><span>LiW</span>Life In Wilderness</a>
+    <button type="button" class="menu" aria-expanded="false" aria-controls="nav" data-s="nav_menu"></button>
+    <nav id="nav">
+        <a href="index.html#spiel" data-s="nav_game"></a>
+        <a href="index.html#arten" data-s="nav_species"></a>
+        <a href="index.html#einstieg" data-s="nav_join"></a>
+        <a href="index.html#regeln" data-s="nav_rules"></a>
+        <a href="index.html#entwicklung" data-s="nav_dev"></a>
+        <a href="tasten.html" data-s="nav_keys"></a>
+        <a href="handbuch.html" data-s="nav_handbook" aria-current="page"></a>
+        <a href="index.html#faq">FAQ</a>
+    </nav>
+    <div class="lang" role="group" aria-label="Sprache / Language">
+        <button type="button" id="lang-de" data-lang="de">DE</button>
+        <button type="button" id="lang-en" data-lang="en">EN</button>
+    </div>
+    <a class="discord" href="index.html#einstieg" data-discord>Discord</a>
+</header>
+
+<section class="page-hero" aria-labelledby="hb-title">
+    <div class="moon" aria-hidden="true"></div>
+    <svg class="ridge" viewBox="0 0 1600 140" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 70 L120 40 L260 66 L400 22 L540 58 L700 30 L860 66 L1020 26 L1180 60 L1340 34 L1480 62 L1600 44 V140 H0z" fill="#2c2721" opacity="0.7"/>
+        <path d="M0 104 L160 84 L320 100 L480 78 L640 98 L800 82 L960 102 L1120 80 L1280 98 L1440 84 L1600 96 V140 H0z" fill="#1a1611"/>
+        <path d="M0 128 C300 118 600 132 900 124 C1200 116 1400 128 1600 122 V140 H0z" fill="#0f0d0b"/>
+    </svg>
+    <div class="wrap">
+        <div class="eyebrow" data-t="eyebrow"></div>
+        <h1 id="hb-title" data-t="title"></h1>
+        <p class="lede" data-t="intro"></p>
+    </div>
+</section>
+
+<div class="hb-tools" id="hb-tools">
+  <button type="button" class="menu-btn" id="menu-btn" aria-controls="toc" aria-expanded="false">
+    <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><span data-t="toc"></span>
+  </button>
   <div class="search" id="search" role="search">
     <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg>
     <label class="sr" for="q" data-t="search_label"></label>
@@ -202,27 +203,9 @@ footer a { color: var(--muted); }
     <button type="button" class="clear" id="clear" data-t-label="clear">×</button>
     <div class="results" id="results" role="listbox" hidden></div>
   </div>
-  <div class="bar-end">
-    <nav>
-      <a href="index.html" data-t="home"></a>
-      <a href="tasten.html" data-t="keys"></a>
-    </nav>
-    <button type="button" class="menu-btn" id="menu-btn" aria-controls="toc" aria-expanded="false">
-      <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><span data-t="toc"></span>
-    </button>
-    <div class="lang" role="group" aria-label="Sprache / Language">
-      <button type="button" data-lang="de">DE</button>
-      <button type="button" data-lang="en">EN</button>
-    </div>
-  </div>
-</header>
+</div>
 
-<section class="intro" aria-labelledby="hb-title">
-  <div class="eyebrow" data-t="eyebrow"></div>
-  <h1 id="hb-title" data-t="title"></h1>
-  <p data-t="intro"></p>
-  <nav class="chapters" id="chapters" data-t-label="chapters"></nav>
-</section>
+<nav class="chapters" id="chapters" data-t-label="chapters"></nav>
 
 <div class="layout">
   <aside class="toc" id="toc" data-t-label="toc">
@@ -240,16 +223,28 @@ footer a { color: var(--muted); }
 </button>
 
 <footer>
-  <a href="index.html" data-t="home"></a> · <a href="tasten.html" data-t="keys"></a> · <span data-t="footer"></span>
+    <div class="wrap">
+        <span>© Life In Wilderness</span>
+        <span data-t="footer"></span>
+        <nav>
+            <a href="tasten.html" data-s="nav_keys"></a>
+            <a href="handbuch.html" data-s="nav_handbook"></a>
+            <a href="index.html#top" data-s="imprint"></a>
+            <a href="index.html#top" data-s="privacy"></a>
+            <a href="index.html#einstieg" data-discord>Discord</a>
+        </nav>
+        <small data-s="disclaimer"></small>
+    </div>
 </footer>
 
+<script src="assets/site.js"></script>
 <script src="assets/handbook/index.js"></script>
 <script>
 (() => {
   const TEXT = {
     de: {
       eyebrow: 'Life In Wilderness · Spielerhandbuch', title: 'Handbuch',
-      intro: 'Alles, was du als Tier in der Wildnis wissen musst, zum Nachschlagen. Such oben nach einem Begriff (Taste <kbd>/</kbd>) oder stöbere in den Kapiteln.',
+      intro: 'Alles, was du als Tier in der Wildnis wissen musst, zum Nachschlagen. Such nach einem Begriff (Taste <kbd>/</kbd>) oder stöbere in den Kapiteln.',
       search_label: 'Handbuch durchsuchen', search_ph: 'Suchen … z. B. Aas, Duftmarke',
       clear: 'Suche leeren', home: '← Startseite', keys: 'Tastenbelegung', toc: 'Inhalt', close: 'Schließen', chapters: 'Kapitel',
       top: 'Nach oben', loading: 'Das Handbuch lädt …', empty: 'Das Handbuch konnte nicht geladen werden. Lade die Seite bitte neu.',
@@ -263,7 +258,7 @@ footer a { color: var(--muted); }
     },
     en: {
       eyebrow: 'Life In Wilderness · Player handbook', title: 'Handbook',
-      intro: 'Everything you need to know as an animal in the wild, ready to look up. Search for a term above (key <kbd>/</kbd>) or browse the chapters.',
+      intro: 'Everything you need to know as an animal in the wild, ready to look up. Search for a term (key <kbd>/</kbd>) or browse the chapters.',
       search_label: 'Search the handbook', search_ph: 'Search … e.g. carrion, scent mark',
       clear: 'Clear search', home: '← Homepage', keys: 'Key bindings', toc: 'Contents', close: 'Close', chapters: 'Chapters',
       top: 'Back to top', loading: 'Loading the handbook …', empty: 'The handbook could not be loaded. Please reload the page.',
@@ -502,6 +497,7 @@ footer a { color: var(--muted); }
   function renderStatic() {
     const T = TEXT[lang];
     document.documentElement.lang = lang;
+    LiwSite.apply(lang);
     document.title = `${T.page} · Life In Wilderness`;
     document.querySelectorAll('[data-t]').forEach((el) => {
       const value = T[el.dataset.t];
@@ -599,9 +595,21 @@ footer a { color: var(--muted); }
       const el = document.getElementById(s.id);
       if (el) sectionTops.push({ id: s.id, chapter: ch.id, top: el.getBoundingClientRect().top + y });
     }));
-    const bar = $('bar').offsetHeight;
-    document.documentElement.style.setProperty('--bar-h', `${bar}px`);
+    document.documentElement.style.setProperty('--bar-h', `${chromeH()}px`);
   }
+
+  // Height of the fixed bar plus the sticky search strip: section headings must land below both.
+  function chromeH() {
+    const top = Math.round($('bar').getBoundingClientRect().bottom + 10);
+    document.documentElement.style.setProperty('--tools-top', `${top}px`);
+    return top + $('hb-tools').offsetHeight + 8;
+  }
+
+  const tools = document.getElementById('hb-tools');
+  const onStick = () => tools.classList.toggle('stuck', tools.getBoundingClientRect().top <= $('bar').getBoundingClientRect().bottom + 12);
+  window.addEventListener('scroll', onStick, { passive: true });
+  window.addEventListener('resize', onStick);
+  onStick();
 
   let spyQueued = false;
   function spy() {
@@ -609,7 +617,7 @@ footer a { color: var(--muted); }
     spyQueued = true;
     requestAnimationFrame(() => {
       spyQueued = false;
-      const line = window.scrollY + $('bar').offsetHeight + 90;
+      const line = window.scrollY + chromeH() + 90;
       let found = null;
       for (const s of sectionTops) { if (s.top <= line) found = s.id; else break; }
       if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4 && sectionTops.length) {
@@ -879,7 +887,7 @@ footer a { color: var(--muted); }
     if (document.fonts && document.fonts.ready) {
       document.fonts.ready.then(() => {
         const el = target && document.getElementById(target);
-        const moved = el && Math.abs(el.getBoundingClientRect().top - $('bar').offsetHeight - 16) > 4;
+        const moved = el && Math.abs(el.getBoundingClientRect().top - chromeH()) > 4;
         measure();
         if (moved) scrollToId(target, false);
         spy();

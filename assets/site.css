@@ -1,0 +1,107 @@
+/* Shared look of all pages: fonts, colours, the floating bar, the night-sky page head and the footer.
+   Fonts are served from this site (no third-party requests); SIL Open Font License, see assets/fonts/OFL-*.txt. */
+@font-face { font-family: 'IM Fell English'; src: url('fonts/imfell.woff2') format('woff2'); font-style: normal; font-display: swap; }
+@font-face { font-family: 'IM Fell English'; src: url('fonts/imfell-italic.woff2') format('woff2'); font-style: italic; font-display: swap; }
+@font-face { font-family: 'IM Fell English SC'; src: url('fonts/imfell-sc.woff2') format('woff2'); font-display: swap; }
+@font-face { font-family: 'Crimson Pro'; src: url('fonts/crimson.woff2') format('woff2'); font-weight: 400 600; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Crimson Pro'; src: url('fonts/crimson-italic.woff2') format('woff2'); font-weight: 400; font-style: italic; font-display: swap; }
+
+:root {
+    color-scheme: dark;
+    --page: #0f0d0b;
+    --panel: #191512;
+    --panel-2: #211b15;
+    --ink: #efe7d8;
+    --soft: #cfc4b0;
+    --muted: #9f927e;
+    --gold: #d6ae5e;
+    --gold-hi: #e8c47a;
+    --rust: #c8694a;
+    --moss: #8fb878;
+    --sky: #7ea6cc;
+    --line: rgba(239, 231, 216, 0.09);
+    --line-gold: rgba(214, 174, 94, 0.3);
+    --cap: #2b231b;
+    --cap-edge: #4a3d2e;
+    --cap-off: #1a1510;
+    --radius: 18px;
+    --display: 'IM Fell English SC', Georgia, serif;
+    --old: 'IM Fell English', Georgia, serif;
+    --body: 'Crimson Pro', Georgia, 'Times New Roman', serif;
+    --gutter-l: max(16px, env(safe-area-inset-left, 0px));
+    --gutter-r: max(16px, env(safe-area-inset-right, 0px));
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+html, body { background: var(--page); color: var(--ink); }
+body { margin: 0; font-family: var(--body); font-size: 1.125rem; line-height: 1.6; overflow-x: hidden; }
+a { color: var(--gold); }
+h1, h2, h3 { font-family: var(--display); font-weight: normal; line-height: 1.05; margin: 0; }
+.wrap { width: min(1180px, 100% - var(--gutter-l) - var(--gutter-r)); margin: 0 auto; }
+.eyebrow { font-family: var(--display); font-size: 0.95rem; letter-spacing: 0.28em; color: var(--gold); text-transform: lowercase; margin-bottom: 0.6rem; }
+:focus-visible { outline: 2px solid var(--gold-hi); outline-offset: 3px; }
+
+/* Floating bar */
+.bar {
+    position: fixed; z-index: 30; top: 14px; left: 50%; transform: translateX(-50%);
+    width: min(1180px, 100% - var(--gutter-l) - var(--gutter-r));
+    display: flex; align-items: center; gap: 1.25rem; padding: 0.5rem 0.6rem 0.5rem 1.1rem;
+    border: 1px solid rgba(239, 231, 216, 0.12); border-radius: 999px;
+    background: rgba(15, 13, 11, 0.6); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    transition: background 0.2s;
+}
+.bar.scrolled { background: rgba(15, 13, 11, 0.88); }
+.mark { display: flex; align-items: center; gap: 0.6rem; color: var(--ink); text-decoration: none; font-family: var(--display); font-size: 1.2rem; letter-spacing: 0.12em; white-space: nowrap; }
+.mark span { display: grid; place-items: center; width: 2.1rem; height: 2.1rem; border: 1px solid var(--gold); border-radius: 50%; font-size: 0.75rem; letter-spacing: 0.04em; color: var(--gold); }
+.bar nav { display: flex; gap: 1.1rem; margin-left: auto; }
+.bar nav a { color: var(--muted); text-decoration: none; font-size: 1.05rem; white-space: nowrap; }
+.bar nav a:hover, .bar nav a[aria-current="page"] { color: var(--ink); }
+.bar nav a[aria-current="page"] { box-shadow: inset 0 -1px 0 var(--gold); }
+.lang { display: flex; border: 1px solid var(--line); border-radius: 999px; padding: 3px; gap: 2px; }
+.lang button { border: none; background: none; color: var(--muted); font: inherit; font-size: 0.85rem; letter-spacing: 0.08em; padding: 0.15rem 0.65rem; border-radius: 999px; cursor: pointer; }
+.lang button[aria-pressed="true"] { background: var(--gold); color: #14110c; }
+.bar .discord { background: var(--gold); color: #14110c; text-decoration: none; border-radius: 999px; padding: 0.4rem 1.1rem; font-family: var(--display); letter-spacing: 0.08em; white-space: nowrap; }
+.menu { display: none; }
+
+/* Night-sky head of the inner pages (the homepage has its own full-screen version) */
+.page-hero {
+    position: relative; overflow: hidden; padding: 8.5rem 0 5.5rem;
+    background:
+        radial-gradient(ellipse 40% 60% at 80% 10%, rgba(240, 226, 190, 0.14), transparent 62%),
+        linear-gradient(180deg, #131923 0%, #1c1b1f 50%, #241c14 80%, #0f0d0b 100%);
+}
+.page-hero .moon { position: absolute; top: 5.5rem; right: 12%; width: clamp(2.6rem, 5vw, 4.2rem); aspect-ratio: 1; border-radius: 50%;
+    background: radial-gradient(circle at 38% 36%, #fbf3dc, #e2d3ad 60%, #c9b88e); box-shadow: 0 0 60px 14px rgba(240, 226, 190, 0.22); }
+.page-hero svg.ridge { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 7rem; }
+.page-hero .wrap { position: relative; }
+.page-hero h1 { font-size: clamp(2.6rem, 6vw, 4.4rem); text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5); }
+.page-hero .lede { margin: 1rem 0 0; max-width: 42rem; color: var(--soft); font-size: 1.2rem; line-height: 1.55; }
+
+/* Footer */
+footer { margin-top: 5rem; border-top: 1px solid var(--line); padding: 2rem 0 3rem; color: var(--muted); font-size: 0.95rem; }
+footer .wrap { display: flex; flex-wrap: wrap; gap: 1rem 2rem; align-items: center; }
+footer nav { display: flex; flex-wrap: wrap; gap: 0.4rem 1.2rem; margin-left: auto; }
+footer a { color: var(--muted); }
+footer small { flex-basis: 100%; font-size: 0.85rem; opacity: 0.8; }
+
+@media (max-width: 1080px) {
+    .bar nav { display: none; }
+    .menu { display: inline-flex; margin-left: auto; font: inherit; background: none; border: 1px solid var(--line); color: var(--ink); border-radius: 999px; padding: 0.3rem 0.9rem; cursor: pointer; }
+    .bar.open { border-radius: 22px; flex-wrap: wrap; }
+    .bar.open nav { display: flex; flex-direction: column; gap: 0.6rem; flex-basis: 100%; order: 10; padding: 0.6rem 0.4rem 0.8rem; }
+}
+@media (max-width: 720px) {
+    .bar .discord { display: none; }
+    .page-hero { padding: 7rem 0 4.5rem; }
+    .page-hero .moon { top: 5rem; right: 8%; }
+}
+@media (max-width: 560px) {
+    .bar { gap: 0.6rem; }
+    .mark { font-size: 0; gap: 0; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+@media print {
+    .bar, footer { display: none !important; }
+    .page-hero { background: none; padding: 0 0 1rem; }
+    .page-hero .moon, .page-hero svg.ridge { display: none; }
+}
