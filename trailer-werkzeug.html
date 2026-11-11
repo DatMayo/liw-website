@@ -45,6 +45,8 @@ figcaption { color: var(--muted); font-size: 0.95rem; margin-top: 0.4rem; }
 .steps > li { counter-increment: s; position: relative; padding-left: 2.4rem; margin: 0.6rem 0; }
 .steps > li::before { content: counter(s); position: absolute; left: 0; top: 0.1rem; width: 1.7rem; height: 1.7rem; border-radius: 50%; display: grid; place-items: center; background: var(--panel-2); border: 1px solid var(--gold); color: var(--gold); font-size: 0.85rem; }
 .timeline { font-family: Consolas, 'Courier New', monospace; font-size: 0.82rem; line-height: 1.45; }
+.lang a { color: var(--muted); text-decoration: none; font-size: 0.85rem; letter-spacing: 0.08em; padding: 0.15rem 0.65rem; border-radius: 999px; }
+.lang a[aria-current="page"] { background: var(--gold); color: #14110c; }
 @media (max-width: 62rem) { .doc { grid-template-columns: minmax(0, 1fr); } .toc { position: static; max-height: none; } }
 </style>
 </head>
@@ -62,6 +64,7 @@ figcaption { color: var(--muted); font-size: 0.95rem; margin-top: 0.4rem; }
         <a href="handbuch.html" data-s="nav_handbook"></a>
         <a href="index.html#faq">FAQ</a>
     </nav>
+    <div class="lang" role="group" aria-label="Sprache / Language"><a href="trailer-werkzeug.html" lang="de" aria-current="page">DE</a><a href="trailer-tool.html" lang="en">EN</a></div>
     <a class="discord" href="index.html#einstieg" data-discord>Discord</a>
 </header>
 <section class="page-hero">

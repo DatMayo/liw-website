@@ -1,0 +1,799 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Trailer tool · Life In Wilderness</title>
+<meta name="description" content="Documentation of the trailer tool liw_cinematic: building scenes, actors, steps, camera, recording.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%2314100c' stroke='%23c8a35a'/%3E%3Ctext x='16' y='20.5' font-family='Georgia' font-size='11' text-anchor='middle' fill='%23c8a35a'%3ELiW%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+/* Reference page of the trailer tool: table of contents on the left, the chapters on the right. */
+.doc { width: min(1180px, 100% - var(--gutter-l) - var(--gutter-r)); margin: 0 auto; padding: 1rem 0 3rem; display: grid; grid-template-columns: 15rem minmax(0, 1fr); gap: 2.5rem; align-items: start; }
+.toc { position: sticky; top: 5.5rem; max-height: calc(100vh - 7rem); overflow-y: auto; padding: 1rem 1.1rem; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); }
+.toc h2 { font-family: var(--display); font-weight: normal; font-size: 1.05rem; letter-spacing: 0.08em; margin: 0 0 0.5rem; color: var(--gold); }
+.toc ol { margin: 0; padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.3rem; font-size: 0.98rem; }
+.toc a { color: var(--muted); text-decoration: none; }
+.toc a:hover { color: var(--ink); }
+.content { display: flex; flex-direction: column; gap: 2.75rem; min-width: 0; }
+.content section { scroll-margin-top: 5.5rem; }
+.content h2 { font-family: var(--display); font-weight: normal; font-size: clamp(1.6rem, 3vw, 2.1rem); letter-spacing: 0.03em; margin: 0 0 0.75rem; color: var(--gold); border-bottom: 1px solid var(--line); padding-bottom: 0.4rem; }
+.content h3 { font-family: var(--display); font-weight: normal; font-size: 1.3rem; margin: 1.5rem 0 0.5rem; color: var(--ink); }
+.content p, .content li { line-height: 1.6; color: #ddd3c0; }
+.content p { margin: 0 0 0.8rem; }
+.content ul, .content ol { margin: 0 0 0.9rem; padding-left: 1.4rem; }
+.content li { margin: 0.2rem 0; }
+.content strong { color: var(--ink); font-weight: 600; }
+code { font-family: Consolas, 'Courier New', monospace; font-size: 0.88em; background: var(--panel-2); border: 1px solid var(--line); border-radius: 0.3rem; padding: 0.05rem 0.35rem; color: var(--ink); }
+pre { background: #110e0b; border: 1px solid var(--line); border-radius: var(--radius); padding: 0.9rem 1rem; overflow-x: auto; margin: 0 0 1rem; }
+.content p code, .content li code { overflow-wrap: anywhere; }
+pre code { background: none; border: none; padding: 0; font-size: 0.85rem; line-height: 1.5; }
+kbd { font: 600 0.85rem var(--body); display: inline-block; padding: 0.02rem 0.42rem; border: 1px solid var(--cap-edge, #4a4035); border-bottom-width: 2px; border-radius: 0.3rem; background: var(--cap, #2a231c); color: var(--ink); white-space: nowrap; }
+table { width: 100%; border-collapse: collapse; margin: 0 0 1rem; font-size: 0.98rem; }
+th { text-align: left; color: var(--gold); font-weight: 600; padding: 0.45rem 0.6rem; border-bottom: 1px solid var(--line-gold, var(--line)); }
+td { padding: 0.45rem 0.6rem; border-bottom: 1px solid var(--line); vertical-align: top; color: #ddd3c0; }
+td:first-child { white-space: nowrap; }
+.table-box { overflow-x: auto; }
+figure { margin: 0 0 1.2rem; }
+figure img { width: 100%; height: auto; display: block; border: 1px solid var(--line); border-radius: var(--radius); }
+figcaption { color: var(--muted); font-size: 0.95rem; margin-top: 0.4rem; }
+.box { border-left: 3px solid var(--gold); background: var(--panel); border-radius: 0 12px 12px 0; padding: 0.75rem 1rem; margin: 0 0 1rem; }
+.box.warn { border-left-color: #c4594a; }
+.box p:last-child { margin-bottom: 0; }
+.steps { counter-reset: s; list-style: none; padding-left: 0; }
+.steps > li { counter-increment: s; position: relative; padding-left: 2.4rem; margin: 0.6rem 0; }
+.steps > li::before { content: counter(s); position: absolute; left: 0; top: 0.1rem; width: 1.7rem; height: 1.7rem; border-radius: 50%; display: grid; place-items: center; background: var(--panel-2); border: 1px solid var(--gold); color: var(--gold); font-size: 0.85rem; }
+.timeline { font-family: Consolas, 'Courier New', monospace; font-size: 0.82rem; line-height: 1.45; }
+.lang a { color: var(--muted); text-decoration: none; font-size: 0.85rem; letter-spacing: 0.08em; padding: 0.15rem 0.65rem; border-radius: 999px; }
+.lang a[aria-current="page"] { background: var(--gold); color: #14110c; }
+@media (max-width: 62rem) { .doc { grid-template-columns: minmax(0, 1fr); } .toc { position: static; max-height: none; } }
+</style>
+</head>
+<body>
+<header class="bar" id="bar">
+    <a class="mark" href="index.html"><span>LiW</span>Life In Wilderness</a>
+    <button type="button" class="menu" aria-expanded="false" aria-controls="nav" data-s="nav_menu"></button>
+    <nav id="nav">
+        <a href="index.html#spiel" data-s="nav_game"></a>
+        <a href="index.html#arten" data-s="nav_species"></a>
+        <a href="index.html#einstieg" data-s="nav_join"></a>
+        <a href="index.html#regeln" data-s="nav_rules"></a>
+        <a href="index.html#entwicklung" data-s="nav_dev"></a>
+        <a href="tasten.html" data-s="nav_keys"></a>
+        <a href="handbuch.html" data-s="nav_handbook"></a>
+        <a href="index.html#faq">FAQ</a>
+    </nav>
+    <div class="lang" role="group" aria-label="Sprache / Language"><a href="trailer-werkzeug.html" lang="de">DE</a><a href="trailer-tool.html" lang="en" aria-current="page">EN</a></div>
+    <a class="discord" href="index.html#einstieg" data-discord>Discord</a>
+</header>
+<section class="page-hero">
+    <div class="moon" aria-hidden="true"></div>
+    <svg class="scene" viewBox="0 0 1600 420" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+        <path d="M0 150 L110 100 L230 135 L360 60 L480 120 L600 80 L740 135 L880 50 L1010 110 L1150 70 L1290 125 L1420 85 L1600 125 V420 H0z" fill="#3a3a3c" opacity="0.55"/>
+        <path d="M0 230 L120 195 L260 222 L400 170 L540 212 L700 182 L860 225 L1020 178 L1180 215 L1340 186 L1480 220 L1600 195 V420 H0z" fill="#2c2721"/>
+        <path d="M0 320 L30 280 L45 296 L60 255 L80 292 L100 264 L120 305 L150 272 L170 300 L200 250 L225 296 L260 284 L300 312 L360 300 L430 320 L520 308 L600 328 L700 316 L800 332 L900 318 L1000 328 L1080 312 L1130 280 L1150 296 L1175 248 L1200 292 L1225 260 L1250 300 L1280 268 L1305 304 L1340 276 L1370 308 L1420 292 L1480 316 L1540 300 L1600 312 V420 H0z" fill="#1a1611"/>
+        <path d="M0 390 C200 374 400 386 600 378 C800 370 1000 390 1200 378 C1400 370 1500 382 1600 375 V420 H0z" fill="#0f0d0b"/>
+    </svg>
+    <div class="wrap">
+        <div class="eyebrow">For the team · liw_cinematic</div>
+        <h1>Trailer tool</h1>
+        <p class="lede">Build scenes with animals as actors, set up camera moves and record everything without any UI – explained step by step, with examples.</p>
+    </div>
+</section>
+
+<div class="doc">
+<nav class="toc" aria-label="Contents">
+    <h2>Contents</h2>
+    <ol>
+        <li><a href="#ueberblick">Overview</a></li>
+        <li><a href="#einrichtung">Setup</a></li>
+        <li><a href="#start">Opening and moving</a></li>
+        <li><a href="#oberflaeche">The interface</a></li>
+        <li><a href="#darsteller">Actors</a></li>
+        <li><a href="#schritte">Steps</a></li>
+        <li><a href="#animation">Animations and frames</a></li>
+        <li><a href="#kamera">Camera</a></li>
+        <li><a href="#welt">World</a></li>
+        <li><a href="#abspielen">Playback and recording</a></li>
+        <li><a href="#szenen">Managing scenes</a></li>
+        <li><a href="#anleitungen">How-tos</a></li>
+        <li><a href="#beispiele">Examples</a></li>
+        <li><a href="#format">Scene file (JSON)</a></li>
+        <li><a href="#einstellungen">Settings</a></li>
+        <li><a href="#tasten">All keys</a></li>
+        <li><a href="#probleme">Problems and limits</a></li>
+    </ol>
+</nav>
+
+<main class="content">
+
+<section id="ueberblick">
+    <h2>1 · Overview</h2>
+    <p><strong>liw_cinematic</strong> is a scene builder for the server's trailer. You place animals in the world as
+        <strong>actors</strong>, give them <strong>steps</strong> on a shared timeline
+        (walk, turn, animation, follow, attack, flee, sounds …), lay out a <strong>camera move</strong> with
+        keyframes, set the time of day, weather and season, and play the scene – as a rehearsal with the builder visible
+        or as a <strong>recording</strong> with a countdown and no UI at all, ready for OBS.</p>
+    <figure>
+        <img src="assets/cinematic/en/cine-baukasten.png" alt="The builder at the bottom of the screen: toolbar, inspector on the left, timeline on the right" loading="lazy">
+        <figcaption>The builder sits small at the bottom of the screen: toolbar at the top, the inspector on the left, on the right the timeline with the camera and one track per actor.</figcaption>
+    </figure>
+    <div class="box warn">
+        <p><strong>For a recording server only.</strong> On the live server the resource stays off. The tool
+            makes your own animal invisible and invulnerable and sets the time of day and weather for all players.</p>
+    </div>
+    <h3>Good to know</h3>
+    <ul>
+        <li><strong>Only you see the actors.</strong> They are local animals on your machine. Other players on the
+            server don't see them – recording is done by exactly one person.</li>
+        <li><strong>Time of day, weather and season are the server's.</strong> Everyone sees them, and they stay that
+            way even after a restart (liw_world saves them).</li>
+        <li><strong>Everything runs on time.</strong> Every step and every keyframe has a point in time in seconds.
+            When you scrub the timeline, actors and camera jump to the matching moment.</li>
+        <li><strong>Scenes are files on the server</strong> (<code>scenes/&lt;id&gt;.json</code>) and can be
+            exported as JSON and imported elsewhere.</li>
+    </ul>
+</section>
+
+<section id="einrichtung">
+    <h2>2 · Setup</h2>
+    <h3>Starting the resource</h3>
+    <p>In the recording server's <code>server.cfg</code>, after the other LiW resources:</p>
+<pre><code>ensure liw_cinematic
+
+# Who may use the tool (in addition to everyone with command.liwdev):
+add_ace group.admin liw.cinematic allow</code></pre>
+    <p>On the live server the line <code>ensure liw_cinematic</code> stays commented out
+        (that's also how it is in <code>docs/server.cfg.example</code>).</p>
+    <h3>What it needs</h3>
+    <div class="table-box"><table>
+        <tr><th>Resource</th><th>Used for</th></tr>
+        <tr><td>liw_core</td><td>Core library: UI, server callbacks, keys, ground detection, model loading.</td></tr>
+        <tr><td>liw_ui</td><td>The interface. The builder is a component that is only loaded when it is opened. The animation list comes from the animation browser.</td></tr>
+        <tr><td>liw_species</td><td>The species (models, fur, names) for the actor list.</td></tr>
+        <tr><td>liw_world <em>(optional)</em></td><td>Time of day and weather. Without it these fields have no effect.</td></tr>
+        <tr><td>liw_seasons <em>(optional)</em></td><td>Season.</td></tr>
+    </table></div>
+</section>
+
+<section id="start">
+    <h2>3 · Opening and moving</h2>
+    <p>Type <code>/liw_cine</code> in chat to open and close the builder.</p>
+    <ul>
+        <li>While it is open, your own animal is <strong>invisible, frozen and invulnerable</strong>, and
+            nothing pays attention to it. It flies along with the camera so the area stays loaded. The server keeps
+            granting it a grace period for its movement and health checks.</li>
+        <li>When you close the builder, your animal is back exactly where it stood before.</li>
+        <li>The rest of the UI (HUD, other menus) is hidden; only notifications remain – during a recording
+            they disappear too.</li>
+    </ul>
+    <h3>The free camera</h3>
+    <div class="table-box"><table>
+        <tr><th>Key</th><th>Effect</th></tr>
+        <tr><td>Hold <kbd>Right mouse button</kbd></td><td>Look around</td></tr>
+        <tr><td><kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd></td><td>Fly</td></tr>
+        <tr><td><kbd>Q</kbd> / <kbd>E</kbd></td><td>Down / up</td></tr>
+        <tr><td><kbd>Shift</kbd> / <kbd>Alt</kbd></td><td>Fly fast / slow</td></tr>
+        <tr><td><kbd>Mouse wheel</kbd></td><td>Zoom (field of view, FOV) – small = telephoto, large = wide angle</td></tr>
+        <tr><td><kbd>Alt</kbd> + <kbd>Mouse wheel</kbd></td><td>Tilt the camera (roll)</td></tr>
+    </table></div>
+    <p>A name tag floats above every actor. Clicking it selects the actor. When a tool is waiting for a
+        point (placing an actor, waypoints, look-at point), a <kbd>Left click</kbd> into the world sets that point;
+        <kbd>Esc</kbd> cancels.</p>
+</section>
+
+<section id="oberflaeche">
+    <h2>4 · The interface</h2>
+    <h3>The toolbar (top of the builder)</h3>
+    <p>From left to right:</p>
+    <ul>
+        <li><strong>Scene:</strong> dropdown of saved scenes · New · Scenes (list with load, delete,
+            Playlist) · Save (<kbd>Ctrl</kbd>+<kbd>S</kbd>) · Rename · Duplicate · Export (JSON) · Import.</li>
+        <li><strong>Playback:</strong> To start (<kbd>Home</kbd>) · Play/Stop (<kbd>Space</kbd>) · Stop ·
+            Loop · Reset all actors to the start · <strong>Record</strong> (red button, <kbd>Shift</kbd>+<kbd>R</kbd>)
+            · current time / scene length.</li>
+        <li><strong>Right:</strong> Camera follows the path while scrubbing · Show paths in the world · Letterbox
+            (<kbd>B</kbd>) · Hide builder (<kbd>H</kbd>) · Keys (<kbd>F1</kbd>) · Collapse (<kbd>Tab</kbd>) ·
+            Close.</li>
+    </ul>
+    <h3>The inspector (left) – four tabs</h3>
+    <div class="table-box"><table>
+        <tr><th>Tab</th><th>Contents</th></tr>
+        <tr><td>1 · Actors</td><td>Add and select animals, name, fur, size, position, heading.</td></tr>
+        <tr><td>2 · Steps</td><td>Add and configure the steps of the selected actor.</td></tr>
+        <tr><td>3 · Camera</td><td>Keyframes, transitions, camera mode, handheld, depth of field.</td></tr>
+        <tr><td>4 · World</td><td>Length, time of day, weather, season, slow motion, clear animals, letterbox.</td></tr>
+    </table></div>
+    <h3>The timeline (right)</h3>
+    <ul>
+        <li><strong>Ruler:</strong> click or drag = scrub. The red line is the <strong>cursor</strong>;
+            new steps and keyframes are placed at its position.</li>
+        <li><strong>Camera row:</strong> the keyframes as diamonds. Drag to move them.</li>
+        <li><strong>One track per actor</strong> with its steps as blocks:
+            <ul>
+                <li>Drag a block = move it, drag its right edge = change its length.</li>
+                <li><kbd>Alt</kbd> while dragging = no snapping.</li>
+                <li>Double-click an empty spot on the track = "Add step" menu at that time.</li>
+            </ul></li>
+        <li><kbd>Ctrl</kbd>+<kbd>Mouse wheel</kbd> = zoom the timeline.</li>
+    </ul>
+    <p>While you edit, the builder shows the <strong>camera path in blue</strong>, the keyframes and the
+        <strong>actors' paths</strong> in the world (yellow = selected actor).</p>
+</section>
+
+<section id="darsteller">
+    <h2>5 · Actors</h2>
+    <h3>Which animals</h3>
+    <ul>
+        <li>Every species from liw_species (deer split into doe and buck).</li>
+        <li>The legendary animals from Red Dead Online, e.g. <code>mp_a_c_wolf_01</code>, <code>mp_a_c_bear_01</code>,
+            <code>mp_a_c_buck_01</code> (list in <code>Config.ExtraModels</code>).</li>
+        <li>"Other model …": any animal model starting with <code>a_c_</code> or <code>mp_a_c_</code>.</li>
+    </ul>
+    <h3>Adding</h3>
+    <ol class="steps">
+        <li><strong>Actors</strong> tab (<kbd>1</kbd>), pick the animal at the top.</li>
+        <li>Point the camera at the spot and click <strong>"Add where the camera looks"</strong>
+            (crosshair button) – or <strong>"Add below the camera"</strong>.</li>
+        <li>Fine-tune (see below), press <kbd>G</kbd> to put it on the ground.</li>
+    </ol>
+    <h3>Actor settings</h3>
+    <div class="table-box"><table>
+        <tr><th>Field</th><th>Meaning</th></tr>
+        <tr><td>Name</td><td>Shown on the name tag and in the timeline, e.g. "Held (Wolf)".</td></tr>
+        <tr><td>Fur (-1 random)</td><td>Number of the fur preset. -1 picks a random one every time the scene loads – for a trailer, better use a fixed number.</td></tr>
+        <tr><td>Scale</td><td>1 = normal (0.2–3). The <strong>"Young"</strong> button sets the species' cub size.</td></tr>
+        <tr><td>X / Y / Z, Heading</td><td>Position and facing direction in degrees.</td></tr>
+        <tr><td>Show / hide (eye)</td><td>Show/hide (e.g. an animal that only appears later via Teleport).</td></tr>
+    </table></div>
+    <h3>Positioning with keys</h3>
+    <div class="table-box"><table>
+        <tr><th>Key</th><th>Effect</th></tr>
+        <tr><td><kbd>←</kbd> <kbd>→</kbd> <kbd>↑</kbd> <kbd>↓</kbd></td><td>Move, relative to the camera (<kbd>Shift</kbd>: 1 m per press)</td></tr>
+        <tr><td><kbd>Page Up</kbd> / <kbd>Page Down</kbd></td><td>Higher / lower</td></tr>
+        <tr><td><kbd>,</kbd> / <kbd>.</kbd></td><td>Rotate (<kbd>Shift</kbd>: 45°)</td></tr>
+        <tr><td><kbd>G</kbd></td><td>Put on the ground</td></tr>
+        <tr><td><kbd>P</kbd></td><td>To the crosshair (where the camera is looking)</td></tr>
+        <tr><td><kbd>F</kbd></td><td>Camera to the actor (bring it into view)</td></tr>
+        <tr><td><kbd>Del</kbd></td><td>Delete actor</td></tr>
+    </table></div>
+    <p>Actors don't react on their own: they don't flee, don't get startled, are invulnerable and are in their
+        own group. The tool renews this every 0.5 seconds – they only do what their steps tell them.</p>
+</section>
+
+<section id="schritte">
+    <h2>6 · Steps</h2>
+    <p>A step is an instruction to an actor with a <strong>start</strong> and a <strong>length</strong> in
+        seconds. To add one: select the actor, move the cursor to the start time, and in the <strong>Steps</strong> tab
+        (<kbd>2</kbd>) click the icon of the step type – or double-click the track.</p>
+    <div class="table-box"><table>
+        <tr><th>Type</th><th>What happens</th><th>Fields</th></tr>
+        <tr><td>Wait</td><td>Stands still.</td><td>–</td></tr>
+        <tr><td>Go to</td><td>Walks along a path. Click the points into the world one after another, <kbd>Esc</kbd> finishes.</td><td>Points, gait (walk/trot/run), "Around obstacles" (navmesh)</td></tr>
+        <tr><td>Turn to</td><td>Turns towards a point, another actor or the camera.</td><td>Target</td></tr>
+        <tr><td>Animation</td><td>Plays a clip, with frame control (<a href="#animation">chapter 7</a>).</td><td>Clip, mode, Start/End, A/B, Speed, Blend in/Blend out</td></tr>
+        <tr><td>Scenario</td><td>A game scenario, e.g. <code>WORLD_ANIMAL_WOLF_HOWLING</code>. Suggestions in the list, free text works too.</td><td>Name</td></tr>
+        <tr><td>Follow</td><td>Follows another actor.</td><td>Target, distance (m), gait</td></tr>
+        <tr><td>Attack</td><td><strong>Staged:</strong> runs over and plays the species' attack animation, without damage.<br><strong>Real fight:</strong> an actual fight, both stay invulnerable.</td><td>Target, "Real fight"</td></tr>
+        <tr><td>Flee</td><td>Flees from another actor.</td><td>From, distance (m)</td></tr>
+        <tr><td>Sound</td><td>An animal sound such as <code>howl</code>, <code>growl</code>, <code>roar</code>, <code>snort</code> – instant.</td><td>Sound</td></tr>
+        <tr><td>Scale</td><td>Changes the size – instantly at the start.</td><td>Value</td></tr>
+        <tr><td>Teleport</td><td>Puts the actor at a point – instantly at the start.</td><td>Point, heading</td></tr>
+    </table></div>
+    <h3>Editing</h3>
+    <ul>
+        <li><kbd>Ctrl</kbd>+<kbd>C</kbd> copies the selected step, <kbd>Ctrl</kbd>+<kbd>V</kbd> pastes it at the cursor,
+            <kbd>Ctrl</kbd>+<kbd>D</kbd> duplicates it right after itself, <kbd>Del</kbd> deletes it.</li>
+        <li><kbd>Ctrl</kbd>+<kbd>Z</kbd> / <kbd>Ctrl</kbd>+<kbd>Y</kbd>: undo / redo.</li>
+        <li>An actor only ever does one thing: if two of its steps overlap, the one that started later wins.
+            The exceptions are the instant steps Sound, Scale and Teleport – they may sit in the middle of another step
+            (e.g. a <code>howl</code> during a scenario).</li>
+    </ul>
+    <div class="box">
+        <p><strong>Example – wolf runs to the rock and howls:</strong> "Go to" from 0 to 6 s (three points up to the
+            rock, gait trot), "Turn to" camera from 6 to 7 s, "Scenario" <code>WORLD_ANIMAL_WOLF_HOWLING</code>
+            from 7 to 14 s, plus a "Sound" <code>howl</code> at 7.5 s.</p>
+    </div>
+</section>
+
+<section id="animation">
+    <h2>7 · Animations and frame control</h2>
+    <p>The animation step can do more than "play clip": it determines exactly <strong>which part</strong> of the clip
+        is seen. Typical case: the doe should already be drinking when the scene starts – not lower its head first.</p>
+    <figure>
+        <img src="assets/cinematic/en/cine-animation.png" alt="Animation step selected: search, clip, mode buttons and phase slider" loading="lazy">
+        <figcaption>A selected animation step: search, clip (★ = already used by this species), mode and the phase slider.</figcaption>
+    </figure>
+    <h3>Choosing a clip</h3>
+    <p>The search looks through the game's animation list (e.g. <code>drink</code>, <code>howl</code>,
+        <code>sleep</code>). The groups for the actor's species come first (wolf → wolf, cougar → cougar/bigcat …);
+        "All animals" searches everywhere. A ★ marks clips the species already uses in the game.</p>
+    <h3>The phase</h3>
+    <p>Every point in a clip has a <strong>phase</strong> between 0 (beginning) and 1 (end). 0.5 is the middle.
+        All frame values are phases.</p>
+    <div class="table-box"><table>
+        <tr><th>Field</th><th>Meaning</th></tr>
+        <tr><td>Start / End</td><td>The phase the clip starts at / how far it runs (in Once mode).</td></tr>
+        <tr><td>A / B</td><td>The range that is repeated in Loop and Ping-pong.</td></tr>
+        <tr><td>Frame</td><td>The frozen phase in Hold mode.</td></tr>
+        <tr><td>Speed</td><td>1 = normal, 0.5 = half speed, 2 = double.</td></tr>
+        <tr><td>Blend in / Blend out</td><td>How soft the transition from and to the previous movement is (larger = faster).</td></tr>
+    </table></div>
+    <h3>The four modes</h3>
+    <div class="table-box"><table>
+        <tr><th>Mode</th><th>Sequence</th><th>Good for</th></tr>
+        <tr><td>Once</td><td>Start → End, then the end frame stays.</td><td>Getting up, lying down, a single bite</td></tr>
+        <tr><td>Loop</td><td>Start → B, then A → B over and over.</td><td>Eating, digging, chewing</td></tr>
+        <tr><td>Ping-pong</td><td>Start → B, then B → A → B back and forth.</td><td>Drinking: the head stays down</td></tr>
+        <tr><td>Hold</td><td>A single frame, frozen.</td><td>Still image, pose at the memorial stone</td></tr>
+    </table></div>
+<pre class="timeline"><code>Ping-pong, Start 0.45 · A 0.40 · B 0.70
+
+Phase  0.45 ──▶ 0.70 ──▶ 0.40 ──▶ 0.70 ──▶ 0.40 …
+       Start     B        A        B        A
+       (head already in the water, never lifts it fully)</code></pre>
+    <h3>Finding the right frame</h3>
+    <ol class="steps">
+        <li>Drag the <strong>phase slider</strong> – the actor shows the frame in the world right away.</li>
+        <li>At the spot you want, press <strong>→ Start</strong>, <strong>→ End</strong>, <strong>→ A</strong>,
+            <strong>→ B</strong> or <strong>→ Frame</strong>: the slider position is taken over.</li>
+        <li><strong>"Fit length"</strong> sets the step length to exactly the time from Start to End.</li>
+        <li><kbd>T</kbd> tests the step on the actor.</li>
+    </ol>
+    <p>The phase depends only on time. Playing and scrubbing therefore always show the same frame – what you see while
+        scrubbing is what ends up in the recording.</p>
+</section>
+
+<section id="kamera">
+    <h2>8 · Camera</h2>
+    <figure>
+        <img src="assets/cinematic/en/cine-kamera.png" alt="Camera tab with keyframe list, time, FOV, tilt, transition and mode" loading="lazy">
+        <figcaption>Camera tab: list of keyframes, below it time, FOV, tilt, transition, mode and target of the selected keyframe.</figcaption>
+    </figure>
+    <h3>Setting keyframes</h3>
+    <ol class="steps">
+        <li>Move the cursor to the time (<kbd>J</kbd>/<kbd>L</kbd> = ±0.1 s, with <kbd>Shift</kbd> ±1 s).</li>
+        <li>Find the shot with the free camera (position, view, zoom, tilt).</li>
+        <li>Press <kbd>K</kbd> – a keyframe with exactly this shot is created.</li>
+    </ol>
+    <p>Between keyframes the camera moves along a smooth curve (spline) – without jerks, even with uneven spacing.
+        In the list, the arrow button takes the current camera into an existing keyframe; another button jumps
+        to it with camera and cursor.</p>
+    <h3>Transition (per segment up to the next keyframe)</h3>
+    <div class="table-box"><table>
+        <tr><th>Transition</th><th>Effect</th></tr>
+        <tr><td>Ease in/out</td><td>Starts slowly, arrives slowly – the default for calm moves.</td></tr>
+        <tr><td>Ease in / Ease out</td><td>Smooth only at the beginning or only at the end.</td></tr>
+        <tr><td>Linear</td><td>Constant speed – good for chases.</td></tr>
+        <tr><td>Cut (jump)</td><td>No transition: the camera jumps there at the next keyframe. This is how you build cuts within a scene.</td></tr>
+    </table></div>
+    <h3>Mode per keyframe</h3>
+    <div class="table-box"><table>
+        <tr><th>Mode</th><th>Effect</th></tr>
+        <tr><td>Free</td><td>Exactly the saved position and view direction.</td></tr>
+        <tr><td>Look at</td><td>Position as saved, but always looks at an actor – it stays in frame, even while it moves.</td></tr>
+        <tr><td>Look at point</td><td>Looks at a point clicked into the world.</td></tr>
+        <tr><td>Follow</td><td>Moves along with the actor. The <strong>Offset x y z</strong> is relative to its facing direction: x = sideways (right is positive), y = in front of/behind it (negative = behind), z = height. Default 0 / -4 / 1.5 = four metres behind the animal, slightly raised.</td></tr>
+    </table></div>
+    <h3>Handheld and depth of field</h3>
+    <ul>
+        <li><strong>Handheld (°)</strong> and <strong>Shake speed</strong>: a slight shake as if hand-held.
+            It is calculated, not random – every run shakes the same way. 0.2–0.5° looks natural.</li>
+        <li><strong>Depth of field</strong> (experimental): focus in metres (0 = automatic) and strength of the blur.</li>
+    </ul>
+</section>
+
+<section id="welt">
+    <h2>9 · World</h2>
+    <figure>
+        <img src="assets/cinematic/en/cine-welt.png" alt="World tab with length, time of day, weather, season, slow motion and clear animals" loading="lazy">
+        <figcaption>World tab.</figcaption>
+    </figure>
+    <div class="table-box"><table>
+        <tr><th>Field</th><th>Meaning</th></tr>
+        <tr><td>Length (s)</td><td>Length of the scene (up to 600 s).</td></tr>
+        <tr><td>Hour / Minute, Freeze time</td><td>Time of day during playback, optionally frozen (same light on every run).</td></tr>
+        <tr><td>Weather</td><td>e.g. <code>FOG</code>, <code>SUNNY</code>, <code>RAIN</code>, <code>SNOW</code> – "unchanged" keeps the current one.</td></tr>
+        <tr><td>Season</td><td>spring / summer / autumn / winter – or "Calendar".</td></tr>
+        <tr><td>Time scale</td><td>0.05–1. The whole scene (including the timeline) runs slower.</td></tr>
+        <tr><td>Clear animals (m)</td><td>Clears the surrounding area during playback: your own animals are deleted, other players' animals hidden locally, ambient animals switched off. 0 = off.</td></tr>
+        <tr><td>Hide HUD while playing</td><td>Hides everything during playback.</td></tr>
+        <tr><td>Letterbox</td><td>Black bars in 2.39 : 1 format. <strong>They are recorded too</strong> – turn them off if you'd rather add them in the edit.</td></tr>
+    </table></div>
+    <p><strong>"Apply time &amp; weather now"</strong> applies time of day, weather and season on the server immediately
+        (playback does that anyway). <strong>"Move scene here"</strong> shifts the whole scene –
+        actors, paths, points and camera – so that the first actor stands where the camera is looking. Afterwards
+        press <kbd>G</kbd> for each actor.</p>
+</section>
+
+<section id="abspielen">
+    <h2>10 · Playback and recording</h2>
+    <h3>Rehearsal</h3>
+    <ul>
+        <li><kbd>Space</kbd> plays from the cursor and stops again, <kbd>Shift</kbd>+<kbd>Space</kbd> plays from the beginning.</li>
+        <li>Loop: the scene runs over and over.</li>
+        <li>"Reset all actors to the start" resets everything to second 0.</li>
+        <li>"Camera follows the path while scrubbing" on: the camera jumps along while scrubbing. Off: you can watch the
+            scene from outside while scrubbing.</li>
+    </ul>
+    <h3>Recording</h3>
+    <ol class="steps">
+        <li>Save the scene.</li>
+        <li>Prepare and start your recording software (e.g. OBS).</li>
+        <li><strong>Record</strong> (red button or <kbd>Shift</kbd>+<kbd>R</kbd>): the builder and mouse cursor
+            disappear, countdown 3-2-1, the scene plays from the beginning.</li>
+        <li>At the end the last frame holds for 1.5 s, then the builder comes back.</li>
+    </ol>
+    <div class="box">
+        <p><strong>Tip:</strong> Simply cut the countdown out in the edit. <kbd>H</kbd> hides the builder even
+            without recording; the <kbd>H</kbd> key in the game (key binding "liw_cine_ui") brings it back.</p>
+    </div>
+</section>
+
+<section id="szenen">
+    <h2>11 · Managing scenes</h2>
+    <figure>
+        <img src="assets/cinematic/en/cine-szenen.png" alt="Scenes dialog with saved scenes, delete, Playlist and Delete all" loading="lazy">
+        <figcaption>The "Scenes" dialog: click to load, delete, Playlist and Delete all.</figcaption>
+    </figure>
+    <ul>
+        <li><strong>Save</strong> (<kbd>Ctrl</kbd>+<kbd>S</kbd>) creates <code>scenes/&lt;id&gt;.json</code> on the server.
+            Up to 200 scenes, at most 512 KB per file.</li>
+        <li><strong>Duplicate</strong> saves a copy ("… (copy)") – good for variants of a shot.</li>
+        <li><strong>Export (JSON):</strong> the scene appears as text to copy. <strong>"All scenes"</strong>
+            exports all saved scenes in one JSON.</li>
+        <li><strong>Import:</strong> paste JSON (<kbd>Ctrl</kbd>+<kbd>V</kbd>). A single scene is opened and then has
+            to be saved; a file with several scenes is saved straight away as new scenes.</li>
+        <li><strong>Delete all</strong> asks for confirmation with a second click.</li>
+    </ul>
+    <h3>Playlist</h3>
+    <p>In the "Scenes" dialog → <strong>Playlist</strong>: tick the scenes and choose a pause between them. The scenes
+        play sorted by name – so number them like in the storyboard ("01 …", "02 …", "13a …").</p>
+    <ul>
+        <li><strong>Play:</strong> each scene from the beginning, the builder stays visible. Stop or <kbd>H</kbd> ends it.</li>
+        <li><strong>Record:</strong> one countdown, then all scenes back to back without the builder – the whole trailer in
+            one recording. <kbd>H</kbd> ends it.</li>
+        <li>Time of day, weather and season come from each scene. The open scene has to be saved first.</li>
+    </ul>
+    <h3>The trailer storyboard</h3>
+    <p><code>storyboard/trailer.json</code> holds the trailer storyboard as 21 ready-made rough scenes
+        (described in <code>docs/research/TRAILER_STORYBOARD.md</code>). Copy its content, use
+        <strong>Import</strong> in the builder – all 21 scenes are saved. Then load each scene, bring it to the desired
+        spot with "Move scene here", put the actors on the ground with <kbd>G</kbd> and fine-tune camera and
+        steps.</p>
+</section>
+
+<section id="anleitungen">
+    <h2>12 · How-tos</h2>
+    <p>Small recipes to follow. Each one works on its own – combine them for a full scene.</p>
+
+    <h3>Placing an animal</h3>
+    <p><strong>Way 1 – where the camera is looking</strong> (the usual one):</p>
+    <ol class="steps">
+        <li>Fly the camera so the centre of the screen sits exactly on the spot where the animal should stand.</li>
+        <li><strong>Actors</strong> tab (<kbd>1</kbd>), pick the species at the top, e.g. "Wolf".</li>
+        <li>Crosshair button <strong>"Add where the camera looks"</strong>. The animal stands on the ground at the centre of the screen.</li>
+    </ol>
+    <p><strong>Way 2 – click into the world:</strong> create an actor, then use the actor's
+        "Click in the world to place it" button and choose the spot with a <kbd>Left click</kbd>.</p>
+    <p><strong>Way 3 – below the camera:</strong> "Add below the camera" button, then <kbd>G</kbd> for the ground.
+        Handy for tight spots (cave, rock ledge) that you can fly right up to with the camera.</p>
+    <p><strong>Way 4 – type in coordinates:</strong> the X / Y / Z fields in the inspector. This puts two animals exactly
+        on one line (e.g. both <code>Y&nbsp;=&nbsp;665.4</code>) or at a precise distance (X differing by 3 = 3 m).</p>
+    <p><strong>Facing:</strong> rotate with <kbd>,</kbd> / <kbd>.</kbd> (with <kbd>Shift</kbd> in 45° steps) or use the
+        "Heading" field (0 = north, 90 = west, 180 = south, 270 = east). "Face the camera" makes the animal look into the camera.</p>
+    <div class="box">
+        <p><strong>Fawn next to its mother:</strong> place a doe, a second doe next to it, and on the second one press
+            <strong>"Young"</strong> – it gets the species' cub size. Give both the same fur (same number instead of -1)
+            so they match.</p>
+    </div>
+
+    <h3>Setting the time of day</h3>
+    <ol class="steps">
+        <li><strong>World</strong> tab (<kbd>4</kbd>): enter <strong>Hour</strong> and <strong>Minute</strong>.</li>
+        <li>Turn on <strong>"Freeze time"</strong>: the light is the same on every run – almost always what you want.
+            Off: the clock keeps running during the scene.</li>
+        <li><strong>"Apply time &amp; weather now"</strong> to see the light right away. Playback sets it anyway.</li>
+    </ol>
+    <div class="table-box"><table>
+        <tr><th>Mood</th><th>Time</th><th>Weather tip</th></tr>
+        <tr><td>Dawn, blue light</td><td>05:30</td><td><code>FOG</code> or <code>MISTY</code></td></tr>
+        <tr><td>Sunrise, golden light</td><td>06:10–06:40</td><td><code>SUNNY</code>, <code>FOG</code></td></tr>
+        <tr><td>Bright day</td><td>10:00–15:00</td><td><code>SUNNY</code>, <code>CLOUDS</code></td></tr>
+        <tr><td>Sunset glow</td><td>18:30–19:15</td><td><code>SUNNY</code>, <code>CLOUDS</code></td></tr>
+        <tr><td>Blue hour</td><td>19:45</td><td><code>SUNNY</code></td></tr>
+        <tr><td>Night with moon</td><td>23:00–03:00</td><td><code>SUNNY</code> (clear sky)</td></tr>
+    </table></div>
+    <p>The exact times of sunrise and sunset depend on the season – just try a few minutes either way with
+        "Apply time &amp; weather now". The list in the World tab shows which weather types exist.
+        Note: time of day and weather apply to everyone on the server.</p>
+
+    <h3>Animating an animal from the beginning</h3>
+    <p>Goal: a wolf lies down – the whole movement, from standing to lying.</p>
+    <ol class="steps">
+        <li>Select the wolf, put the cursor at the moment it should lie down (e.g. 2 s).</li>
+        <li><strong>Steps</strong> tab (<kbd>2</kbd>), film icon (Animation).</li>
+        <li>Type <code>wolf_resting stand_enter</code> into the search and choose the clip <code>…world_wolf_resting@stand_enter</code> (from standing to lying).</li>
+        <li>Mode <strong>Once</strong>, Start <code>0</code>, End <code>1</code> – the whole clip.</li>
+        <li><strong>"Fit length"</strong>: the step length matches the length of the clip exactly.</li>
+        <li><kbd>T</kbd> tests it. At the end the last frame holds – the wolf is lying down.</li>
+    </ol>
+    <p>If it should then stay down and breathe: right after it, add a second animation step with
+        <code>…world_wolf_resting@base</code> in <strong>Loop</strong> mode. To get up later, use
+        <code>…@stand_exit</code> in Once mode.</p>
+
+    <h3>Starting an animal in the middle of an animation</h3>
+    <p>Goal: the scene starts and the doe is <strong>already drinking</strong> – without lowering its head first.</p>
+    <ol class="steps">
+        <li>Create an animation step at 0 s, clip <code>…world_deer_drinking@base / base</code>.</li>
+        <li>Slowly drag the <strong>phase slider</strong> and watch in the world. At the point where the head is in the water
+            (e.g. <code>0.45</code>), press <strong>→ Start</strong>.</li>
+        <li>The mode decides what happens next:
+            <ul>
+                <li><strong>Once</strong>: from there to the end, then stay still.</li>
+                <li><strong>Loop</strong>: from there to B, then A → B over and over (set A and B with the slider and <strong>→ A</strong> /
+                    <strong>→ B</strong>).</li>
+                <li><strong>Ping-pong</strong>: from there to B, then B ↔ A back and forth – the head stays down.</li>
+            </ul></li>
+        <li>Check with <kbd>Home</kbd> and <kbd>Space</kbd>: the very first frame shows the drinking doe.</li>
+    </ol>
+    <div class="box">
+        <p><strong>Same for other cases:</strong> wolf is already howling (start in the middle of the howl), bear is already
+            standing upright (start in the upright part, then Hold or Ping-pong), cougar is mid-leap (start
+            just before the highest point, Speed <code>0.5</code> for slow motion on this animal only).</p>
+    </div>
+
+    <h3>Freezing a pose</h3>
+    <p>Mode <strong>Hold</strong>, slider to the frame you want, <strong>→ Frame</strong>. The animal stands like a
+        statue – good for an old wolf at the memorial stone or a still image at the end of the trailer.</p>
+
+    <h3>Walk, then do something</h3>
+    <p>Steps one after another on the same track:</p>
+<pre class="timeline"><code>Wolf   [ Go to (trot, 3 points) 0–6 s ][ Turn to camera 6–7 s ][ Animation: howl 7–12 s ]
+                                                                 ↑ Sound "howl" at 7.5 s</code></pre>
+    <p>The "Go to" length should match the distance: if it is too short, the next step becomes active before the animal
+        arrives; if it is too long, the animal waits at the destination. Check with <kbd>Space</kbd> and drag the right edge
+        of the block until it fits.</p>
+
+    <h3>A simple camera move (from A to B)</h3>
+    <ol class="steps">
+        <li><kbd>Home</kbd> (cursor to 0 s). Fly to the start position, set up the view, <kbd>K</kbd>.</li>
+        <li>Cursor to the end of the move, e.g. 6 s (<kbd>L</kbd> with <kbd>Shift</kbd> six times).</li>
+        <li>Fly to the end position, set up the view, <kbd>K</kbd>.</li>
+        <li><strong>Camera</strong> tab: on the first keyframe set the transition to "Ease in/out".</li>
+        <li><kbd>Home</kbd>, <kbd>Space</kbd> – the camera glides from A to B. The blue path in the world shows the move.</li>
+    </ol>
+    <p>The move gets slower if the second keyframe sits later (drag its diamond in the camera row to the right).</p>
+
+    <h3>Camera moves to rebuild</h3>
+    <div class="table-box"><table>
+        <tr><th>Move</th><th>How to</th></tr>
+        <tr><td>Pan</td><td>Two keyframes at <strong>the same spot</strong>, only the view turns (right mouse button). Smooth transition.</td></tr>
+        <tr><td>Push-in</td><td>One keyframe far away, a second keyframe close to the animal. Set both to mode "Look at" → animal so it stays in the centre of the frame.</td></tr>
+        <tr><td>Zoom</td><td>Two keyframes at the same spot; on the second, make the FOV smaller with the <kbd>Mouse wheel</kbd> (e.g. 45 → 20).</td></tr>
+        <tr><td>Crane shot</td><td>First keyframe low at ground level, second high above (<kbd>E</kbd>), looking down. Shows the landscape around the animal.</td></tr>
+        <tr><td>Orbit</td><td>Four keyframes in a square around the animal (front, right, back, left), e.g. every 3 s, all in mode "Look at" → animal, transition "Linear". The spline turns it into a round circle.</td></tr>
+        <tr><td>Tracking shot</td><td>Two keyframes (start and end of the scene), both in mode "Follow" → animal. Offset <code>0 / -5 / 1.5</code> = behind, <code>6 / 0 / 1</code> = alongside, <code>0 / 6 / 1</code> = in front (looking back).</td></tr>
+        <tr><td>Dutch angle</td><td>On the keyframe, tilt with <kbd>Alt</kbd>+<kbd>Mouse wheel</kbd> (e.g. 8°) – an uneasy mood, good for fights.</td></tr>
+        <tr><td>Cut</td><td>Set the transition of the keyframe before the cut to "Cut (jump)" – the camera jumps hard to the next shot.</td></tr>
+    </table></div>
+    <div class="box">
+        <p><strong>Tip:</strong> Change an existing shot instead of setting a new one: select the keyframe in the list, press
+            "Camera and cursor to this keyframe", adjust the camera, then "Take the camera into this keyframe".</p>
+    </div>
+
+    <h3>Weather and season</h3>
+    <p>World tab: <strong>Weather</strong> (e.g. <code>FOG</code>, <code>RAIN</code>, <code>SNOW</code>) and
+        <strong>Season</strong> (<code>spring</code>, <code>summer</code>, <code>autumn</code>, <code>winter</code>).
+        "unchanged" and "Calendar" keep the server's current state. For a winter scene set both together, e.g.
+        weather <code>SNOW</code> and season <code>winter</code>.</p>
+
+    <h3>Getting rid of stray animals</h3>
+    <p>World tab → set <strong>Clear animals (m)</strong> to e.g. <code>120</code>. During playback all other
+        animals in that radius disappear – only your actors remain.</p>
+
+    <h3>Slow motion (time scale)</h3>
+    <p>World tab → <strong>Time scale</strong> <code>0.5</code> = half speed for the <strong>whole scene</strong>
+        (animals, camera, timeline). For a single slow moment, build a separate short scene and put it in between in the
+        playlist. To slow down just one animal: lower the <strong>Speed</strong> in its animation step.</p>
+</section>
+
+<section id="beispiele">
+    <h2>13 · Examples</h2>
+
+    <h3>Example 1: Doe drinking at a misty lake (20 s)</h3>
+    <ol class="steps">
+        <li><code>/liw_cine</code>, fly to the lakeshore holding the right mouse button and using <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd>.</li>
+        <li><strong>World</strong> tab: Length <code>20</code>, Hour <code>6</code>, Minute <code>10</code>, "Freeze time",
+            weather <code>FOG</code>, season <code>autumn</code>, Clear animals <code>120</code>,
+            then "Apply time &amp; weather now".</li>
+        <li><strong>Actors</strong> tab: "White-tailed deer ♀", point the camera at the shore, crosshair button.
+            Position with the arrow keys and <kbd>,</kbd> <kbd>.</kbd> until the doe faces the water; <kbd>G</kbd>.</li>
+        <li><strong>Steps</strong> tab: Animation at the cursor (0 s), length <code>20</code>. Search <code>drink base</code>,
+            clip <code>amb_creature_mammal@world_deer_drinking@base / base</code>.</li>
+        <li>Drag the phase slider until the head is in the water (e.g. <code>0.45</code>) → <strong>→ Start</strong>.</li>
+        <li>Mode <strong>Ping-pong</strong>. Slider to the lowest point (<code>0.40</code>) → <strong>→ A</strong>,
+            just before the head comes up (<code>0.70</code>) → <strong>→ B</strong>. Speed <code>0.8</code>. Test with <kbd>T</kbd>.</li>
+        <li>Camera: <kbd>Home</kbd>, find a nice wide shot, <kbd>K</kbd>. Cursor to 8 s, move closer, zoom in tighter with the
+            mouse wheel, <kbd>K</kbd>. In the Camera tab, set the second keyframe to mode "Look at" → doe.</li>
+        <li><kbd>Space</kbd> to rehearse, <kbd>Ctrl</kbd>+<kbd>S</kbd>, then <kbd>Shift</kbd>+<kbd>R</kbd> to record.</li>
+    </ol>
+
+    <h3>Example 2: Chase across the meadow (5 s, camera tracks alongside)</h3>
+    <p>From the storyboard: a wolf chases a pronghorn, the camera moves alongside the wolf.</p>
+<pre class="timeline"><code>Time        0s ─────────────────────────────── 5s
+Camera      ◆ Follow wolf, offset 8/0/1.2 ──── ◆ Follow wolf, offset 8/2/1.2   (Linear)
+Pronghorn   [ Flee from wolf, 80 m ───────────────────── ]
+Wolf        [ Follow pronghorn, 2.5 m, run ───────────── ]</code></pre>
+    <ol class="steps">
+        <li>Place a pronghorn and a wolf 18 m behind it.</li>
+        <li>Pronghorn: "Flee", 0–5 s, from the wolf, distance <code>80</code>.</li>
+        <li>Wolf: "Follow", 0–5 s, target pronghorn, distance <code>2.5</code>, gait run.</li>
+        <li>Two keyframes at 0 s and 5 s, both in mode "Follow" → wolf, transition "Linear". Offset on the first
+            <code>8 / 0 / 1.2</code> (8 m to the right), on the second <code>8 / 2 / 1.2</code> – the camera slowly pushes forward.</li>
+        <li>Handheld <code>0.25</code> for a bit of life. World: 10:00, summer, letterbox.</li>
+    </ol>
+
+    <h3>Example 3: Wolf howling on the rock under a full moon</h3>
+    <ul>
+        <li>Actor <code>mp_a_c_wolf_01</code> (legendary wolf) on the rock, looking at the moon.</li>
+        <li>World: Hour <code>23</code>, Freeze time, weather <code>SUNNY</code> (clear sky), Time scale <code>0.7</code>.</li>
+        <li>Steps: Scenario <code>WORLD_ANIMAL_WOLF_HOWLING</code> 0–10 s, plus Sound <code>howl</code> at 1 s and 6 s.</li>
+        <li>Camera: rising from the bottom of the rock to the top, mode "Look at" → wolf, transition "Ease in/out".</li>
+    </ul>
+
+    <h3>Example 4: Pack running up the hill</h3>
+    <ul>
+        <li>Place four wolves side by side at the foot of the slope.</li>
+        <li>One "Go to" per wolf with gait run and points up to the crest – start them <strong>staggered</strong>:
+            alpha at 0 s, the others at 0.4 / 0.7 / 1.1 s. That makes the pack look natural instead of marching in step.</li>
+        <li>Copy the alpha's step with <kbd>Ctrl</kbd>+<kbd>C</kbd> / <kbd>Ctrl</kbd>+<kbd>V</kbd> and paste it on the others,
+            then just offset the points slightly.</li>
+        <li>Camera: low to the ground in front of the pack, mode "Look at point" on the crest – the animals run into frame.</li>
+    </ul>
+
+    <h3>Example 5: A cut within a scene</h3>
+    <p>Wide shot and close-up without a second scene: keyframe A (wide) at 0 s, keyframe B (wide, slight movement) at
+        4 s, transition of B set to <strong>"Cut (jump)"</strong>, keyframe C (close-up) at 4.1 s. At 4 s the picture
+        cuts hard to the close-up.</p>
+</section>
+
+<section id="format">
+    <h2>14 · Scene file (JSON)</h2>
+    <p>The export and the files in <code>scenes/</code> use this format. The server checks every scene when it is
+        saved: unknown fields are dropped, numbers are clamped, references to missing actors are removed.</p>
+<pre><code>{
+  "v": 1,
+  "name": "04 Jagd über die Wiese",
+  "duration": 5,
+  "world": { "hour": 10, "minute": 0, "freeze": true, "weather": "", "season": "summer",
+             "timeScale": 1.0, "hideHud": true, "letterbox": true, "clearRadius": 150 },
+  "actors": [
+    { "id": "prey", "name": "Gabelbock", "model": "a_c_pronghorn_01", "species": "pronghorn",
+      "variant": -1, "scale": 1.0, "pos": { "x": -707.57, "y": 683.43, "z": 60.19 }, "h": 0 },
+    { "id": "hero", "name": "Held (Wolf)", "model": "A_C_Wolf", "species": "wolf",
+      "variant": -1, "scale": 1.0, "pos": { "x": -707.57, "y": 665.43, "z": 60.19 }, "h": 0 }
+  ],
+  "steps": [
+    { "id": "s1", "actor": "prey", "type": "flee",   "t": 0, "d": 5, "other": "hero", "dist": 80 },
+    { "id": "s2", "actor": "hero", "type": "follow", "t": 0, "d": 5, "other": "prey", "dist": 2.5, "speed": "run" }
+  ],
+  "cam": {
+    "keys": [
+      { "id": "k1", "t": 0, "x": -693.57, "y": 673.43, "z": 61.69, "rx": 0, "ry": 0, "rz": 0, "fov": 45,
+        "ease": "linear", "mode": "follow", "target": "hero", "off": { "x": 8, "y": 0, "z": 1.2 } },
+      { "id": "k2", "t": 5, "x": -693.57, "y": 723.43, "z": 61.69, "rx": 0, "ry": 0, "rz": 0, "fov": 45,
+        "ease": "linear", "mode": "follow", "target": "hero", "off": { "x": 8, "y": 2, "z": 1.2 } }
+    ],
+    "shake": 0.25, "shakeFreq": 1, "dof": false
+  }
+}</code></pre>
+    <h3>Step fields</h3>
+    <div class="table-box"><table>
+        <tr><th>type</th><th>Additional fields</th></tr>
+        <tr><td><code>wait</code></td><td>–</td></tr>
+        <tr><td><code>move</code></td><td><code>points</code> (list of x/y/z), <code>speed</code> walk | trot | run, <code>nav</code> true/false</td></tr>
+        <tr><td><code>face</code></td><td><code>target</code> point | actor | camera, <code>pos</code>, <code>other</code></td></tr>
+        <tr><td><code>anim</code></td><td><code>dict</code>, <code>anim</code>, <code>mode</code> once | loop | pingpong | hold, <code>from</code>, <code>to</code>, <code>a</code>, <code>b</code>, <code>hold</code> (phases 0–1), <code>speed</code>, <code>blendIn</code>, <code>blendOut</code></td></tr>
+        <tr><td><code>scenario</code></td><td><code>name</code></td></tr>
+        <tr><td><code>follow</code></td><td><code>other</code>, <code>dist</code>, <code>speed</code></td></tr>
+        <tr><td><code>attack</code></td><td><code>other</code>, <code>real</code> (true = real fight)</td></tr>
+        <tr><td><code>flee</code></td><td><code>other</code>, <code>dist</code></td></tr>
+        <tr><td><code>vocal</code></td><td><code>name</code></td></tr>
+        <tr><td><code>scale</code></td><td><code>value</code></td></tr>
+        <tr><td><code>teleport</code></td><td><code>pos</code>, <code>h</code></td></tr>
+    </table></div>
+    <p>Common to all: <code>id</code>, <code>actor</code>, <code>t</code> (start in s), <code>d</code> (length in s).
+        Camera keyframes: <code>t</code>, position <code>x y z</code>, rotation <code>rx ry rz</code>, <code>fov</code>,
+        <code>ease</code> (inout | in | out | linear | cut), <code>mode</code> (free | look | point | follow),
+        <code>target</code> (actor), <code>pt</code> (look-at point), <code>off</code> (offset for follow).
+        Several scenes in one file: <code>{ "format": "liw-cinematic-scenes", "v": 1, "scenes": [ … ] }</code>.</p>
+</section>
+
+<section id="einstellungen">
+    <h2>15 · Settings</h2>
+    <p>In the resource's <code>config.lua</code> or in the Settings tab of the admin menu:</p>
+    <div class="table-box"><table>
+        <tr><th>Value</th><th>Meaning</th><th>Default</th></tr>
+        <tr><td><code>Ace</code></td><td>Permission for the tool (in addition to <code>command.liwdev</code>)</td><td><code>liw.cinematic</code></td></tr>
+        <tr><td><code>Limits</code></td><td>Actors, steps, keyframes, waypoints, length (s), file size (KB), number of scenes</td><td>24 / 400 / 120 / 32 / 600 / 512 / 200</td></tr>
+        <tr><td><code>Camera</code></td><td>Flight speed (normal, Shift, Alt), mouse sensitivity, FOV limits, path preview</td><td>0.25 / 1.5 / 0.04 m per frame, FOV 45 (5–110)</td></tr>
+        <tr><td><code>Actors</code></td><td>Speed of the gaits, arrival distance, height of the name tags, calming interval</td><td>walk 1, trot 2, run 3; 1 m; 500 ms</td></tr>
+        <tr><td><code>Anim</code></td><td>Clip flags, <code>timeInSeconds</code>, wait time at start, interval of staged bites</td><td>1, false, 500 ms, 1300 ms</td></tr>
+        <tr><td><code>Player</code></td><td>Your own animal: fly along beyond a distance, grace period, return on close</td><td>60 m, 60 s, on</td></tr>
+        <tr><td><code>Playback</code></td><td>Countdown, hold at the end, slow motion for the timeline, UI interval, playlist pause</td><td>3 s, 1500 ms, on, 50 ms, 600 ms</td></tr>
+        <tr><td><code>World.weatherTransition</code></td><td>Blend time when the weather changes, in seconds</td><td>0</td></tr>
+        <tr><td><code>Keys.ui</code></td><td>Key that brings the hidden builder back (only after a restart)</td><td>H</td></tr>
+        <tr><td><code>Scenarios</code>, <code>Vocals</code></td><td>Suggestions in the lists (free text still works)</td><td>–</td></tr>
+        <tr><td><code>ExtraModels</code></td><td>Additional models in the actor list</td><td>legendary animals</td></tr>
+        <tr><td><code>AnimGroups</code></td><td>Which animation groups appear first per species</td><td>–</td></tr>
+    </table></div>
+</section>
+
+<section id="tasten">
+    <h2>16 · All keys</h2>
+    <p><kbd>F1</kbd> also shows the overview inside the builder.</p>
+    <div class="table-box"><table>
+        <tr><th>Key</th><th>Function</th></tr>
+        <tr><td><kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd>, <kbd>Q</kbd> / <kbd>E</kbd></td><td>Fly the camera, down / up</td></tr>
+        <tr><td><kbd>Shift</kbd> / <kbd>Alt</kbd></td><td>Fast / slow</td></tr>
+        <tr><td>Hold <kbd>Right mouse button</kbd></td><td>Look around</td></tr>
+        <tr><td><kbd>Mouse wheel</kbd> / <kbd>Alt</kbd>+<kbd>Mouse wheel</kbd></td><td>FOV / tilt</td></tr>
+        <tr><td><kbd>Space</kbd> / <kbd>Shift</kbd>+<kbd>Space</kbd></td><td>Play/stop from the cursor / from the beginning</td></tr>
+        <tr><td><kbd>J</kbd> / <kbd>L</kbd> (<kbd>Shift</kbd>: 1 s), <kbd>Home</kbd> / <kbd>End</kbd></td><td>Cursor -/+ 0.1 s, beginning / end</td></tr>
+        <tr><td><kbd>K</kbd></td><td>Camera keyframe at the cursor</td></tr>
+        <tr><td>Arrow keys (<kbd>Shift</kbd>: 1 m), <kbd>Page Up</kbd> / <kbd>Page Down</kbd></td><td>Move actor, height</td></tr>
+        <tr><td><kbd>,</kbd> <kbd>.</kbd> (<kbd>Shift</kbd>: 45°)</td><td>Rotate actor</td></tr>
+        <tr><td><kbd>G</kbd> / <kbd>P</kbd> / <kbd>F</kbd></td><td>Actor to the ground / to the crosshair / camera to the actor</td></tr>
+        <tr><td><kbd>T</kbd></td><td>Test animation step</td></tr>
+        <tr><td><kbd>Ctrl</kbd>+<kbd>C</kbd> / <kbd>V</kbd> / <kbd>D</kbd>, <kbd>Del</kbd></td><td>Copy / paste / duplicate step, delete</td></tr>
+        <tr><td><kbd>Ctrl</kbd>+<kbd>Z</kbd> / <kbd>Y</kbd> / <kbd>S</kbd></td><td>Undo / redo / save</td></tr>
+        <tr><td><kbd>1</kbd>–<kbd>4</kbd>, <kbd>Tab</kbd></td><td>Switch tab, collapse</td></tr>
+        <tr><td><kbd>B</kbd> / <kbd>H</kbd> / <kbd>Shift</kbd>+<kbd>R</kbd></td><td>Letterbox / hide builder / record</td></tr>
+        <tr><td><kbd>Esc</kbd></td><td>Cancel point picking, close dialog, clear selection</td></tr>
+        <tr><td><kbd>H</kbd> (in game)</td><td>Bring back the hidden builder</td></tr>
+    </table></div>
+</section>
+
+<section id="probleme">
+    <h2>17 · Problems and limits</h2>
+    <div class="table-box"><table>
+        <tr><th>Problem</th><th>Solution</th></tr>
+        <tr><td>"/liw_cine" does nothing</td><td>Missing permission: <code>add_ace … liw.cinematic allow</code> or <code>command.liwdev</code>. Is the resource running (<code>ensure liw_cinematic</code>)?</td></tr>
+        <tr><td>Animal floats or is stuck in the ground</td><td>Press <kbd>G</kbd>. After "Move scene here" and after an import, for every actor.</td></tr>
+        <tr><td>Scrubbing shows the wrong frame</td><td>Toggle <code>Anim.timeInSeconds</code> in the settings (the game then expects seconds instead of the phase).</td></tr>
+        <tr><td>Other animals walk through the shot</td><td>World → "Clear animals" to 100–150 m.</td></tr>
+        <tr><td>Fur changes on every load</td><td>Set fur to a fixed number instead of -1.</td></tr>
+        <tr><td>Other players don't see the scene</td><td>By design: actors are local. Only time of day, weather and season apply to everyone.</td></tr>
+        <tr><td>Scenario does nothing</td><td>Not every scenario fits every species. Use an animation in Loop mode instead.</td></tr>
+        <tr><td>Playlist doesn't start</td><td>Save the open scene first.</td></tr>
+    </table></div>
+    <h3>Not yet confirmed in game</h3>
+    <ul>
+        <li>Whether setting the frame expects the phase (0–1) or seconds – hence the <code>timeInSeconds</code> switch.</li>
+        <li>Depth of field.</li>
+        <li>Switching off ambient animals and people, some scenario names and models in the suggestion lists.</li>
+    </ul>
+</section>
+
+</main>
+</div>
+
+<footer>
+    <div class="wrap">
+        <span>© Life In Wilderness</span>
+        <nav>
+            <a href="tasten.html" data-s="nav_keys"></a>
+            <a href="handbuch.html" data-s="nav_handbook"></a>
+            <a href="index.html#top" data-s="imprint"></a>
+            <a href="index.html#top" data-s="privacy"></a>
+            <a href="index.html#einstieg" data-discord>Discord</a>
+        </nav>
+        <small data-s="disclaimer"></small>
+    </div>
+</footer>
+<script src="assets/site.js"></script>
+<script>LiwSite.apply('en');</script>
+</body>
+</html>

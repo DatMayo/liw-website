@@ -17,11 +17,12 @@ Eigene Domain später: Datei `CNAME` mit der Domain anlegen und beim Domain-Anbi
 index.html          die ganze Seite: Styles oben, Inhalt, unten das Skript mit allen Texten (T.de / T.en) und den Arten
 tasten.html         Tastenbelegung: Tastatur (QWERTZ / QWERTY je Sprache) und Liste aller Spieler-Tasten
 trailer-werkzeug.html  Doku des Trailer-Werkzeugs (liw_cinematic) für das Team – bewusst nirgends verlinkt, noindex
+trailer-tool.html   dieselbe Doku auf Englisch (DE/EN-Umschalter verlinkt beide Seiten)
 handbuch.html       Spielerhandbuch: Suche, Inhaltsverzeichnis, alle Kapitel (Gerüst; die Texte stehen in assets/handbook/)
 assets/site.css     gemeinsames Aussehen aller Seiten: Farben, Schriften, schwebende Leiste, Nachthimmel-Kopf, Fußzeile
 assets/site.js      gemeinsame Leiste/Fußzeile: Texte (data-s, DE/EN), Discord-Link, Menü auf kleinen Bildschirmen
 assets/handbook/    ein Kapitel des Handbuchs je Datei (<Reihenfolge>-<id>.js) und index.js mit der Liste der Dateien
-assets/cinematic/   Bilder des Baukastens für trailer-werkzeug.html (Browser-Vorschau von liw_ui)
+assets/cinematic/   Bilder des Baukastens (Browser-Vorschau von liw_ui); en/ = englische Oberfläche für trailer-tool.html
 assets/fonts/       Schriften (IM Fell English, Crimson Pro; SIL Open Font License) – lokal, keine Anfragen an Google
 .nojekyll           Seite wird so ausgeliefert, wie sie ist
 ```
