@@ -94,6 +94,7 @@ figcaption { color: var(--muted); font-size: 0.95rem; margin-top: 0.4rem; }
         <li><a href="#welt">Welt</a></li>
         <li><a href="#abspielen">Abspielen und Aufnahme</a></li>
         <li><a href="#szenen">Szenen verwalten</a></li>
+        <li><a href="#anleitungen">Kurzanleitungen</a></li>
         <li><a href="#beispiele">Beispiele</a></li>
         <li><a href="#format">Szenen-Datei (JSON)</a></li>
         <li><a href="#einstellungen">Einstellungen</a></li>
@@ -460,8 +461,143 @@ Phase  0,45 ──▶ 0,70 ──▶ 0,40 ──▶ 0,70 ──▶ 0,40 …
         Schritte feinjustieren.</p>
 </section>
 
+<section id="anleitungen">
+    <h2>12 · Kurzanleitungen</h2>
+    <p>Kleine Rezepte zum Nachmachen. Jedes funktioniert für sich – für eine ganze Szene kombinierst du sie.</p>
+
+    <h3>Ein Tier setzen</h3>
+    <p><strong>Weg 1 – dorthin, wohin die Kamera schaut</strong> (der übliche):</p>
+    <ol class="steps">
+        <li>Mit der Kamera so fliegen, dass die Bildmitte genau auf der Stelle liegt, an der das Tier stehen soll.</li>
+        <li>Reiter <strong>Darsteller</strong> (<kbd>1</kbd>), oben die Art wählen, z. B. „Wolf“.</li>
+        <li>Fadenkreuz-Knopf <strong>„Dort hinzufügen, wohin die Kamera schaut“</strong>. Das Tier steht auf dem Boden an der Bildmitte.</li>
+    </ol>
+    <p><strong>Weg 2 – in die Welt klicken:</strong> Darsteller anlegen, dann beim Darsteller den Knopf
+        „In die Welt klicken zum Platzieren“ und mit <kbd>Linksklick</kbd> die Stelle wählen.</p>
+    <p><strong>Weg 3 – unter der Kamera:</strong> Knopf „Unter der Kamera hinzufügen“, dann <kbd>G</kbd> für den Boden.
+        Praktisch für enge Stellen (Höhle, Felsvorsprung), an die man mit der Kamera direkt heranfliegen kann.</p>
+    <p><strong>Weg 4 – Koordinaten eintippen:</strong> Felder X / Y / Z im Inspektor. So stehen zwei Tiere exakt auf
+        einer Linie (z. B. beide <code>Y&nbsp;=&nbsp;665,4</code>) oder in genauem Abstand (X um 3 verschieden = 3 m).</p>
+    <p><strong>Ausrichten:</strong> <kbd>,</kbd> / <kbd>.</kbd> drehen (mit <kbd>Shift</kbd> in 45°-Schritten) oder Feld
+        „Richtung“ (0 = Norden, 90 = Westen, 180 = Süden, 270 = Osten). „Zur Kamera drehen“ lässt das Tier in die Kamera schauen.</p>
+    <div class="box">
+        <p><strong>Jungtier neben Muttertier:</strong> Reh setzen, zweites Reh daneben, beim zweiten Knopf
+            <strong>„Jung“</strong> – es bekommt die Jungtiergröße der Art. Beide gleiches Fell (gleiche Nummer statt -1),
+            damit sie zusammenpassen.</p>
+    </div>
+
+    <h3>Die Tageszeit setzen</h3>
+    <ol class="steps">
+        <li>Reiter <strong>Welt</strong> (<kbd>4</kbd>): <strong>Stunde</strong> und <strong>Minute</strong> eintragen.</li>
+        <li><strong>„Zeit anhalten“</strong> an: Bei jedem Durchlauf ist das Licht gleich – fast immer gewollt.
+            Aus: Die Uhr läuft während der Szene weiter.</li>
+        <li><strong>„Zeit &amp; Wetter jetzt setzen“</strong>, um das Licht sofort zu sehen. Beim Abspielen wird es ohnehin gesetzt.</li>
+    </ol>
+    <div class="table-box"><table>
+        <tr><th>Stimmung</th><th>Uhrzeit</th><th>Wetter-Tipp</th></tr>
+        <tr><td>Morgendämmerung, blaues Licht</td><td>05:30</td><td><code>FOG</code> oder <code>MISTY</code></td></tr>
+        <tr><td>Sonnenaufgang, goldenes Licht</td><td>06:10–06:40</td><td><code>SUNNY</code>, <code>FOG</code></td></tr>
+        <tr><td>Heller Tag</td><td>10:00–15:00</td><td><code>SUNNY</code>, <code>CLOUDS</code></td></tr>
+        <tr><td>Abendrot</td><td>18:30–19:15</td><td><code>SUNNY</code>, <code>CLOUDS</code></td></tr>
+        <tr><td>Blaue Stunde</td><td>19:45</td><td><code>SUNNY</code></td></tr>
+        <tr><td>Nacht mit Mond</td><td>23:00–03:00</td><td><code>SUNNY</code> (klarer Himmel)</td></tr>
+    </table></div>
+    <p>Die genauen Uhrzeiten für Sonnenauf- und -untergang hängen von der Jahreszeit ab – einfach mit
+        „Zeit &amp; Wetter jetzt setzen“ ein paar Minuten probieren. Welche Wetterarten es gibt, zeigt die Liste im
+        Reiter Welt. Achtung: Uhrzeit und Wetter gelten für alle auf dem Server.</p>
+
+    <h3>Ein Tier von Anfang an animieren</h3>
+    <p>Ziel: Ein Wolf legt sich hin – die ganze Bewegung, von Stehen bis Liegen.</p>
+    <ol class="steps">
+        <li>Wolf wählen, Cursor auf den Zeitpunkt, an dem er sich hinlegen soll (z. B. 2 s).</li>
+        <li>Reiter <strong>Schritte</strong> (<kbd>2</kbd>), Film-Symbol (Animation).</li>
+        <li>In der Suche <code>wolf_resting stand_enter</code> eingeben und den Clip <code>…world_wolf_resting@stand_enter</code> wählen (vom Stehen ins Liegen).</li>
+        <li>Modus <strong>Einmal</strong>, Start <code>0</code>, Ende <code>1</code> – der ganze Clip.</li>
+        <li><strong>„Dauer anpassen“</strong>: Die Schrittdauer entspricht genau der Länge des Clips.</li>
+        <li><kbd>T</kbd> testet. Am Ende bleibt der letzte Frame stehen – der Wolf liegt.</li>
+    </ol>
+    <p>Soll er danach liegen bleiben und atmen: direkt dahinter einen zweiten Animationsschritt mit
+        <code>…world_wolf_resting@base</code> im Modus <strong>Schleife</strong>. Zum Aufstehen später
+        <code>…@stand_exit</code> im Modus Einmal.</p>
+
+    <h3>Ein Tier mitten in der Animation beginnen lassen</h3>
+    <p>Ziel: Die Szene beginnt, und das Reh <strong>trinkt bereits</strong> – ohne erst den Kopf zu senken.</p>
+    <ol class="steps">
+        <li>Animationsschritt bei 0 s anlegen, Clip <code>…world_deer_drinking@base / base</code>.</li>
+        <li><strong>Phasen-Regler</strong> langsam ziehen und in der Welt zusehen. An der Stelle, an der der Kopf im Wasser ist
+            (z. B. <code>0,45</code>), <strong>→ Start</strong> drücken.</li>
+        <li>Wie es weitergehen soll, entscheidet der Modus:
+            <ul>
+                <li><strong>Einmal</strong>: von dort bis zum Ende, dann stehen bleiben.</li>
+                <li><strong>Schleife</strong>: von dort bis B, dann immer A → B (A und B mit dem Regler und <strong>→ A</strong> /
+                    <strong>→ B</strong> setzen).</li>
+                <li><strong>Pendeln</strong>: von dort bis B, dann B ↔ A hin und her – der Kopf bleibt unten.</li>
+            </ul></li>
+        <li>Mit <kbd>Pos1</kbd> und <kbd>Leertaste</kbd> prüfen: Schon das erste Bild zeigt das trinkende Reh.</li>
+    </ol>
+    <div class="box">
+        <p><strong>Genauso für andere Fälle:</strong> Wolf heult schon (Start mitten im Heulen), Bär steht schon
+            aufgerichtet (Start im aufgerichteten Teil, dann Halten oder Pendeln), Puma ist mitten im Sprung (Start
+            kurz vor dem höchsten Punkt, Tempo <code>0,5</code> für Zeitlupe nur bei diesem Tier).</p>
+    </div>
+
+    <h3>Eine Pose einfrieren</h3>
+    <p>Modus <strong>Halten</strong>, Regler auf den gewünschten Frame, <strong>→ Frame</strong>. Das Tier steht wie eine
+        Statue – gut für einen alten Wolf am Gedenkstein oder ein Standbild am Ende des Trailers.</p>
+
+    <h3>Laufen, dann etwas tun</h3>
+    <p>Schritte hintereinander auf derselben Spur:</p>
+<pre class="timeline"><code>Wolf   [ Gehe zu (Trab, 3 Punkte) 0–6 s ][ Drehen zu Kamera 6–7 s ][ Animation: heulen 7–12 s ]
+                                                                   ↑ Laut "howl" bei 7,5 s</code></pre>
+    <p>Die „Gehe zu“-Dauer sollte zur Strecke passen: Ist sie zu kurz, wird der nächste Schritt schon vor der Ankunft
+        aktiv; ist sie zu lang, wartet das Tier am Ziel. Mit <kbd>Leertaste</kbd> prüfen und den rechten Rand des Blocks
+        ziehen, bis es passt.</p>
+
+    <h3>Eine einfache Kamerafahrt (von A nach B)</h3>
+    <ol class="steps">
+        <li><kbd>Pos1</kbd> (Cursor auf 0 s). Zur Startposition fliegen, Blick einrichten, <kbd>K</kbd>.</li>
+        <li>Cursor auf das Ende der Fahrt, z. B. 6 s (<kbd>L</kbd> mit <kbd>Shift</kbd> sechsmal).</li>
+        <li>Zur Endposition fliegen, Blick einrichten, <kbd>K</kbd>.</li>
+        <li>Reiter <strong>Kamera</strong>: beim ersten Keyframe Übergang „Weich rein/raus“.</li>
+        <li><kbd>Pos1</kbd>, <kbd>Leertaste</kbd> – die Kamera gleitet von A nach B. Der blaue Pfad in der Welt zeigt die Fahrt.</li>
+    </ol>
+    <p>Langsamer wird die Fahrt, wenn der zweite Keyframe später liegt (Raute in der Kamerazeile nach rechts ziehen).</p>
+
+    <h3>Kamerafahrten zum Nachbauen</h3>
+    <div class="table-box"><table>
+        <tr><th>Fahrt</th><th>So geht's</th></tr>
+        <tr><td>Schwenk</td><td>Zwei Keyframes an <strong>derselben Stelle</strong>, nur der Blick dreht sich (rechte Maustaste). Übergang weich.</td></tr>
+        <tr><td>Ranfahrt</td><td>Keyframe weit weg, zweiter Keyframe nah am Tier. Bei beiden Modus „Blick auf“ → Tier, dann bleibt es in der Bildmitte.</td></tr>
+        <tr><td>Zoom</td><td>Zwei Keyframes an derselben Stelle, beim zweiten mit dem <kbd>Mausrad</kbd> das FOV kleiner (z. B. 45 → 20).</td></tr>
+        <tr><td>Kranfahrt</td><td>Erster Keyframe tief am Boden, zweiter hoch darüber (<kbd>E</kbd>), Blick nach unten. Zeigt die Landschaft um das Tier.</td></tr>
+        <tr><td>Kreisfahrt (Orbit)</td><td>Vier Keyframes im Viereck um das Tier (vorne, rechts, hinten, links), z. B. alle 3 s, alle Modus „Blick auf“ → Tier, Übergang „Linear“. Der Spline macht daraus einen runden Kreis.</td></tr>
+        <tr><td>Verfolgung</td><td>Zwei Keyframes (Anfang und Ende der Szene), beide Modus „Folgen“ → Tier. Versatz <code>0 / -5 / 1,5</code> = hinterher, <code>6 / 0 / 1</code> = seitlich daneben, <code>0 / 6 / 1</code> = vorneweg (schaut zurück).</td></tr>
+        <tr><td>Dutch Angle</td><td>Beim Keyframe mit <kbd>Alt</kbd>+<kbd>Mausrad</kbd> neigen (z. B. 8°) – unruhige Stimmung, gut für Kämpfe.</td></tr>
+        <tr><td>Schnitt</td><td>Übergang des Keyframes vor dem Schnitt auf „Schnitt (Sprung)“ – die Kamera springt hart zur nächsten Einstellung.</td></tr>
+    </table></div>
+    <div class="box">
+        <p><strong>Tipp:</strong> Eine bestehende Einstellung ändern statt neu setzen: Keyframe in der Liste wählen, Knopf
+            „Kamera und Cursor zu diesem Keyframe“, Kamera nachjustieren, dann „Kamera in diesen Keyframe übernehmen“.</p>
+    </div>
+
+    <h3>Wetter und Jahreszeit</h3>
+    <p>Reiter Welt: <strong>Wetter</strong> (z. B. <code>FOG</code>, <code>RAIN</code>, <code>SNOW</code>) und
+        <strong>Jahreszeit</strong> (<code>spring</code>, <code>summer</code>, <code>autumn</code>, <code>winter</code>).
+        „unverändert“ bzw. „Kalender“ lassen den Server-Stand. Für eine Winterszene beides zusammen setzen, z. B.
+        Wetter <code>SNOW</code> und Jahreszeit <code>winter</code>.</p>
+
+    <h3>Störende Tiere loswerden</h3>
+    <p>Reiter Welt → <strong>Tiere entfernen (m)</strong> auf z. B. <code>120</code>. Beim Abspielen verschwinden alle
+        anderen Tiere im Umkreis – nur deine Darsteller bleiben.</p>
+
+    <h3>Zeitlupe</h3>
+    <p>Reiter Welt → <strong>Zeitlupe</strong> <code>0,5</code> = halbe Geschwindigkeit für die <strong>ganze Szene</strong>
+        (Tiere, Kamera, Zeitleiste). Für einen einzelnen langsamen Moment eine eigene kurze Szene bauen und in der
+        Playlist dazwischensetzen. Nur ein Tier langsamer: im Animationsschritt das <strong>Tempo</strong> senken.</p>
+</section>
+
 <section id="beispiele">
-    <h2>12 · Beispiele</h2>
+    <h2>13 · Beispiele</h2>
 
     <h3>Beispiel 1: Reh trinkt am nebligen See (20 s)</h3>
     <ol class="steps">
@@ -521,7 +657,7 @@ Wolf        [ Folgen Gabelbock, 2,5 m, Lauf ────────────
 </section>
 
 <section id="format">
-    <h2>13 · Szenen-Datei (JSON)</h2>
+    <h2>14 · Szenen-Datei (JSON)</h2>
     <p>Der Export und die Dateien in <code>scenes/</code> haben dieses Format. Der Server prüft jede Szene beim
         Speichern: Unbekannte Felder fallen weg, Zahlen werden begrenzt, Verweise auf fehlende Darsteller entfernt.</p>
 <pre><code>{
@@ -573,7 +709,7 @@ Wolf        [ Folgen Gabelbock, 2,5 m, Lauf ────────────
 </section>
 
 <section id="einstellungen">
-    <h2>14 · Einstellungen</h2>
+    <h2>15 · Einstellungen</h2>
     <p>In <code>config.lua</code> der Resource oder im Einstellungen-Reiter des Admin-Menüs:</p>
     <div class="table-box"><table>
         <tr><th>Wert</th><th>Bedeutung</th><th>Standard</th></tr>
@@ -593,7 +729,7 @@ Wolf        [ Folgen Gabelbock, 2,5 m, Lauf ────────────
 </section>
 
 <section id="tasten">
-    <h2>15 · Alle Tasten</h2>
+    <h2>16 · Alle Tasten</h2>
     <p><kbd>F1</kbd> zeigt die Übersicht auch im Baukasten.</p>
     <div class="table-box"><table>
         <tr><th>Taste</th><th>Funktion</th></tr>
@@ -618,7 +754,7 @@ Wolf        [ Folgen Gabelbock, 2,5 m, Lauf ────────────
 </section>
 
 <section id="probleme">
-    <h2>16 · Probleme und Grenzen</h2>
+    <h2>17 · Probleme und Grenzen</h2>
     <div class="table-box"><table>
         <tr><th>Problem</th><th>Lösung</th></tr>
         <tr><td>„/liw_cine“ tut nichts</td><td>Fehlendes Recht: <code>add_ace … liw.cinematic allow</code> oder <code>command.liwdev</code>. Läuft die Resource (<code>ensure liw_cinematic</code>)?</td></tr>
