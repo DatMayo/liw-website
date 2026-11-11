@@ -1,0 +1,660 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Trailer-Werkzeug · Life In Wilderness</title>
+<meta name="description" content="Dokumentation des Trailer-Werkzeugs liw_cinematic: Szenen bauen, Darsteller, Schritte, Kamera, Aufnahme.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%2314100c' stroke='%23c8a35a'/%3E%3Ctext x='16' y='20.5' font-family='Georgia' font-size='11' text-anchor='middle' fill='%23c8a35a'%3ELiW%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+/* Reference page of the trailer tool: table of contents on the left, the chapters on the right. */
+.doc { width: min(1180px, 100% - var(--gutter-l) - var(--gutter-r)); margin: 0 auto; padding: 1rem 0 3rem; display: grid; grid-template-columns: 15rem minmax(0, 1fr); gap: 2.5rem; align-items: start; }
+.toc { position: sticky; top: 5.5rem; max-height: calc(100vh - 7rem); overflow-y: auto; padding: 1rem 1.1rem; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); }
+.toc h2 { font-family: var(--display); font-weight: normal; font-size: 1.05rem; letter-spacing: 0.08em; margin: 0 0 0.5rem; color: var(--gold); }
+.toc ol { margin: 0; padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.3rem; font-size: 0.98rem; }
+.toc a { color: var(--muted); text-decoration: none; }
+.toc a:hover { color: var(--ink); }
+.content { display: flex; flex-direction: column; gap: 2.75rem; min-width: 0; }
+.content section { scroll-margin-top: 5.5rem; }
+.content h2 { font-family: var(--display); font-weight: normal; font-size: clamp(1.6rem, 3vw, 2.1rem); letter-spacing: 0.03em; margin: 0 0 0.75rem; color: var(--gold); border-bottom: 1px solid var(--line); padding-bottom: 0.4rem; }
+.content h3 { font-family: var(--display); font-weight: normal; font-size: 1.3rem; margin: 1.5rem 0 0.5rem; color: var(--ink); }
+.content p, .content li { line-height: 1.6; color: #ddd3c0; }
+.content p { margin: 0 0 0.8rem; }
+.content ul, .content ol { margin: 0 0 0.9rem; padding-left: 1.4rem; }
+.content li { margin: 0.2rem 0; }
+.content strong { color: var(--ink); font-weight: 600; }
+code { font-family: Consolas, 'Courier New', monospace; font-size: 0.88em; background: var(--panel-2); border: 1px solid var(--line); border-radius: 0.3rem; padding: 0.05rem 0.35rem; color: var(--ink); }
+pre { background: #110e0b; border: 1px solid var(--line); border-radius: var(--radius); padding: 0.9rem 1rem; overflow-x: auto; margin: 0 0 1rem; }
+.content p code, .content li code { overflow-wrap: anywhere; }
+pre code { background: none; border: none; padding: 0; font-size: 0.85rem; line-height: 1.5; }
+kbd { font: 600 0.85rem var(--body); display: inline-block; padding: 0.02rem 0.42rem; border: 1px solid var(--cap-edge, #4a4035); border-bottom-width: 2px; border-radius: 0.3rem; background: var(--cap, #2a231c); color: var(--ink); white-space: nowrap; }
+table { width: 100%; border-collapse: collapse; margin: 0 0 1rem; font-size: 0.98rem; }
+th { text-align: left; color: var(--gold); font-weight: 600; padding: 0.45rem 0.6rem; border-bottom: 1px solid var(--line-gold, var(--line)); }
+td { padding: 0.45rem 0.6rem; border-bottom: 1px solid var(--line); vertical-align: top; color: #ddd3c0; }
+td:first-child { white-space: nowrap; }
+.table-box { overflow-x: auto; }
+figure { margin: 0 0 1.2rem; }
+figure img { width: 100%; height: auto; display: block; border: 1px solid var(--line); border-radius: var(--radius); }
+figcaption { color: var(--muted); font-size: 0.95rem; margin-top: 0.4rem; }
+.box { border-left: 3px solid var(--gold); background: var(--panel); border-radius: 0 12px 12px 0; padding: 0.75rem 1rem; margin: 0 0 1rem; }
+.box.warn { border-left-color: #c4594a; }
+.box p:last-child { margin-bottom: 0; }
+.steps { counter-reset: s; list-style: none; padding-left: 0; }
+.steps > li { counter-increment: s; position: relative; padding-left: 2.4rem; margin: 0.6rem 0; }
+.steps > li::before { content: counter(s); position: absolute; left: 0; top: 0.1rem; width: 1.7rem; height: 1.7rem; border-radius: 50%; display: grid; place-items: center; background: var(--panel-2); border: 1px solid var(--gold); color: var(--gold); font-size: 0.85rem; }
+.timeline { font-family: Consolas, 'Courier New', monospace; font-size: 0.82rem; line-height: 1.45; }
+@media (max-width: 62rem) { .doc { grid-template-columns: minmax(0, 1fr); } .toc { position: static; max-height: none; } }
+</style>
+</head>
+<body>
+<header class="bar" id="bar">
+    <a class="mark" href="index.html"><span>LiW</span>Life In Wilderness</a>
+    <button type="button" class="menu" aria-expanded="false" aria-controls="nav" data-s="nav_menu"></button>
+    <nav id="nav">
+        <a href="index.html#spiel" data-s="nav_game"></a>
+        <a href="index.html#arten" data-s="nav_species"></a>
+        <a href="index.html#einstieg" data-s="nav_join"></a>
+        <a href="index.html#regeln" data-s="nav_rules"></a>
+        <a href="index.html#entwicklung" data-s="nav_dev"></a>
+        <a href="tasten.html" data-s="nav_keys"></a>
+        <a href="handbuch.html" data-s="nav_handbook"></a>
+        <a href="index.html#faq">FAQ</a>
+    </nav>
+    <a class="discord" href="index.html#einstieg" data-discord>Discord</a>
+</header>
+<section class="page-hero">
+    <div class="moon" aria-hidden="true"></div>
+    <svg class="scene" viewBox="0 0 1600 420" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+        <path d="M0 150 L110 100 L230 135 L360 60 L480 120 L600 80 L740 135 L880 50 L1010 110 L1150 70 L1290 125 L1420 85 L1600 125 V420 H0z" fill="#3a3a3c" opacity="0.55"/>
+        <path d="M0 230 L120 195 L260 222 L400 170 L540 212 L700 182 L860 225 L1020 178 L1180 215 L1340 186 L1480 220 L1600 195 V420 H0z" fill="#2c2721"/>
+        <path d="M0 320 L30 280 L45 296 L60 255 L80 292 L100 264 L120 305 L150 272 L170 300 L200 250 L225 296 L260 284 L300 312 L360 300 L430 320 L520 308 L600 328 L700 316 L800 332 L900 318 L1000 328 L1080 312 L1130 280 L1150 296 L1175 248 L1200 292 L1225 260 L1250 300 L1280 268 L1305 304 L1340 276 L1370 308 L1420 292 L1480 316 L1540 300 L1600 312 V420 H0z" fill="#1a1611"/>
+        <path d="M0 390 C200 374 400 386 600 378 C800 370 1000 390 1200 378 C1400 370 1500 382 1600 375 V420 H0z" fill="#0f0d0b"/>
+    </svg>
+    <div class="wrap">
+        <div class="eyebrow">Für das Team · liw_cinematic</div>
+        <h1>Trailer-Werkzeug</h1>
+        <p class="lede">Szenen mit Tieren als Darstellern bauen, Kamerafahrten setzen und alles ohne Oberfläche aufnehmen – Schritt für Schritt erklärt, mit Beispielen.</p>
+    </div>
+</section>
+
+<div class="doc">
+<nav class="toc" aria-label="Inhalt">
+    <h2>Inhalt</h2>
+    <ol>
+        <li><a href="#ueberblick">Überblick</a></li>
+        <li><a href="#einrichtung">Einrichtung</a></li>
+        <li><a href="#start">Starten und Bewegen</a></li>
+        <li><a href="#oberflaeche">Die Oberfläche</a></li>
+        <li><a href="#darsteller">Darsteller</a></li>
+        <li><a href="#schritte">Schritte</a></li>
+        <li><a href="#animation">Animationen und Frames</a></li>
+        <li><a href="#kamera">Kamera</a></li>
+        <li><a href="#welt">Welt</a></li>
+        <li><a href="#abspielen">Abspielen und Aufnahme</a></li>
+        <li><a href="#szenen">Szenen verwalten</a></li>
+        <li><a href="#beispiele">Beispiele</a></li>
+        <li><a href="#format">Szenen-Datei (JSON)</a></li>
+        <li><a href="#einstellungen">Einstellungen</a></li>
+        <li><a href="#tasten">Alle Tasten</a></li>
+        <li><a href="#probleme">Probleme und Grenzen</a></li>
+    </ol>
+</nav>
+
+<main class="content">
+
+<section id="ueberblick">
+    <h2>1 · Überblick</h2>
+    <p><strong>liw_cinematic</strong> ist ein Szenen-Baukasten für den Trailer des Servers. Du stellst Tiere als
+        <strong>Darsteller</strong> in die Welt, gibst ihnen <strong>Schritte</strong> auf einer gemeinsamen Zeitleiste
+        (laufen, drehen, Animation, folgen, angreifen, fliehen, Laute …), legst eine <strong>Kamerafahrt</strong> mit
+        Keyframes an, stellst Uhrzeit, Wetter und Jahreszeit ein und spielst die Szene ab – zur Probe mit Baukasten
+        oder als <strong>Aufnahme</strong> mit Countdown und ohne jede Oberfläche, bereit für OBS.</p>
+    <figure>
+        <img src="assets/cinematic/cine-baukasten.png" alt="Der Baukasten unten im Bild: Leiste, Inspektor links, Zeitleiste rechts" loading="lazy">
+        <figcaption>Der Baukasten liegt klein unten im Bild: Leiste oben, links der Inspektor, rechts die Zeitleiste mit Kamera und einer Spur je Darsteller.</figcaption>
+    </figure>
+    <div class="box warn">
+        <p><strong>Nur für einen Aufnahme-Server.</strong> Auf dem Live-Server bleibt die Resource aus. Das Werkzeug
+            macht das eigene Tier unsichtbar und unverwundbar und setzt Uhrzeit und Wetter für alle Spieler.</p>
+    </div>
+    <h3>Wichtig zu wissen</h3>
+    <ul>
+        <li><strong>Darsteller sehen nur du.</strong> Es sind lokale Tiere auf deinem Rechner. Andere Spieler auf dem
+            Server sehen sie nicht – aufgenommen wird von genau einer Person.</li>
+        <li><strong>Uhrzeit, Wetter und Jahreszeit sind die des Servers.</strong> Die sehen alle, und sie bleiben
+            auch nach einem Neustart so (liw_world speichert sie).</li>
+        <li><strong>Alles läuft nach Zeit.</strong> Jeder Schritt und jeder Keyframe hat einen Zeitpunkt in Sekunden.
+            Spulst du auf der Zeitleiste, springen Darsteller und Kamera an die passende Stelle.</li>
+        <li><strong>Szenen sind Dateien auf dem Server</strong> (<code>scenes/&lt;id&gt;.json</code>) und lassen sich als
+            JSON exportieren und woanders importieren.</li>
+    </ul>
+</section>
+
+<section id="einrichtung">
+    <h2>2 · Einrichtung</h2>
+    <h3>Resource starten</h3>
+    <p>In der <code>server.cfg</code> des Aufnahme-Servers nach den übrigen LiW-Resources:</p>
+<pre><code>ensure liw_cinematic
+
+# Wer das Werkzeug benutzen darf (zusätzlich alle mit command.liwdev):
+add_ace group.admin liw.cinematic allow</code></pre>
+    <p>Auf dem Live-Server bleibt die Zeile <code>ensure liw_cinematic</code> auskommentiert
+        (so steht es auch in <code>docs/server.cfg.example</code>).</p>
+    <h3>Was dazugehört</h3>
+    <div class="table-box"><table>
+        <tr><th>Resource</th><th>Wofür</th></tr>
+        <tr><td>liw_core</td><td>Grundbibliothek: Oberfläche, Rückfragen an den Server, Tasten, Boden finden, Modelle laden.</td></tr>
+        <tr><td>liw_ui</td><td>Die Oberfläche. Der Baukasten ist eine Komponente, die erst beim Öffnen geladen wird. Die Animationsliste kommt aus dem Animations-Browser.</td></tr>
+        <tr><td>liw_species</td><td>Die Arten (Modelle, Fell, Namen) für die Darstellerliste.</td></tr>
+        <tr><td>liw_world <em>(optional)</em></td><td>Uhrzeit und Wetter. Ohne sie bleiben diese Felder wirkungslos.</td></tr>
+        <tr><td>liw_seasons <em>(optional)</em></td><td>Jahreszeit.</td></tr>
+    </table></div>
+</section>
+
+<section id="start">
+    <h2>3 · Starten und Bewegen</h2>
+    <p>Mit <code>/liw_cine</code> im Chat öffnest und schließt du den Baukasten.</p>
+    <ul>
+        <li>Solange er offen ist, ist dein eigenes Tier <strong>unsichtbar, eingefroren und unverwundbar</strong>, und
+            niemand beachtet es. Es fliegt mit der Kamera mit, damit die Gegend geladen bleibt. Der Server gibt dafür
+            laufend eine Schonfrist für seine Bewegungs- und Gesundheitsprüfung.</li>
+        <li>Beim Schließen steht dein Tier wieder genau dort, wo es vorher stand.</li>
+        <li>Die übrige Oberfläche (HUD, andere Menüs) ist ausgeblendet; nur Meldungen bleiben – bei einer Aufnahme
+            verschwinden auch sie.</li>
+    </ul>
+    <h3>Die freie Kamera</h3>
+    <div class="table-box"><table>
+        <tr><th>Taste</th><th>Wirkung</th></tr>
+        <tr><td><kbd>Rechte Maustaste</kbd> halten</td><td>Umsehen</td></tr>
+        <tr><td><kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd></td><td>Fliegen</td></tr>
+        <tr><td><kbd>Q</kbd> / <kbd>E</kbd></td><td>Runter / hoch</td></tr>
+        <tr><td><kbd>Shift</kbd> / <kbd>Alt</kbd></td><td>Schnell / langsam fliegen</td></tr>
+        <tr><td><kbd>Mausrad</kbd></td><td>Zoom (Sichtfeld, FOV) – klein = Teleobjektiv, groß = Weitwinkel</td></tr>
+        <tr><td><kbd>Alt</kbd> + <kbd>Mausrad</kbd></td><td>Kamera neigen (Roll)</td></tr>
+    </table></div>
+    <p>Über jedem Darsteller schwebt ein Namensschild. Ein Klick darauf wählt ihn aus. Wartet ein Werkzeug auf einen
+        Punkt (Darsteller platzieren, Wegpunkte, Blickpunkt), setzt ein <kbd>Linksklick</kbd> in die Welt diesen Punkt;
+        <kbd>Esc</kbd> bricht ab.</p>
+</section>
+
+<section id="oberflaeche">
+    <h2>4 · Die Oberfläche</h2>
+    <h3>Die Leiste (oben im Baukasten)</h3>
+    <p>Von links nach rechts:</p>
+    <ul>
+        <li><strong>Szene:</strong> Auswahlliste der gespeicherten Szenen · Neu · Szenen (Liste mit Laden, Löschen,
+            Playlist) · Speichern (<kbd>Strg</kbd>+<kbd>S</kbd>) · Umbenennen · Duplizieren · Export (JSON) · Import.</li>
+        <li><strong>Wiedergabe:</strong> Zum Anfang (<kbd>Pos1</kbd>) · Abspielen/Stopp (<kbd>Leertaste</kbd>) · Stopp ·
+            Schleife · Alle Darsteller auf den Anfang · <strong>Aufnahme</strong> (roter Knopf, <kbd>Shift</kbd>+<kbd>R</kbd>)
+            · aktuelle Zeit / Szenendauer.</li>
+        <li><strong>Rechts:</strong> Kamera folgt beim Spulen ihrem Pfad · Pfade in der Welt zeigen · Kinobalken
+            (<kbd>B</kbd>) · Baukasten ausblenden (<kbd>H</kbd>) · Tasten (<kbd>F1</kbd>) · Einklappen (<kbd>Tab</kbd>) ·
+            Schließen.</li>
+    </ul>
+    <h3>Der Inspektor (links) – vier Reiter</h3>
+    <div class="table-box"><table>
+        <tr><th>Reiter</th><th>Inhalt</th></tr>
+        <tr><td>1 · Darsteller</td><td>Tiere hinzufügen, auswählen, Name, Fell, Größe, Position, Richtung.</td></tr>
+        <tr><td>2 · Schritte</td><td>Schritte des gewählten Darstellers hinzufügen und einstellen.</td></tr>
+        <tr><td>3 · Kamera</td><td>Keyframes, Übergänge, Kameramodus, Handkamera, Tiefenschärfe.</td></tr>
+        <tr><td>4 · Welt</td><td>Dauer, Uhrzeit, Wetter, Jahreszeit, Zeitlupe, Tiere entfernen, Kinobalken.</td></tr>
+    </table></div>
+    <h3>Die Zeitleiste (rechts)</h3>
+    <ul>
+        <li><strong>Lineal:</strong> klicken oder ziehen = spulen. Der rote Strich ist der <strong>Cursor</strong>;
+            neue Schritte und Keyframes landen an seiner Stelle.</li>
+        <li><strong>Kamerazeile:</strong> die Keyframes als Rauten. Ziehen verschiebt sie.</li>
+        <li><strong>Eine Spur je Darsteller</strong> mit seinen Schritten als Blöcken:
+            <ul>
+                <li>Block ziehen = verschieben, rechten Rand ziehen = Dauer ändern.</li>
+                <li><kbd>Alt</kbd> beim Ziehen = ohne Raster.</li>
+                <li>Doppelklick auf eine freie Stelle der Spur = Menü „Schritt hinzufügen“ an dieser Zeit.</li>
+            </ul></li>
+        <li><kbd>Strg</kbd>+<kbd>Mausrad</kbd> = Zoom der Zeitleiste.</li>
+    </ul>
+    <p>In der Welt zeigt der Baukasten beim Bearbeiten den <strong>Kamerapfad in Blau</strong>, die Keyframes und die
+        <strong>Wege der Darsteller</strong> (gelb = ausgewählter Darsteller).</p>
+</section>
+
+<section id="darsteller">
+    <h2>5 · Darsteller</h2>
+    <h3>Welche Tiere</h3>
+    <ul>
+        <li>Jede Art aus liw_species (beim Hirsch getrennt nach Ricke und Bock).</li>
+        <li>Die legendären Tiere aus Red Dead Online, z. B. <code>mp_a_c_wolf_01</code>, <code>mp_a_c_bear_01</code>,
+            <code>mp_a_c_buck_01</code> (Liste in <code>Config.ExtraModels</code>).</li>
+        <li>„Anderes Modell …“: jedes Tiermodell, das mit <code>a_c_</code> oder <code>mp_a_c_</code> beginnt.</li>
+    </ul>
+    <h3>Hinzufügen</h3>
+    <ol class="steps">
+        <li>Reiter <strong>Darsteller</strong> (<kbd>1</kbd>), oben das Tier wählen.</li>
+        <li>Die Kamera auf die Stelle richten und <strong>„Dort hinzufügen, wohin die Kamera schaut“</strong>
+            (Fadenkreuz-Knopf) – oder <strong>„Unter der Kamera hinzufügen“</strong>.</li>
+        <li>Feinjustieren (siehe unten), mit <kbd>G</kbd> auf den Boden setzen.</li>
+    </ol>
+    <h3>Einstellungen eines Darstellers</h3>
+    <div class="table-box"><table>
+        <tr><th>Feld</th><th>Bedeutung</th></tr>
+        <tr><td>Name</td><td>Steht im Namensschild und in der Zeitleiste, z. B. „Held (Wolf)“.</td></tr>
+        <tr><td>Fell (-1 zufällig)</td><td>Nummer des Fell-Presets. -1 nimmt bei jedem Laden ein zufälliges – für einen Trailer lieber eine feste Nummer.</td></tr>
+        <tr><td>Größe</td><td>1 = normal (0,2–3). Knopf <strong>„Jung“</strong> setzt die Jungtiergröße der Art.</td></tr>
+        <tr><td>X / Y / Z, Richtung</td><td>Position und Blickrichtung in Grad.</td></tr>
+        <tr><td>Auge</td><td>Ein-/ausblenden (z. B. ein Tier, das erst später per Teleport auftaucht).</td></tr>
+    </table></div>
+    <h3>Mit Tasten ausrichten</h3>
+    <div class="table-box"><table>
+        <tr><th>Taste</th><th>Wirkung</th></tr>
+        <tr><td><kbd>←</kbd> <kbd>→</kbd> <kbd>↑</kbd> <kbd>↓</kbd></td><td>Verschieben, relativ zur Kamera (<kbd>Shift</kbd>: 1 m pro Druck)</td></tr>
+        <tr><td><kbd>Bild ↑</kbd> / <kbd>Bild ↓</kbd></td><td>Höher / tiefer</td></tr>
+        <tr><td><kbd>,</kbd> / <kbd>.</kbd></td><td>Drehen (<kbd>Shift</kbd>: 45°)</td></tr>
+        <tr><td><kbd>G</kbd></td><td>Auf den Boden setzen</td></tr>
+        <tr><td><kbd>P</kbd></td><td>Zum Fadenkreuz (dorthin, wohin die Kamera schaut)</td></tr>
+        <tr><td><kbd>F</kbd></td><td>Kamera zum Darsteller (ins Bild holen)</td></tr>
+        <tr><td><kbd>Entf</kbd></td><td>Darsteller löschen</td></tr>
+    </table></div>
+    <p>Darsteller reagieren nicht von selbst: Sie fliehen nicht, erschrecken nicht, sind unverwundbar und in einer
+        eigenen Gruppe. Das Werkzeug erneuert das alle 0,5 Sekunden – sie tun nur, was ihre Schritte sagen.</p>
+</section>
+
+<section id="schritte">
+    <h2>6 · Schritte</h2>
+    <p>Ein Schritt ist eine Anweisung an einen Darsteller mit <strong>Start</strong> und <strong>Dauer</strong> in
+        Sekunden. Hinzufügen: Darsteller wählen, Cursor an die Startzeit, im Reiter <strong>Schritte</strong>
+        (<kbd>2</kbd>) das Symbol des Typs anklicken – oder Doppelklick auf die Spur.</p>
+    <div class="table-box"><table>
+        <tr><th>Typ</th><th>Was passiert</th><th>Felder</th></tr>
+        <tr><td>Warten</td><td>Steht still.</td><td>–</td></tr>
+        <tr><td>Gehe zu</td><td>Läuft einen Pfad ab. Punkte nacheinander in die Welt klicken, <kbd>Esc</kbd> beendet.</td><td>Punkte, Gangart (Schritt/Trab/Lauf), „Um Hindernisse“ (Navmesh)</td></tr>
+        <tr><td>Drehen zu</td><td>Dreht sich zu einem Punkt, einem anderen Darsteller oder zur Kamera.</td><td>Ziel</td></tr>
+        <tr><td>Animation</td><td>Spielt einen Clip, mit Frame-Steuerung (<a href="#animation">Kapitel 7</a>).</td><td>Clip, Modus, Start/Ende, A/B, Tempo, Ein-/Ausblenden</td></tr>
+        <tr><td>Szenario</td><td>Ein Spiel-Szenario, z. B. <code>WORLD_ANIMAL_WOLF_HOWLING</code>. Vorschläge in der Liste, freier Text geht auch.</td><td>Name</td></tr>
+        <tr><td>Folgen</td><td>Folgt einem anderen Darsteller.</td><td>Ziel, Abstand (m), Gangart</td></tr>
+        <tr><td>Angreifen</td><td><strong>Gespielt:</strong> läuft hin und spielt die Angriffsanimation der Art, ohne Schaden.<br><strong>Echter Kampf:</strong> richtiger Kampf, beide bleiben unverwundbar.</td><td>Ziel, „Echter Kampf“</td></tr>
+        <tr><td>Fliehen</td><td>Flieht vor einem anderen Darsteller.</td><td>Vor, Abstand (m)</td></tr>
+        <tr><td>Laut</td><td>Ein Tierlaut wie <code>howl</code>, <code>growl</code>, <code>roar</code>, <code>snort</code> – sofort.</td><td>Laut</td></tr>
+        <tr><td>Größe</td><td>Ändert die Größe – sofort beim Start.</td><td>Wert</td></tr>
+        <tr><td>Teleport</td><td>Setzt den Darsteller an einen Punkt – sofort beim Start.</td><td>Punkt, Richtung</td></tr>
+    </table></div>
+    <h3>Bearbeiten</h3>
+    <ul>
+        <li><kbd>Strg</kbd>+<kbd>C</kbd> kopiert den gewählten Schritt, <kbd>Strg</kbd>+<kbd>V</kbd> fügt ihn am Cursor ein,
+            <kbd>Strg</kbd>+<kbd>D</kbd> dupliziert ihn direkt dahinter, <kbd>Entf</kbd> löscht.</li>
+        <li><kbd>Strg</kbd>+<kbd>Z</kbd> / <kbd>Strg</kbd>+<kbd>Y</kbd>: rückgängig / wiederholen.</li>
+        <li>Ein Darsteller tut immer nur eins: Überlappen sich zwei seiner Schritte, gilt der später begonnene.
+            Ausnahme sind die sofortigen Schritte Laut, Größe und Teleport – die dürfen mitten in einem anderen Schritt
+            liegen (z. B. ein <code>howl</code> während eines Szenarios).</li>
+    </ul>
+    <div class="box">
+        <p><strong>Beispiel – Wolf läuft zum Felsen und heult:</strong> „Gehe zu“ von 0 bis 6 s (drei Punkte bis zum
+            Felsen, Gangart Trab), „Drehen zu“ Kamera von 6 bis 7 s, „Szenario“ <code>WORLD_ANIMAL_WOLF_HOWLING</code>
+            von 7 bis 14 s, dazu bei 7,5 s ein „Laut“ <code>howl</code>.</p>
+    </div>
+</section>
+
+<section id="animation">
+    <h2>7 · Animationen und Frame-Steuerung</h2>
+    <p>Der Animationsschritt kann mehr als „Clip abspielen“: Er bestimmt genau, <strong>welcher Teil</strong> des Clips
+        zu sehen ist. Typischer Fall: Das Reh soll schon trinken, wenn die Szene beginnt – nicht erst den Kopf senken.</p>
+    <figure>
+        <img src="assets/cinematic/cine-animation.png" alt="Animationsschritt gewählt: Suche, Clip, Modus-Knöpfe und Phasen-Regler" loading="lazy">
+        <figcaption>Ein gewählter Animationsschritt: Suche, Clip (★ = von dieser Art schon benutzt), Modus und der Phasen-Regler.</figcaption>
+    </figure>
+    <h3>Clip wählen</h3>
+    <p>Die Suche durchsucht die Animationsliste des Spiels (z. B. <code>drink</code>, <code>howl</code>,
+        <code>sleep</code>). Zuerst stehen die Gruppen der Art des Darstellers (Wolf → wolf, Puma → cougar/bigcat …);
+        „Alle Tiere“ sucht überall. Ein ★ markiert Clips, die die Art im Spiel schon benutzt.</p>
+    <h3>Die Phase</h3>
+    <p>Jede Stelle eines Clips hat eine <strong>Phase</strong> zwischen 0 (Anfang) und 1 (Ende). 0,5 ist die Mitte.
+        Alle Frame-Angaben sind Phasen.</p>
+    <div class="table-box"><table>
+        <tr><th>Feld</th><th>Bedeutung</th></tr>
+        <tr><td>Start / Ende</td><td>Ab welcher Phase der Clip beginnt / bis wohin er (im Modus Einmal) läuft.</td></tr>
+        <tr><td>A / B</td><td>Der Bereich, der bei Schleife und Pendeln wiederholt wird.</td></tr>
+        <tr><td>Frame</td><td>Die eingefrorene Phase im Modus Halten.</td></tr>
+        <tr><td>Tempo</td><td>1 = normal, 0,5 = halb so schnell, 2 = doppelt.</td></tr>
+        <tr><td>Einblenden / Ausblenden</td><td>Wie weich der Übergang von und zur vorherigen Bewegung ist (größer = schneller).</td></tr>
+    </table></div>
+    <h3>Die vier Modi</h3>
+    <div class="table-box"><table>
+        <tr><th>Modus</th><th>Ablauf</th><th>Gut für</th></tr>
+        <tr><td>Einmal</td><td>Start → Ende, dann bleibt der End-Frame stehen.</td><td>Aufstehen, Hinlegen, ein einzelner Biss</td></tr>
+        <tr><td>Schleife</td><td>Start → B, dann immer wieder A → B.</td><td>Fressen, Graben, Kauen</td></tr>
+        <tr><td>Pendeln</td><td>Start → B, dann B → A → B hin und her.</td><td>Trinken: Der Kopf bleibt unten</td></tr>
+        <tr><td>Halten</td><td>Ein einzelner Frame, eingefroren.</td><td>Standbild, Pose am Gedenkstein</td></tr>
+    </table></div>
+<pre class="timeline"><code>Pendeln, Start 0,45 · A 0,40 · B 0,70
+
+Phase  0,45 ──▶ 0,70 ──▶ 0,40 ──▶ 0,70 ──▶ 0,40 …
+       Start     B        A        B        A
+       (Kopf schon im Wasser, hebt ihn nie ganz)</code></pre>
+    <h3>Den richtigen Frame finden</h3>
+    <ol class="steps">
+        <li>Den <strong>Phasen-Regler</strong> ziehen – der Darsteller zeigt den Frame sofort in der Welt.</li>
+        <li>An der gewünschten Stelle <strong>→ Start</strong>, <strong>→ Ende</strong>, <strong>→ A</strong>,
+            <strong>→ B</strong> oder <strong>→ Frame</strong> drücken: Die Reglerstellung wird übernommen.</li>
+        <li><strong>„Dauer anpassen“</strong> setzt die Schrittdauer genau auf die Zeit von Start bis Ende.</li>
+        <li><kbd>T</kbd> testet den Schritt am Darsteller.</li>
+    </ol>
+    <p>Die Phase hängt nur von der Zeit ab. Abspielen und Spulen zeigen daher immer denselben Frame – was du beim
+        Spulen siehst, ist auch in der Aufnahme.</p>
+</section>
+
+<section id="kamera">
+    <h2>8 · Kamera</h2>
+    <figure>
+        <img src="assets/cinematic/cine-kamera.png" alt="Reiter Kamera mit Keyframe-Liste, Zeit, FOV, Neigung, Übergang und Modus" loading="lazy">
+        <figcaption>Reiter Kamera: Liste der Keyframes, darunter Zeit, FOV, Neigung, Übergang, Modus und Ziel des gewählten Keyframes.</figcaption>
+    </figure>
+    <h3>Keyframes setzen</h3>
+    <ol class="steps">
+        <li>Cursor an die Zeit stellen (<kbd>J</kbd>/<kbd>L</kbd> = ±0,1 s, mit <kbd>Shift</kbd> ±1 s).</li>
+        <li>Mit der freien Kamera die Einstellung suchen (Position, Blick, Zoom, Neigung).</li>
+        <li><kbd>K</kbd> drücken – ein Keyframe mit genau dieser Einstellung entsteht.</li>
+    </ol>
+    <p>Zwischen den Keyframes fährt die Kamera auf einer weichen Kurve (Spline) – auch bei unterschiedlichen Abständen
+        ohne Ruckeln. In der Liste übernimmt der Pfeil-Knopf die aktuelle Kamera in einen bestehenden Keyframe, ein
+        anderer Knopf springt mit Kamera und Cursor zu ihm.</p>
+    <h3>Übergang (je Abschnitt bis zum nächsten Keyframe)</h3>
+    <div class="table-box"><table>
+        <tr><th>Übergang</th><th>Wirkung</th></tr>
+        <tr><td>Weich rein/raus</td><td>Langsam los, langsam an – der Standard für ruhige Fahrten.</td></tr>
+        <tr><td>Weich rein / Weich raus</td><td>Nur am Anfang bzw. nur am Ende weich.</td></tr>
+        <tr><td>Linear</td><td>Gleichmäßiges Tempo – gut für Verfolgungen.</td></tr>
+        <tr><td>Schnitt (Sprung)</td><td>Kein Übergang: Die Kamera springt beim nächsten Keyframe dorthin. So baust du Schnitte innerhalb einer Szene.</td></tr>
+    </table></div>
+    <h3>Modus je Keyframe</h3>
+    <div class="table-box"><table>
+        <tr><th>Modus</th><th>Wirkung</th></tr>
+        <tr><td>Frei</td><td>Genau die gespeicherte Position und Blickrichtung.</td></tr>
+        <tr><td>Blick auf</td><td>Position wie gespeichert, schaut aber immer auf einen Darsteller – er bleibt im Bild, auch wenn er läuft.</td></tr>
+        <tr><td>Blick auf Punkt</td><td>Schaut auf einen in die Welt geklickten Punkt.</td></tr>
+        <tr><td>Folgen</td><td>Fährt mit dem Darsteller mit. Der <strong>Versatz x y z</strong> gilt relativ zu seiner Blickrichtung: x = seitlich (rechts positiv), y = vor/hinter ihm (negativ = hinter), z = Höhe. Standard 0 / -4 / 1,5 = vier Meter hinter dem Tier, leicht erhöht.</td></tr>
+    </table></div>
+    <h3>Handkamera und Tiefenschärfe</h3>
+    <ul>
+        <li><strong>Handkamera (°)</strong> und <strong>Wackeltempo</strong>: leichtes Wackeln wie von Hand gehalten.
+            Es ist berechnet, nicht zufällig – jeder Durchlauf wackelt gleich. 0,2–0,5° wirkt natürlich.</li>
+        <li><strong>Tiefenschärfe</strong> (experimentell): Fokus in Metern (0 = automatisch) und Stärke der Unschärfe.</li>
+    </ul>
+</section>
+
+<section id="welt">
+    <h2>9 · Welt</h2>
+    <figure>
+        <img src="assets/cinematic/cine-welt.png" alt="Reiter Welt mit Dauer, Uhrzeit, Wetter, Jahreszeit, Zeitlupe und Tiere entfernen" loading="lazy">
+        <figcaption>Reiter Welt.</figcaption>
+    </figure>
+    <div class="table-box"><table>
+        <tr><th>Feld</th><th>Bedeutung</th></tr>
+        <tr><td>Dauer (s)</td><td>Länge der Szene (bis 600 s).</td></tr>
+        <tr><td>Stunde / Minute, Zeit anhalten</td><td>Uhrzeit beim Abspielen, auf Wunsch angehalten (gleiches Licht bei jedem Durchlauf).</td></tr>
+        <tr><td>Wetter</td><td>z. B. <code>FOG</code>, <code>SUNNY</code>, <code>RAIN</code>, <code>SNOW</code> – „unverändert“ lässt das aktuelle.</td></tr>
+        <tr><td>Jahreszeit</td><td>spring / summer / autumn / winter – oder „Kalender“.</td></tr>
+        <tr><td>Zeitlupe</td><td>0,05–1. Die ganze Szene (auch die Zeitleiste) läuft langsamer.</td></tr>
+        <tr><td>Tiere entfernen (m)</td><td>Räumt beim Abspielen den Umkreis: eigene Tiere werden gelöscht, fremde lokal ausgeblendet, Umgebungstiere abgeschaltet. 0 = aus.</td></tr>
+        <tr><td>HUD beim Abspielen aus</td><td>Blendet beim Abspielen alles aus.</td></tr>
+        <tr><td>Kinobalken</td><td>Schwarze Balken im Format 2,39 : 1. <strong>Sie werden mit aufgenommen</strong> – ausschalten, wenn du sie lieber im Schnitt setzt.</td></tr>
+    </table></div>
+    <p><strong>„Zeit &amp; Wetter jetzt setzen“</strong> stellt Uhrzeit, Wetter und Jahreszeit sofort auf dem Server ein
+        (beim Abspielen passiert das sowieso). <strong>„Szene hierher verschieben“</strong> versetzt die ganze Szene –
+        Darsteller, Wege, Punkte und Kamera – so, dass der erste Darsteller dort steht, wohin die Kamera schaut. Danach
+        bei jedem Darsteller <kbd>G</kbd> drücken.</p>
+</section>
+
+<section id="abspielen">
+    <h2>10 · Abspielen und Aufnahme</h2>
+    <h3>Probe</h3>
+    <ul>
+        <li><kbd>Leertaste</kbd> spielt ab dem Cursor ab und stoppt wieder, <kbd>Shift</kbd>+<kbd>Leertaste</kbd> von vorn.</li>
+        <li>Schleife: die Szene läuft immer wieder.</li>
+        <li>„Alle Darsteller auf den Anfang“ stellt alles auf Sekunde 0 zurück.</li>
+        <li>„Kamera folgt beim Spulen“ an: Beim Spulen springt die Kamera mit. Aus: Du kannst die Szene beim Spulen von
+            außen betrachten.</li>
+    </ul>
+    <h3>Aufnahme</h3>
+    <ol class="steps">
+        <li>Szene speichern.</li>
+        <li>Aufnahmeprogramm (z. B. OBS) vorbereiten und starten.</li>
+        <li><strong>Aufnahme</strong> (roter Knopf oder <kbd>Shift</kbd>+<kbd>R</kbd>): Baukasten und Mauszeiger
+            verschwinden, Countdown 3-2-1, die Szene läuft von vorn.</li>
+        <li>Am Ende bleibt das letzte Bild 1,5 s stehen, dann kommt der Baukasten zurück.</li>
+    </ol>
+    <div class="box">
+        <p><strong>Tipp:</strong> Den Countdown im Schnitt einfach wegschneiden. <kbd>H</kbd> blendet den Baukasten auch
+            ohne Aufnahme aus; die Taste <kbd>H</kbd> im Spiel (Tastenbelegung „liw_cine_ui“) holt ihn zurück.</p>
+    </div>
+</section>
+
+<section id="szenen">
+    <h2>11 · Szenen verwalten</h2>
+    <figure>
+        <img src="assets/cinematic/cine-szenen.png" alt="Dialog Szenen mit gespeicherten Szenen, Löschen, Playlist und Alle löschen" loading="lazy">
+        <figcaption>Der Dialog „Szenen“: Laden per Klick, Löschen, Playlist und Alle löschen.</figcaption>
+    </figure>
+    <ul>
+        <li><strong>Speichern</strong> (<kbd>Strg</kbd>+<kbd>S</kbd>) legt <code>scenes/&lt;id&gt;.json</code> auf dem Server an.
+            Bis zu 200 Szenen, je Datei höchstens 512 KB.</li>
+        <li><strong>Duplizieren</strong> speichert eine Kopie („… (Kopie)“) – gut für Varianten einer Einstellung.</li>
+        <li><strong>Export (JSON):</strong> Die Szene erscheint als Text zum Kopieren. <strong>„Alle Szenen“</strong>
+            exportiert alle gespeicherten Szenen in einem JSON.</li>
+        <li><strong>Import:</strong> JSON einfügen (<kbd>Strg</kbd>+<kbd>V</kbd>). Eine einzelne Szene wird geöffnet und muss
+            dann gespeichert werden; eine Datei mit mehreren Szenen wird gleich als neue Szenen gespeichert.</li>
+        <li><strong>Alle löschen</strong> fragt mit einem zweiten Klick nach.</li>
+    </ul>
+    <h3>Playlist</h3>
+    <p>Im Dialog „Szenen“ → <strong>Playlist</strong>: Szenen anhaken und eine Pause dazwischen wählen. Die Szenen
+        laufen nach Namen sortiert – nummeriere sie deshalb wie im Storyboard („01 …“, „02 …“, „13a …“).</p>
+    <ul>
+        <li><strong>Abspielen:</strong> jede Szene von vorn, der Baukasten bleibt sichtbar. Stopp oder <kbd>H</kbd> beendet.</li>
+        <li><strong>Aufnehmen:</strong> ein Countdown, dann alle Szenen am Stück ohne Baukasten – der ganze Trailer in
+            einer Aufnahme. <kbd>H</kbd> beendet.</li>
+        <li>Uhrzeit, Wetter und Jahreszeit kommen aus jeder Szene. Vorher muss die offene Szene gespeichert sein.</li>
+    </ul>
+    <h3>Das Trailer-Storyboard</h3>
+    <p>In <code>storyboard/trailer.json</code> liegt das Storyboard des Trailers als 21 fertige Rohszenen
+        (Beschreibung in <code>docs/research/TRAILER_STORYBOARD.md</code>). Inhalt kopieren, im Baukasten
+        <strong>Import</strong> – alle 21 Szenen sind gespeichert. Danach jede Szene laden, mit „Szene hierher
+        verschieben“ an den gewünschten Ort bringen, Darsteller mit <kbd>G</kbd> auf den Boden setzen und Kamera und
+        Schritte feinjustieren.</p>
+</section>
+
+<section id="beispiele">
+    <h2>12 · Beispiele</h2>
+
+    <h3>Beispiel 1: Reh trinkt am nebligen See (20 s)</h3>
+    <ol class="steps">
+        <li><code>/liw_cine</code>, mit gehaltener rechter Maustaste und <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> ans Seeufer fliegen.</li>
+        <li>Reiter <strong>Welt</strong>: Dauer <code>20</code>, Stunde <code>6</code>, Minute <code>10</code>, „Zeit anhalten“,
+            Wetter <code>FOG</code>, Jahreszeit <code>autumn</code>, Tiere entfernen <code>120</code>,
+            dann „Zeit &amp; Wetter jetzt setzen“.</li>
+        <li>Reiter <strong>Darsteller</strong>: „Weißwedelhirsch ♀“, Kamera aufs Ufer richten, Fadenkreuz-Knopf.
+            Mit Pfeiltasten und <kbd>,</kbd> <kbd>.</kbd> ausrichten, bis das Reh zum Wasser schaut; <kbd>G</kbd>.</li>
+        <li>Reiter <strong>Schritte</strong>: Animation am Cursor (0 s), Dauer <code>20</code>. Suche <code>drink base</code>,
+            Clip <code>amb_creature_mammal@world_deer_drinking@base / base</code>.</li>
+        <li>Phasen-Regler ziehen bis der Kopf im Wasser ist (z. B. <code>0,45</code>) → <strong>→ Start</strong>.</li>
+        <li>Modus <strong>Pendeln</strong>. Regler auf den tiefsten Punkt (<code>0,40</code>) → <strong>→ A</strong>,
+            kurz bevor der Kopf sich hebt (<code>0,70</code>) → <strong>→ B</strong>. Tempo <code>0,8</code>. Mit <kbd>T</kbd> testen.</li>
+        <li>Kamera: <kbd>Pos1</kbd>, schöne Totale suchen, <kbd>K</kbd>. Cursor auf 8 s, näher heran, mit dem Mausrad enger
+            zoomen, <kbd>K</kbd>. Im Reiter Kamera beim zweiten Keyframe Modus „Blick auf“ → Reh.</li>
+        <li><kbd>Leertaste</kbd> zur Probe, <kbd>Strg</kbd>+<kbd>S</kbd>, dann <kbd>Shift</kbd>+<kbd>R</kbd> für die Aufnahme.</li>
+    </ol>
+
+    <h3>Beispiel 2: Jagd über die Wiese (5 s, Kamera fährt seitlich mit)</h3>
+    <p>Aus dem Storyboard: Ein Wolf jagt einen Gabelbock, die Kamera fährt neben dem Wolf her.</p>
+<pre class="timeline"><code>Zeit        0s ─────────────────────────────── 5s
+Kamera      ◆ Folgen Wolf, Versatz 8/0/1,2 ──── ◆ Folgen Wolf, Versatz 8/2/1,2   (Linear)
+Gabelbock   [ Fliehen vor Wolf, 80 m ─────────────────── ]
+Wolf        [ Folgen Gabelbock, 2,5 m, Lauf ───────────── ]</code></pre>
+    <ol class="steps">
+        <li>Gabelbock und 18 m dahinter einen Wolf platzieren.</li>
+        <li>Gabelbock: „Fliehen“, 0–5 s, vor Wolf, Abstand <code>80</code>.</li>
+        <li>Wolf: „Folgen“, 0–5 s, Ziel Gabelbock, Abstand <code>2,5</code>, Gangart Lauf.</li>
+        <li>Zwei Keyframes bei 0 s und 5 s, beide Modus „Folgen“ → Wolf, Übergang „Linear“. Versatz beim ersten
+            <code>8 / 0 / 1,2</code> (8 m rechts), beim zweiten <code>8 / 2 / 1,2</code> – die Kamera schiebt sich langsam nach vorn.</li>
+        <li>Handkamera <code>0,25</code> für etwas Leben. Welt: 10:00 Uhr, Sommer, Kinobalken.</li>
+    </ol>
+
+    <h3>Beispiel 3: Wolf heult auf dem Felsen bei Vollmond</h3>
+    <ul>
+        <li>Darsteller <code>mp_a_c_wolf_01</code> (legendärer Wolf) auf den Felsen, Blick zum Mond.</li>
+        <li>Welt: Stunde <code>23</code>, Zeit anhalten, Wetter <code>SUNNY</code> (klarer Himmel), Zeitlupe <code>0,7</code>.</li>
+        <li>Schritte: Szenario <code>WORLD_ANIMAL_WOLF_HOWLING</code> 0–10 s, dazu Laut <code>howl</code> bei 1 s und 6 s.</li>
+        <li>Kamera: von unten nach oben am Felsen hoch, Modus „Blick auf“ → Wolf, Übergang „Weich rein/raus“.</li>
+    </ul>
+
+    <h3>Beispiel 4: Rudel läuft den Hügel hinauf</h3>
+    <ul>
+        <li>Vier Wölfe nebeneinander am Hangfuß platzieren.</li>
+        <li>Je Wolf ein „Gehe zu“ mit Gangart Lauf und Punkten bis zur Kuppe – <strong>versetzt</strong> starten:
+            Alpha bei 0 s, die anderen bei 0,4 / 0,7 / 1,1 s. So wirkt das Rudel natürlich statt im Gleichschritt.</li>
+        <li>Mit <kbd>Strg</kbd>+<kbd>C</kbd> / <kbd>Strg</kbd>+<kbd>V</kbd> den Schritt des Alphas kopieren und bei den anderen
+            einfügen, dann nur die Punkte leicht versetzen.</li>
+        <li>Kamera: tief am Boden vor dem Rudel, Modus „Blick auf Punkt“ auf die Kuppe – die Tiere laufen ins Bild.</li>
+    </ul>
+
+    <h3>Beispiel 5: Schnitt innerhalb einer Szene</h3>
+    <p>Totale und Nahaufnahme ohne zweite Szene: Keyframe A (Totale) bei 0 s, Keyframe B (Totale, leicht bewegt) bei
+        4 s, Übergang von B auf <strong>„Schnitt (Sprung)“</strong>, Keyframe C (Nahaufnahme) bei 4,1 s. Bei 4 s springt
+        das Bild hart auf die Nahaufnahme.</p>
+</section>
+
+<section id="format">
+    <h2>13 · Szenen-Datei (JSON)</h2>
+    <p>Der Export und die Dateien in <code>scenes/</code> haben dieses Format. Der Server prüft jede Szene beim
+        Speichern: Unbekannte Felder fallen weg, Zahlen werden begrenzt, Verweise auf fehlende Darsteller entfernt.</p>
+<pre><code>{
+  "v": 1,
+  "name": "04 Jagd über die Wiese",
+  "duration": 5,
+  "world": { "hour": 10, "minute": 0, "freeze": true, "weather": "", "season": "summer",
+             "timeScale": 1.0, "hideHud": true, "letterbox": true, "clearRadius": 150 },
+  "actors": [
+    { "id": "prey", "name": "Gabelbock", "model": "a_c_pronghorn_01", "species": "pronghorn",
+      "variant": -1, "scale": 1.0, "pos": { "x": -707.57, "y": 683.43, "z": 60.19 }, "h": 0 },
+    { "id": "hero", "name": "Held (Wolf)", "model": "A_C_Wolf", "species": "wolf",
+      "variant": -1, "scale": 1.0, "pos": { "x": -707.57, "y": 665.43, "z": 60.19 }, "h": 0 }
+  ],
+  "steps": [
+    { "id": "s1", "actor": "prey", "type": "flee",   "t": 0, "d": 5, "other": "hero", "dist": 80 },
+    { "id": "s2", "actor": "hero", "type": "follow", "t": 0, "d": 5, "other": "prey", "dist": 2.5, "speed": "run" }
+  ],
+  "cam": {
+    "keys": [
+      { "id": "k1", "t": 0, "x": -693.57, "y": 673.43, "z": 61.69, "rx": 0, "ry": 0, "rz": 0, "fov": 45,
+        "ease": "linear", "mode": "follow", "target": "hero", "off": { "x": 8, "y": 0, "z": 1.2 } },
+      { "id": "k2", "t": 5, "x": -693.57, "y": 723.43, "z": 61.69, "rx": 0, "ry": 0, "rz": 0, "fov": 45,
+        "ease": "linear", "mode": "follow", "target": "hero", "off": { "x": 8, "y": 2, "z": 1.2 } }
+    ],
+    "shake": 0.25, "shakeFreq": 1, "dof": false
+  }
+}</code></pre>
+    <h3>Felder der Schritte</h3>
+    <div class="table-box"><table>
+        <tr><th>type</th><th>Zusätzliche Felder</th></tr>
+        <tr><td><code>wait</code></td><td>–</td></tr>
+        <tr><td><code>move</code></td><td><code>points</code> (Liste von x/y/z), <code>speed</code> walk | trot | run, <code>nav</code> true/false</td></tr>
+        <tr><td><code>face</code></td><td><code>target</code> point | actor | camera, <code>pos</code>, <code>other</code></td></tr>
+        <tr><td><code>anim</code></td><td><code>dict</code>, <code>anim</code>, <code>mode</code> once | loop | pingpong | hold, <code>from</code>, <code>to</code>, <code>a</code>, <code>b</code>, <code>hold</code> (Phasen 0–1), <code>speed</code>, <code>blendIn</code>, <code>blendOut</code></td></tr>
+        <tr><td><code>scenario</code></td><td><code>name</code></td></tr>
+        <tr><td><code>follow</code></td><td><code>other</code>, <code>dist</code>, <code>speed</code></td></tr>
+        <tr><td><code>attack</code></td><td><code>other</code>, <code>real</code> (true = echter Kampf)</td></tr>
+        <tr><td><code>flee</code></td><td><code>other</code>, <code>dist</code></td></tr>
+        <tr><td><code>vocal</code></td><td><code>name</code></td></tr>
+        <tr><td><code>scale</code></td><td><code>value</code></td></tr>
+        <tr><td><code>teleport</code></td><td><code>pos</code>, <code>h</code></td></tr>
+    </table></div>
+    <p>Allen gemeinsam: <code>id</code>, <code>actor</code>, <code>t</code> (Start in s), <code>d</code> (Dauer in s).
+        Kamera-Keyframes: <code>t</code>, Position <code>x y z</code>, Rotation <code>rx ry rz</code>, <code>fov</code>,
+        <code>ease</code> (inout | in | out | linear | cut), <code>mode</code> (free | look | point | follow),
+        <code>target</code> (Darsteller), <code>pt</code> (Blickpunkt), <code>off</code> (Versatz bei follow).
+        Mehrere Szenen in einer Datei: <code>{ "format": "liw-cinematic-scenes", "v": 1, "scenes": [ … ] }</code>.</p>
+</section>
+
+<section id="einstellungen">
+    <h2>14 · Einstellungen</h2>
+    <p>In <code>config.lua</code> der Resource oder im Einstellungen-Reiter des Admin-Menüs:</p>
+    <div class="table-box"><table>
+        <tr><th>Wert</th><th>Bedeutung</th><th>Standard</th></tr>
+        <tr><td><code>Ace</code></td><td>Recht für das Werkzeug (zusätzlich <code>command.liwdev</code>)</td><td><code>liw.cinematic</code></td></tr>
+        <tr><td><code>Limits</code></td><td>Darsteller, Schritte, Keyframes, Wegpunkte, Länge (s), Dateigröße (KB), Anzahl Szenen</td><td>24 / 400 / 120 / 32 / 600 / 512 / 200</td></tr>
+        <tr><td><code>Camera</code></td><td>Fluggeschwindigkeit (normal, Shift, Alt), Maus-Empfindlichkeit, FOV-Grenzen, Pfadvorschau</td><td>0,25 / 1,5 / 0,04 m pro Bild, FOV 45 (5–110)</td></tr>
+        <tr><td><code>Actors</code></td><td>Tempo der Gangarten, Ankunftsabstand, Höhe der Namensschilder, Takt der Beruhigung</td><td>Schritt 1, Trab 2, Lauf 3; 1 m; 500 ms</td></tr>
+        <tr><td><code>Anim</code></td><td>Flags des Clips, <code>timeInSeconds</code>, Wartezeit beim Start, Takt gespielter Bisse</td><td>1, false, 500 ms, 1300 ms</td></tr>
+        <tr><td><code>Player</code></td><td>Eigenes Tier: mitfliegen ab Abstand, Schonfrist, Rückkehr beim Schließen</td><td>60 m, 60 s, an</td></tr>
+        <tr><td><code>Playback</code></td><td>Countdown, Halten am Ende, Zeitlupe für die Zeitleiste, UI-Takt, Pause der Playlist</td><td>3 s, 1500 ms, an, 50 ms, 600 ms</td></tr>
+        <tr><td><code>World.weatherTransition</code></td><td>Überblendung beim Wetterwechsel in Sekunden</td><td>0</td></tr>
+        <tr><td><code>Keys.ui</code></td><td>Taste, die den ausgeblendeten Baukasten zurückholt (erst nach Neustart)</td><td>H</td></tr>
+        <tr><td><code>Scenarios</code>, <code>Vocals</code></td><td>Vorschläge in den Listen (freier Text geht trotzdem)</td><td>–</td></tr>
+        <tr><td><code>ExtraModels</code></td><td>Zusätzliche Modelle in der Darstellerliste</td><td>legendäre Tiere</td></tr>
+        <tr><td><code>AnimGroups</code></td><td>Welche Animationsgruppen je Art zuerst erscheinen</td><td>–</td></tr>
+    </table></div>
+</section>
+
+<section id="tasten">
+    <h2>15 · Alle Tasten</h2>
+    <p><kbd>F1</kbd> zeigt die Übersicht auch im Baukasten.</p>
+    <div class="table-box"><table>
+        <tr><th>Taste</th><th>Funktion</th></tr>
+        <tr><td><kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd>, <kbd>Q</kbd> / <kbd>E</kbd></td><td>Kamera fliegen, runter / hoch</td></tr>
+        <tr><td><kbd>Shift</kbd> / <kbd>Alt</kbd></td><td>Schnell / langsam</td></tr>
+        <tr><td><kbd>Rechte Maustaste</kbd> halten</td><td>Umsehen</td></tr>
+        <tr><td><kbd>Mausrad</kbd> / <kbd>Alt</kbd>+<kbd>Mausrad</kbd></td><td>FOV / Neigung</td></tr>
+        <tr><td><kbd>Leertaste</kbd> / <kbd>Shift</kbd>+<kbd>Leertaste</kbd></td><td>Abspielen/Stopp ab Cursor / von vorn</td></tr>
+        <tr><td><kbd>J</kbd> / <kbd>L</kbd> (<kbd>Shift</kbd>: 1 s), <kbd>Pos1</kbd> / <kbd>Ende</kbd></td><td>Cursor -/+ 0,1 s, Anfang / Ende</td></tr>
+        <tr><td><kbd>K</kbd></td><td>Kamera-Keyframe am Cursor</td></tr>
+        <tr><td>Pfeiltasten (<kbd>Shift</kbd>: 1 m), <kbd>Bild ↑</kbd> / <kbd>Bild ↓</kbd></td><td>Darsteller verschieben, Höhe</td></tr>
+        <tr><td><kbd>,</kbd> <kbd>.</kbd> (<kbd>Shift</kbd>: 45°)</td><td>Darsteller drehen</td></tr>
+        <tr><td><kbd>G</kbd> / <kbd>P</kbd> / <kbd>F</kbd></td><td>Darsteller auf den Boden / zum Fadenkreuz / Kamera zum Darsteller</td></tr>
+        <tr><td><kbd>T</kbd></td><td>Animationsschritt testen</td></tr>
+        <tr><td><kbd>Strg</kbd>+<kbd>C</kbd> / <kbd>V</kbd> / <kbd>D</kbd>, <kbd>Entf</kbd></td><td>Schritt kopieren / einfügen / duplizieren, löschen</td></tr>
+        <tr><td><kbd>Strg</kbd>+<kbd>Z</kbd> / <kbd>Y</kbd> / <kbd>S</kbd></td><td>Rückgängig / wiederholen / speichern</td></tr>
+        <tr><td><kbd>1</kbd>–<kbd>4</kbd>, <kbd>Tab</kbd></td><td>Reiter wechseln, einklappen</td></tr>
+        <tr><td><kbd>B</kbd> / <kbd>H</kbd> / <kbd>Shift</kbd>+<kbd>R</kbd></td><td>Kinobalken / Baukasten aus / Aufnahme</td></tr>
+        <tr><td><kbd>Esc</kbd></td><td>Punktwahl abbrechen, Dialog schließen, Auswahl aufheben</td></tr>
+        <tr><td><kbd>H</kbd> (im Spiel)</td><td>Ausgeblendeten Baukasten zurückholen</td></tr>
+    </table></div>
+</section>
+
+<section id="probleme">
+    <h2>16 · Probleme und Grenzen</h2>
+    <div class="table-box"><table>
+        <tr><th>Problem</th><th>Lösung</th></tr>
+        <tr><td>„/liw_cine“ tut nichts</td><td>Fehlendes Recht: <code>add_ace … liw.cinematic allow</code> oder <code>command.liwdev</code>. Läuft die Resource (<code>ensure liw_cinematic</code>)?</td></tr>
+        <tr><td>Tier schwebt oder steckt im Boden</td><td><kbd>G</kbd> drücken. Nach „Szene hierher verschieben“ und nach einem Import bei jedem Darsteller.</td></tr>
+        <tr><td>Spulen zeigt den falschen Frame</td><td>In den Einstellungen <code>Anim.timeInSeconds</code> umschalten (das Spiel erwartet dann Sekunden statt der Phase).</td></tr>
+        <tr><td>Fremde Tiere laufen durchs Bild</td><td>Welt → „Tiere entfernen“ auf 100–150 m.</td></tr>
+        <tr><td>Fell wechselt bei jedem Laden</td><td>Fell nicht auf -1, sondern auf eine feste Nummer stellen.</td></tr>
+        <tr><td>Andere Spieler sehen die Szene nicht</td><td>So gewollt: Darsteller sind lokal. Nur Uhrzeit, Wetter und Jahreszeit gelten für alle.</td></tr>
+        <tr><td>Szenario passiert nichts</td><td>Nicht jedes Szenario passt zu jeder Art. Alternativ eine Animation mit Modus Schleife nehmen.</td></tr>
+        <tr><td>Playlist startet nicht</td><td>Erst die offene Szene speichern.</td></tr>
+    </table></div>
+    <h3>Im Spiel noch nicht bestätigt</h3>
+    <ul>
+        <li>Ob das Setzen des Frames die Phase (0–1) oder Sekunden erwartet – daher der Schalter <code>timeInSeconds</code>.</li>
+        <li>Die Tiefenschärfe.</li>
+        <li>Das Abschalten der Umgebungstiere und -menschen, einzelne Szenario-Namen und Modelle der Vorschlagslisten.</li>
+    </ul>
+</section>
+
+</main>
+</div>
+
+<footer>
+    <div class="wrap">
+        <span>© Life In Wilderness</span>
+        <nav>
+            <a href="tasten.html" data-s="nav_keys"></a>
+            <a href="handbuch.html" data-s="nav_handbook"></a>
+            <a href="index.html#top" data-s="imprint"></a>
+            <a href="index.html#top" data-s="privacy"></a>
+            <a href="index.html#einstieg" data-discord>Discord</a>
+        </nav>
+        <small data-s="disclaimer"></small>
+    </div>
+</footer>
+<script src="assets/site.js"></script>
+<script>LiwSite.apply('de');</script>
+</body>
+</html>
