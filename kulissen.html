@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hinter den Kulissen · Life In Wilderness</title>
+<meta name="description" content="Interaktive Simulationen der Spielsysteme von Life In Wilderness. / Interactive simulations of the game systems of Life In Wilderness.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%2314100c' stroke='%23c8a35a'/%3E%3Ctext x='16' y='20.5' font-family='Georgia' font-size='11' text-anchor='middle' fill='%23c8a35a'%3ELiW%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+/* Layout: a field journal of the machinery - a row of system tabs, then one working model at a time on a dark plate. */
+.scenes { width: min(1180px, 100% - var(--gutter-l) - var(--gutter-r)); margin: 0 auto; padding-top: 1rem; display: flex; flex-direction: column; gap: 1.5rem; }
+.systems { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 13.5rem), 1fr)); gap: 0.6rem; }
+.systems button { display: grid; gap: 0.15rem; text-align: left; font: inherit; color: var(--ink); background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 0.7rem 0.9rem; cursor: pointer; min-width: 0; }
+.systems button strong { font-family: var(--old); font-weight: normal; font-size: 1.15rem; line-height: 1.2; }
+.systems button span { color: var(--muted); font-size: 0.95rem; line-height: 1.3; }
+.systems button[aria-selected="true"] { border-color: var(--gold); background: var(--panel-2); box-shadow: inset 0 0 0 1px var(--line-gold); }
+.systems button:hover { border-color: var(--line-gold); }
+.stage-head { display: grid; gap: 0.4rem; max-width: 52rem; }
+.stage-head h2 { font-size: clamp(1.8rem, 3.6vw, 2.6rem); letter-spacing: 0.02em; text-wrap: balance; }
+.stage-head p { margin: 0; color: var(--soft); }
+.stage { min-height: 20rem; }
+.disclaimer { border-top: 1px solid var(--line); padding-top: 1rem; color: var(--muted); font-size: 1rem; max-width: 52rem; }
+
+/* Shared parts of every simulation (assets/kulissen/*.js). */
+.sim [hidden] { display: none !important; }
+.sim { display: grid; gap: 1rem; }
+.sim-grid { display: grid; grid-template-columns: minmax(0, 1fr) 19rem; gap: 1rem; align-items: start; }
+@media (max-width: 860px) { .sim-grid { grid-template-columns: minmax(0, 1fr); } }
+.sim-view { position: relative; background: #0b0a08; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; min-width: 0; }
+.sim-view canvas { display: block; width: 100%; height: auto; }
+.sim-side { display: grid; gap: 0.8rem; min-width: 0; }
+.sim-box { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 0.8rem 1rem; display: grid; gap: 0.5rem; min-width: 0; }
+.sim-box h3 { font-family: var(--display); font-size: 0.85rem; letter-spacing: 0.16em; text-transform: lowercase; color: var(--gold); }
+.sim-row { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
+.sim-btn { font: 600 1rem var(--body); color: #14110c; background: var(--gold); border: 0; border-radius: 999px; padding: 0.35rem 1rem; cursor: pointer; }
+.sim-btn.ghost { color: var(--ink); background: transparent; border: 1px solid var(--line-gold); }
+.sim-btn[aria-pressed="true"] { background: var(--gold); color: #14110c; }
+.sim-field { display: grid; gap: 0.15rem; font-size: 1rem; color: var(--soft); }
+.sim-field > span { display: flex; justify-content: space-between; gap: 0.5rem; }
+.sim-field output, .sim-num { font-variant-numeric: tabular-nums; color: var(--ink); }
+.sim-field input[type=range] { width: 100%; accent-color: var(--gold); }
+.sim-field select { font: inherit; color: var(--ink); background: var(--cap-off); border: 1px solid var(--cap-edge); border-radius: 8px; padding: 0.2rem 0.4rem; }
+.sim-check { display: flex; gap: 0.5rem; align-items: center; font-size: 1rem; color: var(--soft); cursor: pointer; }
+.sim-check input { accent-color: var(--gold); }
+.sim-stat { display: flex; justify-content: space-between; gap: 0.75rem; font-size: 1rem; border-top: 1px dotted var(--line); padding-top: 0.3rem; }
+.sim-stat:first-of-type { border-top: 0; }
+.sim-stat b { font-weight: 600; font-variant-numeric: tabular-nums; }
+.sim-legend { display: flex; flex-wrap: wrap; gap: 0.3rem 1.1rem; font-size: 0.95rem; color: var(--muted); }
+.sim-legend span { display: inline-flex; align-items: center; gap: 0.4rem; }
+.sim-legend i { width: 0.8rem; height: 0.8rem; border-radius: 3px; background: var(--c); flex: none; }
+.sim-note { color: var(--muted); font-size: 1rem; max-width: 52rem; margin: 0; }
+.sim-note b { color: var(--soft); font-weight: 600; }
+.sim-tag { display: inline-block; font-size: 0.8rem; letter-spacing: 0.06em; padding: 0.05rem 0.5rem; border-radius: 999px; border: 1px solid var(--line-gold); color: var(--gold); }
+@media (prefers-reduced-motion: no-preference) { .systems button { transition: border-color 0.15s, background-color 0.15s; } }
+</style>
+</head>
+<body>
+<header class="bar" id="bar">
+    <a class="mark" href="index.html"><span>LiW</span>Life In Wilderness</a>
+    <button type="button" class="menu" aria-expanded="false" aria-controls="nav" data-s="nav_menu"></button>
+    <nav id="nav">
+        <a href="index.html#spiel" data-s="nav_game"></a>
+        <a href="index.html#arten" data-s="nav_species"></a>
+        <a href="index.html#einstieg" data-s="nav_join"></a>
+        <a href="index.html#regeln" data-s="nav_rules"></a>
+        <a href="index.html#entwicklung" data-s="nav_dev"></a>
+        <a href="tasten.html" data-s="nav_keys"></a>
+        <a href="handbuch.html" data-s="nav_handbook"></a>
+        <a href="kulissen.html" data-s="nav_scenes" aria-current="page"></a>
+        <a href="index.html#faq">FAQ</a>
+    </nav>
+    <div class="lang" role="group" aria-label="Sprache / Language">
+        <button type="button" id="lang-de" data-lang="de">DE</button>
+        <button type="button" id="lang-en" data-lang="en">EN</button>
+    </div>
+    <a class="discord" href="index.html#einstieg" data-discord>Discord</a>
+</header>
+
+<section class="page-hero">
+    <div class="moon" aria-hidden="true"></div>
+    <svg class="scene" viewBox="0 0 1600 420" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+        <path d="M0 150 L110 100 L230 135 L360 60 L480 120 L600 80 L740 135 L880 50 L1010 110 L1150 70 L1290 125 L1420 85 L1600 125 V420 H0z" fill="#3a3a3c" opacity="0.55"/>
+        <path d="M0 230 L120 195 L260 222 L400 170 L540 212 L700 182 L860 225 L1020 178 L1180 215 L1340 186 L1480 220 L1600 195 V420 H0z" fill="#2c2721"/>
+        <path d="M0 320 L30 280 L45 296 L60 255 L80 292 L100 264 L120 305 L150 272 L170 300 L200 250 L225 296 L260 284 L300 312 L360 300 L430 320 L520 308 L600 328 L700 316 L800 332 L900 318 L1000 328 L1080 312 L1130 280 L1150 296 L1175 248 L1200 292 L1225 260 L1250 300 L1280 268 L1305 304 L1340 276 L1370 308 L1420 292 L1480 316 L1540 300 L1600 312 V420 H0z" fill="#1a1611"/>
+        <path d="M0 390 C200 374 400 386 600 378 C800 370 1000 390 1200 378 C1400 370 1500 382 1600 375 V420 H0z" fill="#0f0d0b"/>
+    </svg>
+    <div class="wrap">
+        <div class="eyebrow" data-t="eyebrow"></div>
+        <h1 data-t="title"></h1>
+        <p class="lede" data-t="intro"></p>
+    </div>
+</section>
+<main class="scenes">
+  <div class="systems" id="systems" role="tablist"></div>
+  <section aria-live="polite">
+    <div class="stage-head">
+      <div class="eyebrow" id="stage-eyebrow"></div>
+      <h2 id="stage-title"></h2>
+      <p id="stage-lede"></p>
+    </div>
+  </section>
+  <div class="stage" id="stage"></div>
+  <p class="disclaimer" data-t="disclaimer"></p>
+</main>
+<footer>
+    <div class="wrap">
+        <span>© Life In Wilderness</span>
+        <nav>
+            <a href="tasten.html" data-s="nav_keys"></a>
+            <a href="handbuch.html" data-s="nav_handbook"></a>
+            <a href="kulissen.html" data-s="nav_scenes"></a>
+            <a href="index.html#top" data-s="imprint"></a>
+            <a href="index.html#top" data-s="privacy"></a>
+            <a href="index.html#einstieg" data-discord>Discord</a>
+        </nav>
+        <small data-s="disclaimer"></small>
+    </div>
+</footer>
+
+<script src="assets/site.js"></script>
+<script src="assets/kulissen/index.js"></script>
+<script>
+// Behind the scenes: every simulation file registers itself in window.LIW_SIMS
+// ({ id, order, title, teaser, lede, mount(root, lang) -> { destroy() } }); one is mounted at a time.
+(() => {
+  const TEXT = {
+    de: {
+      eyebrow: 'Life In Wilderness · Hinter den Kulissen', title: 'Hinter den Kulissen',
+      intro: 'Wie funktionieren Reviere, Vererbung oder Kämpfe eigentlich? Hier laufen die Systeme des Servers als kleine Simulationen – mit den Werten, die auch im Spiel gelten.',
+      disclaimer: 'Die Simulationen rechnen mit den aktuellen Einstellungen des Servers, vereinfachen aber das Drumherum: keine echte Spielwelt, keine anderen Spieler. Werte können sich mit Updates ändern; im Zweifel gilt, was im Spiel passiert.',
+      system: 'System', loading: 'Wird geladen …',
+    },
+    en: {
+      eyebrow: 'Life In Wilderness · Behind the scenes', title: 'Behind the scenes',
+      intro: 'How do territories, inheritance or fights actually work? Here the systems of the server run as small simulations – with the same values as in the game.',
+      disclaimer: 'The simulations use the server\'s current settings but simplify everything around them: no real game world, no other players. Values can change with updates; when in doubt, what happens in the game counts.',
+      system: 'System', loading: 'Loading …',
+    },
+  };
+  let lang = (navigator.language || 'de').toLowerCase().startsWith('de') ? 'de' : 'en';
+  try { const saved = localStorage.getItem('liw_lang'); if (saved === 'en' || saved === 'de') lang = saved; } catch (e) { /* no storage */ }
+  const $ = (id) => document.getElementById(id);
+  let sims = [], current = null, mounted = null;
+
+  function loadFiles() {
+    return (window.LIW_SIM_FILES || []).reduce((p, file) => p.then(() => new Promise((resolve) => {
+      const s = document.createElement('script');
+      s.src = `assets/kulissen/${file}`;
+      s.onload = resolve; s.onerror = resolve;   // a missing file is skipped
+      document.body.append(s);
+    })), Promise.resolve());
+  }
+
+  function renderTabs() {
+    $('systems').replaceChildren(...sims.map((sim) => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.role = 'tab'; b.id = `tab-${sim.id}`;
+      b.setAttribute('aria-selected', sim.id === current ? 'true' : 'false');
+      const strong = document.createElement('strong'); strong.textContent = sim.title[lang];
+      const span = document.createElement('span'); span.textContent = sim.teaser[lang];
+      b.append(strong, span);
+      b.addEventListener('click', () => { if (location.hash !== `#${sim.id}`) location.hash = sim.id; else show(sim.id); });
+      return b;
+    }));
+  }
+
+  function show(id) {
+    const sim = sims.find((s) => s.id === id) || sims[0];
+    if (!sim) return;
+    if (mounted) { try { mounted.destroy && mounted.destroy(); } catch (e) { /* ignore */ } mounted = null; }
+    current = sim.id;
+    renderTabs();
+    $('stage-eyebrow').textContent = `${TEXT[lang].system} · ${sim.title[lang]}`;
+    $('stage-title').textContent = sim.title[lang];
+    $('stage-lede').textContent = sim.lede[lang];
+    const root = $('stage');
+    root.replaceChildren();
+    root.className = `stage sim sim-${sim.id}`;
+    try { mounted = sim.mount(root, lang) || null; } catch (e) { console.error(e); root.textContent = String(e); }
+  }
+
+  function render() {
+    document.documentElement.lang = lang;
+    LiwSite.apply(lang);
+    document.querySelectorAll('[data-t]').forEach((el) => { el.innerHTML = TEXT[lang][el.dataset.t]; });
+    document.querySelectorAll('.lang button').forEach((b) => b.setAttribute('aria-pressed', b.dataset.lang === lang ? 'true' : 'false'));
+    document.title = `${TEXT[lang].title} · Life In Wilderness`;
+    if (sims.length) show(current || location.hash.slice(1));
+  }
+
+  document.querySelectorAll('.lang button').forEach((b) => b.addEventListener('click', () => {
+    lang = b.dataset.lang;
+    try { localStorage.setItem('liw_lang', lang); } catch (e) { /* no storage */ }
+    render();
+  }));
+  window.addEventListener('hashchange', () => show(location.hash.slice(1)));
+
+  $('stage').textContent = TEXT[lang].loading;
+  render();
+  loadFiles().then(() => {
+    sims = (window.LIW_SIMS || []).slice().sort((a, b) => a.order - b.order);
+    show(location.hash.slice(1));
+  });
+})();
+</script>
+</body>
+</html>

@@ -119,6 +119,7 @@ main section { padding: 6.5rem 0 0; }
 
 /* Roadmap */
 .road { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+.dev-more { margin: 1.5rem 0 0; display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1rem; color: var(--soft); }
 .phase { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.2rem; position: relative; }
 .phase::before { content: ''; display: block; height: 4px; border-radius: 4px; background: rgba(239, 231, 216, 0.1); margin-bottom: 1rem; }
 .phase.done::before { background: var(--moss); }
@@ -175,6 +176,7 @@ main section { padding: 6.5rem 0 0; }
         <a href="#entwicklung" data-s="nav_dev"></a>
         <a href="tasten.html" data-s="nav_keys"></a>
         <a href="handbuch.html" data-s="nav_handbook"></a>
+        <a href="kulissen.html" data-s="nav_scenes"></a>
         <a href="#faq">FAQ</a>
     </nav>
     <div class="lang" role="group" aria-label="Sprache / Language">
@@ -332,6 +334,7 @@ main section { padding: 6.5rem 0 0; }
             <div class="phase"><span class="tag" data-t="ph_planned"></span><h3 data-t="ph3_h"></h3><p data-t="ph3"></p></div>
             <div class="phase"><span class="tag" data-t="ph_planned"></span><h3 data-t="ph4_h"></h3><p data-t="ph4"></p></div>
         </div>
+        <p class="dev-more"><span data-t="dev_more"></span> <a class="btn" href="kulissen.html" data-t="cta_scenes"></a></p>
     </section>
 
     <section id="faq" aria-labelledby="faq-title">
@@ -361,6 +364,7 @@ main section { padding: 6.5rem 0 0; }
         <nav>
             <a href="tasten.html" data-s="nav_keys"></a>
             <a href="handbuch.html" data-s="nav_handbook"></a>
+            <a href="kulissen.html" data-s="nav_scenes"></a>
             <a href="#top" data-s="imprint"></a>
             <a href="#top" data-s="privacy"></a>
             <a href="#einstieg" data-discord>Discord</a>
@@ -410,7 +414,8 @@ main section { padding: 6.5rem 0 0; }
         de: {
             species_pick: 'Art auswählen', copy: 'kopieren', copied: 'kopiert ✓', closing_title: 'Die Wildnis wartet.',
             img_credit: 'Bilder: RedM Forge (redm-forge.com)',
-            cta_keys: 'Tastenbelegung ansehen', cta_handbook: 'Handbuch lesen',
+            cta_keys: 'Tastenbelegung ansehen', cta_handbook: 'Handbuch lesen', cta_scenes: 'Hinter die Kulissen schauen',
+            dev_more: 'Wie die Systeme unter der Haube rechnen, zeigen interaktive Simulationen.',
             hero_eyebrow: 'RedM-Roleplay-Server',
             hero_lede: 'Kein Mensch, kein Revolver, keine Stadt. Du bist ein Tier in der Wildnis von Red Dead Redemption 2 – und musst überleben.',
             cta_discord: 'Discord beitreten', cta_join: 'So kommst du rein', cta_connect: 'Verbinden',
@@ -474,7 +479,8 @@ main section { padding: 6.5rem 0 0; }
         en: {
             species_pick: 'Pick a species', copy: 'copy', copied: 'copied ✓', closing_title: 'The wild is waiting.',
             img_credit: 'Pictures: RedM Forge (redm-forge.com)',
-            cta_keys: 'See the key bindings', cta_handbook: 'Read the handbook',
+            cta_keys: 'See the key bindings', cta_handbook: 'Read the handbook', cta_scenes: 'Look behind the scenes',
+            dev_more: 'Interactive simulations show how the systems work under the hood.',
             hero_eyebrow: 'RedM roleplay server',
             hero_lede: 'No humans, no revolvers, no towns. You are an animal in the wilderness of Red Dead Redemption 2 – and you have to survive.',
             cta_discord: 'Join the Discord', cta_join: 'How to join', cta_connect: 'Connect',
