@@ -142,7 +142,7 @@ window.LIW_HANDBOOK.push({
 <li>Bei Ruhe von 10 oder weniger kannst du gar nicht mehr sprinten.</li>
 <li>Überfressen, Krankheiten und hohes Alter bremsen die Erholung; das Attribut <strong>Ausdauer</strong>, Fähigkeiten und manche Rudel- und Herdenfähigkeiten beschleunigen sie (<a href="#progress">Fortschritt</a>).</li>
 </ul>
-<div class="hb-tip">Wolf und Kojote haben das Heulen auf der <kbd>Feststelltaste</kbd>: Es füllt dir und deinem Rudel in der Nähe sofort einen Teil der Ausdauer auf (<a href="#combat-special">Sonderfähigkeit</a>).</div>`,
+<div class="hb-tip">Wolf und Kojote haben das Heulen auf der <kbd>Tab</kbd>: Es füllt dir und deinem Rudel in der Nähe sofort einen Teil der Ausdauer auf (<a href="#combat-special">Sonderfähigkeit</a>).</div>`,
             en: `<p>You need stamina to sprint and for every <a href="#combat-attacks">combat action</a> (attacks, dodging, abilities). If it is too low you get "You are out of breath." and the action fails.</p>
 <ul>
 <li>It recharges on its own – three times as fast lying down (<kbd>Ctrl</kbd>).</li>
@@ -150,7 +150,7 @@ window.LIW_HANDBOOK.push({
 <li>With rest at 10 or below you cannot sprint at all.</li>
 <li>Overeating, diseases and old age slow the recovery; the <strong>Stamina</strong> attribute, skills and some pack and herd abilities speed it up (<a href="#progress">Progress</a>).</li>
 </ul>
-<div class="hb-tip">Wolf and coyote have the howl on <kbd>Caps Lock</kbd>: it instantly refills part of the stamina of you and your pack nearby (<a href="#combat-special">Special ability</a>).</div>`,
+<div class="hb-tip">Wolf and coyote have the howl on <kbd>Tab</kbd>: it instantly refills part of the stamina of you and your pack nearby (<a href="#combat-special">Special ability</a>).</div>`,
         },
         {
             id: 'needs-temperature',

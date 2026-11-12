@@ -82,7 +82,7 @@ window.LIW_HANDBOOK.push({
             de: `<p>Unten rechts stehen bis zu drei Kacheln, jeweils mit ihrer Taste darunter:</p>
 <ul>
 <li><b>Sinne</b> · <kbd>V</kbd> (siehe <a href="#senses">Sinne</a>)</li>
-<li><b>Sonderfähigkeit</b> · <kbd>Feststelltaste</kbd>, die besondere Attacke deiner Art (siehe <a href="#combat">Kampf</a>)</li>
+<li><b>Sonderfähigkeit</b> · <kbd>Tab</kbd>, die besondere Attacke deiner Art (siehe <a href="#combat">Kampf</a>)</li>
 <li><b>Zweite Fähigkeit</b> · <kbd>X</kbd>, erscheint erst, wenn du den passenden Art-Skill gelernt hast (siehe <a href="#progress">Fortschritt</a>)</li>
 </ul>
 <table class="hb-table">
@@ -97,7 +97,7 @@ window.LIW_HANDBOOK.push({
             en: `<p>At the bottom right there are up to three tiles, each with its key below:</p>
 <ul>
 <li><b>Senses</b> · <kbd>V</kbd> (see <a href="#senses">Senses</a>)</li>
-<li><b>Special</b> · <kbd>Caps Lock</kbd>, the special attack of your species (see <a href="#combat">Combat</a>)</li>
+<li><b>Special</b> · <kbd>Tab</kbd>, the special attack of your species (see <a href="#combat">Combat</a>)</li>
 <li><b>Second ability</b> · <kbd>X</kbd>, only appears once you have learned the matching species skill (see <a href="#progress">Progress</a>)</li>
 </ul>
 <table class="hb-table">

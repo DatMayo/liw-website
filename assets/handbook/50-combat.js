@@ -16,7 +16,7 @@ window.LIW_HANDBOOK.push({
 <tr><td><kbd>Rechte Maustaste</kbd></td><td><a href="#combat-attacks">Schwerer Angriff</a></td></tr>
 <tr><td><kbd>Q</kbd></td><td><a href="#combat-dodge">Ausweichen</a></td></tr>
 <tr><td><kbd>R</kbd></td><td><a href="#combat-roar">Brüllen / Heulen</a></td></tr>
-<tr><td><kbd>Feststelltaste</kbd></td><td><a href="#combat-special">Sonderfähigkeit</a> deiner Art</td></tr>
+<tr><td><kbd>Tab</kbd></td><td><a href="#combat-special">Sonderfähigkeit</a> deiner Art</td></tr>
 <tr><td><kbd>X</kbd></td><td><a href="#combat-ability">Zweite Fähigkeit</a> (erst nach dem Erlernen)</td></tr>
 </tbody>
 </table>
@@ -33,7 +33,7 @@ window.LIW_HANDBOOK.push({
 <tr><td><kbd>Right mouse button</kbd></td><td><a href="#combat-attacks">Heavy attack</a></td></tr>
 <tr><td><kbd>Q</kbd></td><td><a href="#combat-dodge">Dodge</a></td></tr>
 <tr><td><kbd>R</kbd></td><td><a href="#combat-roar">Roar / howl</a></td></tr>
-<tr><td><kbd>Caps Lock</kbd></td><td>Your species' <a href="#combat-special">special ability</a></td></tr>
+<tr><td><kbd>Tab</kbd></td><td>Your species' <a href="#combat-special">special ability</a></td></tr>
 <tr><td><kbd>X</kbd></td><td><a href="#combat-ability">Second ability</a> (only once learned)</td></tr>
 </tbody>
 </table>
@@ -85,9 +85,9 @@ window.LIW_HANDBOOK.push({
         },
         {
             id: 'combat-special',
-            title: { de: 'Sonderfähigkeit (Feststelltaste)', en: 'Special ability (Caps Lock)' },
+            title: { de: 'Sonderfähigkeit (Tab)', en: 'Special ability (Tab)' },
             tags: { de: 'sonderfähigkeit spezial sprung sprint heulen feststelltaste', en: 'special ability pounce burst howl caps lock' },
-            de: `<p>Jede Art hat von Anfang an eine <strong>Sonderfähigkeit</strong> auf der <kbd>Feststelltaste</kbd>. Der Ring „Sonderfähigkeit“ im HUD zeigt, wann sie wieder bereit ist. Es gibt vier Sorten:</p>
+            de: `<p>Jede Art hat von Anfang an eine <strong>Sonderfähigkeit</strong> auf der <kbd>Tab</kbd>. Der Ring „Sonderfähigkeit“ im HUD zeigt, wann sie wieder bereit ist. Es gibt vier Sorten:</p>
 <table class="hb-table">
 <thead><tr><th>Sorte</th><th>Was passiert</th><th>Arten</th></tr></thead>
 <tbody>
@@ -99,7 +99,7 @@ window.LIW_HANDBOOK.push({
 </table>
 <p>Abklingzeiten liegen derzeit zwischen etwa 12 Sekunden (Rotfuchs) und einer Minute (Wolfsgeheul). Der <strong>Strahl des Stinktiers</strong> macht kaum Schaden, reißt wilde Tiere aber um und lässt sie danach eine Weile taumeln.</p>
 <p>Die Sonderfähigkeit jeder Art steht auch bei den <a href="#species">Tierarten</a>.</p>`,
-            en: `<p>Every species has a <strong>special ability</strong> on <kbd>Caps Lock</kbd> from the start. The "Special ability" ring in the HUD shows when it is ready again. There are four kinds:</p>
+            en: `<p>Every species has a <strong>special ability</strong> on <kbd>Tab</kbd> from the start. The "Special ability" ring in the HUD shows when it is ready again. There are four kinds:</p>
 <table class="hb-table">
 <thead><tr><th>Kind</th><th>What happens</th><th>Species</th></tr></thead>
 <tbody>

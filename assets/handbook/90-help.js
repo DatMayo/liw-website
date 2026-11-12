@@ -231,7 +231,7 @@ window.LIW_HANDBOOK.push({
 <dt>Permadeath</dt><dd>Der endgültige Tod: Ein gestorbenes Tier kommt nicht zurück (<a href="#life-death">Was beim Tod passiert</a>).</dd>
 <dt>Ruhm</dt><dd>Dein Ansehen in der Wildnis, z. B. durch Jagd, Quests, Duelle und Reviere. Ab bestimmten Werten bekommst du Titel; Ruhm deiner Mitglieder zählt auch für das Rudel (<a href="#progress">Fortschritt</a>).</dd>
 <dt>Saison</dt><dd>Der Zeitraum einer Jahreszeit, nach dem die Ranglisten „Tier der Saison“ und „Rudel der Saison“ gezählt werden (<a href="#ranking">Ranglisten</a>).</dd>
-<dt>Sonderfähigkeit</dt><dd>Die besondere Attacke deiner Art auf der <kbd>Feststelltaste</kbd>, z. B. Sprung, Prankenhieb oder Heulen (<a href="#combat">Kampf</a>).</dd>
+<dt>Sonderfähigkeit</dt><dd>Die besondere Attacke deiner Art auf der <kbd>Tab</kbd>, z. B. Sprung, Prankenhieb oder Heulen (<a href="#combat">Kampf</a>).</dd>
 <dt>Spawnschutz</dt><dd>10 Sekunden Unverwundbarkeit nach jedem Betreten der Wildnis (<a href="#start-protection">Spawnschutz</a>).</dd>
 <dt>Stufe</dt><dd>Dein Level. Jede neue Stufe bringt Punkte für Attribute und Fähigkeiten (<a href="#progress">Fortschritt</a>).</dd>
 <dt>Tierbuch</dt><dd>Das gemeinsame Buch der Menüs <kbd>J</kbd>, <kbd>K</kbd>, <kbd>L</kbd>, <kbd>O</kbd> und <kbd>U</kbd> (<a href="#hud-menus">Menüs</a>).</dd>
@@ -255,7 +255,7 @@ window.LIW_HANDBOOK.push({
 <dt>Permadeath</dt><dd>Final death: an animal that died does not come back (<a href="#life-death">What happens on death</a>).</dd>
 <dt>Fame</dt><dd>Your standing in the wild, e.g. from hunting, quests, duels and territories. At certain values you earn titles; your members' fame also counts for the pack (<a href="#progress">Progress</a>).</dd>
 <dt>Season (rankings)</dt><dd>The span of one season of the year, by which the rankings “animal of the season” and “pack of the season” are counted (<a href="#ranking">Rankings</a>).</dd>
-<dt>Special</dt><dd>The special attack of your species on <kbd>Caps Lock</kbd>, e.g. pounce, maul or howl (<a href="#combat">Combat</a>).</dd>
+<dt>Special</dt><dd>The special attack of your species on <kbd>Tab</kbd>, e.g. pounce, maul or howl (<a href="#combat">Combat</a>).</dd>
 <dt>Spawn protection</dt><dd>10 seconds of invulnerability every time you enter the wild (<a href="#start-protection">Spawn protection</a>).</dd>
 <dt>Level</dt><dd>Every new level gives points for attributes and skills (<a href="#progress">Progress</a>).</dd>
 <dt>Animal book</dt><dd>The shared book of the menus <kbd>J</kbd>, <kbd>K</kbd>, <kbd>L</kbd>, <kbd>O</kbd> and <kbd>U</kbd> (<a href="#hud-menus">Menus</a>).</dd>
