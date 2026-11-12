@@ -190,7 +190,7 @@ window.LIW_HANDBOOK.push({
         {
             id: 'hud-messages',
             title: { de: 'Hinweise und Meldungen', en: 'Hints and messages' },
-            tags: { de: 'meldung nachricht benachrichtigung hinweis banner tagebuch fährte instinkt toast', en: 'message notification hint banner journal trail instinct toast' },
+            tags: { de: 'meldung nachricht benachrichtigung hinweis banner tagebuch fährte instinkt toast verlauf verpasst ton töne sound f6', en: 'message notification hint banner journal trail instinct toast history missed tone sound f6' },
             de: `<p><b>Hinweise unten in der Mitte</b> zeigen, was du gerade tun kannst, mit der passenden Taste, z. B. „Fressen“ an einem Kadaver, „Aufhelfen“ bei einem niedergestreckten Tier oder „Gedenkstein lesen“. Dauert eine Aktion, füllt sich darunter ein Balken.</p>
 <p><b>Meldungen</b> gibt es in mehreren Arten:</p>
 <table class="hb-table">
@@ -203,7 +203,8 @@ window.LIW_HANDBOOK.push({
 <tr><td>Banner</td><td>große Momente: neue Stufe, Reviere, Jahreszeitenwechsel</td></tr>
 </tbody>
 </table>
-<p>Die Hinweise unten und den Hinweis zum Fressen und Trinken kannst du in den <a href="#hud-settings">Einstellungen</a> abschalten.</p>`,
+<p><b>Meldung verpasst?</b> Mit <kbd>F6</kbd> öffnest du den <b>Meldungsverlauf</b> mit den letzten 30 Meldungen. Wichtige Meldungen (Einladungen, Herausforderungen, Warnungen, Admin-Nachrichten) spielen außerdem einen kurzen Ton.</p>
+<p>Die Hinweise unten, den Hinweis zum Fressen und Trinken und die Töne kannst du in den <a href="#hud-settings">Einstellungen</a> abschalten.</p>`,
             en: `<p><b>Hints at the bottom centre</b> show what you can do right now, with the matching key, e.g. “Eat” at a carcass, “Help up” next to a downed animal or “Read memorial stone”. If an action takes time, a bar fills up below.</p>
 <p>There are several kinds of <b>messages</b>:</p>
 <table class="hb-table">
@@ -216,7 +217,8 @@ window.LIW_HANDBOOK.push({
 <tr><td>Banner</td><td>big moments: new level, territories, change of season</td></tr>
 </tbody>
 </table>
-<p>You can switch off the hints at the bottom and the eat/drink hint in the <a href="#hud-settings">settings</a>.</p>`,
+<p><b>Missed a message?</b> <kbd>F6</kbd> opens the <b>notification history</b> with the last 30 messages. Important messages (invitations, challenges, warnings, admin messages) also play a short tone.</p>
+<p>You can switch off the hints at the bottom, the eat/drink hint and the tones in the <a href="#hud-settings">settings</a>.</p>`,
         },
         {
             id: 'hud-menus',
@@ -285,7 +287,7 @@ window.LIW_HANDBOOK.push({
 <thead><tr><th>Gruppe</th><th>Einstellungen</th></tr></thead>
 <tbody>
 <tr><td>Sprache</td><td>Automatisch (Spielsprache) oder eine feste Sprache (siehe <a href="#hud-language">Sprache</a>)</td></tr>
-<tr><td>Anzeige</td><td>HUD ganz an oder aus · Ringe · Status · Uhr und Wetter · Rudelzeile · Revierzeile · Sprachreichweite · Hinweise unten · Hinweis Fressen/Trinken</td></tr>
+<tr><td>Anzeige</td><td>HUD ganz an oder aus · Ringe · Status · Uhr und Wetter · Rudelzeile · Revierzeile · Sprachreichweite · Hinweise unten · Hinweis Fressen/Trinken · Benachrichtigungstöne · „Seit deinem letzten Besuch“</td></tr>
 <tr><td>Karte und Reviere</td><td>eigene, fremde und unbesetzte Reviere auf der Karte · Reviergrenzen (die Wände beim Einnehmen oder Verteidigen und das kurze Aufleuchten beim Betreten und Verlassen)</td></tr>
 <tr><td>Rudel</td><td>Namensschilder über Rudelmitgliedern · Mentor-Namensschilder · Rudel auf der Karte</td></tr>
 </tbody>
@@ -296,7 +298,7 @@ window.LIW_HANDBOOK.push({
 <thead><tr><th>Group</th><th>Settings</th></tr></thead>
 <tbody>
 <tr><td>Language</td><td>Automatic (game language) or a fixed language (see <a href="#hud-language">Language</a>)</td></tr>
-<tr><td>Display</td><td>HUD fully on or off · rings · status · clock and weather · pack line · territory line · voice range · hints at the bottom · eat/drink hint</td></tr>
+<tr><td>Display</td><td>HUD fully on or off · rings · status · clock and weather · pack line · territory line · voice range · hints at the bottom · eat/drink hint · notification sounds · “Since your last visit”</td></tr>
 <tr><td>Map and territories</td><td>own, foreign and unclaimed territories on the map · territory borders (the walls while claiming or defending and the short flash when you enter or leave)</td></tr>
 <tr><td>Pack</td><td>name tags above pack mates · mentor name tags · pack mates on the map</td></tr>
 </tbody>
@@ -362,19 +364,21 @@ window.LIW_HANDBOOK.push({
         },
         {
             id: 'hud-camera',
-            title: { de: 'Kamera', en: 'Camera' },
-            tags: { de: 'kamera abstand zoom ego perspektive first person third person mausrad alt', en: 'camera distance zoom first person third person mouse wheel alt' },
+            title: { de: 'Kamera und Auto-Lauf', en: 'Camera and auto-run' },
+            tags: { de: 'kamera abstand zoom ego perspektive first person third person mausrad alt automatisch laufen autorun auto-lauf', en: 'camera distance zoom first person third person mouse wheel alt auto-run autorun auto run' },
             de: `<ul>
 <li>Du siehst dein Tier immer von hinten (Third Person). Die Ego-Perspektive ist gesperrt.</li>
 <li><b>Kameraabstand:</b> <kbd>Alt</kbd> halten und am <kbd>Mausrad</kbd> drehen. Hoch = weiter weg, runter = näher, bis zum doppelten Abstand deiner Art. Deine Wahl bleibt gespeichert.</li>
 <li>Willst du wieder den Standardabstand, gib in der <kbd>F8</kbd>-Konsole <code>liw_camera_reset</code> ein.</li>
 <li>Als Jungtier rückt die Kamera näher, weil du kleiner bist.</li>
+<li><b>Automatisch laufen:</b> <kbd>.</kbd> drücken – dein Tier läuft von selbst weiter, die Kamera lenkt, <kbd>Shift</kbd> rennt. <kbd>W</kbd>, <kbd>S</kbd> oder <kbd>.</kbd> beenden es. Einem Rudelmitglied hinterherlaufen kannst du über das Emote-Rad (siehe <a href="#pack-markers">Folgen</a>).</li>
 </ul>`,
             en: `<ul>
 <li>You always see your animal from behind (third person). First person is locked.</li>
 <li><b>Camera distance:</b> hold <kbd>Alt</kbd> and turn the <kbd>mouse wheel</kbd>. Up = farther, down = closer, up to twice the distance of your species. Your choice is kept.</li>
 <li>To get the default distance back, type <code>liw_camera_reset</code> in the <kbd>F8</kbd> console.</li>
 <li>As a juvenile the camera moves closer because you are smaller.</li>
+<li><b>Auto-run:</b> press <kbd>.</kbd> – your animal keeps going on its own, the camera steers, <kbd>Shift</kbd> sprints. <kbd>W</kbd>, <kbd>S</kbd> or <kbd>.</kbd> stop it. To run after a pack mate, use the emote wheel (see <a href="#pack-markers">Following</a>).</li>
 </ul>`,
         },
     ],

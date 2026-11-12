@@ -222,22 +222,30 @@ window.LIW_HANDBOOK.push({
         },
         {
             id: 'pack-markers',
-            title: { de: 'Namensschilder, Kartenmarker, Rudelfarbe', en: 'Name tags, map markers, pack colour' },
-            tags: { de: 'namensschild marker karte farbe hud rudelzeile', en: 'name tag marker map colour hud pack line' },
+            title: { de: 'Namensschilder, Marker, Folgen', en: 'Name tags, markers, following' },
+            tags: { de: 'namensschild marker karte farbe hud rudelzeile markierung ping zeigen folgen hinterherlaufen', en: 'name tag marker map colour hud pack line ping mark follow' },
             de: `<ul>
 <li><strong>Namensschilder</strong> stehen über deinen Rudelmitgliedern, solange sie in etwa 25 m Nähe und auf dem Bildschirm sind.</li>
 <li><strong>Kartenmarker</strong> zeigen dir auf der Pausenkarte, wo deine Rudelmitglieder sind. Andere Spieler siehst du nicht auf der Karte.</li>
 <li>Die <strong>Rudelzeile</strong> im HUD zeigt Rudelname, deinen Rang und wer online ist.</li>
 <li>Die <strong>Rudelfarbe</strong> färbt Namensschilder und Kartenmarker. Ist sie für euer Rudel freigeschaltet, wählt der Alpha sie im Rudelmenü unter <em>Rudelfarbe</em>.</li>
 </ul>
-<p>Namensschilder, Marker und die Rudelzeile kannst du unter <kbd>J</kbd> → <em>Einstellungen</em> ein- und ausschalten (siehe <a href="#hud">HUD und Menüs</a>).</p>`,
+<p>Namensschilder, Marker und die Rudelzeile kannst du unter <kbd>J</kbd> → <em>Einstellungen</em> ein- und ausschalten (siehe <a href="#hud">HUD und Menüs</a>).</p>
+<h4>Markierungen setzen</h4>
+<p>Mit <kbd>T</kbd> markierst du die Stelle in der Bildmitte für dein Rudel (bis etwa 150 m weit). Schaust du dabei auf ein Tier, wird daraus <b>Beute</b> oder <b>Gefahr</b> (Raubtiere, Bären, Keiler, Alligatoren, Schlangen), sonst ein <b>Ort</b>. Die Markierung erscheint 30 Sekunden lang auf dem Bildschirm und auf der Karte bei allen Rudelmitgliedern in der Nähe. Pro Tier sind höchstens zwei gleichzeitig aktiv.</p>
+<h4>Einem Rudelmitglied folgen</h4>
+<p>Über das Emote-Rad (<kbd>F</kbd>) → <em>Rudelmitglied folgen</em> oder <code>/liw_follow</code> läuft dein Tier von selbst hinter einem Rudelmitglied her – dem, auf das du schaust, sonst dem nächsten. Es geht, rennt oder sprintet so, wie es der Abstand verlangt. Jede Bewegungstaste beendet das Folgen, ebenso wenn das Mitglied zu weit weg, niedergestreckt oder offline ist.</p>`,
             en: `<ul>
 <li><strong>Name tags</strong> show above your pack mates while they are within about 25 m and on screen.</li>
 <li><strong>Map markers</strong> show you on the pause map where your pack mates are. You do not see other players on the map.</li>
 <li>The <strong>pack line</strong> in the HUD shows the pack name, your rank and who is online.</li>
 <li>The <strong>pack colour</strong> tints name tags and map markers. If it is unlocked for your pack, the alpha picks it in the pack menu under <em>Pack colour</em>.</li>
 </ul>
-<p>You can switch name tags, markers and the pack line on and off under <kbd>J</kbd> → <em>Settings</em> (see <a href="#hud">HUD and menus</a>).</p>`,
+<p>You can switch name tags, markers and the pack line on and off under <kbd>J</kbd> → <em>Settings</em> (see <a href="#hud">HUD and menus</a>).</p>
+<h4>Pinging a spot</h4>
+<p><kbd>T</kbd> marks the spot at the centre of the screen for your pack (up to about 150 m away). If you look at an animal, it becomes <b>prey</b> or <b>danger</b> (predators, bears, boars, alligators, snakes), otherwise a <b>place</b>. The ping shows for 30 seconds on screen and on the map for every pack mate nearby. Each animal can have at most two active at once.</p>
+<h4>Following a pack mate</h4>
+<p>Via the emote wheel (<kbd>F</kbd>) → <em>Follow pack member</em> or <code>/liw_follow</code> your animal runs after a pack mate on its own – the one you look at, otherwise the nearest. It walks, runs or sprints as the gap demands. Any movement key ends following, and so does the mate getting too far away, going down or logging out.</p>`,
         },
         {
             id: 'pack-loner',

@@ -214,7 +214,8 @@ window.LIW_HANDBOOK.push({
 <li>Klick auf <b>„In die Wildnis“</b>.</li>
 </ol>
 <p>Ein <b>neues Tier</b> startet an einem Startpunkt seiner Art, in einer Gegend, die zu ihm passt. Ein übernommenes <b>Jungtier</b> startet bei seiner Familie: dort, wo es gerade ist, sonst neben einem Elternteil.</p>
-<p>Nach jedem Start bist du ein paar Sekunden geschützt (<a href="#start-protection">Spawnschutz</a>), ein neues Tier zusätzlich eine Stunde lang (<a href="#start-newcomer">Neulingsschutz</a>).</p>`,
+<p>Nach jedem Start bist du ein paar Sekunden geschützt (<a href="#start-protection">Spawnschutz</a>), ein neues Tier zusätzlich eine Stunde lang (<a href="#start-newcomer">Neulingsschutz</a>).</p>
+<p>Warst du eine Weile fort, öffnet sich kurz nach dem Start <b>„Seit deinem letzten Besuch“</b>: ein Überblick, was in der Zwischenzeit passiert ist – etwa ein Revier verloren, ein neues Rudelmitglied, ein Wurf oder deine Saisonplatzierung. Abschaltbar in den <a href="#hud-settings">Einstellungen</a>.</p>`,
             en: `<ol>
 <li>Select your animal on the selection screen.</li>
 <li>If offered, choose the <b>start</b>:
@@ -225,7 +226,8 @@ window.LIW_HANDBOOK.push({
 <li>Click <b>“Enter the wild”</b>.</li>
 </ol>
 <p>A <b>new animal</b> starts at a start point of its species, in an area that suits it. A <b>juvenile</b> you took over starts with its family: where it currently is, otherwise next to a parent.</p>
-<p>After every start you are protected for a few seconds (<a href="#start-protection">spawn protection</a>), a new animal additionally for one hour (<a href="#start-newcomer">newcomer protection</a>).</p>`,
+<p>After every start you are protected for a few seconds (<a href="#start-protection">spawn protection</a>), a new animal additionally for one hour (<a href="#start-newcomer">newcomer protection</a>).</p>
+<p>If you were away for a while, <b>“Since your last visit”</b> opens shortly after the start: an overview of what happened in the meantime – such as a lost territory, a new pack mate, a litter or your season placing. Can be switched off in the <a href="#hud-settings">settings</a>.</p>`,
         },
         {
             id: 'start-protection',
