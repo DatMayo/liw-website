@@ -43,7 +43,7 @@
 .mouse-body .key { width: auto; height: 5rem; border-radius: 2.4rem 0.5rem 0.4rem 0.4rem; padding: 1.4rem 0.5rem 0.4rem; }
 .mouse-body .key.right { border-radius: 0.5rem 2.4rem 0.4rem 0.4rem; }
 .mouse-body .key.wheel { border-radius: 1.2rem; padding: 0.5rem 0.25rem; align-items: center; text-align: center; height: 3.6rem; align-self: start; margin-top: 0.4rem; }
-.mouse-body .key.wheel .what { font-size: 0.62rem; }
+.mouse-body .key.wheel .what { font-size: 0.6rem; white-space: nowrap; }
 .mouse-body .palm { grid-column: 1 / 4; height: 4.2rem; border: 1px solid var(--cap-edge); border-radius: 0.4rem 0.4rem 3rem 3rem; background: var(--cap-off); }
 .mouse-label { font-family: var(--display); color: var(--muted); font-size: 0.9rem; letter-spacing: 0.08em; }
 
@@ -57,6 +57,9 @@
 .group li.hl { background: color-mix(in srgb, var(--c) 16%, transparent); }
 kbd { font: 600 0.85rem var(--body); display: inline-block; padding: 0.05rem 0.45rem; border: 1px solid var(--cap-edge); border-bottom-width: 2px; border-radius: 0.3rem; background: var(--cap); color: var(--ink); white-space: nowrap; justify-self: start; align-self: start; }
 .group small { display: block; color: var(--muted); font-size: 0.95rem; }
+.pad-box { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
+.pad-title { font-family: var(--display); font-weight: normal; font-size: 1.6rem; letter-spacing: 0.04em; margin: 0 0 0.4rem; }
+.pad-intro { color: var(--muted); margin: 0 0 1.2rem; max-width: 46rem; }
 .note { border-top: 1px solid var(--line); padding-top: 1rem; color: var(--muted); display: grid; gap: 0.4rem; max-width: 46rem; }
 .note b { color: var(--ink); font-weight: 600; }
 @media (max-width: 40rem) { .board, .mouse-body { --u: 3rem; } }
@@ -118,6 +121,12 @@ kbd { font: 600 0.85rem var(--body); display: inline-block; padding: 0.05rem 0.4
 
   <div class="groups" id="groups"></div>
 
+  <section class="pad-box">
+    <h2 class="pad-title" data-t="pad_title"></h2>
+    <p class="pad-intro" data-t="pad_intro"></p>
+    <div class="groups" id="pad"></div>
+  </section>
+
   <div class="note">
     <div data-t="note1"></div>
     <div data-t="note2"></div>
@@ -157,6 +166,9 @@ kbd { font: 600 0.85rem var(--body); display: inline-block; padding: 0.05rem 0.4
       note2: '<b>HUD aus- und einblenden</b> hat keine feste Taste. Leg sie dort selbst auf „LiW: HUD aus-/einblenden“, oder schalte Teile im Charaktermenü (J) unter „Einstellungen“ ab.',
       note3: '<b>Sprechen</b> geht über die Push-to-Talk-Taste von RedM (Standard N). Wie weit man dich hört, stellst du mit Z ein: tippen für leise/normal/laut, halten + Mausrad für 1–25 m. Unten links zeigt das HUD Reichweite und Meter; das Mikrofon wird grün, wenn dich jemand hört.',
       note4: '<b>Kameraabstand:</b> Alt halten und am Mausrad drehen. Die Wahl bleibt gespeichert; <code>/liw_camera_reset</code> lässt wieder das Spiel wählen.',
+      pad_title: 'Mit Controller (Xbox)',
+      pad_intro: 'Laufen, Kämpfen und Kamera liegen auf den Tasten des Spiels. Für die Menüs von Life In Wilderness gibt es ein eigenes Menü-Rad, und in jedem Menü führt ein goldener Rahmen durch die Knöpfe. Maus und Tastatur funktionieren daneben wie gewohnt.',
+      pad_groups: { wheel: 'Menü-Rad', menus: 'In Menüs' },
     },
     en: {
       eyebrow: 'Life In Wilderness · RedM',
@@ -170,6 +182,9 @@ kbd { font: 600 0.85rem var(--body); display: inline-block; padding: 0.05rem 0.4
       note2: '<b>Hide / show HUD</b> has no default key. Bind "LiW: Hide / show HUD" there yourself, or switch parts off in the character menu (J) under "Settings".',
       note3: '<b>Talking</b> uses RedM\'s push-to-talk key (default N). Z sets how far you can be heard: tap for quiet/normal/loud, hold + mouse wheel for 1–25 m. Bottom left the HUD shows the range in metres; the microphone turns green while someone hears you.',
       note4: '<b>Camera distance:</b> hold Alt and turn the mouse wheel. Your choice is kept; <code>/liw_camera_reset</code> lets the game pick again.',
+      pad_title: 'With a controller (Xbox)',
+      pad_intro: 'Moving, fighting and the camera use the game\'s own buttons. For the menus of Life In Wilderness there is a menu wheel of its own, and in every menu a golden frame leads you through the buttons. Mouse and keyboard keep working as usual.',
+      pad_groups: { wheel: 'Menu wheel', menus: 'In menus' },
     },
   };
 
@@ -181,9 +196,6 @@ kbd { font: 600 0.85rem var(--body); display: inline-block; padding: 0.05rem 0.4
       de: ['W A S D', 'Laufen', 'Die Kamera bestimmt die Richtung.'], en: ['W A S D', 'Move', 'The camera sets the direction.'] },
     { key: 'LSHIFT', group: 'move', short: { de: 'Rennen', en: 'Sprint' },
       de: ['Shift', 'Rennen', 'Kostet Ausdauer; das Attribut Ausdauer lässt dich länger rennen.'], en: ['Shift', 'Sprint', 'Uses stamina; the Stamina attribute lets you run longer.'] },
-    { key: 'WHEEL', group: 'move', hold: true, short: { de: 'Zoom', en: 'Zoom' },
-      de: ['Alt + Mausrad', 'Kameraabstand', 'Mausrad hoch = weiter weg, runter = näher, bis zum doppelten Abstand der Art. Wird gespeichert.'],
-      en: ['Alt + mouse wheel', 'Camera distance', 'Wheel up = farther, down = closer, up to twice the species distance. Kept for next time.'] },
     { key: '.', group: 'move', short: { de: 'Auto-Lauf', en: 'Auto-run' },
       de: ['.', 'Automatisch laufen', 'Dein Tier läuft von selbst geradeaus, die Kamera lenkt. Shift rennt weiter, W, S oder die Taste noch einmal beenden es. Einem Rudelmitglied folgen: Emote-Rad (F) → Rudelmitglied folgen.'],
       en: ['.', 'Auto-run', 'Your animal keeps running on its own, the camera steers. Shift still sprints; W, S or the key again stop it. To follow a pack mate instead: emote wheel (F) → Follow pack member.'] },
@@ -230,9 +242,9 @@ kbd { font: 600 0.85rem var(--body); display: inline-block; padding: 0.05rem 0.4
       de: ['C', 'Begleiter: Aktion abbrechen', 'Kampf, Jagd oder Fressen abbrechen; sie folgen dir wieder.'], en: ['C', 'Companions: stop', 'Break off fighting, chasing or eating; they follow you again.'] },
     { key: 'Y', group: 'pack', short: { de: 'Angreifen', en: 'Attack' },
       de: ['Y', 'Begleiter: angreifen', 'Deine Begleiter greifen das Tier in der Bildmitte an (bis 40 m).'], en: ['Y', 'Companions: attack', 'Your companions attack the animal in the middle of the screen (up to 40 m).'] },
-    { key: 'T', group: 'pack', short: { de: 'Zeigen', en: 'Ping' },
-      de: ['T', 'Rudel-Markierung', 'Markiert die Stelle in der Bildmitte für dein Rudel: Ort, Beute oder Gefahr – je nachdem, worauf du schaust. Sichtbar auf dem Bildschirm und der Karte.'],
-      en: ['T', 'Pack ping', 'Marks the spot at the centre of the screen for your pack: a place, prey or danger, depending on what you look at. Shown on screen and on the map.'] },
+    { key: 'WHEEL', group: 'pack', short: { de: 'Ping', en: 'Ping' },
+      de: ['Mittlere Maustaste', 'Rudel-Markierung', 'Markiert die Stelle in der Bildmitte für dein Rudel: Ort, Beute oder Gefahr – je nachdem, worauf du schaust. Sichtbar auf dem Bildschirm und der Karte.'],
+      en: ['Middle mouse button', 'Pack ping', 'Marks the spot at the centre of the screen for your pack: a place, prey or danger, depending on what you look at. Shown on screen and on the map.'] },
     { key: 'L', group: 'menu', short: { de: 'Rudel', en: 'Pack' },
       de: ['L', 'Rudelmenü', 'Mitglieder, Ränge, Perks, Revier und Höhle, Bündnisse, Rangliste.'], en: ['L', 'Pack menu', 'Members, ranks, perks, territory and den, alliances, ranking.'] },
     { key: 'J', group: 'menu', short: { de: 'Charakter', en: 'Char menu' },
@@ -244,8 +256,8 @@ kbd { font: 600 0.85rem var(--body); display: inline-block; padding: 0.05rem 0.4
     { key: 'U', group: 'menu', short: { de: 'Ranglisten', en: 'Rankings' },
       de: ['U', 'Ranglisten & Statistik', 'Tier und Rudel der Saison, Ruhmeshalle, deine Statistik.'], en: ['U', 'Rankings & statistics', 'Animal and pack of the season, hall of fame, your statistics.'] },
     { key: 'LALT', group: 'menu', hold: true, short: { de: 'Ringe · Zoom', en: 'Rings · zoom' },
-      de: ['Alt halten', 'Alle HUD-Ringe zeigen', 'Sonst erscheinen Ringe nur, wenn sie wichtig werden. Mit dem Mausrad dazu: Kameraabstand.'],
-      en: ['Hold Alt', 'Show all HUD rings', 'Otherwise rings only show up when they matter. Together with the mouse wheel: camera distance.'] },
+      de: ['Alt halten', 'Alle HUD-Ringe zeigen · Kamera', 'Sonst erscheinen Ringe nur, wenn sie wichtig werden. Dazu am Mausrad drehen: Kameraabstand (hoch = weiter weg, bis zum doppelten Abstand der Art; wird gespeichert).'],
+      en: ['Hold Alt', 'Show all HUD rings · camera', 'Otherwise rings only show up when they matter. Turn the mouse wheel with it: camera distance (up = farther, up to twice the species distance; kept for next time).'] },
     { key: 'M', group: 'menu', short: { de: 'Karte', en: 'Map' },
       de: ['M', 'Karte', 'Mit Revieren, Höhlen und deinem Rudel (im Charaktermenü ausblendbar).'], en: ['M', 'Map', 'With territories, dens and your pack (can be hidden in the character menu).'] },
     { key: 'F6', group: 'menu', short: { de: 'Verlauf', en: 'History' },
@@ -254,6 +266,24 @@ kbd { font: 600 0.85rem var(--body); display: inline-block; padding: 0.05rem 0.4
     { key: 'F4', group: 'menu', short: { de: 'Tests', en: 'Tests' },
       de: ['F4', 'Testaufgaben & Feedback', 'Während der Testphase.'], en: ['F4', 'Test tasks & feedback', 'During the test phase.'] },
   ];
+
+  // Controller: the menu wheel and the buttons inside menus (liw_ui, Config.Pad).
+  const PAD = [
+    { group: 'wheel', de: ['Ansicht halten', 'Menü-Rad öffnen', 'Die Taste mit den zwei Fenstern. Ein Rad mit Charakter, Rudel, Aufgaben, Familienbuch, Ranglisten, Mentor, Emotes und Meldungen erscheint.'],
+      en: ['Hold View', 'Open the menu wheel', 'The button with the two windows. A wheel with character, pack, quests, family book, rankings, mentor, emotes and notifications appears.'] },
+    { group: 'wheel', de: ['Stick', 'Menü wählen', 'Linken oder rechten Stick auf ein Menü richten; sein Name steht in der Mitte.'],
+      en: ['Stick', 'Pick a menu', 'Point the left or right stick at a menu; its name shows in the middle.'] },
+    { group: 'wheel', de: ['Ansicht loslassen', 'Menü öffnen', 'Öffnet das gewählte Menü. B beim Halten schließt das Rad, ohne etwas zu öffnen.'],
+      en: ['Release View', 'Open the menu', 'Opens the chosen menu. B while holding closes the wheel without opening anything.'] },
+    { group: 'menus', de: ['Steuerkreuz / linker Stick', 'Auswählen', 'Der goldene Rahmen springt zum nächsten Knopf in diese Richtung. Dein Tier bleibt stehen, solange ein Menü offen ist.'],
+      en: ['D-pad / left stick', 'Select', 'The golden frame jumps to the next button in that direction. Your animal stays put while a menu is open.'] },
+    { group: 'menus', de: ['A', 'Drücken', 'Auf einem Textfeld (z. B. dem Namen deines Tiers) öffnet sich die Bildschirmtastatur des Spiels; ein Regler lässt sich danach mit links / rechts verstellen.'],
+      en: ['A', 'Press', 'On a text field (e.g. your animal\'s name) the game\'s on-screen keyboard opens; a slider can then be moved with left / right.'] },
+    { group: 'menus', de: ['B', 'Zurück / schließen', 'Wie Esc auf der Tastatur.'], en: ['B', 'Back / close', 'Like Esc on the keyboard.'] },
+    { group: 'menus', de: ['LB / RB', 'Reiter wechseln', 'LT / RT wechseln die Unterreiter.'], en: ['LB / RB', 'Switch tabs', 'LT / RT switch the sub-tabs.'] },
+    { group: 'menus', de: ['Rechter Stick', 'Scrollen', 'Lange Listen und Texte.'], en: ['Right stick', 'Scroll', 'Long lists and texts.'] },
+  ];
+  const PAD_COLORS = { wheel: '--gold', menus: '--sky' };
 
   // Physical rows: [id, width]. Labels per layout; ids are the key's meaning (Z stays Z).
   const ROWS = {
@@ -341,7 +371,7 @@ kbd { font: 600 0.85rem var(--body); display: inline-block; padding: 0.05rem 0.4
     palm.className = 'palm';
     $('mouse').replaceChildren(
       keyButton('LMB', 1, lang === 'de' ? 'Links' : 'Left'),
-      keyButton('WHEEL', 1, '⇕', 'wheel'),
+      keyButton('WHEEL', 1, '●', 'wheel'),
       keyButton('RMB', 1, lang === 'de' ? 'Rechts' : 'Right', 'right'),
       palm);
   }
@@ -395,6 +425,35 @@ kbd { font: 600 0.85rem var(--body); display: inline-block; padding: 0.05rem 0.4
     }));
   }
 
+  function renderPad() {
+    $('pad').replaceChildren(...Object.keys(PAD_COLORS).map((group) => {
+      const box = document.createElement('section');
+      box.className = 'group';
+      box.style.setProperty('--c', `var(${PAD_COLORS[group]})`);
+      const h = document.createElement('h2');
+      const dot = document.createElement('span');
+      dot.className = 'dot';
+      h.append(dot, TEXT[lang].pad_groups[group]);
+      const ul = document.createElement('ul');
+      PAD.filter((p) => p.group === group).forEach((p) => {
+        const li = document.createElement('li');
+        const k = document.createElement('kbd');
+        k.textContent = p[lang][0];
+        const text = document.createElement('div');
+        text.style.minWidth = '0';
+        const name = document.createElement('span');
+        name.textContent = p[lang][1];
+        const small = document.createElement('small');
+        small.textContent = p[lang][2];
+        text.append(name, small);
+        li.append(k, text);
+        ul.append(li);
+      });
+      box.append(h, ul);
+      return box;
+    }));
+  }
+
   function show(action) {
     current = action;
     const d = $('detail');
@@ -422,6 +481,7 @@ kbd { font: 600 0.85rem var(--body); display: inline-block; padding: 0.05rem 0.4
     renderLegend();
     renderBoard();
     renderGroups();
+    renderPad();
     show(current);
   }
 
