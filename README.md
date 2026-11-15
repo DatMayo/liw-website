@@ -158,7 +158,7 @@ Inhaltsverzeichnis. Deep Links wie `/handbuch#life-memorials` funktionieren beim
 ## Voice-Plugin
 
 `https://playliw.com/voice` führt immer direkt zur neuesten Datei des Mumble-Plugins: Die Vercel-Funktion `api/voice.js`
-(Rewrite in `vercel.json`) fragt GitHub nach dem neuesten Release von `DatMayo/liw-voice` und leitet auf dessen
+(Rewrite in `vercel.json`) fragt GitHub nach dem neuesten Release im öffentlichen Repo `DatMayo/liw-voice-releases` (nur die Dateien; der Quellcode in `DatMayo/liw-voice` ist privat) und leitet auf dessen
 `liw_proximity-<Version>.mumble_plugin` weiter; das CDN merkt sich die Antwort 5 Minuten. Antwortet GitHub nicht, geht
 es zur Release-Seite. Jeder Push im Plugin-Repo baut ein Release – hier ist nichts zu ändern. Benutzt auf der Startseite
 (Schritt „Voice“, `VOICE_URL` in `src/site.js`), im Handbuch (`voice-setup`) und im Spiel (Charaktermenü → Einstellungen → Voice).

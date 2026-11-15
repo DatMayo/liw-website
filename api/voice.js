@@ -1,7 +1,7 @@
 // /voice (vercel.json rewrite): straight to the newest release file of the Mumble plugin. The file
 // name carries the version (liw_proximity-<version>.mumble_plugin), so it is looked up on GitHub;
 // the CDN keeps the answer 5 minutes. If GitHub does not answer: the page of the newest release.
-const REPO = 'DatMayo/liw-voice';
+const REPO = 'DatMayo/liw-voice-releases';   // public: only the files (the source repository is private)
 const FALLBACK = `https://github.com/${REPO}/releases/latest`;
 
 export default async function handler(req, res) {
