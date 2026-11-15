@@ -281,17 +281,18 @@ onUnmounted(() => clearTimeout(copyTimer));
 :where(.page-home) .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1rem; }
 :where(.page-home) .filters button { font: inherit; font-size: 1rem; padding: 0.4rem 1rem; border-radius: 10px; background: var(--panel); color: var(--muted); border: 1px solid var(--line); cursor: pointer; }
 :where(.page-home) .filters button[aria-pressed="true"] { color: var(--ink); border-color: var(--gold); }
-:where(.page-home) .species { display: grid; grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr)); gap: 10px; }
+:where(.page-home) .species { display: grid; grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr)); gap: 10px; }
 :where(.page-home) .tile { font: inherit; color: var(--ink); text-align: center; background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 0.6rem 0.6rem 0.8rem; cursor: pointer; transition: border-color 0.15s, background 0.15s; }
 :where(.page-home) .tile:hover { border-color: var(--line-gold); }
 :where(.page-home) .tile[aria-pressed="true"] { border-color: var(--gold); background: var(--panel-2); }
-:where(.page-home) .tile .pic { aspect-ratio: 4 / 3; border-radius: 10px; background: radial-gradient(circle at 50% 65%, rgba(214, 174, 94, 0.14), transparent 70%), #15110e; overflow: hidden; display: grid; place-items: center; }
-:where(.page-home) .tile img { width: 100%; height: 100%; object-fit: contain; }
+:where(.page-home) .tile .pic { position: relative; aspect-ratio: 1; border-radius: 10px; background: radial-gradient(circle at 50% 65%, rgba(214, 174, 94, 0.14), transparent 70%), #15110e; overflow: hidden; }
+/* Absolutely placed: the whole animal fits into the box (ears, legs and tails were cut before). */
+:where(.page-home) .tile img { position: absolute; inset: 6%; width: 88%; height: 88%; object-fit: contain; }
 :where(.page-home) .tile b { display: block; font-weight: 600; margin-top: 0.45rem; line-height: 1.2; }
 :where(.page-home) .tile small { color: var(--muted); font-size: 0.85rem; }
 :where(.page-home) .detail { margin-top: 12px; display: grid; grid-template-columns: 0.9fr 1fr 1.1fr; gap: 1.8rem; align-items: center; background: var(--panel); border: 1px solid var(--line-gold); border-radius: var(--radius); padding: 1.6rem; }
-:where(.page-home) .detail .pic { aspect-ratio: 4 / 3; border-radius: 14px; background: radial-gradient(circle at 50% 65%, rgba(214, 174, 94, 0.18), transparent 70%), #15110e; display: grid; place-items: center; overflow: hidden; }
-:where(.page-home) .detail .pic img { width: 100%; height: 100%; object-fit: contain; }
+:where(.page-home) .detail .pic { position: relative; aspect-ratio: 4 / 3; border-radius: 14px; background: radial-gradient(circle at 50% 65%, rgba(214, 174, 94, 0.18), transparent 70%), #15110e; display: grid; place-items: center; overflow: hidden; }
+:where(.page-home) .detail .pic img { position: absolute; inset: 4%; width: 92%; height: 92%; object-fit: contain; }
 :where(.page-home) .detail h3 { font-size: 2.2rem; }
 :where(.page-home) .cls { display: inline-block; margin: 0.5rem 0 0.8rem; font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase; border: 1px solid var(--line-gold); border-radius: 999px; padding: 0.1rem 0.7rem; color: var(--gold); }
 :where(.page-home) .cls.herbivore { color: var(--moss); border-color: rgba(143, 184, 120, 0.4); }
