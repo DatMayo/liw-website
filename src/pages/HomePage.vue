@@ -166,7 +166,7 @@ onUnmounted(() => clearTimeout(copyTimer));
         <div class="step"><h3>{{ t('s1_h') }}</h3><p>{{ t('s1') }}</p></div>
         <div class="step"><h3>{{ t('s2_h') }}</h3><p>{{ t('s2') }}</p></div>
         <div class="step"><h3>{{ t('s3_h') }}</h3><p>{{ t('s3') }}</p></div>
-        <div class="step"><h3>{{ t('s_voice_h') }}</h3><p>{{ t('s_voice') }}</p><a class="step-dl" :href="VOICE_URL">{{ t('s_voice_dl') }}</a></div>
+        <div class="step"><h3>{{ t('s_voice_h') }}</h3><p v-html="t('s_voice')"></p><a class="step-dl" :href="VOICE_URL">{{ t('s_voice_dl') }}</a></div>
         <div class="step"><h3>{{ t('s4_h') }}</h3><p v-html="t('s4')"></p></div>
       </div>
       <div class="join-cta">

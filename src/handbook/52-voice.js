@@ -13,7 +13,7 @@ export default {
 <li><a href="https://www.mumble.info/downloads/" target="_blank" rel="noopener">Mumble</a> (ab Version 1.4) installieren.</li>
 <li>Das Plugin laden: <a href="https://www.playliw.com/voice"><strong>playliw.com/voice</strong></a> – führt immer zur neuesten Version. Datei doppelklicken oder in Mumble: Einstellungen → Plugins → „Plugin installieren“.</li>
 <li>In Mumble: Einstellungen → Plugins → „LiW Proximity“ anhaken; Audioausgabe → positionsabhängiges Audio einschalten.</li>
-<li>Mumble mit unserem Mumble-Server verbinden (Adresse im Discord).</li>
+<li>In Mumble mit unserem Server verbinden: Server → Verbinden → Server hinzufügen, Adresse <code>talk.playliw.com</code> (Port 64738), Benutzername frei wählbar.</li>
 <li>Spiel starten – das Plugin verbindet sich selbst und schiebt dich in den Spielkanal.</li>
 </ol>
 <p>Ob alles klappt, zeigt das Spiel im Charaktermenü (<kbd>J</kbd>) unter Einstellungen → <strong>Voice</strong>: ein Häkchen je Schritt. Push-to-Talk oder Sprachaktivierung, Lautstärke und Mikrofon stellst du in Mumble ein.</p>
@@ -23,7 +23,7 @@ export default {
 <li>Install <a href="https://www.mumble.info/downloads/" target="_blank" rel="noopener">Mumble</a> (version 1.4 or newer).</li>
 <li>Get the plugin: <a href="https://www.playliw.com/voice"><strong>playliw.com/voice</strong></a> – always the latest version. Double-click the file, or in Mumble: Settings → Plugins → "Install plugin".</li>
 <li>In Mumble: Settings → Plugins → tick "LiW Proximity"; Audio output → switch on positional audio.</li>
-<li>Connect Mumble to our Mumble server (address on the Discord).</li>
+<li>Connect Mumble to our server: Server → Connect → Add New, address <code>talk.playliw.com</code> (port 64738), any user name.</li>
 <li>Start the game – the plugin links up by itself and moves you into the game channel.</li>
 </ol>
 <p>The game shows whether everything works in the character menu (<kbd>J</kbd>) under Settings → <strong>Voice</strong>: one tick per step. Push-to-talk or voice activation, volume and microphone are set in Mumble.</p>
