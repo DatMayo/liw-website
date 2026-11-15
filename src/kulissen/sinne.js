@@ -548,7 +548,7 @@
         q('listeners').textContent = n;
       }
 
-      root.addEventListener('click', (ev) => {
+      const onClick = (ev) => {
         const b = ev.target.closest('button');
         if (!b) return;
         if (b.dataset.mode) st.mode = b.dataset.mode;
@@ -561,15 +561,18 @@
         } else if (b.dataset.k === 'pack') st.packCall = !st.packCall;
         else if (b.dataset.k === 'sound') st.soundAt = st.time;
         refresh();
-      });
-      root.addEventListener('change', (ev) => {
+      };
+      const onChange = (ev) => {
         const el = ev.target;
         if (el === sel) {
           st.species = sel.value; st.known.clear(); st.learned = []; st.close = {};
         } else if (el.dataset.k === 'night') st.night = el.checked;
         else if (el.dataset.k === 'useEnergy') { st.useEnergy = el.checked; if (!el.checked) st.energy = Math.max(st.energy, 1); }
         refresh();
-      });
+      };
+      // The root is the page's stage and outlives this simulation: the listeners are removed in destroy().
+      root.addEventListener('click', onClick);
+      root.addEventListener('change', onChange);
       q('fine').addEventListener('input', (ev) => {
         st.voice = Number(ev.target.value);
         const preset = VOICE.ranges.find((r) => r.d === st.voice);
@@ -608,6 +611,8 @@
         destroy() {
           cancelAnimationFrame(raf); clearInterval(timer);
           window.removeEventListener('resize', onResize);
+          root.removeEventListener('click', onClick);
+          root.removeEventListener('change', onChange);
           root.innerHTML = '';
         },
       };
