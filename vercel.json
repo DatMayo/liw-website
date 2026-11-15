@@ -52,6 +52,10 @@
     {
       "source": "/voice",
       "destination": "/api/voice"
+    },
+    {
+      "source": "/client",
+      "destination": "/api/client"
     }
   ]
 }

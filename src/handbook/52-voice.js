@@ -5,10 +5,43 @@ export default {
     title: { de: 'Stimme und Laute', en: 'Voice and sounds' },
     sections: [
         {
+            id: 'voice-client',
+            title: { de: 'LiW Voice einrichten', en: 'Setting up LiW Voice' },
+            tags: { de: 'liw voice client programm voice sprachchat einrichten download installieren mumble overlay push to talk', en: 'liw voice client program voice chat set up download install mumble overlay push to talk' },
+            de: `<p>Der eingebaute Sprachchat von RedM ist aus – <strong>ohne Voice hörst du niemanden und niemand hört dich</strong>. Am einfachsten geht es mit unserem Programm <strong>LiW Voice</strong>: ein Mumble-Programm, in dem alles für Life In Wilderness schon eingebaut ist. Mumble und ein Plugin brauchst du damit nicht.</p>
+<ol>
+<li>LiW Voice laden: <a href="https://www.playliw.com/client"><strong>playliw.com/client</strong></a> – immer die neueste Version (Windows).</li>
+<li>Die ZIP-Datei entpacken, zum Beispiel nach <em>Dokumente\\LiW Voice</em>, und <strong>LiWVoice.exe</strong> starten.</li>
+<li>Einen Namen eingeben und verbinden – unser Server <code>talk.playliw.com</code> ist schon eingetragen.</li>
+<li>Spiel starten – sobald dein Tier draußen ist, verbindet sich LiW Voice mit dem Spiel und schiebt dich in den Spielkanal.</li>
+</ol>
+<p>Push-to-Talk oder Sprachaktivierung, Mikrofon, Rauschunterdrückung und Tastenkürzel (auch für Mikrofon und Lautsprecher stumm) stellst du unter <em>Werkzeuge → Optionen</em> ein. Die Tastenkürzel funktionieren auch, während das Spiel im Vordergrund ist.</p>
+<ul>
+<li><strong>Overlay:</strong> LiW Voice zeigt über dem Spiel, wer gerade spricht – nur Tiere, die du auch hörst. Dafür RedM im Modus <em>Randloses Fenster</em> spielen.</li>
+<li><strong>Mumble schon eingerichtet?</strong> Hast du deinen Namen in Mumble registriert, übernimmt LiW Voice dein Mumble-Zertifikat automatisch. Mumble mit dem Plugin und LiW Voice nicht gleichzeitig laufen lassen.</li>
+<li><strong>Updates</strong> installiert LiW Voice selbst – es fragt vorher.</li>
+</ul>
+<p>Wer LiW Voice nutzt und wer Mumble mit Plugin nutzt, hört sich ganz normal gegenseitig.</p>`,
+            en: `<p>RedM's built-in voice chat is off – <strong>without voice you hear nobody and nobody hears you</strong>. The easiest way is our program <strong>LiW Voice</strong>: a Mumble program with everything for Life In Wilderness built in. You do not need Mumble or a plugin with it.</p>
+<ol>
+<li>Get LiW Voice: <a href="https://www.playliw.com/client"><strong>playliw.com/client</strong></a> – always the latest version (Windows).</li>
+<li>Unzip the file, for example to <em>Documents\\LiW Voice</em>, and start <strong>LiWVoice.exe</strong>.</li>
+<li>Enter a name and connect – our server <code>talk.playliw.com</code> is already set.</li>
+<li>Start the game – as soon as your animal is out, LiW Voice links up with the game and moves you into the game channel.</li>
+</ol>
+<p>Push-to-talk or voice activation, microphone, noise suppression and hotkeys (also for muting microphone and speakers) are under <em>Tools → Options</em>. The hotkeys also work while the game is in the foreground.</p>
+<ul>
+<li><strong>Overlay:</strong> LiW Voice shows above the game who is talking – only animals you can hear. Play RedM in <em>borderless window</em> mode for it.</li>
+<li><strong>Already using Mumble?</strong> If you registered your name in Mumble, LiW Voice takes over your Mumble certificate automatically. Do not run Mumble with the plugin and LiW Voice at the same time.</li>
+<li><strong>Updates</strong> are installed by LiW Voice itself – it asks first.</li>
+</ul>
+<p>Players with LiW Voice and players with Mumble and the plugin hear each other as usual.</p>`,
+        },
+        {
             id: 'voice-setup',
-            title: { de: 'Mumble einrichten', en: 'Setting up Mumble' },
+            title: { de: 'Alternativ: Mumble mit Plugin', en: 'Alternative: Mumble with the plugin' },
             tags: { de: 'mumble plugin voice sprachchat einrichten download installieren liw proximity', en: 'mumble plugin voice chat set up download install liw proximity' },
-            de: `<p>Gesprochen wird über die kostenlose <strong>Mumble-App</strong> mit unserem Plugin <strong>„LiW Proximity“</strong>. Der eingebaute Sprachchat von RedM ist aus – <strong>ohne Plugin hörst du niemanden und niemand hört dich</strong>.</p>
+            de: `<p>Statt <a href="#voice-client">LiW Voice</a> kannst du auch die kostenlose <strong>Mumble-App</strong> mit unserem Plugin <strong>„LiW Proximity“</strong> nutzen. Mit Mumble gilt: <strong>ohne Plugin hörst du niemanden und niemand hört dich</strong>.</p>
 <ol>
 <li><a href="https://www.mumble.info/downloads/" target="_blank" rel="noopener">Mumble</a> (ab Version 1.4) installieren.</li>
 <li>Das Plugin laden: <a href="https://www.playliw.com/voice"><strong>playliw.com/voice</strong></a> – führt immer zur neuesten Version. Datei doppelklicken oder in Mumble: Einstellungen → Plugins → „Plugin installieren“.</li>
@@ -18,7 +51,7 @@ export default {
 </ol>
 <p>Ob alles klappt, zeigt das Spiel im Charaktermenü (<kbd>J</kbd>) unter Einstellungen → <strong>Voice</strong>: ein Häkchen je Schritt. Push-to-Talk oder Sprachaktivierung, Lautstärke und Mikrofon stellst du in Mumble ein.</p>
 <p>Das Plugin gibt kurze Töne: zwei steigende = mit dem Spiel verbunden, zwei fallende = Verbindung weg, drei leise = im Spielkanal, zwei tiefe = Kanal fehlt oder Passwort falsch, ein kurzer Ruf = ein Rudelruf erreicht dich.</p>`,
-            en: `<p>Talking works through the free <strong>Mumble app</strong> with our plugin <strong>"LiW Proximity"</strong>. RedM's built-in voice chat is off – <strong>without the plugin you hear nobody and nobody hears you</strong>.</p>
+            en: `<p>Instead of <a href="#voice-client">LiW Voice</a> you can also use the free <strong>Mumble app</strong> with our plugin <strong>"LiW Proximity"</strong>. With Mumble: <strong>without the plugin you hear nobody and nobody hears you</strong>.</p>
 <ol>
 <li>Install <a href="https://www.mumble.info/downloads/" target="_blank" rel="noopener">Mumble</a> (version 1.4 or newer).</li>
 <li>Get the plugin: <a href="https://www.playliw.com/voice"><strong>playliw.com/voice</strong></a> – always the latest version. Double-click the file, or in Mumble: Settings → Plugins → "Install plugin".</li>

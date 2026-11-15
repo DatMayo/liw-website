@@ -5,6 +5,9 @@ export const DISCORD_URL = 'https://discord.gg/playliw';
 export const CONNECT_URL = 'https://cfx.re/join/4ggl8rq';
 // Voice plugin for Mumble: vercel.json sends /voice to the latest GitHub release of DatMayo/liw-voice.
 export const VOICE_URL = 'https://www.playliw.com/voice';
+// Voice client LiW Voice (Mumble client with the plugin built in): /client sends to the newest Windows ZIP
+// of DatMayo/liw-voice-client-public.
+export const CLIENT_URL = 'https://www.playliw.com/client';
 
 export const SITE_TEXT = {
     de: {

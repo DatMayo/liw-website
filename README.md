@@ -155,7 +155,16 @@ Inhaltsverzeichnis. Deep Links wie `/handbuch#life-memorials` funktionieren beim
 - Impressum und Datenschutz als eigene Seiten
 - Screenshots aus dem Spiel (Hintergrund oben, je Art)
 
-## Voice-Plugin
+## Voice: LiW Voice und Plugin
+
+`https://playliw.com/client` führt immer direkt zur neuesten Windows-Datei des Voice-Clients **LiW Voice**
+(`LiWVoice-<Version>-windows-x64.zip`): Die Vercel-Funktion `api/client.js` (Rewrite in `vercel.json`) fragt GitHub nach
+dem neuesten Release im öffentlichen Repo `DatMayo/liw-voice-client-public` (nur die Dateien; Quellcode privat in
+`DatMayo/liw-voice-client`), das CDN merkt sich die Antwort 5 Minuten, sonst geht es zur Release-Seite. Benutzt auf der
+Startseite (Schritt „Voice“, `CLIENT_URL` in `src/site.js`) und im Handbuch (`voice-client`).
+
+### Mumble-Plugin
+
 
 `https://playliw.com/voice` führt immer direkt zur neuesten Datei des Mumble-Plugins: Die Vercel-Funktion `api/voice.js`
 (Rewrite in `vercel.json`) fragt GitHub nach dem neuesten Release im öffentlichen Repo `DatMayo/liw-voice-releases` (nur die Dateien; der Quellcode in `DatMayo/liw-voice` ist privat) und leitet auf dessen
