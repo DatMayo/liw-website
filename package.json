@@ -1,0 +1,20 @@
+{
+  "name": "liw-website",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite-ssg build && node -e \"require('fs').rmSync('dist/.vite', { recursive: true, force: true })\"",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@unhead/vue": "^2.1.17",
+    "vue": "^3.5.45",
+    "vue-router": "^4.6.5"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.11",
+    "vite": "^8.3.8",
+    "vite-ssg": "^28.3.0"
+  }
+}
