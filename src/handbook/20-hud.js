@@ -162,15 +162,14 @@ export default {
         {
             id: 'hud-voice',
             title: { de: 'Sprachanzeige', en: 'Voice display' },
-            tags: { de: 'mikrofon sprechen reichweite meter leise normal laut rudelruf voice hört niemand stumm', en: 'microphone talk range metres quiet normal loud pack call voice nobody hears muted' },
+            tags: { de: 'mikrofon sprechen reichweite meter leise normal laut rudelruf voice mumble stumm', en: 'microphone talk range metres quiet normal loud pack call voice mumble muted' },
             de: `<p>Unten links zeigt ein Mikrofon, wie weit man dich gerade hört: „leise“, „normal“, „laut“, „eigene“ (frei eingestellt) oder „Rudelruf“, jeweils mit Metern.</p>
 <table class="hb-table">
 <thead><tr><th>Anzeige</th><th>Bedeutung</th></tr></thead>
 <tbody>
-<tr><td>Mikrofon leuchtet grün</td><td>Du sprichst und jemand hört dich.</td></tr>
-<tr><td>„niemand in Hörweite“</td><td>Du sprichst, aber niemand ist nah genug.</td></tr>
-<tr><td>„Mikrofon aus“</td><td>Du hörst andere, dein Mikrofon ist in den Spieleinstellungen aus.</td></tr>
-<tr><td>„Sprachchat aus“ (rot)</td><td>Der Sprachchat ist in den Spieleinstellungen abgeschaltet oder nicht verbunden.</td></tr>
+<tr><td>Mikrofon leuchtet grün</td><td>Du sprichst.</td></tr>
+<tr><td>„Mikrofon aus (Mumble)“ (gelb)</td><td>Du hörst andere, dein Mikrofon ist in Mumble stumm.</td></tr>
+<tr><td>„kein Voice (Mumble)“ (rot)</td><td>Mumble mit dem LiW-Plugin läuft nicht, ist nicht verbunden oder taub geschaltet (<a href="#voice-setup">Mumble einrichten</a>).</td></tr>
 </tbody>
 </table>
 <p>Reichweite einstellen, Rudelruf und Emotes: Kapitel <a href="#voice">Stimme</a>.</p>`,
@@ -178,10 +177,9 @@ export default {
 <table class="hb-table">
 <thead><tr><th>Display</th><th>Meaning</th></tr></thead>
 <tbody>
-<tr><td>Microphone glows green</td><td>You are talking and someone hears you.</td></tr>
-<tr><td>“nobody in range”</td><td>You are talking, but nobody is close enough.</td></tr>
-<tr><td>“microphone off”</td><td>You hear others, but your microphone is off in the game settings.</td></tr>
-<tr><td>“voice chat off” (red)</td><td>Voice chat is switched off in the game settings or not connected.</td></tr>
+<tr><td>Microphone glows green</td><td>You are talking.</td></tr>
+<tr><td>“microphone off (Mumble)” (yellow)</td><td>You hear others, your microphone is muted in Mumble.</td></tr>
+<tr><td>“no voice (Mumble)” (red)</td><td>Mumble with the LiW plugin is not running, not connected or deafened (<a href="#voice-setup">Setting up Mumble</a>).</td></tr>
 </tbody>
 </table>
 <p>Setting the range, pack call and emotes: <a href="#voice">Voice</a> chapter.</p>`,

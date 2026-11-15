@@ -6,17 +6,51 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
-    { "source": "/index.html", "destination": "/", "permanent": true },
-    { "source": "/tasten.html", "destination": "/tasten", "permanent": true },
-    { "source": "/handbuch.html", "destination": "/handbuch", "permanent": true },
-    { "source": "/kulissen.html", "destination": "/kulissen", "permanent": true },
-    { "source": "/trailer-werkzeug.html", "destination": "/trailer-werkzeug", "permanent": true },
-    { "source": "/trailer-tool.html", "destination": "/trailer-tool", "permanent": true }
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/tasten.html",
+      "destination": "/tasten",
+      "permanent": true
+    },
+    {
+      "source": "/handbuch.html",
+      "destination": "/handbuch",
+      "permanent": true
+    },
+    {
+      "source": "/kulissen.html",
+      "destination": "/kulissen",
+      "permanent": true
+    },
+    {
+      "source": "/trailer-werkzeug.html",
+      "destination": "/trailer-werkzeug",
+      "permanent": true
+    },
+    {
+      "source": "/trailer-tool.html",
+      "destination": "/trailer-tool",
+      "permanent": true
+    },
+    {
+      "source": "/voice",
+      "destination": "https://github.com/DatMayo/liw-voice/releases/latest/download/liw_proximity.mumble_plugin",
+      "permanent": false
+    }
   ],
   "headers": [
     {
       "source": "/assets/(.*)",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
     }
   ]
 }

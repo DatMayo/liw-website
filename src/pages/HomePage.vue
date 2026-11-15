@@ -6,7 +6,7 @@ import SiteFooter from '../components/SiteFooter.vue';
 import SiteLink from '../components/SiteLink.vue';
 import { lang } from '../lang.js';
 import { usePageHead } from '../head.js';
-import { CONNECT_URL, DISCORD_URL } from '../site.js';
+import { CONNECT_URL, DISCORD_URL, VOICE_URL } from '../site.js';
 import { SPECIES, STAT_KEYS, T, imageOf } from '../data/home.js';
 
 usePageHead({
@@ -166,6 +166,7 @@ onUnmounted(() => clearTimeout(copyTimer));
         <div class="step"><h3>{{ t('s1_h') }}</h3><p>{{ t('s1') }}</p></div>
         <div class="step"><h3>{{ t('s2_h') }}</h3><p>{{ t('s2') }}</p></div>
         <div class="step"><h3>{{ t('s3_h') }}</h3><p>{{ t('s3') }}</p></div>
+        <div class="step"><h3>{{ t('s_voice_h') }}</h3><p>{{ t('s_voice') }}</p><a class="step-dl" :href="VOICE_URL">{{ t('s_voice_dl') }}</a></div>
         <div class="step"><h3>{{ t('s4_h') }}</h3><p v-html="t('s4')"></p></div>
       </div>
       <div class="join-cta">
@@ -312,7 +313,9 @@ onUnmounted(() => clearTimeout(copyTimer));
 :where(.page-home) .life-note { margin-top: 14px; padding: 1rem 1.3rem; border-left: 3px solid var(--rust); background: rgba(200, 105, 74, 0.07); border-radius: 0 12px 12px 0; color: #d4cab7; }
 
 /* Join */
-:where(.page-home) .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; counter-reset: step; }
+:where(.page-home) .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: 14px; counter-reset: step; }
+:where(.page-home) .step-dl { display: inline-block; margin-top: 0.7rem; font-weight: 600; color: #14110c; background: var(--gold); border-radius: 999px; padding: 0.3rem 0.95rem; text-decoration: none; }
+:where(.page-home) .step-dl:hover { filter: brightness(1.08); }
 :where(.page-home) .step { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.3rem; position: relative; }
 :where(.page-home) .step::before { counter-increment: step; content: counter(step); display: grid; place-items: center; width: 2.2rem; height: 2.2rem; border-radius: 50%; background: var(--gold); color: #14110c; font-family: var(--old); font-size: 1.2rem; margin-bottom: 0.9rem; }
 :where(.page-home) .step h3 { font-size: 1.35rem; margin-bottom: 0.4rem; }

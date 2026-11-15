@@ -5,13 +5,37 @@ export default {
     title: { de: 'Stimme und Laute', en: 'Voice and sounds' },
     sections: [
         {
+            id: 'voice-setup',
+            title: { de: 'Mumble einrichten', en: 'Setting up Mumble' },
+            tags: { de: 'mumble plugin voice sprachchat einrichten download installieren liw proximity', en: 'mumble plugin voice chat set up download install liw proximity' },
+            de: `<p>Gesprochen wird über die kostenlose <strong>Mumble-App</strong> mit unserem Plugin <strong>„LiW Proximity“</strong>. Der eingebaute Sprachchat von RedM ist aus – <strong>ohne Plugin hörst du niemanden und niemand hört dich</strong>.</p>
+<ol>
+<li><a href="https://www.mumble.info/downloads/" target="_blank" rel="noopener">Mumble</a> (ab Version 1.4) installieren.</li>
+<li>Das Plugin laden: <a href="https://playliw.com/voice"><strong>playliw.com/voice</strong></a> – führt immer zur neuesten Version. Datei doppelklicken oder in Mumble: Einstellungen → Plugins → „Plugin installieren“.</li>
+<li>In Mumble: Einstellungen → Plugins → „LiW Proximity“ anhaken; Audioausgabe → positionsabhängiges Audio einschalten.</li>
+<li>Mumble mit unserem Mumble-Server verbinden (Adresse im Discord).</li>
+<li>Spiel starten – das Plugin verbindet sich selbst und schiebt dich in den Spielkanal.</li>
+</ol>
+<p>Ob alles klappt, zeigt das Spiel im Charaktermenü (<kbd>J</kbd>) unter Einstellungen → <strong>Voice</strong>: ein Häkchen je Schritt. Push-to-Talk oder Sprachaktivierung, Lautstärke und Mikrofon stellst du in Mumble ein.</p>
+<p>Das Plugin gibt kurze Töne: zwei steigende = mit dem Spiel verbunden, zwei fallende = Verbindung weg, drei leise = im Spielkanal, zwei tiefe = Kanal fehlt oder Passwort falsch, ein kurzer Ruf = ein Rudelruf erreicht dich.</p>`,
+            en: `<p>Talking works through the free <strong>Mumble app</strong> with our plugin <strong>"LiW Proximity"</strong>. RedM's built-in voice chat is off – <strong>without the plugin you hear nobody and nobody hears you</strong>.</p>
+<ol>
+<li>Install <a href="https://www.mumble.info/downloads/" target="_blank" rel="noopener">Mumble</a> (version 1.4 or newer).</li>
+<li>Get the plugin: <a href="https://playliw.com/voice"><strong>playliw.com/voice</strong></a> – always the latest version. Double-click the file, or in Mumble: Settings → Plugins → "Install plugin".</li>
+<li>In Mumble: Settings → Plugins → tick "LiW Proximity"; Audio output → switch on positional audio.</li>
+<li>Connect Mumble to our Mumble server (address on the Discord).</li>
+<li>Start the game – the plugin links up by itself and moves you into the game channel.</li>
+</ol>
+<p>The game shows whether everything works in the character menu (<kbd>J</kbd>) under Settings → <strong>Voice</strong>: one tick per step. Push-to-talk or voice activation, volume and microphone are set in Mumble.</p>
+<p>The plugin plays short tones: two rising = linked to the game, two falling = link lost, three soft = in the game channel, two low = channel missing or wrong password, a short call = a pack call reaches you.</p>`,
+        },
+        {
             id: 'voice-proximity',
             title: { de: 'Sprechen in der Nähe', en: 'Proximity voice' },
             tags: { de: 'sprechen voice mikrofon push to talk n sprachchat', en: 'talk voice microphone push to talk n voice chat' },
-            de: `<p>Life in Wilderness nutzt den eingebauten Sprachchat von RedM: Dich hören nur Spieler, die <strong>in deiner Nähe</strong> sind – wie bei echten Tieren. Je weiter weg, desto leiser.</p>
+            de: `<p>Dich hören nur Spieler, die <strong>in deiner Nähe</strong> sind – wie bei echten Tieren. Je weiter weg, desto leiser; die Stimme kommt aus der Richtung des Tieres und klingt in Höhlen, Gebäuden und unter Wasser dumpf.</p>
 <ul>
-<li>Sprechen: <kbd>N</kbd> (Push-to-Talk, RedM-Standard; änderbar in den Spieleinstellungen).</li>
-<li>Der Sprachchat muss in den Spieleinstellungen eingeschaltet sein.</li>
+<li>Sprechen: über Mumble (Push-to-Talk-Taste oder Sprachaktivierung, wie du es dort eingestellt hast; <a href="#voice-setup">Mumble einrichten</a>).</li>
 <li>Du startest mit der Reichweite <strong>normal</strong> (10 m). Ändern: <a href="#voice-range">Sprachreichweite</a>.</li>
 <li>Auch niedergestreckt kannst du noch sprechen.</li>
 </ul>
@@ -21,17 +45,15 @@ export default {
 <thead><tr><th>Anzeige</th><th>Bedeutung</th></tr></thead>
 <tbody>
 <tr><td>Grau</td><td>Du sprichst gerade nicht.</td></tr>
-<tr><td>Grün</td><td>Du sprichst, und mindestens ein Spieler hört dich.</td></tr>
-<tr><td>Gelb, „niemand in Hörweite“</td><td>Du sprichst, aber keiner ist nah genug.</td></tr>
-<tr><td>Durchgestrichenes Mikrofon, „Mikrofon aus“</td><td>Du hörst die anderen, sendest aber nicht.</td></tr>
-<tr><td>Roter Lautsprecher, „Sprachchat aus“</td><td>Sprachchat in den Spieleinstellungen aus oder keine Verbindung.</td></tr>
+<tr><td>Grün</td><td>Du sprichst.</td></tr>
+<tr><td>Gelb, „Mikrofon aus (Mumble)“</td><td>Du hörst die anderen, dein Mikrofon ist in Mumble stumm.</td></tr>
+<tr><td>Roter Lautsprecher, „kein Voice (Mumble)“</td><td>Mumble mit dem Plugin läuft nicht, ist nicht verbunden oder taub geschaltet.</td></tr>
 </tbody>
 </table>
-<p>Ob ein Rudelmitglied den Sprachchat aus hat, siehst du im Rudelmenü (<kbd>L</kbd>, <a href="#pack">Rudel</a>). Probleme mit dem Ton: <a href="#help">Hilfe</a>.</p>`,
-            en: `<p>Life in Wilderness uses RedM's built-in voice chat: only players <strong>near you</strong> hear you – like real animals. The further away, the quieter.</p>
+<p>Ob ein Rudelmitglied kein Voice hat, siehst du im Rudelmenü (<kbd>L</kbd>, <a href="#pack">Rudel</a>). Probleme mit dem Ton: <a href="#help">Hilfe</a>.</p>`,
+            en: `<p>Only players <strong>near you</strong> hear you – like real animals. The further away, the quieter; voices come from the animal's direction and sound muffled in caves, buildings and under water.</p>
 <ul>
-<li>Talk: <kbd>N</kbd> (push-to-talk, RedM default; can be changed in the game settings).</li>
-<li>Voice chat must be switched on in the game settings.</li>
+<li>Talk: through Mumble (push-to-talk key or voice activation, as set there; <a href="#voice-setup">Setting up Mumble</a>).</li>
 <li>You start with the range <strong>normal</strong> (10 m). To change it: <a href="#voice-range">Voice range</a>.</li>
 <li>You can still talk while downed.</li>
 </ul>
@@ -41,13 +63,12 @@ export default {
 <thead><tr><th>Display</th><th>Meaning</th></tr></thead>
 <tbody>
 <tr><td>Grey</td><td>You are not talking.</td></tr>
-<tr><td>Green</td><td>You are talking and at least one player hears you.</td></tr>
-<tr><td>Yellow, "nobody in range"</td><td>You are talking, but nobody is close enough.</td></tr>
-<tr><td>Crossed-out microphone, "microphone off"</td><td>You hear the others but do not transmit.</td></tr>
-<tr><td>Red speaker, "voice chat off"</td><td>Voice chat is off in the game settings, or no connection.</td></tr>
+<tr><td>Green</td><td>You are talking.</td></tr>
+<tr><td>Yellow, "microphone off (Mumble)"</td><td>You hear the others, your microphone is muted in Mumble.</td></tr>
+<tr><td>Red speaker, "no voice (Mumble)"</td><td>Mumble with the plugin is not running, not connected or deafened.</td></tr>
 </tbody>
 </table>
-<p>Whether a pack member has voice chat off is shown in the pack menu (<kbd>L</kbd>, <a href="#pack">Packs</a>). Sound problems: <a href="#help">Help</a>.</p>`,
+<p>Whether a pack member has no voice is shown in the pack menu (<kbd>L</kbd>, <a href="#pack">Packs</a>). Sound problems: <a href="#help">Help</a>.</p>`,
         },
         {
             id: 'voice-range',
@@ -78,22 +99,22 @@ export default {
             id: 'voice-pack-call',
             title: { de: 'Rudelruf (B)', en: 'Pack call (B)' },
             tags: { de: 'rudelruf rudel funk b halten weit', en: 'pack call radio b hold far' },
-            de: `<p>Halte <kbd>B</kbd>, um <strong>nur mit deinem Rudel</strong> zu sprechen – viel weiter als jeder Ruf:</p>
+            de: `<p>Halte <kbd>B</kbd>, damit dich <strong>dein Rudel</strong> hört – viel weiter als jeder Ruf:</p>
 <ul>
-<li>Es hören dich alle Rudelmitglieder im Umkreis von derzeit <strong>150 m</strong> (wer beim Drücken in Reichweite ist), und zwar in voller Lautstärke.</li>
-<li>Andere Spieler hören in der Zeit nichts von dir.</li>
+<li>Es hören dich alle Rudelmitglieder im Umkreis von derzeit <strong>150 m</strong> in voller Lautstärke; wer während des Rufs in Reichweite kommt, hört dich nach spätestens einer Sekunde.</li>
+<li>Alle anderen in der Nähe hören dich wie sonst nach deiner Reichweite (<kbd>Z</kbd>) – pass also auf, wie laut du redest.</li>
 <li>Im HUD steht „Rudelruf · 150 m“.</li>
 <li>Ohne Rudel: „Du gehörst keinem Rudel an.“</li>
 </ul>
-<div class="hb-tip">Ideal für die Jagd: Absprachen, ohne dass die Beute – oder ein fremder Spieler in der Nähe – etwas mitbekommt. Und wenn du niedergestreckt bist, holst du so Hilfe (<a href="#health-help-up">Aufhelfen</a>).</div>`,
-            en: `<p>Hold <kbd>B</kbd> to talk <strong>only to your pack</strong> – much further than any shout:</p>
+<div class="hb-tip">Ideal für die Jagd: Mit leiser Reichweite sprichst du dich mit dem Rudel ab, ohne dass ein fremder Spieler in der Nähe etwas mitbekommt. Und wenn du niedergestreckt bist, holst du so Hilfe (<a href="#health-help-up">Aufhelfen</a>).</div>`,
+            en: `<p>Hold <kbd>B</kbd> so that <strong>your pack</strong> hears you – much further than any shout:</p>
 <ul>
-<li>Every pack member within currently <strong>150 m</strong> (whoever is in range when you press it) hears you, at full volume.</li>
-<li>Other players hear nothing from you meanwhile.</li>
+<li>Every pack member within currently <strong>150 m</strong> hears you at full volume; whoever comes into range during the call hears you within a second.</li>
+<li>Everybody else nearby hears you as usual, by your range (<kbd>Z</kbd>) – so mind how loud you talk.</li>
 <li>The HUD shows "pack call · 150 m".</li>
 <li>Without a pack: "You do not belong to a pack."</li>
 </ul>
-<div class="hb-tip">Ideal for hunting: plan your moves without the prey – or a stranger nearby – noticing. And when you are downed, this is how you call for help (<a href="#health-help-up">Helping up</a>).</div>`,
+<div class="hb-tip">Ideal for hunting: with a quiet range you plan your moves with the pack without a stranger nearby noticing. And when you are downed, this is how you call for help (<a href="#health-help-up">Helping up</a>).</div>`,
         },
         {
             id: 'voice-sounds',
@@ -105,7 +126,7 @@ export default {
 <li>über das <a href="#voice-emotes">Emote-Rad</a> (<kbd>F</kbd>),</li>
 <li>bei manchen Fähigkeiten (z. B. Heulen des Wolfs, Rudelwut, Herdenwall).</li>
 </ul>
-<p>Tierlaute hören alle Spieler im Umkreis von derzeit etwa <strong>150 m</strong>, leiser, je weiter weg – auch ohne Sprachchat. Zwischen zwei Lauten liegen mindestens 1,5 Sekunden.</p>
+<p>Tierlaute hören alle Spieler im Umkreis von derzeit etwa <strong>150 m</strong>, leiser, je weiter weg – auch ohne Mumble. Zwischen zwei Lauten liegen mindestens 1,5 Sekunden.</p>
 <p>Niedergestreckt kannst du keine Laute machen.</p>`,
             en: `<p>Your animal can make real animal sounds – howling, roaring, growling, bugling, hissing, neighing and more, depending on the species:</p>
 <ul>
@@ -113,7 +134,7 @@ export default {
 <li>through the <a href="#voice-emotes">emote wheel</a> (<kbd>F</kbd>),</li>
 <li>with some abilities (e.g. the wolf's howl, Pack Rage, Herd Wall).</li>
 </ul>
-<p>Every player within currently about <strong>150 m</strong> hears animal sounds, quieter the further away – even without voice chat. There are at least 1.5 seconds between two sounds.</p>
+<p>Every player within currently about <strong>150 m</strong> hears animal sounds, quieter the further away – even without Mumble. There are at least 1.5 seconds between two sounds.</p>
 <p>You cannot make sounds while downed.</p>`,
         },
         {
