@@ -5,7 +5,7 @@ Startseite, Tastenbelegung, Spielerhandbuch und „Hinter den Kulissen“, auf D
 
 Gebaut mit **Vue 3**, **Vite** und **vue-router**; beim Build rendert **vite-ssg** jede Seite vorab zu fertigem HTML
 (Inhalt für Suchmaschinen und Link-Vorschauen), im Browser übernimmt Vue danach (Hydration) die Interaktion.
-Hauptdomain ist **https://playliw.com**.
+Hauptdomain ist **https://www.playliw.com** (`playliw.com` und die anderen Domains leiten dorthin).
 
 ## Lokal starten
 
@@ -22,7 +22,7 @@ npm run preview    # den Build aus dist/ lokal ansehen
 
 Das Repo ist bei Vercel als Projekt eingebunden; jeder Push auf den Produktions-Branch baut und veröffentlicht die Seite.
 Einstellungen des Projekts: **Framework Preset „Vite“**, Build Command **`npm run build`**, Output Directory **`dist`**
-(stehen auch in `vercel.json`). Hauptdomain ist `playliw.com`; weitere Domains und deren Weiterleitungen werden in
+(stehen auch in `vercel.json`). Hauptdomain ist `www.playliw.com`; `playliw.com` und weitere Domains und deren Weiterleitungen werden in
 Vercel unter *Settings → Domains* eingerichtet, nicht im Repo.
 
 `vercel.json` sorgt außerdem für:
@@ -51,7 +51,7 @@ src/
   routes.js                alle Seiten und das Scroll-Verhalten bei Ankern
   lang.js                  Sprache DE/EN: localStorage-Schlüssel liw_lang, sonst Browsersprache
   site.js                  gemeinsame Texte von Leiste und Fußzeile (DE/EN), DISCORD_URL, CONNECT_URL, SITE_URL
-  head.js                  Titel, Beschreibung, Canonical/og:url (https://playliw.com/<route>), noindex
+  head.js                  Titel, Beschreibung, Canonical/og:url (https://www.playliw.com/<route>), noindex
   assets/site.css          gemeinsames Aussehen aller Seiten: Farben, Schriften, Leiste, Nachthimmel-Kopf, Fußzeile
   assets/fonts/            Schriften (IM Fell English, Crimson Pro; SIL Open Font License) – lokal, keine Anfragen an Google
   components/              SiteBar (Leiste, Menü auf kleinen Bildschirmen, Sprachumschalter), SiteFooter,

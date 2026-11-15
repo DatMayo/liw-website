@@ -1,10 +1,10 @@
 // Shared parts of all pages: texts of the bar and footer (DE/EN), the Discord invite, the connect address and
 // the canonical domain. The bar, the footer and the pages import from here.
-export const SITE_URL = 'https://playliw.com';
+export const SITE_URL = 'https://www.playliw.com';
 export const DISCORD_URL = 'https://discord.gg/playliw';
 export const CONNECT_URL = 'https://cfx.re/join/4ggl8rq';
 // Voice plugin for Mumble: vercel.json sends /voice to the latest GitHub release of DatMayo/liw-voice.
-export const VOICE_URL = 'https://playliw.com/voice';
+export const VOICE_URL = 'https://www.playliw.com/voice';
 
 export const SITE_TEXT = {
     de: {

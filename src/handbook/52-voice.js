@@ -11,7 +11,7 @@ export default {
             de: `<p>Gesprochen wird über die kostenlose <strong>Mumble-App</strong> mit unserem Plugin <strong>„LiW Proximity“</strong>. Der eingebaute Sprachchat von RedM ist aus – <strong>ohne Plugin hörst du niemanden und niemand hört dich</strong>.</p>
 <ol>
 <li><a href="https://www.mumble.info/downloads/" target="_blank" rel="noopener">Mumble</a> (ab Version 1.4) installieren.</li>
-<li>Das Plugin laden: <a href="https://playliw.com/voice"><strong>playliw.com/voice</strong></a> – führt immer zur neuesten Version. Datei doppelklicken oder in Mumble: Einstellungen → Plugins → „Plugin installieren“.</li>
+<li>Das Plugin laden: <a href="https://www.playliw.com/voice"><strong>playliw.com/voice</strong></a> – führt immer zur neuesten Version. Datei doppelklicken oder in Mumble: Einstellungen → Plugins → „Plugin installieren“.</li>
 <li>In Mumble: Einstellungen → Plugins → „LiW Proximity“ anhaken; Audioausgabe → positionsabhängiges Audio einschalten.</li>
 <li>Mumble mit unserem Mumble-Server verbinden (Adresse im Discord).</li>
 <li>Spiel starten – das Plugin verbindet sich selbst und schiebt dich in den Spielkanal.</li>
@@ -21,7 +21,7 @@ export default {
             en: `<p>Talking works through the free <strong>Mumble app</strong> with our plugin <strong>"LiW Proximity"</strong>. RedM's built-in voice chat is off – <strong>without the plugin you hear nobody and nobody hears you</strong>.</p>
 <ol>
 <li>Install <a href="https://www.mumble.info/downloads/" target="_blank" rel="noopener">Mumble</a> (version 1.4 or newer).</li>
-<li>Get the plugin: <a href="https://playliw.com/voice"><strong>playliw.com/voice</strong></a> – always the latest version. Double-click the file, or in Mumble: Settings → Plugins → "Install plugin".</li>
+<li>Get the plugin: <a href="https://www.playliw.com/voice"><strong>playliw.com/voice</strong></a> – always the latest version. Double-click the file, or in Mumble: Settings → Plugins → "Install plugin".</li>
 <li>In Mumble: Settings → Plugins → tick "LiW Proximity"; Audio output → switch on positional audio.</li>
 <li>Connect Mumble to our Mumble server (address on the Discord).</li>
 <li>Start the game – the plugin links up by itself and moves you into the game channel.</li>
