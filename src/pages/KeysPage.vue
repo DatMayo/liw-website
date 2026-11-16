@@ -185,13 +185,17 @@ function keyStyle(k) {
 :where(.page-tasten) .group ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
 :where(.page-tasten) .group li { display: grid; grid-template-columns: 8.5rem 1fr; gap: 0.75rem; padding: 0.45rem 0.3rem; border-top: 1px dotted var(--line); min-width: 0; }
 :where(.page-tasten) .group li.hl { background: color-mix(in srgb, var(--c) 16%, transparent); }
-:where(.page-tasten) kbd { font: 600 0.85rem var(--body); display: inline-block; padding: 0.05rem 0.45rem; border: 1px solid var(--cap-edge); border-bottom-width: 2px; border-radius: 3px; background: var(--cap); color: var(--ink); white-space: nowrap; justify-self: start; align-self: start; }
+:where(.page-tasten) kbd { font: 600 0.85rem var(--body); display: inline-block; padding: 0.05rem 0.45rem; border: 1px solid var(--cap-edge); border-bottom-width: 2px; border-radius: 3px; background: var(--cap); color: var(--ink); white-space: normal; max-width: 100%; overflow-wrap: anywhere; justify-self: start; align-self: start; }
 :where(.page-tasten) .group small { display: block; color: var(--muted); font-size: 0.95rem; }
 :where(.page-tasten) .pad-box { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
 :where(.page-tasten) .pad-title { font-family: var(--display); font-weight: normal; font-size: 1.6rem; letter-spacing: 0.04em; margin: 0 0 0.4rem; }
 :where(.page-tasten) .pad-intro { color: var(--muted); margin: 0 0 1.2rem; max-width: 46rem; }
 :where(.page-tasten) .note { border-top: 1px solid var(--line); padding-top: 1rem; color: var(--muted); display: grid; gap: 0.4rem; max-width: 46rem; }
 :where(.page-tasten) .note b { color: var(--ink); font-weight: 600; }
-@media (max-width: 40rem) { :where(.page-tasten) .board, :where(.page-tasten) .mouse-body { --u: 3rem; } }
+@media (max-width: 40rem) {
+  :where(.page-tasten) .board, :where(.page-tasten) .mouse-body { --u: 3rem; }
+  /* Narrow screens: the key above its description, so long keys ("Steuerkreuz / linker Stick") do not run into the text. */
+  :where(.page-tasten) .group li { grid-template-columns: minmax(0, 1fr); gap: 0.3rem; }
+}
 @media (prefers-reduced-motion: no-preference) { :where(.page-tasten) .key, :where(.page-tasten) .legend button { transition: background-color 0.15s, opacity 0.15s; } }
 </style>
