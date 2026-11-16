@@ -610,7 +610,7 @@ html:where(.page-handbuch) { scroll-behavior: smooth; scroll-padding-top: calc(v
 :where(.page-handbuch) .menu-btn svg { width: 1.1rem; height: 1.1rem; }
 
 /* Search: a sticky strip right under the floating bar */
-:where(.page-handbuch) .hb-tools { position: sticky; top: var(--tools-top); z-index: 20; display: flex; gap: 0.6rem; align-items: center; width: min(1180px, 100% - var(--gutter-l) - var(--gutter-r)); margin: -1.7rem auto 0; }
+:where(.page-handbuch) .hb-tools { position: sticky; top: var(--tools-top); z-index: 20; display: flex; gap: 0.6rem; align-items: center; width: min(1180px, 100% - var(--gutter-l) - var(--gutter-r)); margin: 0.5rem auto 0; }
 :where(.page-handbuch) .search { position: relative; flex: 1; min-width: 0; }
 /* Once stuck, a dark band behind bar and search keeps the scrolling text from showing between them. */
 :where(.page-handbuch) .hb-tools::before { content: ''; position: absolute; z-index: -1; left: calc(50% - 50vw); right: calc(50% - 50vw); top: calc(-1 * var(--tools-top)); bottom: -0.6rem;
@@ -648,6 +648,7 @@ html:where(.page-handbuch) { scroll-behavior: smooth; scroll-padding-top: calc(v
 :where(.page-handbuch) .chapters a { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 0.95rem; background: var(--panel); border: 1px solid var(--line); border-radius: 3px; color: var(--ink); text-decoration: none; font-family: var(--old); font-size: 1.02rem; line-height: 1.25; min-width: 0; transition: border-color 0.15s, background 0.15s; }
 :where(.page-handbuch) .chapters a:hover { background: var(--panel-2); border-color: var(--line-gold); color: var(--gold-hi); }
 :where(.page-handbuch) .chapters svg { width: 1.7rem; height: 1.7rem; color: var(--gold); }
+:where(.page-handbuch) .chapters a > span { min-width: 0; overflow-wrap: break-word; hyphens: auto; }
 :where(.page-handbuch) .chapters small { display: block; font-family: var(--body); color: var(--muted); font-size: 0.85rem; }
 
 /* Book: contents + text */
