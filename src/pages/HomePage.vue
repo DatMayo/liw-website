@@ -52,10 +52,10 @@ onUnmounted(() => clearTimeout(copyTimer));
   <section id="top" class="hero">
     <div class="moon" aria-hidden="true"></div>
     <svg class="scene" viewBox="0 0 1600 600" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
-      <path d="M0 260 L110 200 L230 240 L360 150 L480 220 L600 170 L740 240 L880 140 L1010 210 L1150 160 L1290 230 L1420 180 L1600 230 V600 H0z" fill="#3a3a3c" opacity="0.55" />
-      <path d="M0 340 L120 300 L260 330 L400 270 L540 320 L700 285 L860 335 L1020 280 L1180 325 L1340 290 L1480 330 L1600 300 V600 H0z" fill="#2c2721" />
-      <path id="trees" d="M0 430 L30 380 L45 400 L60 350 L80 395 L100 360 L120 410 L150 370 L170 405 L200 345 L225 400 L260 385 L300 420 L360 405 L430 430 L520 415 L600 440 L700 425 L800 445 L900 428 L1000 440 L1080 420 L1130 380 L1150 400 L1175 340 L1200 395 L1225 355 L1250 405 L1280 365 L1305 410 L1340 375 L1370 415 L1420 395 L1480 425 L1540 405 L1600 420 V600 H0z" fill="#1a1611" />
-      <g fill="#0f0c09">
+      <path d="M0 260 L110 200 L230 240 L360 150 L480 220 L600 170 L740 240 L880 140 L1010 210 L1150 160 L1290 230 L1420 180 L1600 230 V600 H0z" fill="#3a4f41" opacity="0.55" />
+      <path d="M0 340 L120 300 L260 330 L400 270 L540 320 L700 285 L860 335 L1020 280 L1180 325 L1340 290 L1480 330 L1600 300 V600 H0z" fill="#22302a" />
+      <path id="trees" d="M0 430 L30 380 L45 400 L60 350 L80 395 L100 360 L120 410 L150 370 L170 405 L200 345 L225 400 L260 385 L300 420 L360 405 L430 430 L520 415 L600 440 L700 425 L800 445 L900 428 L1000 440 L1080 420 L1130 380 L1150 400 L1175 340 L1200 395 L1225 355 L1250 405 L1280 365 L1305 410 L1340 375 L1370 415 L1420 395 L1480 425 L1540 405 L1600 420 V600 H0z" fill="#18221c" />
+      <g fill="#121a15">
         <path d="M560 470 c8-6 14-6 22-8 l12-14 4 6 -6 10 c10 2 20 6 26 14 l8 22 -6 1 -8-16 -14 0 -4 18 -6 0 0-18 -20 0 -6 18 -6 0 2-20 c-6-4-8-8-4-13z" />
         <path d="M0 520 C200 500 400 515 600 505 C800 495 1000 520 1200 505 C1400 495 1500 510 1600 500 V600 H0z" />
       </g>
@@ -234,20 +234,20 @@ onUnmounted(() => clearTimeout(copyTimer));
 :where(.page-home) .hero {
     position: relative; min-height: max(100svh, 640px); overflow: hidden; display: grid; place-items: center;
     background:
-        radial-gradient(ellipse 45% 35% at 74% 20%, rgba(240, 226, 190, 0.16), transparent 62%),
-        linear-gradient(180deg, #131923 0%, #1c1b1f 42%, #2a2016 70%, #0f0d0b 100%);
+        radial-gradient(ellipse 45% 35% at 74% 20%, rgba(223, 230, 210, 0.16), transparent 62%),
+        linear-gradient(180deg, #0f1713 0%, #17221c 42%, #22302a 70%, #121a15 100%);
 }
 :where(.page-home) .hero .moon { position: absolute; top: 15%; right: 19%; width: clamp(3.5rem, 7vw, 6rem); aspect-ratio: 1; border-radius: 50%;
-    background: radial-gradient(circle at 38% 36%, #fbf3dc, #e2d3ad 60%, #c9b88e); box-shadow: 0 0 80px 18px rgba(240, 226, 190, 0.25); }
+    background: radial-gradient(circle at 38% 36%, #f1f3e6, #dfe6d2 60%, #bccab0); box-shadow: 0 0 80px 18px rgba(223, 230, 210, 0.25); }
 :where(.page-home) .hero svg.scene { position: absolute; inset: auto 0 0 0; width: 100%; height: 56%; }
 :where(.page-home) .hero-copy { position: relative; z-index: 1; text-align: center; padding: 7rem var(--gutter-r) 9rem var(--gutter-l); max-width: 60rem; }
 :where(.page-home) .hero h1 { font-size: clamp(3.2rem, 9vw, 8rem); line-height: 0.95; letter-spacing: 0.02em; text-shadow: 0 12px 60px rgba(0, 0, 0, 0.6); margin: 0.4rem 0 1.4rem; }
-:where(.page-home) .hero .lede { font-size: clamp(1.15rem, 1.8vw, 1.45rem); color: #ddd3c0; max-width: 40rem; margin: 0 auto 2rem; line-height: 1.5; }
+:where(.page-home) .hero .lede { font-size: clamp(1.15rem, 1.8vw, 1.45rem); color: var(--soft); max-width: 40rem; margin: 0 auto 2rem; line-height: 1.5; }
 :where(.page-home) .actions { display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; }
-:where(.page-home) .btn { display: inline-flex; align-items: center; gap: 0.55rem; padding: 0.85rem 1.6rem; border-radius: 999px; text-decoration: none;
-    font-family: var(--display); font-size: 1.1rem; letter-spacing: 0.08em; color: var(--ink); border: 1px solid rgba(239, 231, 216, 0.3); backdrop-filter: blur(8px); }
+:where(.page-home) .btn { display: inline-flex; align-items: center; gap: 0.55rem; padding: 0.85rem 1.6rem; border-radius: 3px; text-decoration: none;
+    font-family: var(--display); font-size: 1.1rem; letter-spacing: 0.08em; color: var(--ink); border: 1px solid rgba(var(--ink-rgb), 0.3); backdrop-filter: blur(8px); }
 :where(.page-home) .btn:hover { border-color: var(--gold); }
-:where(.page-home) .btn.primary { background: var(--gold); color: #14110c; border-color: var(--gold); box-shadow: 0 10px 40px rgba(214, 174, 94, 0.3); }
+:where(.page-home) .btn.primary { background: var(--gold); color: var(--on-accent); border-color: var(--gold); background-image: var(--tex-paper); box-shadow: inset 0 0 0 2px var(--gold), inset 0 0 0 3px var(--brass), 0 10px 40px rgba(var(--accent-rgb), 0.2); }
 :where(.page-home) .btn.primary:hover { background: var(--gold-hi); }
 :where(.page-home) .btn svg { width: 1.25rem; height: 1.25rem; fill: currentColor; }
 :where(.page-home) .status { margin-top: 1.4rem; display: inline-flex; gap: 0.5rem; align-items: center; color: var(--muted); font-size: 1rem; }
@@ -255,7 +255,7 @@ onUnmounted(() => clearTimeout(copyTimer));
 
 /* Numbers over the lower edge of the hero */
 :where(.page-home) .facts { position: relative; z-index: 2; margin-top: -4.5rem; display: grid; grid-template-columns: repeat(4, 1fr);
-    border: 1px solid var(--line-gold); border-radius: 22px; background: rgba(25, 21, 18, 0.88); backdrop-filter: blur(10px); }
+    border: 1px solid var(--line-gold); border-radius: 3px; background: rgba(var(--panel-rgb), 0.94); backdrop-filter: blur(10px); }
 :where(.page-home) .fact { padding: 1.4rem 1.6rem; border-right: 1px solid var(--line); }
 :where(.page-home) .fact:last-child { border-right: none; }
 :where(.page-home) .fact b { display: block; font-family: var(--old); font-weight: normal; font-size: 2.6rem; line-height: 1; color: var(--gold); }
@@ -266,41 +266,41 @@ onUnmounted(() => clearTimeout(copyTimer));
 :where(.page-home) .section-head { margin-bottom: 2rem; max-width: 46rem; }
 :where(.page-home) .section-head h2 { font-size: clamp(2.2rem, 4vw, 3.2rem); margin-bottom: 0.75rem; }
 :where(.page-home) .section-head p:not(.eyebrow) { color: var(--muted); font-size: 1.15rem; }
-:where(.page-home) .manifest { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; color: #d9cfbc; font-size: 1.2rem; line-height: 1.65; }
+:where(.page-home) .manifest { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; color: var(--soft); font-size: 1.2rem; line-height: 1.65; }
 :where(.page-home) .manifest p:first-child::first-letter { font-family: var(--old); float: left; font-size: 3.6rem; line-height: 0.85; padding: 0.3rem 0.5rem 0 0; color: var(--gold); }
 
 :where(.page-home) .pillars { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
 :where(.page-home) .pillar { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.4rem; transition: border-color 0.2s, transform 0.2s; }
 :where(.page-home) .pillar:hover { border-color: var(--line-gold); transform: translateY(-2px); }
-:where(.page-home) .pillar .ic { width: 2.8rem; height: 2.8rem; border-radius: 12px; display: grid; place-items: center; background: rgba(214, 174, 94, 0.12); margin-bottom: 1rem; }
+:where(.page-home) .pillar .ic { width: 2.8rem; height: 2.8rem; border-radius: 3px; display: grid; place-items: center; background: rgba(var(--accent-rgb), 0.12); margin-bottom: 1rem; }
 :where(.page-home) .pillar svg { width: 1.7rem; height: 1.7rem; fill: none; stroke: var(--gold); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
 :where(.page-home) .pillar h3 { font-size: 1.45rem; margin-bottom: 0.4rem; }
 :where(.page-home) .pillar p { color: var(--muted); font-size: 1.02rem; line-height: 1.5; }
 
 /* Species: filter, tiles, detail */
 :where(.page-home) .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1rem; }
-:where(.page-home) .filters button { font: inherit; font-size: 1rem; padding: 0.4rem 1rem; border-radius: 10px; background: var(--panel); color: var(--muted); border: 1px solid var(--line); cursor: pointer; }
+:where(.page-home) .filters button { font: inherit; font-size: 1rem; padding: 0.4rem 1rem; border-radius: 3px; background: var(--panel); color: var(--muted); border: 1px solid var(--line); cursor: pointer; }
 :where(.page-home) .filters button[aria-pressed="true"] { color: var(--ink); border-color: var(--gold); }
 :where(.page-home) .species { display: grid; grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr)); gap: 10px; }
-:where(.page-home) .tile { font: inherit; color: var(--ink); text-align: center; background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 0.6rem 0.6rem 0.8rem; cursor: pointer; transition: border-color 0.15s, background 0.15s; }
+:where(.page-home) .tile { font: inherit; color: var(--ink); text-align: center; background: var(--panel); border: 1px solid var(--line); border-radius: 3px; padding: 0.6rem 0.6rem 0.8rem; cursor: pointer; transition: border-color 0.15s, background 0.15s; }
 :where(.page-home) .tile:hover { border-color: var(--line-gold); }
 :where(.page-home) .tile[aria-pressed="true"] { border-color: var(--gold); background: var(--panel-2); }
-:where(.page-home) .tile .pic { position: relative; aspect-ratio: 1; border-radius: 10px; background: radial-gradient(circle at 50% 65%, rgba(214, 174, 94, 0.14), transparent 70%), #15110e; overflow: hidden; }
+:where(.page-home) .tile .pic { position: relative; aspect-ratio: 1; border-radius: 3px; background: radial-gradient(circle at 50% 65%, rgba(201, 216, 191, 0.16), transparent 70%), var(--leather); overflow: hidden; }
 /* Absolutely placed: the whole animal fits into the box (ears, legs and tails were cut before). */
 :where(.page-home) .tile img { position: absolute; inset: 6%; width: 88%; height: 88%; object-fit: contain; }
 :where(.page-home) .tile b { display: block; font-weight: 600; margin-top: 0.45rem; line-height: 1.2; }
 :where(.page-home) .tile small { color: var(--muted); font-size: 0.85rem; }
 :where(.page-home) .detail { margin-top: 12px; display: grid; grid-template-columns: 0.9fr 1fr 1.1fr; gap: 1.8rem; align-items: center; background: var(--panel); border: 1px solid var(--line-gold); border-radius: var(--radius); padding: 1.6rem; }
-:where(.page-home) .detail .pic { position: relative; aspect-ratio: 4 / 3; border-radius: 14px; background: radial-gradient(circle at 50% 65%, rgba(214, 174, 94, 0.18), transparent 70%), #15110e; display: grid; place-items: center; overflow: hidden; }
+:where(.page-home) .detail .pic { position: relative; aspect-ratio: 4 / 3; border-radius: 3px; background: radial-gradient(circle at 50% 65%, rgba(201, 216, 191, 0.2), transparent 70%), var(--leather); display: grid; place-items: center; overflow: hidden; }
 :where(.page-home) .detail .pic img { position: absolute; inset: 4%; width: 92%; height: 92%; object-fit: contain; }
 :where(.page-home) .detail h3 { font-size: 2.2rem; }
-:where(.page-home) .cls { display: inline-block; margin: 0.5rem 0 0.8rem; font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase; border: 1px solid var(--line-gold); border-radius: 999px; padding: 0.1rem 0.7rem; color: var(--gold); }
-:where(.page-home) .cls.herbivore { color: var(--moss); border-color: rgba(143, 184, 120, 0.4); }
-:where(.page-home) .cls.omnivore { color: #d39a6a; border-color: rgba(211, 154, 106, 0.4); }
-:where(.page-home) .detail p { color: #d4cab7; }
+:where(.page-home) .cls { display: inline-block; margin: 0.5rem 0 0.8rem; font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase; border: 1px solid var(--line-gold); border-radius: 3px; padding: 0.1rem 0.7rem; color: var(--gold); }
+:where(.page-home) .cls.herbivore { color: var(--moss); border-color: rgba(var(--moss-rgb), 0.45); }
+:where(.page-home) .cls.omnivore { color: var(--amber); border-color: rgba(var(--amber-rgb), 0.45); }
+:where(.page-home) .detail p { color: var(--soft); }
 :where(.page-home) .stats { display: grid; grid-template-columns: 7.5rem 1fr 1.5rem; gap: 0.45rem 0.8rem; align-items: center; font-size: 0.98rem; color: var(--muted); }
-:where(.page-home) .bar-track { height: 6px; border-radius: 6px; background: rgba(239, 231, 216, 0.08); overflow: hidden; }
-:where(.page-home) .bar-fill { height: 100%; border-radius: 6px; background: linear-gradient(90deg, var(--gold), var(--gold-hi)); transition: width 0.4s; }
+:where(.page-home) .bar-track { height: 6px; border-radius: 3px; background: rgba(var(--ink-rgb), 0.08); overflow: hidden; }
+:where(.page-home) .bar-fill { height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--gold), var(--gold-hi)); transition: width 0.4s; }
 :where(.page-home) .credit { margin-top: 0.6rem; font-size: 0.85rem; color: var(--muted); }
 
 /* Life */
@@ -309,27 +309,27 @@ onUnmounted(() => clearTimeout(copyTimer));
 :where(.page-home) .stage i { font-style: normal; font-family: var(--old); color: var(--gold); font-size: 1.6rem; }
 :where(.page-home) .stage h3 { font-size: 1.4rem; margin: 0.3rem 0; }
 :where(.page-home) .stage p { color: var(--muted); font-size: 1rem; }
-:where(.page-home) .stage.dead { border-color: rgba(200, 105, 74, 0.35); }
+:where(.page-home) .stage.dead { border-color: rgba(var(--rust-rgb), 0.35); }
 :where(.page-home) .stage.dead i { color: var(--rust); }
-:where(.page-home) .life-note { margin-top: 14px; padding: 1rem 1.3rem; border-left: 3px solid var(--rust); background: rgba(200, 105, 74, 0.07); border-radius: 0 12px 12px 0; color: #d4cab7; }
+:where(.page-home) .life-note { margin-top: 14px; padding: 1rem 1.3rem; border-left: 3px solid var(--rust); background: rgba(var(--rust-rgb), 0.07); border-radius: 0 3px 3px 0; color: var(--soft); }
 
 /* Join */
 :where(.page-home) .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: 14px; counter-reset: step; }
-:where(.page-home) .step-dl { display: inline-block; margin-top: 0.7rem; font-weight: 600; color: #14110c; background: var(--gold); border-radius: 999px; padding: 0.3rem 0.95rem; text-decoration: none; }
+:where(.page-home) .step-dl { display: inline-block; margin-top: 0.7rem; font-weight: 600; color: var(--on-accent); background: var(--gold); border-radius: 3px; padding: 0.3rem 0.95rem; text-decoration: none; }
 :where(.page-home) .step-dl:hover { filter: brightness(1.08); }
 :where(.page-home) .step-dls { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.7rem; }
 :where(.page-home) .step-dls .step-dl { margin-top: 0; }
 :where(.page-home) .step-dl.alt { background: transparent; color: var(--gold); border: 1px solid var(--gold); }
 :where(.page-home) .step { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.3rem; position: relative; }
-:where(.page-home) .step::before { counter-increment: step; content: counter(step); display: grid; place-items: center; width: 2.2rem; height: 2.2rem; border-radius: 50%; background: var(--gold); color: #14110c; font-family: var(--old); font-size: 1.2rem; margin-bottom: 0.9rem; }
+:where(.page-home) .step::before { counter-increment: step; content: counter(step); display: grid; place-items: center; width: 2.2rem; height: 2.2rem; border-radius: 50%; background: var(--gold); color: var(--on-accent); font-family: var(--old); font-size: 1.2rem; margin-bottom: 0.9rem; }
 :where(.page-home) .step h3 { font-size: 1.35rem; margin-bottom: 0.4rem; }
 :where(.page-home) .step p { color: var(--muted); font-size: 1rem; }
-:where(.page-home) .step code { font-size: 0.9rem; background: rgba(0, 0, 0, 0.35); border: 1px solid var(--line); border-radius: 6px; padding: 0.05rem 0.35rem; color: var(--ink); }
+:where(.page-home) .step code { font-size: 0.9rem; background: rgba(var(--ink-rgb), 0.07); border: 1px solid var(--line); border-radius: 3px; padding: 0.05rem 0.35rem; color: var(--ink); }
 :where(.page-home) .join-cta { margin-top: 1.4rem; display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }
 :where(.page-home) .join-cta p { flex-basis: 100%; color: var(--muted); font-size: 1rem; }
-:where(.page-home) .copy { display: inline-flex; align-items: center; gap: 0.7rem; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 0.55rem 0.6rem 0.55rem 1rem; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.95rem; color: var(--muted); }
+:where(.page-home) .copy { display: inline-flex; align-items: center; gap: 0.7rem; background: var(--panel); border: 1px solid var(--line); border-radius: 3px; padding: 0.55rem 0.6rem 0.55rem 1rem; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.95rem; color: var(--muted); }
 :where(.page-home) .copy b { color: var(--ink); font-weight: normal; }
-:where(.page-home) .copy button { font: inherit; font-family: var(--body); font-size: 0.95rem; background: var(--panel-2); color: var(--gold); border: 1px solid var(--line-gold); border-radius: 8px; padding: 0.2rem 0.7rem; cursor: pointer; }
+:where(.page-home) .copy button { font: inherit; font-family: var(--body); font-size: 0.95rem; background: var(--panel-2); color: var(--gold); border: 1px solid var(--line-gold); border-radius: 3px; padding: 0.2rem 0.7rem; cursor: pointer; }
 
 /* Rules */
 :where(.page-home) .rules { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; counter-reset: rule; }
@@ -342,9 +342,9 @@ onUnmounted(() => clearTimeout(copyTimer));
 :where(.page-home) .road { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
 :where(.page-home) .dev-more { margin: 1.5rem 0 0; display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1rem; color: var(--soft); }
 :where(.page-home) .phase { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.2rem; position: relative; }
-:where(.page-home) .phase::before { content: ''; display: block; height: 4px; border-radius: 4px; background: rgba(239, 231, 216, 0.1); margin-bottom: 1rem; }
+:where(.page-home) .phase::before { content: ''; display: block; height: 4px; border-radius: 3px; background: rgba(var(--ink-rgb), 0.1); margin-bottom: 1rem; }
 :where(.page-home) .phase.done::before { background: var(--moss); }
-:where(.page-home) .phase.now::before { background: linear-gradient(90deg, var(--gold) 55%, rgba(239, 231, 216, 0.1) 55%); }
+:where(.page-home) .phase.now::before { background: linear-gradient(90deg, var(--gold) 55%, rgba(var(--ink-rgb), 0.1) 55%); }
 :where(.page-home) .phase .tag { font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
 :where(.page-home) .phase.done .tag { color: var(--moss); }
 :where(.page-home) .phase.now .tag { color: var(--gold); }
@@ -353,7 +353,7 @@ onUnmounted(() => clearTimeout(copyTimer));
 
 /* FAQ */
 :where(.page-home) .faq { display: grid; gap: 10px; max-width: 52rem; }
-:where(.page-home) .faq details { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 0 1.2rem; }
+:where(.page-home) .faq details { background: var(--panel); border: 1px solid var(--line); border-radius: 3px; padding: 0 1.2rem; }
 :where(.page-home) .faq details[open] { border-color: var(--line-gold); }
 :where(.page-home) .faq summary { cursor: pointer; list-style: none; padding: 1rem 0; font-size: 1.15rem; display: flex; justify-content: space-between; gap: 1rem; }
 :where(.page-home) .faq summary::after { content: '+'; color: var(--gold); font-size: 1.4rem; line-height: 1; }
@@ -362,8 +362,8 @@ onUnmounted(() => clearTimeout(copyTimer));
 :where(.page-home) .faq p { color: var(--muted); padding-bottom: 1rem; }
 
 /* Closing call and footer */
-:where(.page-home) .closing { margin-top: 6.5rem; border-radius: 26px; padding: 3rem 2rem; text-align: center; border: 1px solid var(--line-gold);
-    background: radial-gradient(ellipse 60% 80% at 50% 0%, rgba(214, 174, 94, 0.16), transparent 70%), var(--panel); }
+:where(.page-home) .closing { margin-top: 6.5rem; border-radius: 3px; padding: 3rem 2rem; text-align: center; border: 1px solid var(--line-gold);
+    background: radial-gradient(ellipse 60% 80% at 50% 0%, rgba(var(--accent-rgb), 0.16), transparent 70%), var(--panel); }
 :where(.page-home) .closing h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1.2rem; }
 
 @media (max-width: 1080px) {

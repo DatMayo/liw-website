@@ -34,5 +34,5 @@ usePageHead({
 
 <style scoped>
 .home { margin: 1.6rem 0 0; }
-.home a { display: inline-block; background: var(--gold); color: #14110c; text-decoration: none; border-radius: 999px; padding: 0.6rem 1.4rem; font-family: var(--display); letter-spacing: 0.08em; }
+.home a { display: inline-block; background: var(--gold); color: var(--on-accent); text-decoration: none; border-radius: 3px; padding: 0.6rem 1.4rem; font-family: var(--display); letter-spacing: 0.08em; }
 </style>

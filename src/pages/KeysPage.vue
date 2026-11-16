@@ -143,7 +143,7 @@ function keyStyle(k) {
 :where(.page-tasten) .key:focus-visible, :where(.page-tasten) .legend button:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
 
 :where(.page-tasten) .legend { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-:where(.page-tasten) .legend button { display: inline-flex; align-items: center; gap: 0.45rem; font: 1rem var(--old); color: var(--ink); background: transparent; border: 1px solid var(--line); border-radius: 999px; padding: 0.25rem 0.85rem; cursor: pointer; }
+:where(.page-tasten) .legend button { display: inline-flex; align-items: center; gap: 0.45rem; font: 1rem var(--old); color: var(--ink); background: transparent; border: 1px solid var(--line); border-radius: 3px; padding: 0.25rem 0.85rem; cursor: pointer; }
 :where(.page-tasten) .legend button[aria-pressed="false"] { opacity: 0.4; }
 :where(.page-tasten) .dot { width: 0.7rem; height: 0.7rem; border-radius: 50%; background: var(--c); }
 
@@ -155,7 +155,7 @@ function keyStyle(k) {
 :where(.page-tasten) .key {
   --c: var(--cap-edge);
   position: relative; width: calc(var(--u) * var(--w, 1) + 0.3rem * (var(--w, 1) - 1)); height: var(--u);
-  background: var(--cap-off); border: 1px solid var(--cap-edge); border-bottom-width: 3px; border-radius: 0.35rem;
+  background: var(--cap-off); border: 1px solid var(--cap-edge); border-bottom-width: 3px; border-radius: 3px;
   color: var(--muted); font: 0.85rem/1 var(--body); padding: 0.3rem 0.35rem; text-align: left;
   display: flex; flex-direction: column; justify-content: space-between; cursor: default;
 }
@@ -170,14 +170,14 @@ function keyStyle(k) {
 
 :where(.page-tasten) .mouse { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; padding: 0.9rem; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); }
 :where(.page-tasten) .mouse-body { --u: 3.5rem; width: 8rem; display: grid; grid-template-columns: 1fr 1.7rem 1fr; gap: 0.25rem; }
-:where(.page-tasten) .mouse-body .key { width: auto; height: 5rem; border-radius: 2.4rem 0.5rem 0.4rem 0.4rem; padding: 1.4rem 0.5rem 0.4rem; }
-:where(.page-tasten) .mouse-body .key.right { border-radius: 0.5rem 2.4rem 0.4rem 0.4rem; }
-:where(.page-tasten) .mouse-body .key.wheel { border-radius: 1.2rem; padding: 0.5rem 0.25rem; align-items: center; text-align: center; height: 3.6rem; align-self: start; margin-top: 0.4rem; }
+:where(.page-tasten) .mouse-body .key { width: auto; height: 5rem; border-radius: 3px 3px 3px 3px; padding: 1.4rem 0.5rem 0.4rem; }
+:where(.page-tasten) .mouse-body .key.right { border-radius: 3px 3px 3px 3px; }
+:where(.page-tasten) .mouse-body .key.wheel { border-radius: 3px; padding: 0.5rem 0.25rem; align-items: center; text-align: center; height: 3.6rem; align-self: start; margin-top: 0.4rem; }
 :where(.page-tasten) .mouse-body .key.wheel .what { font-size: 0.6rem; white-space: nowrap; }
-:where(.page-tasten) .mouse-body .palm { grid-column: 1 / 4; height: 4.2rem; border: 1px solid var(--cap-edge); border-radius: 0.4rem 0.4rem 3rem 3rem; background: var(--cap-off); }
+:where(.page-tasten) .mouse-body .palm { grid-column: 1 / 4; height: 4.2rem; border: 1px solid var(--cap-edge); border-radius: 3px 3px 3px 3px; background: var(--cap-off); }
 :where(.page-tasten) .mouse-label { font-family: var(--display); color: var(--muted); font-size: 0.9rem; letter-spacing: 0.08em; }
 
-:where(.page-tasten) .detail { min-height: 3.4rem; border-left: 3px solid var(--detail-c, var(--line-gold)); border-radius: 0 12px 12px 0; background: var(--panel); padding: 0.6rem 1rem 0.6rem 1rem; color: var(--muted); }
+:where(.page-tasten) .detail { min-height: 3.4rem; border-left: 3px solid var(--detail-c, var(--line-gold)); border-radius: 0 3px 3px 0; background: var(--panel); padding: 0.6rem 1rem 0.6rem 1rem; color: var(--muted); }
 :where(.page-tasten) .detail strong { color: var(--ink); font-weight: 600; }
 
 :where(.page-tasten) .groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); gap: 1.5rem 2rem; }
@@ -185,7 +185,7 @@ function keyStyle(k) {
 :where(.page-tasten) .group ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
 :where(.page-tasten) .group li { display: grid; grid-template-columns: 8.5rem 1fr; gap: 0.75rem; padding: 0.45rem 0.3rem; border-top: 1px dotted var(--line); min-width: 0; }
 :where(.page-tasten) .group li.hl { background: color-mix(in srgb, var(--c) 16%, transparent); }
-:where(.page-tasten) kbd { font: 600 0.85rem var(--body); display: inline-block; padding: 0.05rem 0.45rem; border: 1px solid var(--cap-edge); border-bottom-width: 2px; border-radius: 0.3rem; background: var(--cap); color: var(--ink); white-space: nowrap; justify-self: start; align-self: start; }
+:where(.page-tasten) kbd { font: 600 0.85rem var(--body); display: inline-block; padding: 0.05rem 0.45rem; border: 1px solid var(--cap-edge); border-bottom-width: 2px; border-radius: 3px; background: var(--cap); color: var(--ink); white-space: nowrap; justify-self: start; align-self: start; }
 :where(.page-tasten) .group small { display: block; color: var(--muted); font-size: 0.95rem; }
 :where(.page-tasten) .pad-box { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
 :where(.page-tasten) .pad-title { font-family: var(--display); font-weight: normal; font-size: 1.6rem; letter-spacing: 0.04em; margin: 0 0 0.4rem; }

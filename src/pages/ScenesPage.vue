@@ -106,7 +106,7 @@ onUnmounted(unmountSim);
 /* Layout: a field journal of the machinery - a row of system tabs, then one working model at a time on a dark plate. */
 :where(.page-kulissen) .scenes { width: min(1180px, 100% - var(--gutter-l) - var(--gutter-r)); margin: 0 auto; padding-top: 1rem; display: flex; flex-direction: column; gap: 1.5rem; }
 :where(.page-kulissen) .systems { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 13.5rem), 1fr)); gap: 0.6rem; }
-:where(.page-kulissen) .systems button { display: grid; gap: 0.15rem; text-align: left; font: inherit; color: var(--ink); background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 0.7rem 0.9rem; cursor: pointer; min-width: 0; }
+:where(.page-kulissen) .systems button { display: grid; gap: 0.15rem; text-align: left; font: inherit; color: var(--ink); background: var(--panel); border: 1px solid var(--line); border-radius: 3px; padding: 0.7rem 0.9rem; cursor: pointer; min-width: 0; }
 :where(.page-kulissen) .systems button strong { font-family: var(--old); font-weight: normal; font-size: 1.15rem; line-height: 1.2; }
 :where(.page-kulissen) .systems button span { color: var(--muted); font-size: 0.95rem; line-height: 1.3; }
 :where(.page-kulissen) .systems button[aria-selected="true"] { border-color: var(--gold); background: var(--panel-2); box-shadow: inset 0 0 0 1px var(--line-gold); }
@@ -122,20 +122,20 @@ onUnmounted(unmountSim);
 :where(.page-kulissen) .sim { display: grid; gap: 1rem; }
 :where(.page-kulissen) .sim-grid { display: grid; grid-template-columns: minmax(0, 1fr) 19rem; gap: 1rem; align-items: start; }
 @media (max-width: 860px) { :where(.page-kulissen) .sim-grid { grid-template-columns: minmax(0, 1fr); } }
-:where(.page-kulissen) .sim-view { position: relative; background: #0b0a08; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; min-width: 0; }
+:where(.page-kulissen) .sim-view { position: relative; background: var(--leather-dark); border: 1px solid var(--line); border-radius: 3px; overflow: hidden; min-width: 0; }
 :where(.page-kulissen) .sim-view canvas { display: block; width: 100%; height: auto; }
 :where(.page-kulissen) .sim-side { display: grid; gap: 0.8rem; min-width: 0; }
-:where(.page-kulissen) .sim-box { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 0.8rem 1rem; display: grid; gap: 0.5rem; min-width: 0; }
+:where(.page-kulissen) .sim-box { background: var(--panel); border: 1px solid var(--line); border-radius: 3px; padding: 0.8rem 1rem; display: grid; gap: 0.5rem; min-width: 0; }
 :where(.page-kulissen) .sim-box h3 { font-family: var(--display); font-size: 0.85rem; letter-spacing: 0.16em; text-transform: lowercase; color: var(--gold); }
 :where(.page-kulissen) .sim-row { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
-:where(.page-kulissen) .sim-btn { font: 600 1rem var(--body); color: #14110c; background: var(--gold); border: 0; border-radius: 999px; padding: 0.35rem 1rem; cursor: pointer; }
+:where(.page-kulissen) .sim-btn { font: 600 1rem var(--body); color: var(--on-accent); background: var(--gold); border: 0; border-radius: 3px; padding: 0.35rem 1rem; cursor: pointer; }
 :where(.page-kulissen) .sim-btn.ghost { color: var(--ink); background: transparent; border: 1px solid var(--line-gold); }
-:where(.page-kulissen) .sim-btn[aria-pressed="true"] { background: var(--gold); color: #14110c; }
+:where(.page-kulissen) .sim-btn[aria-pressed="true"] { background: var(--gold); color: var(--on-accent); }
 :where(.page-kulissen) .sim-field { display: grid; gap: 0.15rem; font-size: 1rem; color: var(--soft); }
 :where(.page-kulissen) .sim-field > span { display: flex; justify-content: space-between; gap: 0.5rem; }
 :where(.page-kulissen) .sim-field output, :where(.page-kulissen) .sim-num { font-variant-numeric: tabular-nums; color: var(--ink); }
 :where(.page-kulissen) .sim-field input[type=range] { width: 100%; accent-color: var(--gold); }
-:where(.page-kulissen) .sim-field select { font: inherit; color: var(--ink); background: var(--cap-off); border: 1px solid var(--cap-edge); border-radius: 8px; padding: 0.2rem 0.4rem; }
+:where(.page-kulissen) .sim-field select { font: inherit; color: var(--ink); background: var(--cap-off); border: 1px solid var(--cap-edge); border-radius: 3px; padding: 0.2rem 0.4rem; }
 :where(.page-kulissen) .sim-check { display: flex; gap: 0.5rem; align-items: center; font-size: 1rem; color: var(--soft); cursor: pointer; }
 :where(.page-kulissen) .sim-check input { accent-color: var(--gold); }
 :where(.page-kulissen) .sim-stat { display: flex; justify-content: space-between; gap: 0.75rem; font-size: 1rem; border-top: 1px dotted var(--line); padding-top: 0.3rem; }
@@ -146,6 +146,6 @@ onUnmounted(unmountSim);
 :where(.page-kulissen) .sim-legend i { width: 0.8rem; height: 0.8rem; border-radius: 3px; background: var(--c); flex: none; }
 :where(.page-kulissen) .sim-note { color: var(--muted); font-size: 1rem; max-width: 52rem; margin: 0; }
 :where(.page-kulissen) .sim-note b { color: var(--soft); font-weight: 600; }
-:where(.page-kulissen) .sim-tag { display: inline-block; font-size: 0.8rem; letter-spacing: 0.06em; padding: 0.05rem 0.5rem; border-radius: 999px; border: 1px solid var(--line-gold); color: var(--gold); }
+:where(.page-kulissen) .sim-tag { display: inline-block; font-size: 0.8rem; letter-spacing: 0.06em; padding: 0.05rem 0.5rem; border-radius: 3px; border: 1px solid var(--line-gold); color: var(--gold); }
 @media (prefers-reduced-motion: no-preference) { :where(.page-kulissen) .systems button { transition: border-color 0.15s, background-color 0.15s; } }
 </style>

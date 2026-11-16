@@ -27,7 +27,7 @@ const s = computed(() => SITE_TEXT[props.fixedLang || lang.value] || SITE_TEXT.d
         <SiteLink v-else to="/#top">{{ s.privacy }}</SiteLink>
         <a :href="DISCORD_URL" target="_blank" rel="noopener">Discord</a>
       </nav>
-      <small>{{ s.disclaimer }}</small>
+      <small>{{ s.disclaimer }} {{ s.credit_mark }}</small>
     </div>
   </footer>
 </template>

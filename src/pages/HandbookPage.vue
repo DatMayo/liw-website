@@ -606,7 +606,7 @@ html:where(.page-handbuch) { scroll-behavior: smooth; scroll-padding-top: calc(v
 :where(.page-handbuch) .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 :where(.page-handbuch) svg.ico { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; flex: none; }
 
-:where(.page-handbuch) .menu-btn { display: none; flex: none; align-items: center; gap: 0.4rem; font: 1rem var(--old); color: var(--ink); background: rgba(25, 21, 18, 0.92); border: 1px solid var(--line-gold); border-radius: 999px; padding: 0.55rem 0.9rem; cursor: pointer; box-shadow: 0 0.6rem 1.6rem rgba(0, 0, 0, 0.45); }
+:where(.page-handbuch) .menu-btn { display: none; flex: none; align-items: center; gap: 0.4rem; font: 1rem var(--old); color: var(--ink); background: rgba(var(--panel-rgb), 0.94); border: 1px solid var(--line-gold); border-radius: 3px; padding: 0.55rem 0.9rem; cursor: pointer; box-shadow: 0 0.6rem 1.6rem rgba(var(--ink-rgb), 0.2); }
 :where(.page-handbuch) .menu-btn svg { width: 1.1rem; height: 1.1rem; }
 
 /* Search: a sticky strip right under the floating bar */
@@ -614,11 +614,11 @@ html:where(.page-handbuch) { scroll-behavior: smooth; scroll-padding-top: calc(v
 :where(.page-handbuch) .search { position: relative; flex: 1; min-width: 0; }
 /* Once stuck, a dark band behind bar and search keeps the scrolling text from showing between them. */
 :where(.page-handbuch) .hb-tools::before { content: ''; position: absolute; z-index: -1; left: -50vw; right: -50vw; top: calc(-1 * var(--tools-top)); bottom: -0.6rem;
-  background: linear-gradient(180deg, var(--page) 85%, rgba(15, 13, 11, 0)); opacity: 0; transition: opacity 0.2s; pointer-events: none; }
+  background: linear-gradient(180deg, var(--page) 85%, rgba(var(--page-rgb), 0)); opacity: 0; transition: opacity 0.2s; pointer-events: none; }
 :where(.page-handbuch) .hb-tools.stuck::before { opacity: 1; }
 :where(.page-handbuch) .search > svg { position: absolute; z-index: 1; left: 1rem; top: 50%; width: 1.15rem; height: 1.15rem; transform: translateY(-50%); color: var(--gold); pointer-events: none; }
-:where(.page-handbuch) .search input { width: 100%; font: 1.08rem var(--body); color: var(--ink); background: rgba(25, 21, 18, 0.92); border: 1px solid var(--line-gold); border-radius: 999px;
-  padding: 0.7rem 3rem 0.7rem 2.8rem; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: 0 0.6rem 1.6rem rgba(0, 0, 0, 0.45); -webkit-appearance: none; appearance: none; }
+:where(.page-handbuch) .search input { width: 100%; font: 1.08rem var(--body); color: var(--ink); background: rgba(var(--panel-rgb), 0.94); border: 1px solid var(--line-gold); border-radius: 3px;
+  padding: 0.7rem 3rem 0.7rem 2.8rem; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: 0 0.6rem 1.6rem rgba(var(--ink-rgb), 0.2); -webkit-appearance: none; appearance: none; }
 :where(.page-handbuch) .search input::placeholder { color: var(--muted); opacity: 1; }
 :where(.page-handbuch) .search input:focus { outline: none; border-color: var(--gold); background: var(--panel-2); }
 :where(.page-handbuch) .search input::-webkit-search-cancel-button { -webkit-appearance: none; }
@@ -626,8 +626,8 @@ html:where(.page-handbuch) { scroll-behavior: smooth; scroll-padding-top: calc(v
 :where(.page-handbuch) .search .clear { position: absolute; right: 0.6rem; top: 50%; transform: translateY(-50%); background: none; border: 0; color: var(--muted); font-size: 1.4rem; line-height: 1; padding: 0.2rem 0.45rem; cursor: pointer; }
 :where(.page-handbuch) .search .clear:hover { color: var(--gold-hi); }
 :where(.page-handbuch) .search.has-q .keyhint, :where(.page-handbuch) .search:not(.has-q) .clear, :where(.page-handbuch) .search:focus-within .keyhint { display: none; }
-:where(.page-handbuch) .results { position: absolute; top: calc(100% + 0.4rem); left: 0; right: 0; z-index: 31; background: var(--panel); border: 1px solid var(--line-gold); border-radius: 16px;
-  max-height: min(70vh, 36rem); overflow-y: auto; overscroll-behavior: contain; box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.6); }
+:where(.page-handbuch) .results { position: absolute; top: calc(100% + 0.4rem); left: 0; right: 0; z-index: 31; background: var(--panel); border: 1px solid var(--line-gold); border-radius: 3px;
+  max-height: min(70vh, 36rem); overflow-y: auto; overscroll-behavior: contain; box-shadow: 0 1rem 2.5rem rgba(var(--ink-rgb), 0.25); }
 :where(.page-handbuch) .results[hidden] { display: none; }
 :where(.page-handbuch) .results .count { padding: 0.45rem 0.9rem; font-size: 0.9rem; color: var(--muted); border-bottom: 1px solid var(--line); }
 :where(.page-handbuch) .hit { display: block; padding: 0.6rem 0.9rem 0.65rem; border-bottom: 1px dotted var(--line); border-left: 3px solid transparent; color: var(--ink); text-decoration: none; }
@@ -638,14 +638,14 @@ html:where(.page-handbuch) { scroll-behavior: smooth; scroll-padding-top: calc(v
 :where(.page-handbuch) .hit.active, :where(.page-handbuch) .hit:hover { background: var(--panel-2); border-left-color: var(--gold); }
 :where(.page-handbuch) .none { padding: 0.9rem; color: var(--soft); display: grid; gap: 0.3rem; }
 :where(.page-handbuch) .none small { color: var(--muted); font-size: 0.97rem; }
-:where(.page-handbuch) mark { background: rgba(200, 163, 90, 0.32); color: inherit; padding: 0 0.06em; border-radius: 2px; }
+:where(.page-handbuch) mark { background: rgba(var(--brass-rgb), 0.35); color: inherit; padding: 0 0.06em; border-radius: 2px; }
 :where(.page-handbuch) mark.hb-flash { background: var(--gold); color: var(--page); transition: background-color 0.8s, color 0.8s; }
 :where(.page-handbuch) mark.hb-flash.fade { background: transparent; color: inherit; }
 
 /* Chapters as cards below the head */
 :where(.page-handbuch) .page-hero .lede kbd { font-size: 0.8rem; }
 :where(.page-handbuch) .chapters { width: min(1180px, 100% - var(--gutter-l) - var(--gutter-r)); margin: 1.6rem auto 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 10rem), 1fr)); gap: 0.6rem; }
-:where(.page-handbuch) .chapters a { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 0.95rem; background: var(--panel); border: 1px solid var(--line); border-radius: 14px; color: var(--ink); text-decoration: none; font-family: var(--old); font-size: 1.02rem; line-height: 1.25; min-width: 0; transition: border-color 0.15s, background 0.15s; }
+:where(.page-handbuch) .chapters a { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 0.95rem; background: var(--panel); border: 1px solid var(--line); border-radius: 3px; color: var(--ink); text-decoration: none; font-family: var(--old); font-size: 1.02rem; line-height: 1.25; min-width: 0; transition: border-color 0.15s, background 0.15s; }
 :where(.page-handbuch) .chapters a:hover { background: var(--panel-2); border-color: var(--line-gold); color: var(--gold-hi); }
 :where(.page-handbuch) .chapters svg { width: 1.7rem; height: 1.7rem; color: var(--gold); }
 :where(.page-handbuch) .chapters small { display: block; font-family: var(--body); color: var(--muted); font-size: 0.85rem; }
@@ -693,14 +693,14 @@ html:where(.page-handbuch) { scroll-behavior: smooth; scroll-padding-top: calc(v
 :where(.page-handbuch) .hb-body dl { display: grid; grid-template-columns: minmax(7rem, max-content) minmax(0, 1fr); gap: 0.45rem 1.1rem; }
 :where(.page-handbuch) .hb-body dt { font-weight: 600; color: var(--gold-hi); }
 :where(.page-handbuch) .hb-body dd { margin: 0; color: var(--soft); }
-:where(.page-handbuch) .hb-body code { font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace; font-size: 0.88rem; background: rgba(0, 0, 0, 0.35); padding: 0.1rem 0.35rem; color: var(--gold-hi); overflow-wrap: anywhere; }
+:where(.page-handbuch) .hb-body code { font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace; font-size: 0.88rem; background: rgba(var(--ink-rgb), 0.07); padding: 0.1rem 0.35rem; color: var(--gold-hi); overflow-wrap: anywhere; }
 :where(.page-handbuch) .hb-table-wrap { overflow-x: auto; margin: 0.9rem 0 0; }
 :where(.page-handbuch) .hb-table { border-collapse: collapse; width: 100%; font-size: 1.02rem; line-height: 1.4; }
 :where(.page-handbuch) .hb-table th { text-align: left; font-family: var(--old); font-weight: 400; color: var(--gold); border-bottom: 1px solid var(--line); padding: 0.4rem 0.7rem 0.4rem 0; }
 :where(.page-handbuch) .hb-table td { border-bottom: 1px dotted var(--line); padding: 0.45rem 0.7rem 0.45rem 0; vertical-align: top; }
 :where(.page-handbuch) .hb-table tr:last-child td { border-bottom: 0; }
-:where(.page-handbuch) kbd { font: 600 0.85rem var(--body); display: inline-block; padding: 0.02rem 0.42rem; border: 1px solid var(--cap-edge); border-bottom-width: 2px; border-radius: 0.3rem; background: var(--cap); color: var(--ink); white-space: nowrap; line-height: 1.4; }
-:where(.page-handbuch) .hb-tip, :where(.page-handbuch) .hb-warn { margin: 1rem 0 0; padding: 0.75rem 1rem 0.8rem 1.1rem; background: var(--panel); border-radius: 0 12px 12px 0; border-left: 3px solid var(--moss); }
+:where(.page-handbuch) kbd { font: 600 0.85rem var(--body); display: inline-block; padding: 0.02rem 0.42rem; border: 1px solid var(--cap-edge); border-bottom-width: 2px; border-radius: 3px; background: var(--cap); color: var(--ink); white-space: nowrap; line-height: 1.4; }
+:where(.page-handbuch) .hb-tip, :where(.page-handbuch) .hb-warn { margin: 1rem 0 0; padding: 0.75rem 1rem 0.8rem 1.1rem; background: var(--panel); border-radius: 0 3px 3px 0; border-left: 3px solid var(--moss); }
 :where(.page-handbuch) .hb-warn { border-left-color: var(--rust); }
 :where(.page-handbuch) .hb-tip::before, :where(.page-handbuch) .hb-warn::before { display: block; font-family: var(--display); letter-spacing: 0.12em; font-size: 0.82rem; color: var(--moss); content: 'Tipp'; }
 :where(.page-handbuch) .hb-warn::before { color: var(--rust); content: 'Achtung'; }
@@ -709,7 +709,7 @@ html:where(.page-handbuch):lang(en) .hb-warn::before { content: 'Warning'; }
 :where(.page-handbuch) .hb-tip > :first-child, :where(.page-handbuch) .hb-warn > :first-child { margin-top: 0.15rem; }
 
 :where(.page-handbuch) .to-top { position: fixed; right: var(--gutter-r); bottom: calc(1rem + env(safe-area-inset-bottom, 0px)); z-index: 25; display: flex; align-items: center; gap: 0.4rem;
-  font: 0.95rem var(--old); color: var(--ink); background: var(--panel); border: 1px solid var(--line-gold); border-radius: 999px; padding: 0.45rem 0.9rem; cursor: pointer;
+  font: 0.95rem var(--old); color: var(--ink); background: var(--panel); border: 1px solid var(--line-gold); border-radius: 3px; padding: 0.45rem 0.9rem; cursor: pointer;
   opacity: 0; pointer-events: none; transform: translateY(0.5rem); transition: opacity 0.2s, transform 0.2s; }
 :where(.page-handbuch) .to-top.show { opacity: 1; pointer-events: auto; transform: none; }
 :where(.page-handbuch) .to-top:hover { border-color: var(--gold); color: var(--gold-hi); }

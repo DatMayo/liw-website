@@ -43,6 +43,8 @@ index.html                 HTML-Vorlage von Vite (Kopf, Favicon); die Seiten sel
 vite.config.js             Vite + Vorrendern (vite-ssg: eine HTML-Datei je Route, 404.html)
 vercel.json                Vercel: saubere Adressen, Weiterleitungen der alten .html-Adressen
 public/                    wird unverändert ausgeliefert
+  brand/mark.svg           Wolf-Siegel (Leiste, Favicon; dieselbe Datei wie liw_ui/html/core/brand/mark.svg im Server-Repo,
+                           Wolf-Grafik von Freepik, Namensnennung in der Fußzeile)
   cinematic/               Bilder des Baukastens für die Trailer-Doku (en/ = englische Oberfläche)
   vendor/                  three.js + OrbitControls, nur für die 3D-Ansicht der Höhlen-Simulation, erst bei Bedarf geladen
 src/
@@ -52,7 +54,8 @@ src/
   lang.js                  Sprache DE/EN: localStorage-Schlüssel liw_lang, sonst Browsersprache
   site.js                  gemeinsame Texte von Leiste und Fußzeile (DE/EN), DISCORD_URL, CONNECT_URL, SITE_URL
   head.js                  Titel, Beschreibung, Canonical/og:url (https://www.playliw.com/<route>), noindex
-  assets/site.css          gemeinsames Aussehen aller Seiten: Farben, Schriften, Leiste, Nachthimmel-Kopf, Fußzeile
+  assets/site.css          gemeinsames Aussehen aller Seiten: Farben (Pergament, Kieferngrün, Messing – wie im Spiel),
+                           Schriften, Leiste, Nachthimmel-Kopf mit gerissener Papierkante, Fußzeile
   assets/fonts/            Schriften (IM Fell English, Crimson Pro; SIL Open Font License) – lokal, keine Anfragen an Google
   components/              SiteBar (Leiste, Menü auf kleinen Bildschirmen, Sprachumschalter), SiteFooter,
                            PageHero (Nachthimmel-Kopf), SiteLink (Link auf eine andere Seite, ohne Neuladen)

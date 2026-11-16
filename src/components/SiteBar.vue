@@ -37,8 +37,8 @@ onUnmounted(() => {
 
 <template>
   <header id="bar" class="bar" :class="{ open, scrolled }">
-    <a v-if="home" class="mark" href="#top"><span>LiW</span>Life In Wilderness</a>
-    <SiteLink v-else class="mark" to="/"><span>LiW</span>Life In Wilderness</SiteLink>
+    <a v-if="home" class="mark" href="#top"><img src="/brand/mark.svg" alt="" width="40" height="40">Life In Wilderness</a>
+    <SiteLink v-else class="mark" to="/"><img src="/brand/mark.svg" alt="" width="40" height="40">Life In Wilderness</SiteLink>
     <button type="button" class="menu" :aria-expanded="String(open)" aria-controls="nav" @click="toggle">{{ s.nav_menu }}</button>
     <nav id="nav">
       <template v-if="home">
