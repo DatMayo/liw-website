@@ -223,13 +223,20 @@ function toggleChapter(id) {
 function markCurrent() {
     if (!current.value) return;
     const chId = chapterOf[current.value];
-    if (chId && !tocOpen[chId] && !terms.value.length) tocOpen[chId] = true;
+    if (!terms.value.length) {
+        // Only the current chapter (and the ones opened by hand) stay open, so the list does not keep growing.
+        chapters.forEach((ch) => { tocOpen[ch.id] = ch.id === chId || expanded.has(ch.id); });
+    }
     nextTick(() => {
         const toc = tocEl.value;
         const link = tocList.value && tocList.value.querySelector(`a[data-sec="${CSS.escape(current.value || '')}"]`);
         if (!toc || !link) return;
-        const top = link.offsetTop - toc.offsetTop;
-        if (top < toc.scrollTop + 40 || top > toc.scrollTop + toc.clientHeight - 60) toc.scrollTop = top - toc.clientHeight / 3;
+        // Position of the entry inside the scrolling contents (offsetTop would count from the sticky contents
+        // themselves since they are positioned, so the current entry could stay out of sight).
+        const top = link.getBoundingClientRect().top - toc.getBoundingClientRect().top + toc.scrollTop;
+        if (top < toc.scrollTop + 40 || top > toc.scrollTop + toc.clientHeight - 60) {
+            toc.scrollTo({ top: Math.max(0, top - toc.clientHeight / 3), behavior: reduceMotion ? 'instant' : 'smooth' });
+        }
     });
 }
 
