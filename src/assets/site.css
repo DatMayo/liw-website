@@ -63,7 +63,7 @@
     color: var(--ink);
 }
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: clip; }
 html, body { background: var(--tex-paper), var(--page); color: var(--ink); }
 body { margin: 0; font-family: var(--body); font-size: 1.125rem; line-height: 1.6; overflow-x: hidden; }
 a { color: var(--gold); }
@@ -82,7 +82,7 @@ h1, h2, h3 { font-family: var(--display); font-weight: normal; line-height: 1.05
     background: rgba(26, 36, 29, 0.78); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
     transition: background 0.2s;
 }
-.bar.scrolled { background: rgba(26, 36, 29, 0.94); }
+.bar.scrolled { background: rgba(26, 36, 29, 0.98); }
 .mark { display: flex; align-items: center; gap: 0.6rem; color: var(--ink); text-decoration: none; font-family: var(--display); font-size: 1.2rem; letter-spacing: 0.12em; white-space: nowrap; }
 .mark img { display: block; width: 2.5rem; height: 2.5rem; flex: none; }
 .bar nav { display: flex; gap: 1.1rem; margin-left: auto; }
@@ -132,7 +132,7 @@ footer small { flex-basis: 100%; font-size: 0.85rem; opacity: 0.8; }
 @media (max-width: 720px) {
     .bar .discord { display: none; }
     .page-hero { min-height: 0; padding: 9rem 0 5.5rem; }
-    .page-hero .moon { top: 5rem; right: 10%; width: 2.6rem; }
+    .page-hero .moon { top: 5.4rem; right: 9%; width: 2.6rem; }
 }
 @media (max-width: 560px) {
     .bar { gap: 0.6rem; }

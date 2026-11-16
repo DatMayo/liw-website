@@ -613,7 +613,7 @@ html:where(.page-handbuch) { scroll-behavior: smooth; scroll-padding-top: calc(v
 :where(.page-handbuch) .hb-tools { position: sticky; top: var(--tools-top); z-index: 20; display: flex; gap: 0.6rem; align-items: center; width: min(1180px, 100% - var(--gutter-l) - var(--gutter-r)); margin: -1.7rem auto 0; }
 :where(.page-handbuch) .search { position: relative; flex: 1; min-width: 0; }
 /* Once stuck, a dark band behind bar and search keeps the scrolling text from showing between them. */
-:where(.page-handbuch) .hb-tools::before { content: ''; position: absolute; z-index: -1; left: -50vw; right: -50vw; top: calc(-1 * var(--tools-top)); bottom: -0.6rem;
+:where(.page-handbuch) .hb-tools::before { content: ''; position: absolute; z-index: -1; left: calc(50% - 50vw); right: calc(50% - 50vw); top: calc(-1 * var(--tools-top)); bottom: -0.6rem;
   background: linear-gradient(180deg, var(--page) 85%, rgba(var(--page-rgb), 0)); opacity: 0; transition: opacity 0.2s; pointer-events: none; }
 :where(.page-handbuch) .hb-tools.stuck::before { opacity: 1; }
 :where(.page-handbuch) .search > svg { position: absolute; z-index: 1; left: 1rem; top: 50%; width: 1.15rem; height: 1.15rem; transform: translateY(-50%); color: var(--gold); pointer-events: none; }

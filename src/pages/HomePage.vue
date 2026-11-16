@@ -254,7 +254,7 @@ onUnmounted(() => clearTimeout(copyTimer));
 :where(.page-home) .status i { width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--moss); box-shadow: 0 0 10px var(--moss); }
 
 /* Numbers over the lower edge of the hero */
-:where(.page-home) .facts { position: relative; z-index: 2; margin-top: -4.5rem; display: grid; grid-template-columns: repeat(4, 1fr);
+:where(.page-home) .facts { position: relative; z-index: 2; margin-top: -4.5rem; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
     border: 1px solid var(--line-gold); border-radius: 3px; background: rgba(var(--panel-rgb), 0.94); backdrop-filter: blur(10px); }
 :where(.page-home) .fact { padding: 1.4rem 1.6rem; border-right: 1px solid var(--line); }
 :where(.page-home) .fact:last-child { border-right: none; }
@@ -269,7 +269,7 @@ onUnmounted(() => clearTimeout(copyTimer));
 :where(.page-home) .manifest { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; color: var(--soft); font-size: 1.2rem; line-height: 1.65; }
 :where(.page-home) .manifest p:first-child::first-letter { font-family: var(--old); float: left; font-size: 3.6rem; line-height: 0.85; padding: 0.3rem 0.5rem 0 0; color: var(--gold); }
 
-:where(.page-home) .pillars { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+:where(.page-home) .pillars { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
 :where(.page-home) .pillar { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.4rem; transition: border-color 0.2s, transform 0.2s; }
 :where(.page-home) .pillar:hover { border-color: var(--line-gold); transform: translateY(-2px); }
 :where(.page-home) .pillar .ic { width: 2.8rem; height: 2.8rem; border-radius: 3px; display: grid; place-items: center; background: rgba(var(--accent-rgb), 0.12); margin-bottom: 1rem; }
@@ -282,13 +282,13 @@ onUnmounted(() => clearTimeout(copyTimer));
 :where(.page-home) .filters button { font: inherit; font-size: 1rem; padding: 0.4rem 1rem; border-radius: 3px; background: var(--panel); color: var(--muted); border: 1px solid var(--line); cursor: pointer; }
 :where(.page-home) .filters button[aria-pressed="true"] { color: var(--ink); border-color: var(--gold); }
 :where(.page-home) .species { display: grid; grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr)); gap: 10px; }
-:where(.page-home) .tile { font: inherit; color: var(--ink); text-align: center; background: var(--panel); border: 1px solid var(--line); border-radius: 3px; padding: 0.6rem 0.6rem 0.8rem; cursor: pointer; transition: border-color 0.15s, background 0.15s; }
+:where(.page-home) .tile { display: flex; flex-direction: column; justify-content: flex-start; font: inherit; color: var(--ink); text-align: center; background: var(--panel); border: 1px solid var(--line); border-radius: 3px; padding: 0.6rem 0.6rem 0.8rem; cursor: pointer; transition: border-color 0.15s, background 0.15s; }
 :where(.page-home) .tile:hover { border-color: var(--line-gold); }
 :where(.page-home) .tile[aria-pressed="true"] { border-color: var(--gold); background: var(--panel-2); }
 :where(.page-home) .tile .pic { position: relative; aspect-ratio: 1; border-radius: 3px; background: radial-gradient(circle at 50% 65%, rgba(201, 216, 191, 0.16), transparent 70%), var(--leather); overflow: hidden; }
 /* Absolutely placed: the whole animal fits into the box (ears, legs and tails were cut before). */
 :where(.page-home) .tile img { position: absolute; inset: 6%; width: 88%; height: 88%; object-fit: contain; }
-:where(.page-home) .tile b { display: block; font-weight: 600; margin-top: 0.45rem; line-height: 1.2; }
+:where(.page-home) .tile b { display: block; font-weight: 600; margin-top: 0.45rem; line-height: 1.2; overflow-wrap: anywhere; hyphens: auto; }
 :where(.page-home) .tile small { color: var(--muted); font-size: 0.85rem; }
 :where(.page-home) .detail { margin-top: 12px; display: grid; grid-template-columns: 0.9fr 1fr 1.1fr; gap: 1.8rem; align-items: center; background: var(--panel); border: 1px solid var(--line-gold); border-radius: var(--radius); padding: 1.6rem; }
 :where(.page-home) .detail .pic { position: relative; aspect-ratio: 4 / 3; border-radius: 3px; background: radial-gradient(circle at 50% 65%, rgba(201, 216, 191, 0.2), transparent 70%), var(--leather); display: grid; place-items: center; overflow: hidden; }
@@ -304,7 +304,7 @@ onUnmounted(() => clearTimeout(copyTimer));
 :where(.page-home) .credit { margin-top: 0.6rem; font-size: 0.85rem; color: var(--muted); }
 
 /* Life */
-:where(.page-home) .life { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; position: relative; }
+:where(.page-home) .life { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; position: relative; }
 :where(.page-home) .stage { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.3rem; }
 :where(.page-home) .stage i { font-style: normal; font-family: var(--old); color: var(--gold); font-size: 1.6rem; }
 :where(.page-home) .stage h3 { font-size: 1.4rem; margin: 0.3rem 0; }
@@ -332,14 +332,14 @@ onUnmounted(() => clearTimeout(copyTimer));
 :where(.page-home) .copy button { font: inherit; font-family: var(--body); font-size: 0.95rem; background: var(--panel-2); color: var(--gold); border: 1px solid var(--line-gold); border-radius: 3px; padding: 0.2rem 0.7rem; cursor: pointer; }
 
 /* Rules */
-:where(.page-home) .rules { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; counter-reset: rule; }
+:where(.page-home) .rules { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; counter-reset: rule; }
 :where(.page-home) .rules li { counter-increment: rule; display: grid; grid-template-columns: 2.6rem 1fr; gap: 0 1rem; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.1rem 1.3rem; }
 :where(.page-home) .rules li::before { content: counter(rule, upper-roman); grid-row: span 2; font-family: var(--old); color: var(--gold); font-size: 1.5rem; }
 :where(.page-home) .rules b { font-family: var(--display); font-weight: normal; font-size: 1.3rem; }
 :where(.page-home) .rules span { color: var(--muted); font-size: 1rem; }
 
 /* Roadmap */
-:where(.page-home) .road { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+:where(.page-home) .road { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
 :where(.page-home) .dev-more { margin: 1.5rem 0 0; display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1rem; color: var(--soft); }
 :where(.page-home) .phase { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.2rem; position: relative; }
 :where(.page-home) .phase::before { content: ''; display: block; height: 4px; border-radius: 3px; background: rgba(var(--ink-rgb), 0.1); margin-bottom: 1rem; }
@@ -367,20 +367,22 @@ onUnmounted(() => clearTimeout(copyTimer));
 :where(.page-home) .closing h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1.2rem; }
 
 @media (max-width: 1080px) {
-    :where(.page-home) .pillars { grid-template-columns: repeat(2, 1fr); }
-    :where(.page-home) .road { grid-template-columns: repeat(2, 1fr); }
+    :where(.page-home) .pillars { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    :where(.page-home) .road { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     :where(.page-home) .detail { grid-template-columns: 1fr 1fr; }
     :where(.page-home) .detail .pic { grid-column: span 2; max-height: 16rem; }
 }
 @media (max-width: 720px) {
-    :where(.page-home) .facts { grid-template-columns: repeat(2, 1fr); margin-top: -3rem; }
+    :where(.page-home) .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: -3rem; }
     :where(.page-home) .fact:nth-child(2) { border-right: none; }
     :where(.page-home) .fact:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
     :where(.page-home) .manifest, :where(.page-home) .pillars, :where(.page-home) .life, :where(.page-home) .steps, :where(.page-home) .rules, :where(.page-home) .road, :where(.page-home) .detail { grid-template-columns: 1fr; }
     :where(.page-home) .detail .pic { grid-column: auto; }
-    :where(.page-home) .species { grid-template-columns: repeat(3, 1fr); }
+    :where(.page-home) .species { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     :where(.page-home) .tile b { font-size: 0.95rem; }
-    :where(.page-home) .hero-copy { padding-bottom: 7rem; }
+    :where(.page-home) .hero-copy { padding-top: 9rem; padding-bottom: 7rem; }
+    /* Small moon in the corner under the bar, so it does not sit on the title. */
+    :where(.page-home) .hero .moon { top: 5.4rem; right: 9%; width: 2.6rem; }
 }
 @media (prefers-reduced-motion: reduce) { html:where(.page-home) { scroll-behavior: auto; } :where(.page-home) .pillar, :where(.page-home) .bar-fill { transition: none; } }
 </style>
