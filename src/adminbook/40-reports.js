@@ -19,6 +19,7 @@ export default {
 <li><strong>Notiz</strong> schreiben, was du herausgefunden hast.</li>
 <li><strong>Schließen</strong> (oder später wieder öffnen).</li>
 </ol>
+<p>Beim <strong>Schließen</strong> bekommt der meldende Spieler „Deine Meldung … wurde vom Team bearbeitet“ – sofort oder beim nächsten Einloggen. Deine Notiz und wer sie bearbeitet hat, sieht er nicht.</p>
 <p>Geschlossene Meldungen werden nach einiger Zeit gelöscht. Auf der Live-Karte gibt es eine Ebene „Meldungen“ mit allen offenen als Raute an ihrem Ort.</p>`,
             en: `<p>Every player can send a report with <kbd>F10</kbd> – no window opens. They get a <strong>six-digit number</strong> to give in their Discord ticket. The server also stores every player and every animal nearby (name, animal, health, downed, pack, distance) and the paths of the players involved over the last few minutes.</p>
 <p>Admins who are online and have the right get a notification. In the <em>Reports</em> tab:</p>
@@ -29,6 +30,7 @@ export default {
 <li>Write a <strong>note</strong> about what you found out.</li>
 <li><strong>Close</strong> it (or open it again later).</li>
 </ol>
+<p>When you <strong>close</strong> it, the player who sent it gets “Your report … was handled by the team” – right away or at their next login. They never see your note or who handled it.</p>
 <p>Closed reports are deleted after some time. The live map has a “Reports” layer that shows all open ones as a diamond at their location.</p>`,
         },
         {
@@ -52,6 +54,7 @@ export default {
 <li><strong>Zusammenfassung:</strong> wie oft verwarnt, Auszeit, gekickt, gebannt (jeweils zuletzt), in wie vielen Meldungen beteiligt oder selbst gemeldet, begonnene Kämpfe und Tötungen der letzten 30 Tage.</li>
 <li><strong>Verlauf, Verdacht, Notizen, Meldungen, Kämpfe, Tiere</strong> – Notizen, Meldungen, Kämpfe und Tiere nur mit den jeweiligen Rechten.</li>
 </ul>
+<p><strong>Verknüpfte Accounts</strong> (Übersicht): andere Accounts, die dasselbe Gerät oder dasselbe Discord-, Steam-, Xbox- oder Microsoft-Konto genutzt haben – Zweitaccounts, Familie an einem PC, Account-Verkäufe. Gebannte sind markiert, ein Klick öffnet deren Akte.</p>
 <p><strong>Tierverlauf</strong> (mit dem Recht <code>characters</code>): was wann mit den Tieren des Accounts passiert ist – erstellt, Fell, umbenannt, Rudel beigetreten, Rang, verlassen oder geworfen, Stufe, Altersphase, gestorben und jeder Admin-Eingriff mit Namen (EP, Art, Alter, neuer Name verlangt, herausgenommen, Schnappschuss, wiederbelebt). Oben alle Tiere oder eines auswählen; ein Klick auf ein Tier unter <em>Charaktere</em> springt direkt dorthin. „Ältere laden“ holt weitere Einträge.</p>
 <p><strong>Zeitleiste:</strong> alles zum Account aus allen Protokollen in einer Liste, neueste zuerst – Moderation, Notizen, Meldungen, Kämpfe, Verdacht, Tierverlauf, Anmeldungen (Land und Anbieter, nur mit <code>transferAccount</code>) und wann der Account angelegt wurde. Jede Art erscheint nur mit ihrem Recht; ein Klick auf einen Chip oben blendet die Art aus oder wieder ein.</p>
 <p>Die Reiter stehen in einer Zeile: Passen sie nicht hinein, ziehst du sie mit gedrückter Maustaste (oder dem Mausrad) zur Seite.</p>
@@ -62,6 +65,7 @@ export default {
 <li><strong>Summary:</strong> how often warned, given a time-out, kicked, banned (each with the latest), how many reports they were involved in or filed themselves, fights started and kills in the last 30 days.</li>
 <li><strong>History, suspicion, notes, reports, fights, animals</strong> – notes, reports, fights and animals only with the matching rights.</li>
 </ul>
+<p><strong>Linked accounts</strong> (overview): other accounts that used the same device or the same Discord, Steam, Xbox or Microsoft account – second accounts, family on one PC, account sales. Banned ones are marked, a click opens their file.</p>
 <p><strong>Animal history</strong> (with the right <code>characters</code>): what happened to the account's animals and when – created, fur, renamed, joined a pack, rank, left or kicked, level, age phase, died, and every admin change with the admin's name (XP, species, age, new name demanded, taken out, snapshot, revived). At the top, pick all animals or one; a click on an animal under <em>Characters</em> jumps straight there. “Load older” fetches more entries.</p>
 <p><strong>Timeline:</strong> everything about the account from all logs in one list, newest first – moderation, notes, reports, fights, suspicion, animal history, logins (country and provider, only with <code>transferAccount</code>) and when the account was created. Each kind only appears with its right; a click on a chip at the top hides or shows that kind.</p>
 <p>The tabs are in one line: if they do not fit, drag them sideways with the mouse button held (or the mouse wheel).</p>

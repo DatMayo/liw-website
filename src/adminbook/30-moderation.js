@@ -8,7 +8,7 @@ export default {
             id: 'a-measures',
             level: 2,
             title: { de: 'Welche Maßnahme wann?', en: 'Which measure when?' },
-            tags: { de: 'maßnahme stufe verwarnen auszeit kick bann reihenfolge', en: 'measure level warn time-out timeout kick ban order' },
+            tags: { de: 'maßnahme stufe verwarnen auszeit kick bann reihenfolge strafkatalog vorlage wiederholung', en: 'measure level warn time-out timeout kick ban order sanction catalog template repeated' },
             de: `<p>Im Spieler-Detail → <em>Moderation</em> → <em>Maßnahme</em> wählst du die Stufe, schreibst einen Grund und – bei Auszeit und Bann – die Dauer. Als Faustregel, von mild nach streng:</p>
 <ol>
 <li><strong>Nachricht</strong> – ein freundlicher Hinweis, steht nicht im Verlauf.</li>
@@ -17,6 +17,7 @@ export default {
 <li><strong>Kick</strong> – der Spieler fliegt vom Server, kann sofort wieder rein.</li>
 <li><strong>Bann</strong> – befristet oder dauerhaft.</li>
 </ol>
+<p><strong>Strafkatalog:</strong> Über „Vorlage aus dem Strafkatalog“ wählst du einen üblichen Grund (z. B. „Spawnkill“) – Stufe, Dauer und Grund werden ausgefüllt, du kannst sie vor dem Knopfdruck noch ändern. So bekommt jeder für dasselbe dieselbe Strafe, egal wer moderiert. Darunter steht, was der Spieler in den letzten 30 Tagen schon bekommen hat, und rot eine Empfehlung („empfohlen jetzt: Auszeit“), wenn er wiederholt auffällt. Die Vorlagen ändert ein Owner in den Einstellungen.</p>
 <p>Alle Maßnahmen gehen nur gegen Spieler unter deiner Stufe.</p>`,
             en: `<p>In the player detail → <em>Moderation</em> → <em>Measure</em> you pick the level, write a reason and – for time-out and ban – the duration. As a rule of thumb, from mild to strict:</p>
 <ol>
@@ -26,6 +27,7 @@ export default {
 <li><strong>Kick</strong> – the player is thrown off the server and can rejoin right away.</li>
 <li><strong>Ban</strong> – temporary or permanent.</li>
 </ol>
+<p><strong>Sanction catalog:</strong> with “Template from the sanction catalog” you pick a usual reason (e.g. “Spawn killing”) – level, duration and reason are filled in, and you can still change them before pressing the button. That way everyone gets the same measure for the same thing, whoever moderates. Below it you see what the player already got in the last 30 days, and in red a recommendation (“recommended now: time-out”) when they keep causing trouble. An owner changes the templates in the settings.</p>
 <p>All measures only work against players below your level.</p>`,
         },
         {
