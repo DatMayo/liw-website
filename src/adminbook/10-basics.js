@@ -38,7 +38,7 @@ export default {
             id: 'a-single-rights',
             level: 1,
             title: { de: 'Einzelrechte und Aufgabengruppen', en: 'Single rights and task groups' },
-            tags: { de: 'einzelrecht aufgabengruppe support eventteam weltenbauer questautor übersetzer technik', en: 'single right task group support event team world builder quest author translator tech' },
+            tags: { de: 'einzelrecht aufgabengruppe support eventteam weltenbauer questautor übersetzer technik helfer meldungen strafen anticheat charakterpflege wildhüter reviere rudel probezeit trial', en: 'single right task group support event team world builder quest author translator tech helper reports sanctions anti-cheat character care warden territories packs trial' },
             de: `<p>Jeder Teil des Admin-Menüs ist ein <strong>eigenes Recht</strong>. Neben der Stufe kann man jemandem einzelne Rechte geben – etwa nur „Meldungen“ oder nur „Übersetzungen“. Rechte aus Stufe, Aufgabengruppen und Einzelrechten zählen zusammen.</p>
 <p><strong>Aufgabengruppen</strong> bündeln die Rechte für eine Aufgabe, ohne eine Stufe zu geben. Ein Teammitglied kann neben seiner Stufe in beliebig vielen sein:</p>
 <dl>
@@ -48,6 +48,14 @@ export default {
 <dt>Quest-Autor / Quest-Leitung</dt><dd>Quest-Editor (die Leitung zusätzlich Freigeben und „vertrauter Ersteller“), Noclip, Wegpunkt.</dd>
 <dt>Übersetzer</dt><dd>Übersetzungs-Editor.</dd>
 <dt>Technik</dt><dd>Fehlerprotokoll, Live-Karte, Aktionsprotokoll, Entwickler-Befehle.</dd>
+<dt>Helfer</dt><dd>Nachricht, Admin-Chat, Hingehen, Befreien, Heilen, Wartezeiten.</dd>
+<dt>Meldungen</dt><dd>Meldungen, Spielerakte, Kämpfe, Notizen, Zuschauen, Hingehen, Live-Karte – sichten, ohne zu strafen.</dd>
+<dt>Strafen</dt><dd>Verwarnen, Auszeit, Kicken, Bannen, Offline-Bann, Entbannen, Spielerakte, Notizen, Kämpfe.</dd>
+<dt>Anti-Cheat</dt><dd>Spielerakte, Verdachts-Flag entfernen, Kämpfe, Zuschauen, Admin-Sicht, Live-Karte, Aktionsprotokoll.</dd>
+<dt>Charakterpflege</dt><dd>Charaktere, Art ändern, neuen Namen verlangen, Schnappschüsse, Tiere herausnehmen, Tote wiederbeleben, Alter, Plätze, Umbenennungen/Fellwechsel, Titel.</dd>
+<dt>Wildhüter</dt><dd>Auswahl-Werkzeug mit Hinteleportieren, Steuern, Töten, Rudel bilden und Tiere spawnen; Noclip, Wegpunkt, Live-Karte.</dd>
+<dt>Reviere &amp; Rudel</dt><dd>Reviere, Rudel, Gedenksteine, Live-Karte, Wegpunkt.</dd>
+<dt>Probezeit</dt><dd>Für Neue im Team, nur zuschauen: Meldungen, Spielerakte, Kämpfe, Zuschauen, Live-Karte, Admin-Sicht, Admin-Chat.</dd>
 </dl>
 <p>Vergeben werden Rollen, Gruppen und Einzelrechte im Reiter <em>Berechtigungen</em> (siehe <a href="#a-permissions">Berechtigungen vergeben</a>).</p>`,
             en: `<p>Every part of the admin menu is a <strong>right of its own</strong>. Besides the level, you can give someone single rights – for example only “Reports” or only “Translations”. Rights from the level, task groups and single rights add up.</p>
@@ -59,6 +67,14 @@ export default {
 <dt>Quest author / quest lead</dt><dd>Quest editor (the lead can also release quests and is a “trusted author”), noclip, waypoint.</dd>
 <dt>Translator</dt><dd>Translation editor.</dd>
 <dt>Tech</dt><dd>Error log, live map, action log, developer commands.</dd>
+<dt>Helper</dt><dd>Message, admin chat, go to, unstuck, heal, waiting times.</dd>
+<dt>Reports</dt><dd>Reports, player file, fights, notes, spectate, go to, live map – look into things without punishing.</dd>
+<dt>Sanctions</dt><dd>Warn, time-out, kick, ban, offline ban, unban, player file, notes, fights.</dd>
+<dt>Anti-cheat</dt><dd>Player file, remove the suspicion flag, fights, spectate, admin view, live map, action log.</dd>
+<dt>Character care</dt><dd>Characters, change species, demand a new name, snapshots, take out animals, revive dead characters, age, slots, renames/coat changes, titles.</dd>
+<dt>Warden</dt><dd>Selection tool with teleport to, control, kill, form packs and spawn animals; noclip, waypoint, live map.</dd>
+<dt>Territories &amp; packs</dt><dd>Territories, packs, memorial stones, live map, waypoint.</dd>
+<dt>Trial</dt><dd>For new team members, watching only: reports, player file, fights, spectate, live map, admin view, admin chat.</dd>
 </dl>
 <p>Roles, groups and single rights are given in the <em>Permissions</em> tab (see <a href="#a-permissions">Giving permissions</a>).</p>`,
         },
