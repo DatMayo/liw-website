@@ -69,8 +69,8 @@ export default {
             rights: ['territory'],
             title: { de: 'Revier-Aktionen', en: 'Territory actions' },
             tags: {
-                de: 'revier freigeben mir geben an rudel schutz alarm aufheben umbenennen grenzen zeigen ruhm',
-                en: 'territory free give to me give to pack protection alarm lift rename show borders fame',
+                de: 'revier freigeben mir geben an rudel schutz alarm aufheben umbenennen grenzen zeigen ruhm verlauf',
+                en: 'territory free give to me give to pack protection alarm lift rename show borders fame history',
             },
             de: `<p>Im Detail eines Reviers (auch auf der Live-Karte):</p>
 <ul>
