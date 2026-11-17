@@ -1,5 +1,7 @@
-<!-- Player handbook: search, chapter cards, contents with scroll spy, all chapters in one column. The chapters
-     are the modules in src/handbook/ (see README.md); page texts and icons: data/handbook.js. -->
+<!-- Handbook page: search, chapter cards, contents with scroll spy, all chapters in one column. By default the
+     player handbook (chapters: the modules in src/handbook/, see README.md; page texts and icons: data/handbook.js);
+     the admin handbook (AdminHandbookPage.vue) passes its own chapters, texts and path, and its role choice in the
+     slot "hero". -->
 <script setup>
 import { computed, nextTick, onMounted, onUnmounted, reactive, ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
@@ -10,17 +12,29 @@ import { lang } from '../lang.js';
 import { usePageHead } from '../head.js';
 import { CARET, CHAPTERS, ICONS, TEXT } from '../data/handbook.js';
 
+const props = defineProps({
+    chapters: { type: Array, default: () => CHAPTERS },
+    text: { type: Object, default: () => TEXT },
+    icons: { type: Object, default: () => ICONS },
+    path: { type: String, default: '/handbuch' },
+    description: { type: String, default: 'Das Spielerhandbuch von Life In Wilderness: alles zum Nachschlagen. / The Life In Wilderness player handbook: everything to look up.' },
+    noindex: { type: Boolean, default: false },
+    current: { type: String, default: 'handbook' },   // page marked in the site bar
+});
+
 const route = useRoute();
 const router = useRouter();
-const T = computed(() => TEXT[lang.value]);
+const T = computed(() => props.text[lang.value]);
 usePageHead({
-    path: '/handbuch',
+    path: props.path,
     title: computed(() => `${T.value.page} · Life In Wilderness`),
-    description: 'Das Spielerhandbuch von Life In Wilderness: alles zum Nachschlagen. / The Life In Wilderness player handbook: everything to look up.',
+    description: props.description,
+    noindex: props.noindex,
     pageClass: 'page-handbuch',
 });
 
-const chapters = CHAPTERS;
+const chapters = props.chapters;
+const icons = props.icons;
 const chapterOf = {};
 chapters.forEach((ch) => ch.sections.forEach((s) => { chapterOf[s.id] = ch.id; }));
 
@@ -525,12 +539,13 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <SiteBar current="handbook" />
+  <SiteBar :current="current" />
 
   <PageHero aria-labelledby="hb-title">
     <div class="eyebrow">{{ T.eyebrow }}</div>
     <h1 id="hb-title">{{ T.title }}</h1>
     <p class="lede" v-html="T.intro"></p>
+    <slot name="hero" />
   </PageHero>
 
   <div id="hb-tools" ref="tools" class="hb-tools" :class="{ stuck }">
@@ -563,7 +578,7 @@ onUnmounted(() => {
   </div>
 
   <nav id="chapters" class="chapters" :aria-label="T.chapters">
-    <a v-for="ch in chapters" :key="ch.id" :href="`#${ch.id}`"><svg class="ico" viewBox="0 0 32 32" aria-hidden="true" v-html="ICONS[ch.icon] || ICONS._"></svg><span>{{ tx(ch.title) }}<small>{{ T.sections(ch.sections.length) }}</small></span></a>
+    <a v-for="ch in chapters" :key="ch.id" :href="`#${ch.id}`"><svg class="ico" viewBox="0 0 32 32" aria-hidden="true" v-html="icons[ch.icon] || icons._"></svg><span>{{ tx(ch.title) }}<small>{{ T.sections(ch.sections.length) }}</small></span></a>
   </nav>
 
   <div class="layout">
@@ -572,7 +587,7 @@ onUnmounted(() => {
       <ol id="toc-list" ref="tocList">
         <li v-for="{ ch, secs } in tocItems" :key="ch.id" class="toc-ch" :class="{ current: current && chapterOf[current] === ch.id }" :data-ch="ch.id">
           <div class="toc-row">
-            <a :href="`#${ch.id}`"><svg class="ico" viewBox="0 0 32 32" aria-hidden="true" v-html="ICONS[ch.icon] || ICONS._"></svg><span>{{ tx(ch.title) }}</span></a>
+            <a :href="`#${ch.id}`"><svg class="ico" viewBox="0 0 32 32" aria-hidden="true" v-html="icons[ch.icon] || icons._"></svg><span>{{ tx(ch.title) }}</span></a>
             <button type="button" :aria-expanded="String(!!tocOpen[ch.id])" :aria-controls="`toc-${ch.id}`" :aria-label="tx(ch.title)" @click="toggleChapter(ch.id)" v-html="CARET"></button>
           </div>
           <ol :id="`toc-${ch.id}`" class="toc-secs" :hidden="!tocOpen[ch.id]">
@@ -586,7 +601,7 @@ onUnmounted(() => {
     <main id="content" class="content">
       <p v-if="!chapters.length" class="state">{{ T.empty }}</p>
       <section v-for="ch in chapters" :id="ch.id" :key="ch.id" class="hb-chapter" :aria-labelledby="`h-${ch.id}`">
-        <h2 :id="`h-${ch.id}`"><svg class="ico" viewBox="0 0 32 32" aria-hidden="true" v-html="ICONS[ch.icon] || ICONS._"></svg><span>{{ tx(ch.title) }}</span></h2>
+        <h2 :id="`h-${ch.id}`"><svg class="ico" viewBox="0 0 32 32" aria-hidden="true" v-html="icons[ch.icon] || icons._"></svg><span>{{ tx(ch.title) }}</span></h2>
         <article v-for="s in ch.sections" :id="s.id" :key="s.id" class="hb-section" :aria-labelledby="`h-${s.id}`">
           <h3 :id="`h-${s.id}`"><span v-html="escapeHtml(tx(s.title))"></span><a class="hb-anchor" :href="`#${s.id}`" :aria-label="T.anchor">#</a></h3>
           <div class="hb-body" v-html="bodyHtml(s)"></div>
@@ -650,7 +665,7 @@ html:where(.page-handbuch) { scroll-behavior: smooth; scroll-padding-top: calc(v
 :where(.page-handbuch) mark.hb-flash.fade { background: transparent; color: inherit; }
 
 /* Chapters as cards below the head */
-:where(.page-handbuch) .page-hero .lede kbd { font-size: 0.8rem; }
+:where(.page-handbuch) .page-hero .lede kbd { font-size: 0.8rem; color: #22302a; background: #e4d8b9; border-color: #a87f35; }
 :where(.page-handbuch) .chapters { width: min(1180px, 100% - var(--gutter-l) - var(--gutter-r)); margin: 1.6rem auto 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 10rem), 1fr)); gap: 0.6rem; }
 :where(.page-handbuch) .chapters a { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 0.95rem; background: var(--panel); border: 1px solid var(--line); border-radius: 3px; color: var(--ink); text-decoration: none; font-family: var(--old); font-size: 1.02rem; line-height: 1.25; min-width: 0; transition: border-color 0.15s, background 0.15s; }
 :where(.page-handbuch) .chapters a:hover { background: var(--panel-2); border-color: var(--line-gold); color: var(--gold-hi); }
