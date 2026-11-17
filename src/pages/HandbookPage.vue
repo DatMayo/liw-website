@@ -1,4 +1,4 @@
-<!-- Handbook page: search, chapter cards, contents with scroll spy, all chapters in one column. By default the
+<!-- Handbook page: search, contents with scroll spy, all chapters in one column. By default the
      player handbook (chapters: the modules in src/handbook/, see README.md; page texts and icons: data/handbook.js);
      the admin handbook (AdminHandbookPage.vue) passes its own chapters, texts and path, and its role choice in the
      slot "hero". -->
@@ -577,10 +577,6 @@ onUnmounted(() => {
     </div>
   </div>
 
-  <nav id="chapters" class="chapters" :aria-label="T.chapters">
-    <a v-for="ch in chapters" :key="ch.id" :href="`#${ch.id}`"><svg class="ico" viewBox="0 0 32 32" aria-hidden="true" v-html="icons[ch.icon] || icons._"></svg><span>{{ tx(ch.title) }}<small>{{ T.sections(ch.sections.length) }}</small></span></a>
-  </nav>
-
   <div class="layout">
     <aside id="toc" ref="tocEl" class="toc" :class="{ open: drawer }" :aria-label="T.toc">
       <div class="toc-head"><span>{{ T.toc }}</span><button id="toc-close" type="button" :aria-label="T.close" @click="closeToc">×</button></div>
@@ -666,12 +662,6 @@ html:where(.page-handbuch) { scroll-behavior: smooth; scroll-padding-top: calc(v
 
 /* Chapters as cards below the head */
 :where(.page-handbuch) .page-hero .lede kbd { font-size: 0.8rem; color: #22302a; background: #e4d8b9; border-color: #a87f35; }
-:where(.page-handbuch) .chapters { width: min(1180px, 100% - var(--gutter-l) - var(--gutter-r)); margin: 1.6rem auto 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 10rem), 1fr)); gap: 0.6rem; }
-:where(.page-handbuch) .chapters a { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 0.95rem; background: var(--panel); border: 1px solid var(--line); border-radius: 3px; color: var(--ink); text-decoration: none; font-family: var(--old); font-size: 1.02rem; line-height: 1.25; min-width: 0; transition: border-color 0.15s, background 0.15s; }
-:where(.page-handbuch) .chapters a:hover { background: var(--panel-2); border-color: var(--line-gold); color: var(--gold-hi); }
-:where(.page-handbuch) .chapters svg { width: 1.7rem; height: 1.7rem; color: var(--gold); }
-:where(.page-handbuch) .chapters a > span { min-width: 0; overflow-wrap: break-word; hyphens: auto; }
-:where(.page-handbuch) .chapters small { display: block; font-family: var(--body); color: var(--muted); font-size: 0.85rem; }
 
 /* Book: contents + text */
 :where(.page-handbuch) .layout { width: min(1180px, 100% - var(--gutter-l) - var(--gutter-r)); margin: 1.5rem auto 0; padding: 0 0 1rem; display: grid; grid-template-columns: 16.5rem minmax(0, 1fr); gap: 3rem; align-items: start; }
@@ -757,7 +747,7 @@ html:where(.page-handbuch):lang(en) .hb-warn::before { content: 'Warning'; }
 }
 @media (prefers-reduced-motion: reduce) { html:where(.page-handbuch) { scroll-behavior: auto; } :where(.page-handbuch) .toc, :where(.page-handbuch) .to-top, :where(.page-handbuch) mark.hb-flash { transition: none; } }
 @media print {
-  :where(.page-handbuch) .bar, :where(.page-handbuch) .hb-tools, :where(.page-handbuch) .toc, :where(.page-handbuch) .scrim, :where(.page-handbuch) .to-top, :where(.page-handbuch) .chapters, :where(.page-handbuch) footer { display: none !important; }
+  :where(.page-handbuch) .bar, :where(.page-handbuch) .hb-tools, :where(.page-handbuch) .toc, :where(.page-handbuch) .scrim, :where(.page-handbuch) .to-top, :where(.page-handbuch) footer { display: none !important; }
   html:where(.page-handbuch), :where(.page-handbuch) body { background: #fff; color: #000; }
   :where(.page-handbuch) .layout { display: block; padding: 0; }
   :where(.page-handbuch) .hb-chapter { break-before: page; }
