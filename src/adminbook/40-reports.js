@@ -2,14 +2,14 @@ export default {
     id: 'a-reports',
     order: 40,
     icon: 'flag',
-    title: { de: 'Meldungen, Akte, Verdacht', en: 'Reports, records, suspicion' },
+    title: { de: 'Meldungen, Akte, Verdacht', en: 'Reports, files, suspicion' },
     sections: [
         {
             id: 'a-report-flow',
             level: 2,
             rights: ['reports'],
             title: { de: 'Meldungen bearbeiten', en: 'Handling reports' },
-            tags: { de: 'meldung report f10 nummer ticket übernehmen schließen notiz' },
+            tags: { de: 'meldung report f10 nummer ticket übernehmen schließen notiz', en: 'report f10 number ticket take over close note' },
             de: `<p>Jeder Spieler kann mit <kbd>F10</kbd> eine Meldung abschicken – ohne Fenster. Er bekommt eine <strong>sechsstellige Nummer</strong>, die er im Discord-Ticket angibt. Der Server speichert dazu jeden Spieler und jedes Tier im Umkreis (Name, Tier, Leben, am Boden, Rudel, Abstand) und die Wege der beteiligten Spieler der letzten Minuten.</p>
 <p>Admins online mit dem Recht bekommen eine Meldung. Im Reiter <em>Meldungen</em>:</p>
 <ol>
@@ -20,21 +20,32 @@ export default {
 <li><strong>Schließen</strong> (oder später wieder öffnen).</li>
 </ol>
 <p>Geschlossene Meldungen werden nach einiger Zeit gelöscht. Auf der Live-Karte gibt es eine Ebene „Meldungen“ mit allen offenen als Raute an ihrem Ort.</p>`,
+            en: `<p>Every player can send a report with <kbd>F10</kbd> – no window opens. They get a <strong>six-digit number</strong> to give in their Discord ticket. The server also stores every player and every animal nearby (name, animal, health, downed, pack, distance) and the paths of the players involved over the last few minutes.</p>
+<p>Admins who are online and have the right get a notification. In the <em>Reports</em> tab:</p>
+<ol>
+<li>Filter <em>Open / Closed / All</em>, search by number, name or license – the number from the ticket takes you straight there.</li>
+<li><strong>Take over</strong>, so the team sees who is on it (you can give it back at any time).</li>
+<li>Look at it: overview, players, animals (grouped by species with the closest distance).</li>
+<li>Write a <strong>note</strong> about what you found out.</li>
+<li><strong>Close</strong> it (or open it again later).</li>
+</ol>
+<p>Closed reports are deleted after some time. The live map has a “Reports” layer that shows all open ones as a diamond at their location.</p>`,
         },
         {
             id: 'a-report-goto',
             level: 2,
             rights: ['reports'],
             title: { de: 'Zu einer Meldung hingehen', en: 'Going to a report' },
-            tags: { de: 'hingehen meldung unsichtbar zurück besuch' },
+            tags: { de: 'hingehen meldung unsichtbar zurück besuch', en: 'go there report invisible back visit' },
             de: `<p>„Hingehen“ bei der Meldung (nur im Spiel) bringt dich an den Ort. Vorher wird dein Tier <strong>unsichtbar und unverwundbar</strong>, deine Begleiter bleiben am Ausgangspunkt. Oben im Admin-Menü steht „Du bist unsichtbar …“ mit <strong>Zurück</strong>: du kommst an den Ausgangspunkt (auch nach mehreren Meldungen an den ersten), wirst wieder sichtbar und die Begleiter folgen wieder.</p>`,
+            en: `<p>“Go there” on the report (in game only) takes you to the location. First your animal becomes <strong>invisible and invulnerable</strong>, and your companions stay at your starting point. At the top of the admin menu you see “You are invisible …” with <strong>Back</strong>: you return to your starting point (after several reports, to the first one), become visible again and your companions follow you again.</p>`,
         },
         {
             id: 'a-dossier',
             level: 2,
             rights: ['history'],
-            title: { de: 'Spielerakte', en: 'Player record' },
-            tags: { de: 'spielerakte akte dossier verlauf zusammenfassung kämpfe tiere' },
+            title: { de: 'Spielerakte', en: 'Player file' },
+            tags: { de: 'spielerakte akte dossier verlauf zusammenfassung kämpfe tiere', en: 'player file player file dossier history summary fights animals' },
             de: `<p>Reiter <em>Spielerakte</em> oder Knopf „Spielerakte“ beim Spieler: Suche nach Name oder License, dann alles zum Account auf einer Seite:</p>
 <ul>
 <li><strong>Account:</strong> License, Spielzeit, zuerst und zuletzt gesehen, Bann, Verdachts-Flag.</li>
@@ -42,26 +53,39 @@ export default {
 <li><strong>Verlauf, Verdacht, Notizen, Meldungen, Kämpfe, Tiere</strong> – Notizen, Meldungen, Kämpfe und Tiere nur mit den jeweiligen Rechten.</li>
 </ul>
 <p>Jedes Öffnen steht im Protokoll. Beim Zuschauen zeigt die Info-Leiste die Zusammenfassung in Kurzform.</p>`,
+            en: `<p>The <em>Player file</em> tab or the “Player file” button on a player: search by name or license, then everything about the account on one page:</p>
+<ul>
+<li><strong>Account:</strong> license, playtime, first and last seen, ban, suspicion flag.</li>
+<li><strong>Summary:</strong> how often warned, given a time-out, kicked, banned (each with the latest), how many reports they were involved in or filed themselves, fights started and kills in the last 30 days.</li>
+<li><strong>History, suspicion, notes, reports, fights, animals</strong> – notes, reports, fights and animals only with the matching rights.</li>
+</ul>
+<p>Every time you open it, this is logged. While you spectate, the info bar shows the summary in short form.</p>`,
         },
         {
             id: 'a-combat',
             level: 2,
             rights: ['combatLog'],
             title: { de: 'Kämpfe und Tode', en: 'Fights and deaths' },
-            tags: { de: 'kämpfe tode kampfprotokoll angreifer opfer niedergestreckt' },
+            tags: { de: 'kämpfe tode kampfprotokoll angreifer opfer niedergestreckt', en: 'fights deaths combat log attacker victim downed' },
             de: `<p><em>Kicks &amp; Banns</em> → <em>Kämpfe</em>: Ein Kampf zwischen zwei Spielern ist eine Zeile – Angreifer und Opfer mit Name, ID, Tier, Rudel und Rang, Treffer, Schaden, Dauer, wer zuerst angegriffen hat, Ort und Revier. Jedes Niederstrecken und jeder Tod ist eine eigene Zeile. Mit einem gewählten Spieler siehst du seine, sonst die neuesten.</p>
 <div class="hb-tip"><p>Bei Beschwerden über „Griefing“: erst hier schauen, wer angefangen hat und in wessen Revier es war.</p></div>`,
+            en: `<p><em>Kicks &amp; bans</em> → <em>Fights</em>: a fight between two players is one row – attacker and victim with name, ID, animal, pack and rank, hits, damage, duration, who attacked first, location and territory. Every downing and every death is a row of its own. With a player selected you see theirs, otherwise the newest.</p>
+<div class="hb-tip"><p>For complaints about “griefing”: look here first to see who started it and whose territory it was in.</p></div>`,
         },
         {
             id: 'a-suspicion',
             level: 2,
             rights: ['history', 'clearFlag'],
             title: { de: 'Verdachts-Flag und System-Bann', en: 'Suspicion flag and system ban' },
-            tags: { de: 'verdacht flag cheat system bann punkte automatisch zurücksetzen' },
+            tags: { de: 'verdacht flag cheat system bann punkte automatisch zurücksetzen', en: 'suspicion flag cheat system ban points automatic reset' },
             de: `<p>Das Spiel prüft vieles auf Plausibilität (Tempo, Teleport, Noclip, Gottmodus, Sperrgebiet, Explosionen …). Jeder Befund bringt dem Account <strong>Punkte</strong>; nach mehreren Befunden bekommt er die <strong>Verdachts-Flag</strong> (rot ⚑ in der Spielerliste). Gesperrt wird dadurch nichts.</p>
 <p>Erreicht ein Account innerhalb von 24 Stunden <strong>100 Punkte</strong>, bannt ihn das <strong>System</strong> automatisch (Grund „Automatisches System: Cheat-Erkennung …“). Eindeutige Befunde wie Noclip oder Gottmodus bringen viel, unsichere (z. B. Tempo durch Lag) nur wenig und bannen nie allein.</p>
 <p>Spielerakte → <em>Verdacht</em>: aktueller Stand („75 / 100 Punkte …“) und die letzten Befunde mit Art, Details und Punkten.</p>
 <p><strong>Flag entfernen</strong> (<code>clearFlag</code>, ab Admin) setzt die Punkte zurück – die Befunde bleiben sichtbar. Admins werden nie gezählt.</p>`,
+            en: `<p>The game checks many things for plausibility (speed, teleport, noclip, god mode, restricted area, explosions …). Every finding gives the account <strong>points</strong>; after several findings it gets the <strong>suspicion flag</strong> (red ⚑ in the player list). This does not block anything.</p>
+<p>If an account reaches <strong>100 points</strong> within 24 hours, the <strong>system</strong> bans it automatically (reason “Automatisches System: Cheat-Erkennung …”, automatic system: cheat detection). Clear findings such as noclip or god mode give a lot, uncertain ones (e.g. speed caused by lag) only a little and never ban on their own.</p>
+<p>Player file → <em>Suspicion</em>: the current state (“75 / 100 points …”) and the latest findings with type, details and points.</p>
+<p><strong>Remove flag</strong> (<code>clearFlag</code>, Admin and up) resets the points – the findings stay visible. Admins are never counted.</p>`,
         },
     ],
 };

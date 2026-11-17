@@ -21,7 +21,7 @@ export const TEXT = {
   },
   en: {
     eyebrow: 'Life In Wilderness · Admin handbook', title: 'Admin handbook',
-    intro: 'Everything the team can do in the admin menu, the tools and the web interface – step by step. Pick your role and you only see what you may do. Search with <kbd>/</kbd>. (The chapters are in German for now.)',
+    intro: 'Everything the team can do in the admin menu, the tools and the web interface – step by step. Pick your role and you only see what you may do. Search with <kbd>/</kbd>.',
     search_label: 'Search the admin handbook', search_ph: 'Search … e.g. ban, time-out, spawn point',
     clear: 'Clear search', home: '← Homepage', keys: 'Key bindings', toc: 'Contents', close: 'Close', chapters: 'Chapters',
     top: 'Back to top', loading: 'Loading the handbook …', empty: 'Nothing here for this role.',

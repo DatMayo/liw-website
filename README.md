@@ -109,7 +109,7 @@ Spielerhandbuch (`HandbookPage.vue` mit eigenen `chapters`, `text`, `icons`, `pa
 Kapitel liegen unter `src/adminbook/` im Format des Spielerhandbuchs, je Abschnitt zusätzlich `level` (niedrigste
 Rolle 1–5 wie `Config.Roles` von liw_admin, 5 = Sonderrecht ohne Rolle) und `rights` (Rechtenamen aus
 `Config.Rights`; `anyRight: true` = eines davon genügt). Über jedem Abschnitt steht daraus „Ab … · Recht …“.
-Die Abschnitte sind bisher nur deutsch; Englisch fällt auf den deutschen Text zurück. Beim Ändern von Admin-Funktionen
+Jeder Abschnitt hat Deutsch und Englisch (`de`, `en`, `tags.de`, `tags.en`). Beim Ändern von Admin-Funktionen
 in liw_admin den passenden Abschnitt mitpflegen.
 
 ## Handbuch
