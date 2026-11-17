@@ -10,7 +10,7 @@ export default {
             rights: ['characters'],
             title: { de: 'Reiter „Charaktere“', en: 'The “Characters” tab' },
             tags: { de: 'charaktere tiere suchen lebend tot alle accounts', en: 'characters animals search alive dead all accounts' },
-            de: `<p>Alle Tiere aller Accounts, lebend und gestorben – Suche nach Tiername, Spielername oder License. Beim Spieler führt der Knopf „Charaktere“ direkt zu seinen Tieren.</p>`,
+            de: `<p>Alle Tiere aller Accounts, lebend und gestorben – Suche nach Tiername, Spielername oder Lizenz. Beim Spieler führt der Knopf „Charaktere“ direkt zu seinen Tieren.</p>`,
             en: `<p>All animals of all accounts, alive and dead – search by animal name, player name or license. On a player, the “Characters” button takes you straight to their animals.</p>`,
         },
         {
@@ -60,10 +60,10 @@ export default {
             de: `<p>Wenn ein Spieler einen neuen Account nutzt (z. B. neuer PC oder neues Konto), zieht diese Funktion alles mit: Tiere, Gutscheine, Plätze, Felle, Titel, Errungenschaften, Statistik, Notizen, Verlauf. Admin-Rechte gehen nicht mit. Das Recht hat keine Rolle – nur als Einzelrecht.</p>
 <ol>
 <li>Offline-Spieler öffnen → <em>Account</em> → „Account übertragen …“.</li>
-<li>Rechts die License des neuen Accounts eingeben, <strong>Prüfen</strong>.</li>
+<li>Rechts die Lizenz des neuen Accounts eingeben, <strong>Prüfen</strong>.</li>
 <li>Vergleich lesen: je Bereich „Alter Account“, „Neuer Account jetzt“, „Neuer Account danach“.</li>
 <li>Die <strong>Ampel</strong> bewerten: gemeinsame Geräte, gleicher Discord, gleicher Anbieter/Land sprechen für dieselbe Person; andere Länder, gleichzeitig im Spiel oder frühere Übertragungen dagegen. Rot braucht einen zusätzlichen Haken.</li>
-<li>Haken „gleiche Person“, neue License noch einmal eintippen, <strong>Übertragen</strong> zweimal drücken.</li>
+<li>Haken „gleiche Person“, neue Lizenz noch einmal eintippen, <strong>Übertragen</strong> zweimal drücken.</li>
 </ol>
 <p>Voraussetzungen: beide offline, der neue Account war einmal im Spiel und hat kein lebendes Tier. Hat er schon über 30 Minuten gespielt, ist es „nicht möglich“ – außer mit „Trotzdem übertragen“. Danach ist der alte Account dauerhaft gebannt („Account übertragen auf …“).</p>
 <div class="hb-warn"><p>Die Ampel zeigt personenbezogene Daten (IP-Bereich, Anbieter, Land, Geräte-Kennungen). Nur für diesen Zweck nutzen und nicht weitergeben.</p></div>`,

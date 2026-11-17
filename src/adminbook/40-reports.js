@@ -13,7 +13,7 @@ export default {
             de: `<p>Jeder Spieler kann mit <kbd>F10</kbd> eine Meldung abschicken – ohne Fenster. Er bekommt eine <strong>sechsstellige Nummer</strong>, die er im Discord-Ticket angibt. Der Server speichert dazu jeden Spieler und jedes Tier im Umkreis (Name, Tier, Leben, am Boden, Rudel, Abstand) und die Wege der beteiligten Spieler der letzten Minuten.</p>
 <p>Admins online mit dem Recht bekommen eine Meldung. Im Reiter <em>Meldungen</em>:</p>
 <ol>
-<li>Filter <em>offen / geschlossen / alle</em>, Suche nach Nummer, Name oder License – die Nummer aus dem Ticket führt direkt hin.</li>
+<li>Filter <em>offen / geschlossen / alle</em>, Suche nach Nummer, Name oder Lizenz – die Nummer aus dem Ticket führt direkt hin.</li>
 <li><strong>Übernehmen</strong>, damit das Team sieht, wer dran ist (Zurückgeben geht jederzeit).</li>
 <li>Ansehen: Übersicht, Spieler, Tiere (nach Art zusammengefasst mit nächstem Abstand).</li>
 <li><strong>Notiz</strong> schreiben, was du herausgefunden hast.</li>
@@ -48,9 +48,9 @@ export default {
             rights: ['history'],
             title: { de: 'Spielerakte', en: 'Player file' },
             tags: { de: 'spielerakte akte dossier verlauf zusammenfassung kämpfe tiere tierverlauf zeitleiste', en: 'player file player file dossier history summary fights animals animal history timeline' },
-            de: `<p>Reiter <em>Spielerakte</em> oder Knopf „Spielerakte“ beim Spieler: Suche nach Name oder License, dann alles zum Account auf einer Seite:</p>
+            de: `<p>Reiter <em>Spielerakte</em> oder Knopf „Spielerakte“ beim Spieler: Suche nach Name oder Lizenz, dann alles zum Account auf einer Seite:</p>
 <ul>
-<li><strong>Account:</strong> License, Spielzeit, zuerst und zuletzt gesehen, Bann, Verdachts-Flag.</li>
+<li><strong>Account:</strong> Lizenz, Spielzeit, zuerst und zuletzt gesehen, Bann, Verdachts-Flag.</li>
 <li><strong>Zusammenfassung:</strong> wie oft verwarnt, Auszeit, gekickt, gebannt (jeweils zuletzt), in wie vielen Meldungen beteiligt oder selbst gemeldet, begonnene Kämpfe und Tötungen der letzten 30 Tage.</li>
 <li><strong>Verlauf, Verdacht, Notizen, Meldungen, Kämpfe, Tiere</strong> – Notizen, Meldungen, Kämpfe und Tiere nur mit den jeweiligen Rechten.</li>
 </ul>
@@ -91,7 +91,7 @@ export default {
             de: `<p>Das Spiel prüft vieles auf Plausibilität (Tempo, Teleport, Noclip, Gottmodus, Sperrgebiet, Explosionen …). Jeder Befund bringt dem Account <strong>Punkte</strong>; nach mehreren Befunden bekommt er die <strong>Verdachts-Flag</strong> (rot ⚑ in der Spielerliste). Gesperrt wird dadurch nichts.</p>
 <p>Erreicht ein Account innerhalb von 24 Stunden <strong>100 Punkte</strong>, bannt ihn das <strong>System</strong> automatisch (Grund „Automatisches System: Cheat-Erkennung …“). Eindeutige Befunde wie Noclip oder Gottmodus bringen viel, unsichere (z. B. Tempo durch Lag) nur wenig und bannen nie allein.</p>
 <p>Spielerakte → <em>Verdacht</em>: aktueller Stand („75 / 100 Punkte …“) und die letzten Befunde mit Art, Details und Punkten.</p>
-<p><strong>Ban-Umgehung:</strong> Wer sich mit dem Gerät oder dem Discord-, Steam-, Xbox- oder Microsoft-Konto eines gerade gebannten Accounts verbindet, wird abgewiesen (oder – je nach Einstellung – eingelassen und das Team gewarnt). Es steht im Verlauf des neuen Accounts („Ban-Umgehung (abgewiesen)“ mit dem gebannten Account und worüber es passte), Admins online mit dem Recht <code>history</code> bekommen eine Meldung. Teilen sich z. B. Geschwister einen PC, trägt ein Owner die License in den Einstellungen unter <code>BanEvasion.exempt</code> ein.</p>
+<p><strong>Ban-Umgehung:</strong> Wer sich mit dem Gerät oder dem Discord-, Steam-, Xbox- oder Microsoft-Konto eines gerade gebannten Accounts verbindet, wird abgewiesen (oder – je nach Einstellung – eingelassen und das Team gewarnt). Es steht im Verlauf des neuen Accounts („Ban-Umgehung (abgewiesen)“ mit dem gebannten Account und worüber es passte), Admins online mit dem Recht <code>history</code> bekommen eine Meldung. Teilen sich z. B. Geschwister einen PC, trägt ein Owner die Lizenz in den Einstellungen unter <code>BanEvasion.exempt</code> ein.</p>
 <p><strong>Flag entfernen</strong> (<code>clearFlag</code>, ab Admin) setzt die Punkte zurück – die Befunde bleiben sichtbar. Admins werden nie gezählt.</p>`,
             en: `<p>The game checks many things for plausibility (speed, teleport, noclip, god mode, restricted area, explosions …). Every finding gives the account <strong>points</strong>; after several findings it gets the <strong>suspicion flag</strong> (red ⚑ in the player list). This does not block anything.</p>
 <p>If an account reaches <strong>100 points</strong> within 24 hours, the <strong>system</strong> bans it automatically (reason “Automatisches System: Cheat-Erkennung …”, automatic system: cheat detection). Clear findings such as noclip or god mode give a lot, uncertain ones (e.g. speed caused by lag) only a little and never ban on their own.</p>

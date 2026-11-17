@@ -124,9 +124,9 @@ export default {
                 en: 'console liw_unban liw_crashes liw_rights txadmin crash crashes',
             },
             de: `<dl>
-<dt><code>liw_unban &lt;license&gt;</code></dt><dd>Entbannt eine License, auch wenn kein Admin im Spiel ist (z. B. ein vom System gebannter Tester).</dd>
+<dt><code>liw_unban &lt;license&gt;</code></dt><dd>Entbannt eine Lizenz, auch wenn kein Admin im Spiel ist (z. B. ein vom System gebannter Tester).</dd>
 <dt><code>liw_rights &lt;…&gt;</code></dt><dd>Zeigt Stufe, Rollen und jedes Recht mit Herkunft.</dd>
-<dt><code>liw_crashes [n | suspects | drops]</code></dt><dd>Absturzprotokoll: Vorfälle, bei denen mehrere Spieler nahe beieinander abstürzen, mit Kandidaten und Punkten; Verdächtige je License; letzte Verbindungsabbrüche.</dd>
+<dt><code>liw_crashes [n | suspects | drops]</code></dt><dd>Absturzprotokoll: Vorfälle, bei denen mehrere Spieler nahe beieinander abstürzen, mit Kandidaten und Punkten; Verdächtige je Lizenz; letzte Verbindungsabbrüche.</dd>
 </dl>
 <p>Neue oder geänderte Resources spielt das Deploy automatisch ein, sobald niemand online ist.</p>`,
             en: `<dl>

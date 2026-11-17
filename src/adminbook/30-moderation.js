@@ -93,7 +93,7 @@ export default {
             rights: ['banOffline'],
             title: { de: 'Offline bannen', en: 'Ban offline' },
             tags: { de: 'offline bannen license suchen', en: 'offline ban license search' },
-            de: `<p><em>Kicks &amp; Banns</em> → <em>Offline bannen</em>: Account per Name oder License suchen, Grund und Dauer wählen. Ist der Spieler doch online, fliegt er sofort. Nie dich selbst oder Admins deiner Stufe und darüber.</p>`,
+            de: `<p><em>Kicks &amp; Banns</em> → <em>Offline bannen</em>: Account per Name oder Lizenz suchen, Grund und Dauer wählen. Ist der Spieler doch online, fliegt er sofort. Nie dich selbst oder Admins deiner Stufe und darüber.</p>`,
             en: `<p><em>Kicks &amp; bans</em> → <em>Ban offline</em>: search for the account by name or license, choose reason and duration. If the player is online after all, they are thrown off right away. Never yourself or admins of your level and above.</p>`,
         },
         {
@@ -102,7 +102,7 @@ export default {
             rights: ['history'],
             title: { de: 'Kicks & Banns und Verlauf', en: 'Kicks & bans and history' },
             tags: { de: 'verlauf historie kicks banns txadmin suche', en: 'history kicks bans txadmin search' },
-            de: `<p>Reiter <em>Kicks &amp; Banns</em>: alle Kicks, Banns, Entbannungen und Verwarnungen mit Grund, Dauer, Ziel und Admin – durchsuchbar nach Name oder License. Auch Maßnahmen aus <strong>txAdmin</strong> landen hier (Admin „Name (txAdmin)“); der Bann selbst bleibt dann bei txAdmin.</p>`,
+            de: `<p>Reiter <em>Kicks &amp; Banns</em>: alle Kicks, Banns, Entbannungen und Verwarnungen mit Grund, Dauer, Ziel und Admin – durchsuchbar nach Name oder Lizenz. Auch Maßnahmen aus <strong>txAdmin</strong> landen hier (Admin „Name (txAdmin)“); der Bann selbst bleibt dann bei txAdmin.</p>`,
             en: `<p><em>Kicks &amp; bans</em> tab: all kicks, bans, unbans and warnings with reason, duration, target and admin – searchable by name or license. Measures from <strong>txAdmin</strong> also end up here (admin “Name (txAdmin)”); the ban itself then stays with txAdmin.</p>`,
         },
     ],
