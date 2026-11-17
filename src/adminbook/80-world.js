@@ -80,6 +80,7 @@ export default {
 <li><strong>Ruhm</strong> des Besitzers setzen (Tests, Korrekturen).</li>
 <li><strong>Entfernen</strong> (zweimal drücken).</li>
 </ul>
+<p><strong>Verlauf</strong> (Abschnitt im Revier, „Verlauf anzeigen“): was wann mit dem Revier passiert ist – angelegt, Grenzen und Name geändert, Halt gesetzt, Schutz aufgehoben, Höhle, eingenommen (beansprucht, durch einen Admin …), angegriffen, verteidigt und verloren mit Grund (Halt gebrochen von …, Halt abgelaufen, aufgegeben, Besitzer gestorben, Rudel aufgelöst …). Rechts steht, wer es war: der Admin-Name oder „Spiel“. „Ältere laden“ holt weitere Einträge.</p>
 <p>„Grenzen zeigen / verbergen“ oben im Reiter blendet die Grenzen aller Reviere für dich ein.</p>`,
             en: `<p>In a territory's details (also on the live map):</p>
 <ul>
@@ -89,6 +90,7 @@ export default {
 <li>Set the owner's <strong>fame</strong> (tests, corrections).</li>
 <li><strong>Delete</strong> (press twice).</li>
 </ul>
+<p><strong>History</strong> (section in the territory, “Show history”): what happened to the territory and when – created, borders and name changed, hold set, protection lifted, den, taken (claimed, by an admin …), attacked, defended and lost with the reason (hold broken by …, hold ran out, given up, owner died, pack disbanded …). On the right you see who did it: the admin's name or “game”. “Load older” fetches more entries.</p>
 <p>“Show / hide borders” at the top of the tab shows the borders of all territories for you.</p>`,
         },
         {

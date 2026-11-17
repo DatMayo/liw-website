@@ -45,13 +45,15 @@ export default {
             level: 2,
             rights: ['history'],
             title: { de: 'Spielerakte', en: 'Player file' },
-            tags: { de: 'spielerakte akte dossier verlauf zusammenfassung kämpfe tiere', en: 'player file player file dossier history summary fights animals' },
+            tags: { de: 'spielerakte akte dossier verlauf zusammenfassung kämpfe tiere tierverlauf', en: 'player file player file dossier history summary fights animals animal history' },
             de: `<p>Reiter <em>Spielerakte</em> oder Knopf „Spielerakte“ beim Spieler: Suche nach Name oder License, dann alles zum Account auf einer Seite:</p>
 <ul>
 <li><strong>Account:</strong> License, Spielzeit, zuerst und zuletzt gesehen, Bann, Verdachts-Flag.</li>
 <li><strong>Zusammenfassung:</strong> wie oft verwarnt, Auszeit, gekickt, gebannt (jeweils zuletzt), in wie vielen Meldungen beteiligt oder selbst gemeldet, begonnene Kämpfe und Tötungen der letzten 30 Tage.</li>
 <li><strong>Verlauf, Verdacht, Notizen, Meldungen, Kämpfe, Tiere</strong> – Notizen, Meldungen, Kämpfe und Tiere nur mit den jeweiligen Rechten.</li>
 </ul>
+<p><strong>Tierverlauf</strong> (mit dem Recht <code>characters</code>): was wann mit den Tieren des Accounts passiert ist – erstellt, Fell, umbenannt, Rudel beigetreten, Rang, verlassen oder geworfen, Stufe, Altersphase, gestorben und jeder Admin-Eingriff mit Namen (EP, Art, Alter, neuer Name verlangt, herausgenommen, Schnappschuss, wiederbelebt). Oben alle Tiere oder eines auswählen; ein Klick auf ein Tier unter <em>Charaktere</em> springt direkt dorthin. „Ältere laden“ holt weitere Einträge.</p>
+<p>Die Reiter stehen in einer Zeile: Passen sie nicht hinein, ziehst du sie mit gedrückter Maustaste (oder dem Mausrad) zur Seite.</p>
 <p>Jedes Öffnen steht im Protokoll. Beim Zuschauen zeigt die Info-Leiste die Zusammenfassung in Kurzform.</p>`,
             en: `<p>The <em>Player file</em> tab or the “Player file” button on a player: search by name or license, then everything about the account on one page:</p>
 <ul>
@@ -59,6 +61,8 @@ export default {
 <li><strong>Summary:</strong> how often warned, given a time-out, kicked, banned (each with the latest), how many reports they were involved in or filed themselves, fights started and kills in the last 30 days.</li>
 <li><strong>History, suspicion, notes, reports, fights, animals</strong> – notes, reports, fights and animals only with the matching rights.</li>
 </ul>
+<p><strong>Animal history</strong> (with the right <code>characters</code>): what happened to the account's animals and when – created, fur, renamed, joined a pack, rank, left or kicked, level, age phase, died, and every admin change with the admin's name (XP, species, age, new name demanded, taken out, snapshot, revived). At the top, pick all animals or one; a click on an animal under <em>Characters</em> jumps straight there. “Load older” fetches more entries.</p>
+<p>The tabs are in one line: if they do not fit, drag them sideways with the mouse button held (or the mouse wheel).</p>
 <p>Every time you open it, this is logged. While you spectate, the info bar shows the summary in short form.</p>`,
         },
         {
