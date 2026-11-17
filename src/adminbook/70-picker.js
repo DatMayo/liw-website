@@ -21,7 +21,8 @@ export default {
 <li><kbd>Alt</kbd> halten: Cursor weg, die Maus dreht die Kamera (umschauen).</li>
 <li><kbd>Rechtsklick</kbd> oder <kbd>Esc</kbd>: Auswahl lösen.</li>
 </ul>
-<p>Die Leiste hat Reiter: <strong>Auswahl</strong> (nur wenn etwas im Ring war), <strong>Am Punkt</strong>, <strong>Spawnpunkte</strong> und <strong>Welt</strong> – je nach Recht. Einzelne Einträge lassen sich abhaken; Aktionen treffen nur die angehakten. Gefährliche Knöpfe (Kicken, Bannen, Revier freigeben, Spawnpunkt entfernen) fragen erst auf dem Knopf nach – zweiter Klick führt aus.</p>`,
+<p>Die Leiste hat Reiter: <strong>Auswahl</strong> (nur wenn etwas im Ring war), <strong>Am Punkt</strong>, <strong>Spawnpunkte</strong> und <strong>Welt</strong> – je nach Recht. Einzelne Einträge lassen sich abhaken; Aktionen treffen nur die angehakten. Gefährliche Knöpfe (Kicken, Bannen, Revier freigeben, Spawnpunkt entfernen) fragen erst auf dem Knopf nach – zweiter Klick führt aus.</p>
+<p>Jede Aktion hat ein eigenes Recht: <code>pickerTeleport</code> (Doppelklick, „Hierher teleportieren“), <code>npcControl</code> (herholen, einfrieren, auftauen), <code>npcKill</code> (töten, Aas, entfernen), <code>npcPacks</code> (NPC-Rudel), <code>spawnAnimals</code> (Tiere spawnen). Ohne das Recht fehlt der Knopf.</p>`,
             en: `<p><kbd>Page Down</kbd> turns the tool on and off. A mouse cursor appears, the camera stands still, and a ring on the ground follows the mouse and snaps to animals.</p>
 <ul>
 <li><kbd>Mouse wheel</kbd>: make the ring bigger/smaller (0.5–60 m).</li>
@@ -30,7 +31,8 @@ export default {
 <li>Hold <kbd>Alt</kbd>: the cursor disappears and the mouse turns the camera (look around).</li>
 <li><kbd>Right click</kbd> or <kbd>Esc</kbd>: clear the selection.</li>
 </ul>
-<p>The panel has tabs: <strong>Selection</strong> (only if something was in the ring), <strong>Spot</strong>, <strong>Spawn points</strong> and <strong>World</strong> – depending on your rights. You can tick single entries; actions only affect the ticked ones. Dangerous buttons (Kick, Ban, free territory, remove spawn point) ask for confirmation on the button first – a second click carries it out.</p>`,
+<p>The panel has tabs: <strong>Selection</strong> (only if something was in the ring), <strong>Spot</strong>, <strong>Spawn points</strong> and <strong>World</strong> – depending on your rights. You can tick single entries; actions only affect the ticked ones. Dangerous buttons (Kick, Ban, free territory, remove spawn point) ask for confirmation on the button first – a second click carries it out.</p>
+<p>Every action has its own right: <code>pickerTeleport</code> (double click, “Teleport here”), <code>npcControl</code> (bring, freeze, unfreeze), <code>npcKill</code> (kill, carrion, remove), <code>npcPacks</code> (NPC packs), <code>spawnAnimals</code> (spawn animals). Without the right the button is missing.</p>`,
         },
         {
             id: 'a-picker-players',
@@ -55,7 +57,8 @@ export default {
         {
             id: 'a-picker-npcs',
             level: 3,
-            rights: ['picker'],
+            rights: ['npcControl', 'npcKill', 'npcPacks'],
+            anyRight: true,
             title: { de: 'NPC-Tiere und Kadaver', en: 'NPC animals and carcasses' },
             tags: {
                 de: 'npc tiere töten aas einfrieren auftauen herholen entfernen rudel neu spawnen revier freigeben kadaver',
@@ -63,15 +66,18 @@ export default {
             },
             de: `<p><strong>NPC-Tiere:</strong> Töten, Töten als Aas, Herholen, Einfrieren, Auftauen, Entfernen. Tiere eines NPC-Rudels zeigen ihr Rudel und Revier; dazu „Rudel neu spawnen“ und „Revier des Rudels freigeben“ (zusätzlich Recht <code>territory</code>).</p>
 <p><strong>Kadaver:</strong> „Sofort zu Aas machen“ (davon fressen zählt sofort als Aas, Aasfieber möglich) und Entfernen.</p>
-<div class="hb-tip"><p>Begleiter, legendäre Tiere und Platzhalter von Spielern werden nie getötet oder entfernt – die Leiste weist darauf hin.</p></div>`,
+<div class="hb-tip"><p>Begleiter, legendäre Tiere und Platzhalter von Spielern werden nie getötet oder entfernt – die Leiste weist darauf hin.</p></div>
+<p>Rechte: Herholen, Einfrieren, Auftauen <code>npcControl</code>; Töten, Aas, Entfernen (auch Kadaver) <code>npcKill</code>; Rudel neu spawnen <code>npcPacks</code>, Revier freigeben <code>npcPacks</code> und <code>territory</code>.</p>`,
             en: `<p><strong>NPC animals:</strong> Kill, Kill as carrion, Bring, Freeze, Unfreeze, Remove. Animals of an NPC pack show their pack and territory; there are also “Spawn pack anew” and “Free pack territory” (additionally needs the right <code>territory</code>).</p>
 <p><strong>Carcasses:</strong> “Make carrion now” (eating from it counts as carrion right away, carrion fever is possible) and Remove.</p>
-<div class="hb-tip"><p>Companions, legendary animals and stand-ins of players are never killed or removed – the panel points this out.</p></div>`,
+<div class="hb-tip"><p>Companions, legendary animals and stand-ins of players are never killed or removed – the panel points this out.</p></div>
+<p>Rights: bring, freeze, unfreeze <code>npcControl</code>; kill, carrion, remove (carcasses too) <code>npcKill</code>; spawn pack anew <code>npcPacks</code>, free territory <code>npcPacks</code> and <code>territory</code>.</p>`,
         },
         {
             id: 'a-picker-point',
             level: 3,
-            rights: ['picker'],
+            rights: ['spawnAnimals', 'pickerTeleport'],
+            anyRight: true,
             title: { de: 'Am Punkt: Tiere spawnen, teleportieren', en: 'At the spot: spawn animals, teleport' },
             tags: {
                 de: 'am punkt spawnen tier liste kategorie teleportieren',
@@ -145,14 +151,17 @@ export default {
         {
             id: 'a-picker-world',
             level: 3,
-            rights: ['world'],
+            rights: ['worldTime', 'worldSeason'],
+            anyRight: true,
             title: { de: 'Welt im Werkzeug', en: 'World in the tool' },
             tags: {
                 de: 'welt uhrzeit jahreszeit werkzeug',
                 en: 'world time of day season tool',
             },
-            de: `<p>Reiter <strong>Welt</strong>: Uhrzeit eine Stunde vor oder zurück, Jahreszeit festhalten oder „Nach Kalender“.</p>`,
-            en: `<p>Tab <strong>World</strong>: move the time one hour forward or back, fix the season or set it to “By calendar”.</p>`,
+            de: `<p>Reiter <strong>Welt</strong>: Uhrzeit eine Stunde vor oder zurück, Jahreszeit festhalten oder „Nach Kalender“.</p>
+<p>Uhrzeit braucht <code>worldTime</code>, Jahreszeit <code>worldSeason</code>.</p>`,
+            en: `<p>Tab <strong>World</strong>: move the time one hour forward or back, fix the season or set it to “By calendar”.</p>
+<p>Time needs <code>worldTime</code>, season <code>worldSeason</code>.</p>`,
         },
     ],
 };

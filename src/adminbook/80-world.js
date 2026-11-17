@@ -7,21 +7,24 @@ export default {
         {
             id: 'a-world-tab',
             level: 3,
-            rights: ['world'],
+            rights: ['worldTime', 'worldWeather', 'worldSeason'],
+            anyRight: true,
             title: { de: 'Uhrzeit und Wetter', en: 'Time and weather' },
             tags: {
                 de: 'uhrzeit zeit anhalten zeitrate wetter auto echtzeit',
                 en: 'time of day stop time freeze time rate weather automatic real time',
             },
             de: `<p>Reiter <em>Welt</em>: Uhrzeit setzen, Zeit anhalten, Zeitrate ändern oder auf Echtzeit stellen; Wetter wählen oder „Auto-Wetter“ wieder einschalten. Gilt sofort für alle Spieler.</p>
-<div class="hb-warn"><p>Angehaltene Zeit oder festes Wetter bleiben, bis jemand es zurückstellt – nach einem Event nicht vergessen.</p></div>`,
+<div class="hb-warn"><p>Angehaltene Zeit oder festes Wetter bleiben, bis jemand es zurückstellt – nach einem Event nicht vergessen.</p></div>
+<p>Jeder Teil hat sein Recht: Uhrzeit, Anhalten, Zeitrate und Echtzeit <code>worldTime</code>; Wetter und Auto-Wetter <code>worldWeather</code>; Jahreszeit <code>worldSeason</code>. Der Reiter erscheint mit einem davon.</p>`,
             en: `<p>Tab <em>World</em>: set the time, stop time, change the time rate or set it to real time; pick the weather or turn “Automatic weather on” again. This applies to all players right away.</p>
-<div class="hb-warn"><p>Stopped time or fixed weather stays until someone resets it – do not forget this after an event.</p></div>`,
+<div class="hb-warn"><p>Stopped time or fixed weather stays until someone resets it – do not forget this after an event.</p></div>
+<p>Each part has its own right: time, hold, rate and real time <code>worldTime</code>; weather and automatic weather <code>worldWeather</code>; season <code>worldSeason</code>. The tab shows with any of them.</p>`,
         },
         {
             id: 'a-berries',
             level: 3,
-            rights: ['world'],
+            rights: ['berries'],
             title: { de: 'Beerengebiete', en: 'Berry areas' },
             tags: {
                 de: 'beeren gebiet zeichnen dichte editor',

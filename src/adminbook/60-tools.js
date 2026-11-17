@@ -69,7 +69,7 @@ export default {
 <li><strong>Spieler anklicken:</strong> dieselben Aktionen wie im Admin-Menü (Hingehen, Herholen, Zuschauen, Heilen, Wiederbeleben, Einfrieren, Befreien, Nachricht – je mit Recht) und „Spielerakte öffnen“.</li>
 <li><strong>Rechtsklick auf die Karte:</strong> „Hierher teleportieren“ (Recht <code>waypoint</code>), Wegpunkt setzen/entfernen, Koordinaten kopieren.</li>
 <li><strong>Ebene „Meldungen“</strong> und <strong>Spur</strong> des gewählten Spielers (Recht <code>reports</code>).</li>
-<li><strong>NPC-Tiere</strong> (Recht <code>picker</code>) und <strong>Reviere</strong> (Recht <code>territory</code>) haben eigene Knöpfe – siehe <a href="#a-picker">Auswahl-Werkzeug</a> und <a href="#a-territories">Reviere</a>.</li>
+<li><strong>NPC-Tiere</strong> (Rechte <code>picker</code>, <code>pickerTeleport</code>, <code>npcControl</code>, <code>npcKill</code>, <code>npcPacks</code>) und <strong>Reviere</strong> (Recht <code>territory</code>) haben eigene Knöpfe – siehe <a href="#a-picker">Auswahl-Werkzeug</a> und <a href="#a-territories">Reviere</a>.</li>
 </ul>`,
             en: `<p>Tools → <em>Live map</em> (in game on top of the game, otherwise in the web interface): all player animals and the NPC animals around them. At the top “World / Guarma”; <kbd>X</kbd> or <kbd>Esc</kbd> closes it.</p>
 <ul>
@@ -77,7 +77,7 @@ export default {
 <li><strong>Click a player:</strong> the same actions as in the admin menu (Go to, Bring here, Spectate, Heal, Revive, Freeze, Free, Message – each with its right) and “Open player file”.</li>
 <li><strong>Right-click the map:</strong> “Teleport here” (right <code>waypoint</code>), set/remove a waypoint, copy coordinates.</li>
 <li><strong>“Reports” layer</strong> and <strong>trail</strong> of the selected player (right <code>reports</code>).</li>
-<li><strong>NPC animals</strong> (right <code>picker</code>) and <strong>territories</strong> (right <code>territory</code>) have their own buttons – see <a href="#a-picker">Selection tool</a> and <a href="#a-territories">Territories</a>.</li>
+<li><strong>NPC animals</strong> (rights <code>picker</code>, <code>pickerTeleport</code>, <code>npcControl</code>, <code>npcKill</code>, <code>npcPacks</code>) and <strong>territories</strong> (right <code>territory</code>) have their own buttons – see <a href="#a-picker">Selection tool</a> and <a href="#a-territories">Territories</a>.</li>
 </ul>`,
         },
         {
