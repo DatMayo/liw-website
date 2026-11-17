@@ -45,7 +45,7 @@ export default {
             level: 2,
             rights: ['history'],
             title: { de: 'Spielerakte', en: 'Player file' },
-            tags: { de: 'spielerakte akte dossier verlauf zusammenfassung kämpfe tiere tierverlauf', en: 'player file player file dossier history summary fights animals animal history' },
+            tags: { de: 'spielerakte akte dossier verlauf zusammenfassung kämpfe tiere tierverlauf zeitleiste', en: 'player file player file dossier history summary fights animals animal history timeline' },
             de: `<p>Reiter <em>Spielerakte</em> oder Knopf „Spielerakte“ beim Spieler: Suche nach Name oder License, dann alles zum Account auf einer Seite:</p>
 <ul>
 <li><strong>Account:</strong> License, Spielzeit, zuerst und zuletzt gesehen, Bann, Verdachts-Flag.</li>
@@ -53,6 +53,7 @@ export default {
 <li><strong>Verlauf, Verdacht, Notizen, Meldungen, Kämpfe, Tiere</strong> – Notizen, Meldungen, Kämpfe und Tiere nur mit den jeweiligen Rechten.</li>
 </ul>
 <p><strong>Tierverlauf</strong> (mit dem Recht <code>characters</code>): was wann mit den Tieren des Accounts passiert ist – erstellt, Fell, umbenannt, Rudel beigetreten, Rang, verlassen oder geworfen, Stufe, Altersphase, gestorben und jeder Admin-Eingriff mit Namen (EP, Art, Alter, neuer Name verlangt, herausgenommen, Schnappschuss, wiederbelebt). Oben alle Tiere oder eines auswählen; ein Klick auf ein Tier unter <em>Charaktere</em> springt direkt dorthin. „Ältere laden“ holt weitere Einträge.</p>
+<p><strong>Zeitleiste:</strong> alles zum Account aus allen Protokollen in einer Liste, neueste zuerst – Moderation, Notizen, Meldungen, Kämpfe, Verdacht, Tierverlauf, Anmeldungen (Land und Anbieter, nur mit <code>transferAccount</code>) und wann der Account angelegt wurde. Jede Art erscheint nur mit ihrem Recht; ein Klick auf einen Chip oben blendet die Art aus oder wieder ein.</p>
 <p>Die Reiter stehen in einer Zeile: Passen sie nicht hinein, ziehst du sie mit gedrückter Maustaste (oder dem Mausrad) zur Seite.</p>
 <p>Jedes Öffnen steht im Protokoll. Beim Zuschauen zeigt die Info-Leiste die Zusammenfassung in Kurzform.</p>`,
             en: `<p>The <em>Player file</em> tab or the “Player file” button on a player: search by name or license, then everything about the account on one page:</p>
@@ -62,6 +63,7 @@ export default {
 <li><strong>History, suspicion, notes, reports, fights, animals</strong> – notes, reports, fights and animals only with the matching rights.</li>
 </ul>
 <p><strong>Animal history</strong> (with the right <code>characters</code>): what happened to the account's animals and when – created, fur, renamed, joined a pack, rank, left or kicked, level, age phase, died, and every admin change with the admin's name (XP, species, age, new name demanded, taken out, snapshot, revived). At the top, pick all animals or one; a click on an animal under <em>Characters</em> jumps straight there. “Load older” fetches more entries.</p>
+<p><strong>Timeline:</strong> everything about the account from all logs in one list, newest first – moderation, notes, reports, fights, suspicion, animal history, logins (country and provider, only with <code>transferAccount</code>) and when the account was created. Each kind only appears with its right; a click on a chip at the top hides or shows that kind.</p>
 <p>The tabs are in one line: if they do not fit, drag them sideways with the mouse button held (or the mouse wheel).</p>
 <p>Every time you open it, this is logged. While you spectate, the info bar shows the summary in short form.</p>`,
         },
