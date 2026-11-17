@@ -43,7 +43,7 @@ export default {
 <p><strong>Aufgabengruppen</strong> bündeln die Rechte für eine Aufgabe, ohne eine Stufe zu geben. Ein Teammitglied kann neben seiner Stufe in beliebig vielen sein:</p>
 <dl>
 <dt>Support</dt><dd>Hingehen, Herholen, Zuschauen, Heilen, Wiederbeleben, Wartezeiten, Charaktere, Spielerakte, Fehlerprotokoll, Meldungen, Kämpfe, Notizen, Verwarnen, Auszeit, neuen Namen verlangen, Nachricht, Einfrieren, Befreien, Zur Auswahl.</dd>
-<dt>Event-Team</dt><dd>Hingehen, Herholen, Zuschauen, Heilen, Wiederbeleben, Uhrzeit, Wetter, Jahreszeit, Beerengebiete, Guarma, Noclip, Wegpunkt, Gottmodus, Gedenksteine, Live-Karte, Admin-Sicht.</dd>
+<dt>Event-Team</dt><dd>Hingehen, Herholen, Zuschauen, Heilen, Wiederbeleben, Uhrzeit, Wetter, Jahreszeit, Beerengebiete, Guarma, Noclip, Wegpunkt, Gottmodus, Gedenksteine, Live-Karte, Admin-Sicht, Ankündigungen.</dd>
 <dt>Weltenbauer</dt><dd>Reviere, Uhrzeit, Wetter, Jahreszeit, Beerengebiete, Gedenksteine, Noclip, Wegpunkt, Karte aufdecken, Guarma.</dd>
 <dt>Quest-Autor / Quest-Leitung</dt><dd>Quest-Editor (die Leitung zusätzlich Freigeben und „vertrauter Ersteller“), Noclip, Wegpunkt.</dd>
 <dt>Übersetzer</dt><dd>Übersetzungs-Editor.</dd>
@@ -62,7 +62,7 @@ export default {
 <p><strong>Task groups</strong> bundle the rights for one task without giving a level. A team member can be in any number of them besides their level:</p>
 <dl>
 <dt>Support</dt><dd>Go to, bring, spectate, heal, revive, waiting times, characters, player file, error log, reports, fights, notes, warn, time-out, demand a new name, message, freeze, unstuck, to selection.</dd>
-<dt>Event team</dt><dd>Go to, bring, spectate, heal, revive, time, weather, season, berry areas, Guarma, noclip, waypoint, god mode, memorial stones, live map, admin view.</dd>
+<dt>Event team</dt><dd>Go to, bring, spectate, heal, revive, time, weather, season, berry areas, Guarma, noclip, waypoint, god mode, memorial stones, live map, admin view, announcements.</dd>
 <dt>World builder</dt><dd>Territories, time, weather, season, berry areas, memorial stones, noclip, waypoint, reveal map, Guarma.</dd>
 <dt>Quest author / quest lead</dt><dd>Quest editor (the lead can also release quests and is a “trusted author”), noclip, waypoint.</dd>
 <dt>Translator</dt><dd>Translation editor.</dd>

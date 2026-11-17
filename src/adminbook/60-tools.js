@@ -47,6 +47,25 @@ export default {
             en: `<p>On/off in the <em>Tools</em> tab: every player is marked as with the senses – “#ID player name · animal (species) · health · pack”, even far away. Colors: <strong>red</strong> suspicious, <strong>blue</strong> admin, <strong>green</strong> newcomer, otherwise yellow.</p>`,
         },
         {
+            id: 'a-announce',
+            level: 2,
+            rights: ['announce'],
+            title: { de: 'Ankündigungen und Countdown', en: 'Announcements and countdown' },
+            tags: { de: 'ankündigung banner countdown neustart txadmin alle umkreis', en: 'announcement banner countdown restart txadmin everyone nearby' },
+            de: `<p>Werkzeuge → <em>Ankündigung</em>: Titel (optional) und Text, <strong>An</strong> „Alle“ oder „Um mich“ (50, 150 oder 500 m, nur im Spiel), Aussehen Hinweis oder Warnung. Alle Empfänger sehen ein Banner.</p>
+<ul>
+<li><strong>Countdown</strong> (Minuten, 0 = keiner): unten am Bildschirm zählt eine Zeile sekundengenau herunter („Neustart: 9:59“). Wer während eines Countdowns an alle verbindet, sieht den Rest.</li>
+<li><strong>Countdown beenden</strong> nimmt ihn bei allen weg.</li>
+<li>Geplante Neustarts, Herunterfahren, Ankündigungen und Direktnachrichten aus <strong>txAdmin</strong> erscheinen genauso (Neustart mit Countdown); Befehle der txAdmin-Livekonsole stehen im Admin-Protokoll.</li>
+</ul>`,
+            en: `<p>Tools → <em>Announcement</em>: a title (optional) and a text, <strong>To</strong> “Everyone” or “Around me” (50, 150 or 500 m, in game only), look note or warning. Everyone who gets it sees a banner.</p>
+<ul>
+<li><strong>Countdown</strong> (minutes, 0 = none): at the bottom of the screen a line counts down every second (“Restart: 9:59”). Players who connect during a countdown for everyone see the rest of it.</li>
+<li><strong>End countdown</strong> removes it for everyone.</li>
+<li>Scheduled restarts, shutdowns, announcements and direct messages from <strong>txAdmin</strong> appear the same way (restarts with a countdown); commands of txAdmin's live console are in the admin log.</li>
+</ul>`,
+        },
+        {
             id: 'a-chat',
             level: 2,
             rights: ['chat'],

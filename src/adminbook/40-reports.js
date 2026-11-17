@@ -83,14 +83,16 @@ export default {
             level: 2,
             rights: ['history', 'clearFlag'],
             title: { de: 'Verdachts-Flag und System-Bann', en: 'Suspicion flag and system ban' },
-            tags: { de: 'verdacht flag cheat system bann punkte automatisch zurücksetzen', en: 'suspicion flag cheat system ban points automatic reset' },
+            tags: { de: 'verdacht flag cheat system bann punkte automatisch zurücksetzen ban-umgehung umgehung gerät', en: 'suspicion flag cheat system ban points automatic reset ban evasion device' },
             de: `<p>Das Spiel prüft vieles auf Plausibilität (Tempo, Teleport, Noclip, Gottmodus, Sperrgebiet, Explosionen …). Jeder Befund bringt dem Account <strong>Punkte</strong>; nach mehreren Befunden bekommt er die <strong>Verdachts-Flag</strong> (rot ⚑ in der Spielerliste). Gesperrt wird dadurch nichts.</p>
 <p>Erreicht ein Account innerhalb von 24 Stunden <strong>100 Punkte</strong>, bannt ihn das <strong>System</strong> automatisch (Grund „Automatisches System: Cheat-Erkennung …“). Eindeutige Befunde wie Noclip oder Gottmodus bringen viel, unsichere (z. B. Tempo durch Lag) nur wenig und bannen nie allein.</p>
 <p>Spielerakte → <em>Verdacht</em>: aktueller Stand („75 / 100 Punkte …“) und die letzten Befunde mit Art, Details und Punkten.</p>
+<p><strong>Ban-Umgehung:</strong> Wer sich mit dem Gerät oder dem Discord-, Steam-, Xbox- oder Microsoft-Konto eines gerade gebannten Accounts verbindet, wird abgewiesen (oder – je nach Einstellung – eingelassen und das Team gewarnt). Es steht im Verlauf des neuen Accounts („Ban-Umgehung (abgewiesen)“ mit dem gebannten Account und worüber es passte), Admins online mit dem Recht <code>history</code> bekommen eine Meldung. Teilen sich z. B. Geschwister einen PC, trägt ein Owner die License in den Einstellungen unter <code>BanEvasion.exempt</code> ein.</p>
 <p><strong>Flag entfernen</strong> (<code>clearFlag</code>, ab Admin) setzt die Punkte zurück – die Befunde bleiben sichtbar. Admins werden nie gezählt.</p>`,
             en: `<p>The game checks many things for plausibility (speed, teleport, noclip, god mode, restricted area, explosions …). Every finding gives the account <strong>points</strong>; after several findings it gets the <strong>suspicion flag</strong> (red ⚑ in the player list). This does not block anything.</p>
 <p>If an account reaches <strong>100 points</strong> within 24 hours, the <strong>system</strong> bans it automatically (reason “Automatisches System: Cheat-Erkennung …”, automatic system: cheat detection). Clear findings such as noclip or god mode give a lot, uncertain ones (e.g. speed caused by lag) only a little and never ban on their own.</p>
 <p>Player file → <em>Suspicion</em>: the current state (“75 / 100 points …”) and the latest findings with type, details and points.</p>
+<p><strong>Ban evasion:</strong> whoever connects with the device or the Discord, Steam, Xbox or Microsoft account of an account banned right now is refused (or – depending on the setting – let in with the team warned). It is in the history of the new account (“Ban evasion (refused)” with the banned account and how it matched), and admins online with the right <code>history</code> get a notice. If e.g. siblings share a PC, an owner adds the license in the settings under <code>BanEvasion.exempt</code>.</p>
 <p><strong>Remove flag</strong> (<code>clearFlag</code>, Admin and up) resets the points – the findings stay visible. Admins are never counted.</p>`,
         },
     ],
