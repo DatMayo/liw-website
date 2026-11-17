@@ -40,22 +40,22 @@ export default {
             title: { de: 'Einzelrechte und Aufgabengruppen', en: 'Single rights and task groups' },
             tags: { de: 'einzelrecht aufgabengruppe support eventteam weltenbauer questautor übersetzer technik', en: 'single right task group support event team world builder quest author translator tech' },
             de: `<p>Jeder Teil des Admin-Menüs ist ein <strong>eigenes Recht</strong>. Neben der Stufe kann man jemandem einzelne Rechte geben – etwa nur „Meldungen“ oder nur „Übersetzungen“. Rechte aus Stufe, Aufgabengruppen und Einzelrechten zählen zusammen.</p>
-<p><strong>Aufgabengruppen</strong> bündeln die Rechte für eine Aufgabe, ohne eine Stufe zu geben:</p>
+<p><strong>Aufgabengruppen</strong> bündeln die Rechte für eine Aufgabe, ohne eine Stufe zu geben. Ein Teammitglied kann neben seiner Stufe in beliebig vielen sein:</p>
 <dl>
 <dt>Support</dt><dd>Hingehen, Herholen, Zuschauen, Heilen, Wiederbeleben, Wartezeiten, Charaktere, Spielerakte, Fehlerprotokoll, Meldungen, Kämpfe, Notizen, Verwarnen, Auszeit, neuen Namen verlangen, Nachricht, Einfrieren, Befreien, Zur Auswahl.</dd>
-<dt>Event-Team</dt><dd>Hingehen, Herholen, Zuschauen, Heilen, Wiederbeleben, Welt, Guarma, Noclip, Wegpunkt, Gottmodus, Gedenksteine, Live-Karte, Admin-Sicht.</dd>
-<dt>Weltenbauer</dt><dd>Reviere, Welt, Gedenksteine, Noclip, Wegpunkt, Karte aufdecken, Guarma.</dd>
+<dt>Event-Team</dt><dd>Hingehen, Herholen, Zuschauen, Heilen, Wiederbeleben, Uhrzeit, Wetter, Jahreszeit, Beerengebiete, Guarma, Noclip, Wegpunkt, Gottmodus, Gedenksteine, Live-Karte, Admin-Sicht.</dd>
+<dt>Weltenbauer</dt><dd>Reviere, Uhrzeit, Wetter, Jahreszeit, Beerengebiete, Gedenksteine, Noclip, Wegpunkt, Karte aufdecken, Guarma.</dd>
 <dt>Quest-Autor / Quest-Leitung</dt><dd>Quest-Editor (die Leitung zusätzlich Freigeben und „vertrauter Ersteller“), Noclip, Wegpunkt.</dd>
 <dt>Übersetzer</dt><dd>Übersetzungs-Editor.</dd>
 <dt>Technik</dt><dd>Fehlerprotokoll, Live-Karte, Aktionsprotokoll, Entwickler-Befehle.</dd>
 </dl>
 <p>Vergeben werden Rollen, Gruppen und Einzelrechte im Reiter <em>Berechtigungen</em> (siehe <a href="#a-permissions">Berechtigungen vergeben</a>).</p>`,
             en: `<p>Every part of the admin menu is a <strong>right of its own</strong>. Besides the level, you can give someone single rights – for example only “Reports” or only “Translations”. Rights from the level, task groups and single rights add up.</p>
-<p><strong>Task groups</strong> bundle the rights for one task without giving a level:</p>
+<p><strong>Task groups</strong> bundle the rights for one task without giving a level. A team member can be in any number of them besides their level:</p>
 <dl>
 <dt>Support</dt><dd>Go to, bring, spectate, heal, revive, waiting times, characters, player file, error log, reports, fights, notes, warn, time-out, demand a new name, message, freeze, unstuck, to selection.</dd>
-<dt>Event team</dt><dd>Go to, bring, spectate, heal, revive, world, Guarma, noclip, waypoint, god mode, memorial stones, live map, admin view.</dd>
-<dt>World builder</dt><dd>Territories, world, memorial stones, noclip, waypoint, reveal map, Guarma.</dd>
+<dt>Event team</dt><dd>Go to, bring, spectate, heal, revive, time, weather, season, berry areas, Guarma, noclip, waypoint, god mode, memorial stones, live map, admin view.</dd>
+<dt>World builder</dt><dd>Territories, time, weather, season, berry areas, memorial stones, noclip, waypoint, reveal map, Guarma.</dd>
 <dt>Quest author / quest lead</dt><dd>Quest editor (the lead can also release quests and is a “trusted author”), noclip, waypoint.</dd>
 <dt>Translator</dt><dd>Translation editor.</dd>
 <dt>Tech</dt><dd>Error log, live map, action log, developer commands.</dd>

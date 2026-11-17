@@ -99,21 +99,21 @@ export default {
             rights: ['permissions'],
             title: { de: 'Berechtigungen vergeben', en: 'Giving permissions' },
             tags: {
-                de: 'berechtigungen rechte vergeben rolle gruppe einzelrecht entziehen',
-                en: 'permissions rights give role group single right individual right take revoke',
+                de: 'berechtigungen rechte vergeben rolle stufe gruppe aufgabengruppe mehrere einzelrecht entziehen',
+                en: 'permissions rights give role level group task group several multiple single right individual right take revoke',
             },
             de: `<p>Reiter <em>Berechtigungen</em>: Spieler suchen, dann</p>
 <ul>
-<li>eine <strong>Rolle</strong> (Stufe) oder <strong>Aufgabengruppe</strong> wählen – ihre Rechte stehen angehakt und gesperrt da;</li>
+<li>höchstens eine <strong>Stufe</strong> wählen und beliebig viele <strong>Aufgabengruppen</strong> anhaken (z. B. „Moderator + Event-Team + Übersetzer“) – ihre Rechte stehen angehakt und gesperrt da;</li>
 <li>darüber hinaus <strong>Einzelrechte</strong> anhaken (je Gruppe ein Unterreiter, „angehakt / alle“).</li>
 </ul>
-<p>Du vergibst nur Rollen unter deiner Stufe und Rechte, die du selbst hast – nie an dich selbst und nicht an Admins deiner Stufe oder darüber. „Gruppe entziehen“ lässt die Einzelrechte bestehen. In der Serverkonsole zeigt <code>liw_rights &lt;Server-ID|license:…|discord:…&gt;</code>, woher jemand welche Rechte hat.</p>`,
+<p>Du vergibst nur Rollen unter deiner Stufe und Rechte, die du selbst hast – nie an dich selbst und nicht an Admins deiner Stufe oder darüber. In der Liste stehen Stufe, Aufgabengruppen (gestrichelt) und Einzelrechte. „Alle Gruppen entziehen“ nimmt Stufe und Aufgabengruppen und lässt die Einzelrechte bestehen; eine einzelne Gruppe nimmst du über „Bearbeiten“ weg. In der Serverkonsole zeigt <code>liw_rights &lt;Server-ID|license:…|discord:…&gt;</code>, woher jemand welche Rechte hat.</p>`,
             en: `<p>Tab <em>Permissions</em>: search for a player, then</p>
 <ul>
-<li>pick a <strong>role</strong> (level) or a <strong>task group</strong> – its rights are shown ticked and locked;</li>
+<li>pick at most one <strong>level</strong> and tick any number of <strong>task groups</strong> (e.g. “Moderator + event team + translator”) – their rights are shown ticked and locked;</li>
 <li>tick extra <strong>single rights</strong> on top (one sub-tab per group, “ticked / all”).</li>
 </ul>
-<p>You can only give roles below your own level and rights you have yourself – never to yourself and not to admins of your level or above. “Take group” keeps the single rights. In the server console, <code>liw_rights &lt;Server-ID|license:…|discord:…&gt;</code> shows where someone's rights come from.</p>`,
+<p>You can only give roles below your own level and rights you have yourself – never to yourself and not to admins of your level or above. The list shows the level, task groups (dashed) and single rights. “Take all groups” removes the level and the task groups and keeps the single rights; to remove a single group, use “Edit”. In the server console, <code>liw_rights &lt;Server-ID|license:…|discord:…&gt;</code> shows where someone's rights come from.</p>`,
         },
         {
             id: 'a-console',
