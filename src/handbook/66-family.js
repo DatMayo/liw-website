@@ -129,26 +129,24 @@ export default {
         {
             id: 'family-cubs',
             title: { de: 'Jungtiere übernehmen', en: 'Taking over juveniles' },
-            tags: { de: 'jungtier übernehmen reservieren selbst spielen an spieler geben charakterauswahl', en: 'juvenile take over reserve play it myself give to player character selection' },
+            tags: { de: 'jungtier übernehmen reservieren freigeben rudel alle selbst spielen an spieler geben charakterauswahl', en: 'juvenile take over reserve release pack everyone play it myself give to player character selection' },
             de: `<p>Jedes Jungtier wartet darauf, dass ein Spieler es als <strong>neues Tier</strong> übernimmt – in der Charakterauswahl im Bereich <strong>„Jungtiere“</strong> (<em>Jungtier übernehmen</em>, auf einem freien Platz).</p>
 <p><strong>Wer darf übernehmen?</strong></p>
 <ol>
-<li>Zuerst nur die Accounts der Eltern – und wem ein Elternteil das Jungtier reserviert hat.</li>
-<li>Nach 24 Stunden auch alle, die ein Tier im Rudel eines Elternteils haben.</li>
-<li>Nach weiteren 24 Stunden alle.</li>
+<li>Die Accounts der Eltern – und wem ein Elternteil das Jungtier reserviert hat.</li>
+<li>Andere erst, wenn ein Elternteil es im Familienbuch freigibt: <em>Für die Rudel freigeben</em> – auch alle, die ein Tier im Rudel eines Elternteils haben; <em>Für alle freigeben</em> – alle. <em>Bei den Eltern behalten</em> nimmt die Freigabe zurück.</li>
 </ol>
-<p>Nimmt es nach 7 Tagen niemand, geht das Jungtier eigene Wege.</p>
+<p>Ohne Freigabe bleibt ein Jungtier bei euch Eltern. Nimmt es nach 7 Tagen niemand, geht es eigene Wege – freigegeben oder nicht.</p>
 <p><strong>Reservieren</strong> (Familienbuch → <em>Würfe</em>): <em>Selbst spielen</em> legt es für deinen Account zurück, <em>An Spieler geben</em> für einen anderen Spieler, <em>Reservierung aufheben</em> gibt es wieder frei. Mit <em>Als Begleiter aufziehen</em> nimmt ein Elternteil es als <a href="#companion">Begleiter</a> mit – übernehmbar bleibt es trotzdem.</p>
 <p><strong>Das neue Tier</strong> startet als Jungtier mit Art und Geschlecht aus dem Wurf, gehört zur Blutlinie der Eltern und bringt sein <a href="#family-inheritance">Erbe</a> mit. Es beginnt dort, wo es gerade ist: bei einem Begleiter-Jungtier an dessen Platz, sonst neben einem Elternteil. Wurde der Wurf in einem Rudel gezeugt, tritt es diesem sofort bei (siehe <a href="#pack-born">Im Rudel geboren</a>).</p>
 <p><strong>Aufwachsen:</strong> Ein Jungtier ist anfangs kleiner und schwächer, heilt und lernt aber schneller. Nach derzeit etwa 5 Stunden Spielzeit ist es erwachsen. Bis dahin kann es sich nicht paaren und allein kein Revier einnehmen. Mehr dazu unter <a href="#life">Lebenszyklus</a>.</p>`,
             en: `<p>Every juvenile waits for a player to take it over as a <strong>new animal</strong> – in the character selection under <strong>"Juveniles"</strong> (<em>Take over a juvenile</em>, on a free slot).</p>
 <p><strong>Who may take it over?</strong></p>
 <ol>
-<li>At first only the parents' accounts – and whoever a parent reserved the juvenile for.</li>
-<li>After 24 hours also everyone with an animal in a parent's pack.</li>
-<li>After another 24 hours everyone.</li>
+<li>The parents' accounts – and whoever a parent reserved the juvenile for.</li>
+<li>Others only once a parent releases it in the family book: <em>Release to the packs</em> – also everyone with an animal in a parent's pack; <em>Release to everyone</em> – everyone. <em>Keep for the parents</em> takes the release back.</li>
 </ol>
-<p>If nobody takes it within 7 days, the juvenile goes its own way.</p>
+<p>Without a release a juvenile stays with you parents. If nobody takes it within 7 days, it goes its own way – released or not.</p>
 <p><strong>Reserving</strong> (family book → <em>Litters</em>): <em>Play it myself</em> keeps it for your account, <em>Give to player</em> for another player, <em>Cancel reservation</em> frees it again. With <em>Raise as companion</em> a parent takes it along as a <a href="#companion">companion</a> – it can still be taken over.</p>
 <p><strong>The new animal</strong> starts as a juvenile with the species and sex from the litter, belongs to the parents' bloodline and brings its <a href="#family-inheritance">inheritance</a>. It starts where it is: a companion juvenile at its spot, otherwise next to a parent. If the litter was conceived in a pack, it joins that pack right away (see <a href="#pack-born">Born into the pack</a>).</p>
 <p><strong>Growing up:</strong> a juvenile is smaller and weaker at first, but heals and learns faster. After currently about 5 hours of play it is an adult. Until then it cannot pair and cannot take a territory on its own. More under <a href="#life">Life cycle</a>.</p>`,

@@ -224,7 +224,7 @@ export default {
             title: { de: 'Namensschilder, Marker, Folgen', en: 'Name tags, markers, following' },
             tags: { de: 'namensschild marker karte farbe hud rudelzeile markierung ping zeigen folgen hinterherlaufen', en: 'name tag marker map colour hud pack line ping mark follow' },
             de: `<ul>
-<li><strong>Namensschilder</strong> stehen über deinen Rudelmitgliedern, solange sie in etwa 25 m Nähe und auf dem Bildschirm sind.</li>
+<li><strong>Namensschilder</strong> stehen über deinen Rudelmitgliedern – auch über den <a href="#companion">Begleitern</a> des Rudels (Rang „NPC“) –, solange sie in etwa 25 m Nähe und auf dem Bildschirm sind. Ist ein Menü offen, treten sie wie die Sinnesmarker zurück.</li>
 <li><strong>Kartenmarker</strong> zeigen dir auf der Pausenkarte, wo deine Rudelmitglieder sind. Andere Spieler siehst du nicht auf der Karte.</li>
 <li>Die <strong>Rudelzeile</strong> im HUD zeigt Rudelname, deinen Rang und wer online ist.</li>
 <li>Die <strong>Rudelfarbe</strong> färbt Namensschilder und Kartenmarker. Ist sie für euer Rudel freigeschaltet, wählt der Alpha sie im Rudelmenü unter <em>Rudelfarbe</em>.</li>
@@ -235,7 +235,7 @@ export default {
 <h4>Einem Rudelmitglied folgen</h4>
 <p>Über das Emote-Rad (<kbd>F</kbd>) → <em>Rudelmitglied folgen</em> oder <code>/liw_follow</code> läuft dein Tier von selbst hinter einem Rudelmitglied her – dem, auf das du schaust, sonst dem nächsten. Es geht, rennt oder sprintet so, wie es der Abstand verlangt. Jede Bewegungstaste beendet das Folgen, ebenso wenn das Mitglied zu weit weg, niedergestreckt oder offline ist.</p>`,
             en: `<ul>
-<li><strong>Name tags</strong> show above your pack mates while they are within about 25 m and on screen.</li>
+<li><strong>Name tags</strong> show above your pack mates – also above the pack's <a href="#companion">companions</a> (rank "NPC") – while they are within about 25 m and on screen. While a menu is open they step aside like the sense markers.</li>
 <li><strong>Map markers</strong> show you on the pause map where your pack mates are. You do not see other players on the map.</li>
 <li>The <strong>pack line</strong> in the HUD shows the pack name, your rank and who is online.</li>
 <li>The <strong>pack colour</strong> tints name tags and map markers. If it is unlocked for your pack, the alpha picks it in the pack menu under <em>Pack colour</em>.</li>
