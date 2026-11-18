@@ -59,15 +59,12 @@ src/
   assets/fonts/            Schriften (IM Fell English, Crimson Pro; SIL Open Font License) – lokal, keine Anfragen an Google
   components/              SiteBar (Leiste, Menü auf kleinen Bildschirmen, Sprachumschalter), SiteFooter,
                            PageHero (Nachthimmel-Kopf), SiteLink (Link auf eine andere Seite, ohne Neuladen)
-  pages/                   HomePage (/), KeysPage (/tasten), HandbookPage (/handbuch), AdminHandbookPage
-                           (/admin-handbuch), ScenesPage (/kulissen), TrailerDocPage (/trailer-werkzeug,
-                           /trailer-tool), NotFoundPage (404)
+  pages/                   HomePage (/), KeysPage (/tasten), HandbookPage (/handbuch), ScenesPage (/kulissen),
+                           TrailerDocPage (/trailer-werkzeug, /trailer-tool), NotFoundPage (404)
   data/home.js             Texte der Startseite (T.de / T.en) und die Arten (SPECIES, Bilder)
   data/keys.js             Tastenbelegung: Texte, ACTIONS, Controller (PAD), Tastatur-Reihen (ROWS)
   data/handbook.js         Texte der Handbuch-Seite, Kapitel-Symbole (ICONS) und das Einsammeln der Kapitel
   handbook/                ein Kapitel des Handbuchs je Datei (<Reihenfolge>-<id>.js)
-  data/adminbook.js        Admin-Handbuch: Texte, Rollen (ROLES), Symbole und das Einsammeln der Kapitel
-  adminbook/               ein Kapitel des Admin-Handbuchs je Datei (wie handbook/, plus level und rights)
   kulissen/                eine Simulation je Datei, siehe src/kulissen/README.md
   content/                 Text der Trailer-Doku als HTML (trailer-werkzeug.html DE, trailer-tool.html EN)
 ```
@@ -103,14 +100,8 @@ bewusst nirgends verlinkt und haben `noindex, nofollow`.
 
 ## Admin-Handbuch
 
-`/admin-handbuch` ist das Nachschlagewerk für das Team: nirgends verlinkt, `noindex`. Es nutzt dieselbe Seite wie das
-Spielerhandbuch (`HandbookPage.vue` mit eigenen `chapters`, `text`, `icons`, `path`) und legt in
-`AdminHandbookPage.vue` eine Rollenauswahl darüber (Tester, Moderator, Admin, Owner, Alles; im Browser gespeichert).
-Kapitel liegen unter `src/adminbook/` im Format des Spielerhandbuchs, je Abschnitt zusätzlich `level` (niedrigste
-Rolle 1–5 wie `Config.Roles` von liw_admin, 5 = Sonderrecht ohne Rolle) und `rights` (Rechtenamen aus
-`Config.Rights`; `anyRight: true` = eines davon genügt). Über jedem Abschnitt steht daraus „Ab … · Recht …“.
-Jeder Abschnitt hat Deutsch und Englisch (`de`, `en`, `tags.de`, `tags.en`). Beim Ändern von Admin-Funktionen
-in liw_admin den passenden Abschnitt mitpflegen.
+Das Admin-Handbuch liegt im Panel (`https://panel.playliw.com/handbuch`, Repo `liw-panel`,
+`server/src/adminbook/`). `/admin-handbuch` leitet dorthin weiter (`vercel.json`).
 
 ## Handbuch
 

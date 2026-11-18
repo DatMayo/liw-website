@@ -35,6 +35,11 @@
       "source": "/trailer-tool.html",
       "destination": "/trailer-tool",
       "permanent": true
+    },
+    {
+      "source": "/admin-handbuch",
+      "destination": "https://panel.playliw.com/handbuch",
+      "permanent": true
     }
   ],
   "headers": [

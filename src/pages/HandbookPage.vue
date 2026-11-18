@@ -1,7 +1,6 @@
-<!-- Handbook page: search, contents with scroll spy, all chapters in one column. By default the
-     player handbook (chapters: the modules in src/handbook/, see README.md; page texts and icons: data/handbook.js);
-     the admin handbook (AdminHandbookPage.vue) passes its own chapters, texts and path, and its role choice in the
-     slot "hero". -->
+<!-- Handbook page: search, contents with scroll spy, all chapters in one column: the player handbook (chapters: the
+     modules in src/handbook/, see README.md; page texts and icons: data/handbook.js). The props and the slot "hero"
+     let another book use the same page. -->
 <script setup>
 import { computed, nextTick, onMounted, onUnmounted, reactive, ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
