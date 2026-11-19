@@ -75,26 +75,39 @@ export default {
 <thead><tr><th>Taste</th><th>Befehl</th></tr></thead>
 <tbody>
 <tr><td><kbd>H</kbd></td><td><strong>Folgen / Bleiben</strong> umschalten. Bleibende Begleiter warten, bis du sehr weit weg bist (rund 250 m) – dann folgen sie wieder.</td></tr>
-<tr><td><kbd>I</kbd></td><td><strong>Zurückrufen:</strong> Alle rennen sofort zu dir, auch aus „bleiben“. Sind sie sehr weit weg oder stecken fest, werden sie hinter dich gesetzt.</td></tr>
+<tr><td><kbd>I</kbd></td><td><strong>Zurückrufen:</strong> Alle Begleiter bis etwa 100 m rennen sofort von ihrem Platz zu dir, auch aus „bleiben“. Wer weiter weg ist, hört dich nicht („… hören dich nicht – du musst sie holen“) und macht weiter, was er tat.</td></tr>
 <tr><td><kbd>C</kbd></td><td><strong>Stopp:</strong> Kampf, Verfolgung und Fressen abbrechen und wieder folgen.</td></tr>
 <tr><td><kbd>Y</kbd></td><td><strong>Angreifen:</strong> Alle Begleiter greifen das Tier an, das du ansiehst (Bildschirmmitte, bis etwa 40 m, in Sicht) – sonst das nächste Tier vor dir, das dich angreift.</td></tr>
 </tbody>
 </table>
 <p>Nach <kbd>I</kbd> oder <kbd>C</kbd> suchen sie derzeit 20 Sekunden lang weder Futter noch Kämpfe von sich aus.</p>
+<p><strong>Nach dem Einloggen oder einem Teleport</strong> erscheinen deine Begleiter nacheinander (etwa alle 3 Sekunden einer) an eigenen Stellen um dich herum – nicht im Wasser, nicht am steilen Hang. Bis etwa 400 m laufen sie dir nach; erst weiter weg werden sie zu dir geholt.</p>
 <p>Beim Angriff auf Spielertiere gelten dieselben Regeln wie für deinen eigenen Angriff: keine Rudelmitglieder oder Verbündeten, niemand unter Spawn- oder Neulingsschutz, und Begleiter von Pflanzenfressern greifen keine Spieler an (siehe <a href="#combat">Kampf</a>). Begleiter kämpfen nicht gegeneinander.</p>
 <p>Alle Tasten lassen sich unter <em>Einstellungen → Tastenbelegung → RedM</em> ändern.</p>`,
             en: `<table class="hb-table">
 <thead><tr><th>Key</th><th>Order</th></tr></thead>
 <tbody>
 <tr><td><kbd>H</kbd></td><td>Toggle <strong>follow / stay</strong>. Staying companions wait until you are very far away (around 250 m) – then they follow again.</td></tr>
-<tr><td><kbd>I</kbd></td><td><strong>Recall:</strong> all run to you at once, also from "stay". If they are very far away or stuck, they are placed behind you.</td></tr>
+<tr><td><kbd>I</kbd></td><td><strong>Recall:</strong> all companions within about 100 m run to you at once from where they are, also from "stay". Those farther away do not hear you ("… do not hear you - you have to fetch them") and carry on.</td></tr>
 <tr><td><kbd>C</kbd></td><td><strong>Stop:</strong> break off fighting, chasing and eating and follow again.</td></tr>
 <tr><td><kbd>Y</kbd></td><td><strong>Attack:</strong> all companions attack the animal you look at (centre of the screen, up to about 40 m, in sight) – otherwise the nearest animal in front of you that attacks you.</td></tr>
 </tbody>
 </table>
 <p>After <kbd>I</kbd> or <kbd>C</kbd> they currently neither look for food nor join fights on their own for 20 seconds.</p>
+<p><strong>After logging in or a teleport</strong> your companions appear one after the other (about every 3 seconds) on their own spots around you – not in water, not on a steep slope. Up to about 400 m they run after you; only farther away are they brought to you.</p>
 <p>Attacks on player animals follow the same rules as your own attack: no pack mates or allies, nobody under spawn or newcomer protection, and companions of plant eaters do not attack players (see <a href="#combat">Combat</a>). Companions do not fight each other.</p>
 <p>All keys can be changed under <em>Settings → Key Bindings → RedM</em>.</p>`,
+        },
+        {
+            id: 'companion-hud',
+            title: { de: 'Begleiter im HUD', en: 'Companions in the HUD' },
+            tags: { de: 'begleiter hud ringe gesundheit anwerben fortschritt rechts unten', en: 'companions hud rings health recruiting progress bottom right' },
+            de: `<p>Rechts unten über den Fähigkeiten hat jeder Begleiter einen <strong>Ring</strong>: die Silhouette seiner Art, darunter sein Name. Der Ring ist seine Gesundheit und wird rot und pulsiert, wenn er schwer verletzt ist. Ein Schild sagt, was er gerade tut: <em>folgt</em>, <em>bleibt</em>, <em>kämpft</em> oder <em>unterwegs</em> (blass, solange er erscheint oder zu dir geholt wird).</p>
+<p>Wirbst du gerade ein Wildtier an, erscheint es als letzter Ring in <strong>Gold</strong> mit dem Vertrauen in Prozent. Bist du zu schnell, steht dort „langsamer!“. So musst du nicht ins Familienbuch schauen.</p>
+<p>Abschalten kannst du die Ringe in den <a href="#hud-settings">Einstellungen</a> (Anzeige → Begleiter).</p>`,
+            en: `<p>At the bottom right, above the abilities, every companion has a <strong>ring</strong>: the silhouette of its species, its name below. The ring is its health and turns red and pulses when it is badly hurt. A tag says what it is doing: <em>follows</em>, <em>stays</em>, <em>fights</em> or <em>on its way</em> (pale while it appears or is brought to you).</p>
+<p>While you recruit a wild animal it shows as the last ring in <strong>gold</strong> with the trust in percent. If you are too fast it says "slower!". No need to open the family book for that.</p>
+<p>You can switch the rings off in the <a href="#hud-settings">settings</a> (Display → Companions).</p>`,
         },
         {
             id: 'companion-hunting',

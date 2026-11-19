@@ -15,7 +15,7 @@ export default {
 <li>Attributen und Fähigkeiten wie <strong>Konstitution</strong> (<a href="#progress">Fortschritt</a>).</li>
 </ul>
 <p>Schaden bekommst du durch Angriffe anderer Spieler und wilder Tiere, Stürze, <a href="#health-bleeding">Blutungen</a>, <a href="#health-damage">Hunger, Durst, Kälte und Hitze</a>. Fällt deine Gesundheit auf null, stirbst du nicht sofort – du wirst <a href="#health-downed">niedergestreckt</a>.</p>
-<p>Im HUD siehst du außerdem deinen <strong>Status</strong>: Blutung, Humpeln, Aasfieber, Tollwut, Geschützt oder Niedergestreckt.</p>
+<p>Im HUD siehst du außerdem deinen <strong>Status</strong>: Blutung, Humpeln, Aasfieber, Tollwut, Geschützt, Niedergestreckt oder Schwer verwundet.</p>
 <div class="hb-warn">Der Tod in Life in Wilderness ist endgültig. Was dann passiert, steht unter <a href="#life">Lebenslauf</a>.</div>`,
             en: `<p>The <strong>Health</strong> ring shows your hit points. How many you have at most depends on:</p>
 <ul>
@@ -24,7 +24,7 @@ export default {
 <li>attributes and skills such as <strong>Constitution</strong> (<a href="#progress">Progress</a>).</li>
 </ul>
 <p>You take damage from attacks of other players and wild animals, falls, <a href="#health-bleeding">bleeding</a>, <a href="#health-damage">hunger, thirst, cold and heat</a>. When your health drops to zero you do not die at once – you are <a href="#health-downed">downed</a>.</p>
-<p>The HUD also shows your <strong>status</strong>: Bleeding, Limping, Carrion fever, Rabies, Protected or Downed.</p>
+<p>The HUD also shows your <strong>status</strong>: Bleeding, Limping, Carrion fever, Rabies, Protected, Downed or Badly wounded.</p>
 <div class="hb-warn">Death in Life in Wilderness is final. What happens then is described under <a href="#life">Life cycle</a>.</div>`,
         },
         {
@@ -134,8 +134,9 @@ export default {
 <li>Unten läuft ein Countdown „Niedergestreckt – noch … s“: derzeit <strong>60 Sekunden</strong>.</li>
 <li>Du liegst mit sehr wenig Gesundheit am Boden und kannst nichts tun außer dich umsehen und sprechen (Push-to-Talk).</li>
 <li>Hilft dir in der Zeit jemand auf (<a href="#health-help-up">Aufhelfen</a>), lebst du weiter.</li>
-<li>Läuft die Zeit ab, stirbt dein Tier <strong>endgültig</strong>.</li>
-<li>Wirst du im Liegen noch einmal verletzt, ist es sofort vorbei.</li>
+<li>Die ersten <strong>5 Sekunden</strong> nach dem Zusammenbrechen bist du geschützt: Nichts kann dich verletzen oder erledigen – auch nicht mehrere Angreifer auf einmal.</li>
+<li>Danach gilt: Wirst du im Liegen noch einmal verletzt, ist es sofort vorbei.</li>
+<li>Kurz bevor die Zeit abläuft, bekommst du eine <a href="#health-last-strength">letzte Kraft</a>. Schaffst du sie nicht, stirbt dein Tier <strong>endgültig</strong>.</li>
 </ul>
 <div class="hb-warn">Wer niedergestreckt das Spiel verlässt, stirbt. Mehr zum Tod unter <a href="#life">Lebenslauf</a>.</div>
 <p><strong>Ausnahme Alpha-Duell:</strong> Im Duell um die Führung eines Rudels stirbt niemand – der Verlierer geht mit etwa 10 % Gesundheit k. o. (<a href="#pack">Rudel</a>).</p>
@@ -145,12 +146,44 @@ export default {
 <li>A countdown "Downed - … s left" runs at the bottom: currently <strong>60 seconds</strong>.</li>
 <li>You lie on the ground with very little health and can do nothing but look around and talk (push-to-talk).</li>
 <li>If someone helps you up in time (<a href="#health-help-up">Helping up</a>), you live on.</li>
-<li>When the time runs out, your animal dies <strong>for good</strong>.</li>
-<li>If you are hurt again while lying there, it is over at once.</li>
+<li>For the first <strong>5 seconds</strong> after collapsing you are protected: nothing can hurt or finish you – not even several attackers at once.</li>
+<li>After that: if you are hurt again while lying there, it is over at once.</li>
+<li>Shortly before the time runs out you get a <a href="#health-last-strength">last strength</a>. If you fail it, your animal dies <strong>for good</strong>.</li>
 </ul>
 <div class="hb-warn">Leaving the game while downed means death. More about death under <a href="#life">Life cycle</a>.</div>
 <p><strong>Exception, alpha duel:</strong> nobody dies in a duel for the lead of a pack – the loser is knocked out with about 10 % health (<a href="#pack">Packs</a>).</p>
 <div class="hb-tip">Tell your pack by voice where you are lying – talking works while downed too. With the <a href="#voice-pack-call">pack call</a> (hold <kbd>B</kbd>) you reach your pack up to 150 m away.</div>`,
+        },
+        {
+            id: 'health-last-strength',
+            title: { de: 'Letzte Kraft', en: 'Last strength' },
+            tags: { de: 'letzte kraft aufrappeln minispiel fokus schwer verwundet ruheplatz sterben', en: 'last strength get up minigame focus badly wounded resting place dying' },
+            de: `<p>Hilft dir niemand auf, hält der Tod <strong>10 Sekunden vor dem Ende</strong> inne: Der Countdown stoppt, und du bekommst eine letzte Chance.</p>
+<ol>
+<li>Erst zeigt eine Karte die Regeln (einige Sekunden, du kannst sie nicht überspringen).</li>
+<li>Dann wandert ein Licht über den Bildschirm. Halte deinen Blick – den <strong>roten Ring</strong>, mit der Maus oder einem Stick am Controller – im <strong>goldenen Kreis</strong> um das Licht, insgesamt <strong>4 Sekunden</strong> innerhalb von 10 Sekunden. Der Rand wird dabei immer dunkler.</li>
+<li>Während der ganzen Zeit kann dich nichts verletzen.</li>
+</ol>
+<p><strong>Geschafft:</strong> Du rappelst dich mit etwa 10 % Gesundheit auf – <strong>schwer verwundet</strong>. Du blutest nicht, deine Gesundheit sinkt nicht weiter (auch nicht durch Hunger oder Durst), aber du humpelst, kannst nicht sprinten, nicht angreifen und keine Fähigkeiten nutzen. Unten läuft „Ruheplatz suchen und hinlegen“ mit der Zeit.</p>
+<ul>
+<li>Leg dich innerhalb von <strong>2 Minuten</strong> hin und ruhe <strong>30 Sekunden am Stück</strong>. Danach heilst du – aber nur mit einem Viertel der normalen Geschwindigkeit, bis du wieder die Hälfte deiner Gesundheit hast.</li>
+<li>Schaffst du das nicht rechtzeitig, stirbt dein Tier doch.</li>
+</ul>
+<p><strong>Nicht geschafft:</strong> Dein Tier stirbt.</p>
+<div class="hb-warn">Die letzte Kraft gibt es höchstens <strong>einmal alle 30 Minuten</strong> pro Tier. Wirst du in der Zeit erneut niedergestreckt, läuft der Countdown wie früher ab. Wer schwer verwundet das Spiel verlässt, stirbt. Aufhelfen durch dein Rudel geht immer.</div>`,
+            en: `<p>If nobody helps you up, death holds its breath <strong>10 seconds before the end</strong>: the countdown stops and you get one last chance.</p>
+<ol>
+<li>First a card shows the rules (a few seconds, you cannot skip it).</li>
+<li>Then a light wanders over the screen. Keep your look – the <strong>red ring</strong>, with the mouse or a stick on a controller – in the <strong>golden circle</strong> around the light, <strong>4 seconds</strong> in total within 10 seconds. The edges keep getting darker.</li>
+<li>Nothing can hurt you all that time.</li>
+</ol>
+<p><strong>Passed:</strong> you get up with about 10 % health – <strong>badly wounded</strong>. You do not bleed and your health does not sink (not even from hunger or thirst), but you limp, cannot sprint, attack or use abilities. At the bottom "find a resting place and lie down" counts down.</p>
+<ul>
+<li>Lie down within <strong>2 minutes</strong> and rest <strong>30 seconds in a row</strong>. Then you heal – but only at a quarter of the normal speed until you are back at half your health.</li>
+<li>If you do not manage that in time, your animal dies after all.</li>
+</ul>
+<p><strong>Failed:</strong> your animal dies.</p>
+<div class="hb-warn">The last strength works at most <strong>once every 30 minutes</strong> per animal. Downed again within that time, the countdown runs out as before. Leaving the game while badly wounded means death. Being helped up by your pack always works.</div>`,
         },
         {
             id: 'health-help-up',

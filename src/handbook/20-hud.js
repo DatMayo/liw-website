@@ -13,7 +13,7 @@ export default {
 <thead><tr><th>Wo</th><th>Was</th></tr></thead>
 <tbody>
 <tr><td>Unten links</td><td><a href="#hud-rings">Ringe</a> für Gesundheit, Ausdauer und Bedürfnisse, darüber <a href="#hud-status">Zustände und Effekte</a>, dazu die <a href="#hud-voice">Sprachanzeige</a></td></tr>
-<tr><td>Unten rechts</td><td><a href="#hud-abilities">Fähigkeiten</a>: Sinne, Sonderfähigkeit, zweite Fähigkeit</td></tr>
+<tr><td>Unten rechts</td><td><a href="#hud-abilities">Fähigkeiten</a>: Sinne, Sonderfähigkeit, zweite Fähigkeit; darüber deine <a href="#companion-hud">Begleiter</a></td></tr>
 <tr><td>Oben rechts</td><td><a href="#hud-clock">Uhr</a> mit Wetter, Jahreszeit und laufenden Events, darunter dein Rudel und das Revier, in dem du stehst</td></tr>
 <tr><td>Unten in der Mitte</td><td><a href="#hud-messages">Hinweise</a>, was du gerade tun kannst (z. B. „Fressen“ mit Taste)</td></tr>
 <tr><td>Am Rand</td><td><a href="#hud-messages">Meldungen</a>; große Momente wie ein Stufenaufstieg erscheinen als Banner oben in der Mitte</td></tr>
@@ -25,7 +25,7 @@ export default {
 <thead><tr><th>Where</th><th>What</th></tr></thead>
 <tbody>
 <tr><td>Bottom left</td><td><a href="#hud-rings">Rings</a> for health, stamina and needs, above them <a href="#hud-status">states and effects</a>, plus the <a href="#hud-voice">voice display</a></td></tr>
-<tr><td>Bottom right</td><td><a href="#hud-abilities">Abilities</a>: senses, special, second ability</td></tr>
+<tr><td>Bottom right</td><td><a href="#hud-abilities">Abilities</a>: senses, special, second ability; above them your <a href="#companion-hud">companions</a></td></tr>
 <tr><td>Top right</td><td>The <a href="#hud-clock">clock</a> with weather, season and running events, below it your pack and the territory you are standing in</td></tr>
 <tr><td>Bottom centre</td><td><a href="#hud-messages">Hints</a> about what you can do right now (e.g. “Eat” with its key)</td></tr>
 <tr><td>At the edges</td><td><a href="#hud-messages">Messages</a>; big moments such as a level-up appear as a banner at the top centre</td></tr>
@@ -112,7 +112,7 @@ export default {
         {
             id: 'hud-status',
             title: { de: 'Zustände und Effekte', en: 'States and effects' },
-            tags: { de: 'status blutung humpeln aasfieber tollwut geschützt niedergestreckt buff debuff überfressen ausgeruht effekt', en: 'status bleeding limping carrion fever rabies protected downed buff debuff overfed refreshed effect' },
+            tags: { de: 'status blutung humpeln aasfieber tollwut geschützt niedergestreckt schwer verwundet buff debuff überfressen ausgeruht effekt', en: 'status bleeding limping carrion fever rabies protected downed buff debuff overfed refreshed effect' },
             de: `<p>Über den Ringen stehen kleine Schilder für deinen Zustand:</p>
 <table class="hb-table">
 <thead><tr><th>Zustand</th><th>Bedeutung</th></tr></thead>
@@ -122,6 +122,7 @@ export default {
 <tr><td>Aasfieber, Tollwut</td><td>Krankheiten (siehe <a href="#disease">Krankheiten</a>).</td></tr>
 <tr><td>Geschützt</td><td><a href="#start-protection">Spawnschutz</a> oder <a href="#start-newcomer">Neulingsschutz</a>.</td></tr>
 <tr><td>Niedergestreckt</td><td>Du liegst am Boden und brauchst Hilfe (siehe <a href="#life-downed">Niedergestreckt</a>).</td></tr>
+<tr><td>Schwer verwundet</td><td>Du bist mit letzter Kraft aufgestanden und musst dich bald hinlegen (siehe <a href="#health-last-strength">Letzte Kraft</a>).</td></tr>
 </tbody>
 </table>
 <p>Darüber stehen <b>aktive Effekte</b> mit Namen, Wirkung (z. B. „Schaden +20 %“) und herunterzählenden Sekunden: Vorteile in Grün, Nachteile in Rot. Beispiele sind Sprint, die zweite Fähigkeit deiner Art, „Überfressen“, „Ausgeruht“ nach einer Pause oder „Mentorschaft“ (ohne Countdown, solange sie gilt).</p>`,
@@ -134,6 +135,7 @@ export default {
 <tr><td>Carrion fever, rabies</td><td>Diseases (see <a href="#disease">Diseases</a>).</td></tr>
 <tr><td>Protected</td><td><a href="#start-protection">Spawn protection</a> or <a href="#start-newcomer">newcomer protection</a>.</td></tr>
 <tr><td>Downed</td><td>You are on the ground and need help (see <a href="#life-downed">Downed</a>).</td></tr>
+<tr><td>Badly wounded</td><td>You got up with your last strength and must lie down soon (see <a href="#health-last-strength">Last strength</a>).</td></tr>
 </tbody>
 </table>
 <p>Above them are <b>active effects</b> with name, effect (e.g. “Damage +20 %”) and seconds counting down: advantages in green, drawbacks in red. Examples are sprint burst, your species' second ability, “Overfed”, “Refreshed” after a break, or “Mentorship” (no countdown while it lasts).</p>`,
@@ -284,7 +286,7 @@ export default {
 <thead><tr><th>Gruppe</th><th>Einstellungen</th></tr></thead>
 <tbody>
 <tr><td>Sprache</td><td>Automatisch (Spielsprache) oder eine feste Sprache (siehe <a href="#hud-language">Sprache</a>)</td></tr>
-<tr><td>Anzeige</td><td>HUD ganz an oder aus · Ringe · Status · Uhr und Wetter · Rudelzeile · Revierzeile · Sprachreichweite · Hinweise unten · Hinweis Fressen/Trinken · Benachrichtigungstöne · „Seit deinem letzten Besuch“</td></tr>
+<tr><td>Anzeige</td><td>HUD ganz an oder aus · Ringe · Status · Uhr und Wetter · Rudelzeile · Revierzeile · Sprachreichweite · Begleiter (Ringe rechts unten) · Hinweise unten · Hinweis Fressen/Trinken · Kamera-Abstand beim Zoomen · Benachrichtigungstöne · „Seit deinem letzten Besuch“</td></tr>
 <tr><td>Karte und Reviere</td><td>eigene, fremde und unbesetzte Reviere auf der Karte · Reviergrenzen (die Wände beim Einnehmen oder Verteidigen und das kurze Aufleuchten beim Betreten und Verlassen)</td></tr>
 <tr><td>Rudel</td><td>Namensschilder über Rudelmitgliedern · Mentor-Namensschilder · Rudel auf der Karte</td></tr>
 </tbody>
@@ -295,7 +297,7 @@ export default {
 <thead><tr><th>Group</th><th>Settings</th></tr></thead>
 <tbody>
 <tr><td>Language</td><td>Automatic (game language) or a fixed language (see <a href="#hud-language">Language</a>)</td></tr>
-<tr><td>Display</td><td>HUD fully on or off · rings · status · clock and weather · pack line · territory line · voice range · hints at the bottom · eat/drink hint · notification sounds · “Since your last visit”</td></tr>
+<tr><td>Display</td><td>HUD fully on or off · rings · status · clock and weather · pack line · territory line · voice range · companions (rings at the bottom right) · hints at the bottom · eat/drink hint · camera distance while zooming · notification sounds · “Since your last visit”</td></tr>
 <tr><td>Map and territories</td><td>own, foreign and unclaimed territories on the map · territory borders (the walls while claiming or defending and the short flash when you enter or leave)</td></tr>
 <tr><td>Pack</td><td>name tags above pack mates · mentor name tags · pack mates on the map</td></tr>
 </tbody>
