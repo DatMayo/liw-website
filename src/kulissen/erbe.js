@@ -121,6 +121,12 @@
 .sim-erbe .erbe-pair { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: 0.6rem; align-items: stretch; }
 .sim-erbe .erbe-x { align-self: center; color: var(--gold); font-family: var(--old); font-size: 1.4rem; }
 @media (max-width: 560px) { .sim-erbe .erbe-pair { grid-template-columns: minmax(0, 1fr); } .sim-erbe .erbe-x { justify-self: center; line-height: 1; } }
+/* The parent and cub cards are parchment inside the dark view: they take the parchment ink back (the view sets
+   light text for its night background, which was unreadable on them). */
+.sim-erbe .erbe-parent, .sim-erbe .cub {
+  --ink: #2a2419; --ink-rgb: 42, 36, 25; --soft: #3f3729; --muted: #5a4f3b; --gold: #3f5444; --gold-hi: #22302a;
+  --line: rgba(42, 36, 25, 0.2); --line-gold: rgba(168, 127, 53, 0.6); color: var(--ink);
+}
 .sim-erbe .erbe-parent { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 0.6rem 0.75rem; display: grid; gap: 0.4rem; min-width: 0; }
 .sim-erbe .erbe-parent[data-sex=female] { border-left: 3px solid var(--rust); }
 .sim-erbe .erbe-parent[data-sex=male] { border-left: 3px solid var(--sky); }
