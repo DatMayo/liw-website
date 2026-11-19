@@ -145,6 +145,9 @@
 .sim-erbe .erbe-litter { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 9.5rem), 1fr)); gap: 0.5rem; }
 .sim-erbe .cub { background: var(--panel-2); border: 1px solid var(--line); border-radius: 10px; padding: 0.5rem 0.6rem; display: grid; gap: 0.3rem; font-size: 0.95rem; min-width: 0; }
 .sim-erbe .cub .l { display: flex; justify-content: space-between; gap: 0.4rem; align-items: center; }
+/* long tags (+1 Geschwindigkeit) wrap inside the card instead of pushing the percentage out of it */
+.sim-erbe .cub .l > :first-child { min-width: 0; }
+.sim-erbe .cub .tg { white-space: normal; }
 .sim-erbe .cub .p { color: var(--muted); font-variant-numeric: tabular-nums; font-size: 0.85rem; white-space: nowrap; }
 .sim-erbe .cub .f { color: var(--rust); } .sim-erbe .cub .mm { color: var(--sky); }
 .sim-erbe .cub button { font: 600 0.9rem var(--body); color: var(--ink); background: transparent; border: 1px solid var(--line-gold); border-radius: 999px; padding: 0.05rem 0.6rem; cursor: pointer; justify-self: start; }
