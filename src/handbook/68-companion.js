@@ -135,7 +135,7 @@ export default {
             de: `<p>Begleiter werden hungrig, solange du online bist (derzeit von satt bis leer in etwa 3 Stunden).</p>
 <ul>
 <li><strong>Sie fressen mit, wenn du frisst</strong> – jeder Bissen von dir füttert alle deine Begleiter mit.</li>
-<li>Ist ihr Hunger unter 60 %, suchen sie selbst Futter: Raubtiere fressen an einem Kadaver in der Nähe oder jagen kleine Beute, Pflanzenfresser grasen.</li>
+<li>Ist ihr Hunger unter 60 %, suchen sie selbst Futter: Raubtiere fressen an einem Kadaver in der Nähe oder jagen kleine Beute, Pflanzenfresser grasen. Wie du fressen sie Bissen für Bissen, bis sie satt sind; Aas sättigt weniger, und was sie vom Kadaver fressen, fehlt anderen.</li>
 <li>Wird der Hunger knapp, warnt dich das Spiel („… hat Hunger – friss etwas, es frisst mit“).</li>
 </ul>
 <div class="hb-warn">Bei leerem Hunger zieht ein Begleiter davon und ist weg. Halte also selbst regelmäßig Mahlzeiten (siehe <a href="#food">Nahrung</a>).</div>
@@ -143,7 +143,7 @@ export default {
             en: `<p>Companions get hungry while you are online (currently from full to empty in about 3 hours).</p>
 <ul>
 <li><strong>They eat with you when you eat</strong> – every bite you take feeds all your companions too.</li>
-<li>When their hunger is below 60 %, they look for food themselves: predators eat from a carcass nearby or hunt small prey, plant eaters graze.</li>
+<li>When their hunger is below 60 %, they look for food themselves: predators eat from a carcass nearby or hunt small prey, plant eaters graze. Like you they eat bite by bite until full; carrion fills less, and what they eat from a carcass is gone for others.</li>
 <li>When hunger gets low, the game warns you ("… is hungry - eat something, it eats with you").</li>
 </ul>
 <div class="hb-warn">With an empty belly a companion wanders off and is gone. So eat regular meals yourself (see <a href="#food">Food</a>).</div>
