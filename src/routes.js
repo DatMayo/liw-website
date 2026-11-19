@@ -4,6 +4,7 @@ export const routes = [
     { path: '/', component: () => import('./pages/HomePage.vue') },
     { path: '/tasten', component: () => import('./pages/KeysPage.vue') },
     { path: '/handbuch', component: () => import('./pages/HandbookPage.vue'), meta: { ownScroll: true } },
+    { path: '/status', component: () => import('./pages/StatusPage.vue') },
     { path: '/kulissen', component: () => import('./pages/ScenesPage.vue'), meta: { ownScroll: true } },
     { path: '/trailer-werkzeug', component: () => import('./pages/TrailerDocPage.vue'), props: { doc: 'de' }, meta: { lang: 'de' } },
     { path: '/trailer-tool', component: () => import('./pages/TrailerDocPage.vue'), props: { doc: 'en' }, meta: { lang: 'en' } },

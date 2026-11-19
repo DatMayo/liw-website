@@ -21,6 +21,7 @@ const s = computed(() => SITE_TEXT[props.fixedLang || lang.value] || SITE_TEXT.d
         <SiteLink to="/tasten">{{ s.nav_keys }}</SiteLink>
         <SiteLink to="/handbuch">{{ s.nav_handbook }}</SiteLink>
         <SiteLink to="/kulissen">{{ s.nav_scenes }}</SiteLink>
+        <SiteLink to="/status">{{ s.nav_status }}</SiteLink>
         <a v-if="home" href="#top">{{ s.imprint }}</a>
         <SiteLink v-else to="/#top">{{ s.imprint }}</SiteLink>
         <a v-if="home" href="#top">{{ s.privacy }}</a>

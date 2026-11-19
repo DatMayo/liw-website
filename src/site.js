@@ -8,19 +8,21 @@ export const VOICE_URL = 'https://www.playliw.com/voice';
 // Voice client LiW Voice (Mumble client with the plugin built in): /client sends to the newest Windows ZIP
 // of DatMayo/liw-voice-client-public.
 export const CLIENT_URL = 'https://www.playliw.com/client';
+// Public status of the services (written every minute on the watcher server liw-watch), for the status page.
+export const STATUS_URL = 'https://log.playliw.com/status.json';
 
 export const SITE_TEXT = {
     de: {
         nav_menu: 'Menü', nav_game: 'Das Spiel', nav_species: 'Arten', nav_join: 'Einstieg', nav_rules: 'Regeln',
         nav_dev: 'Entwicklung', nav_keys: 'Tasten', nav_handbook: 'Handbuch', nav_scenes: 'Einblicke',
-        imprint: 'Impressum', privacy: 'Datenschutz',
+        imprint: 'Impressum', privacy: 'Datenschutz', nav_status: 'Server-Status',
         disclaimer: 'Life In Wilderness ist ein Fanprojekt und steht in keiner Verbindung zu Rockstar Games oder Take-Two Interactive.',
         credit_mark: 'Wolf im Siegel: Grafik von Freepik.',
     },
     en: {
         nav_menu: 'Menu', nav_game: 'The game', nav_species: 'Species', nav_join: 'Join', nav_rules: 'Rules',
         nav_dev: 'Development', nav_keys: 'Controls', nav_handbook: 'Handbook', nav_scenes: 'Insights',
-        imprint: 'Imprint', privacy: 'Privacy',
+        imprint: 'Imprint', privacy: 'Privacy', nav_status: 'Server status',
         disclaimer: 'Life In Wilderness is a fan project and is not affiliated with Rockstar Games or Take-Two Interactive.',
         credit_mark: 'Wolf in the seal: graphic by Freepik.',
     },
