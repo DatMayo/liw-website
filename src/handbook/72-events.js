@@ -7,7 +7,7 @@ export default {
         {
             id: 'events-calendar',
             title: { de: 'Der Event-Kalender', en: 'The event calendar' },
-            tags: { de: 'event kalender feiertag ankündigung discord', en: 'event calendar holiday announcement discord' },
+            tags: { de: 'advent fliegen hirsch event kalender feiertag ankündigung discord', en: 'event calendar holiday announcement discord' },
             de: `<p>Über das Jahr verteilt gibt es <strong>Events</strong> – manche jeden Monat, manche einmal im Jahr. Sie richten sich nach dem echten Kalender (deutsche Zeit).</p>
 <ul>
 <li>Laufende und kommende Events stehen im Aufgabenmenü (<kbd>K</kbd>), Reiter <strong>Kalender</strong>, mit Restzeit bzw. Startdatum.</li>
@@ -60,6 +60,7 @@ export default {
 <tr><td>Herbst-Tagundnachtgleiche</td><td>Tag der echten Tagundnachtgleiche (um den 22. September) und der folgende</td><td>Winterspeck anfressen, nachts heulen; Nebenquest „Tag und Nacht“</td></tr>
 <tr><td>Jahrestag der Wildnis</td><td>rund um den Geburtstag des Servers, eine Woche vorher angekündigt</td><td>Gemeinsam überleben und heulen; Nebenquests „Ein wilder Geburtstag“ → „Das Geburtstagsmahl“</td></tr>
 <tr><td>Halloween</td><td>24. Oktober bis 2. November</td><td>Viel Nebel und Dunst, nachts eine schaurige Stimmung; nachts heulen, im Nebel jagen oder grasen; Nebenquests „Flüstern im Nebel“ → „Die lange Nacht“ (mit Event-Fell)</td></tr>
+<tr><td>Adventszeit</td><td>1. bis 26. Dezember</td><td>Weißwedelhirsche können fliegen: jede Stunde 5 Minuten lang (gezählt ab deinem Einstieg), unter der Uhr läuft dann ein Countdown. Springen gibt Schub nach oben, dazwischen gleitest du in Blickrichtung und sinkst langsam – ohne Sturzschaden, mit Glitzer unter den Hufen.</td></tr>
 <tr><td>Winterzauber</td><td>18. bis 27. Dezember</td><td>Schnee liegt überall, viel Schneefall; im Schnee überleben, Winterfest; Nebenquests „Erster Schnee“ → „Zusammenrücken“ (mit Event-Fell)</td></tr>
 <tr><td>Jahreswechsel</td><td>31. Dezember bis 1. Januar</td><td>Schnee und <a href="#events-fireworks">Feuerwerk</a> über den Städten; Nebenquest „Countdown“ (mit Event-Fell)</td></tr>
 </tbody>
@@ -73,6 +74,7 @@ export default {
 <tr><td>Autumn Equinox</td><td>day of the real equinox (around 22 September) and the next</td><td>Eat up your winter fat, howl at night; side quest "Day and Night"</td></tr>
 <tr><td>Wilderness Anniversary</td><td>around the server's birthday, announced a week before</td><td>Survive and howl together; side quests "A Wild Birthday" → "The Birthday Feast"</td></tr>
 <tr><td>Halloween</td><td>24 October to 2 November</td><td>Lots of fog and mist, an eerie mood at night; howl at night, hunt or graze in the fog; side quests "Whispers in the Fog" → "The Long Night" (with event coat)</td></tr>
+<tr><td>Advent</td><td>1 to 26 December</td><td>Whitetail deer can fly: 5 minutes every hour (counted from when you entered the wild), with a countdown under the clock. Jump gives a push upwards, in between you glide where you look and sink slowly – no fall damage, glitter under the hooves.</td></tr>
 <tr><td>Winter Magic</td><td>18 to 27 December</td><td>Snow lies everywhere, lots of snowfall; survive in the snow, winter feast; side quests "First Snow" → "Huddle Together" (with event coat)</td></tr>
 <tr><td>New Year</td><td>31 December to 1 January</td><td>Snow and <a href="#events-fireworks">fireworks</a> over the towns; side quest "Countdown" (with event coat)</td></tr>
 </tbody>
