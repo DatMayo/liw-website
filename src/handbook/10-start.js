@@ -202,17 +202,18 @@ export default {
         {
             id: 'start-enter',
             title: { de: 'In die Wildnis', en: 'Entering the wild' },
-            tags: { de: 'spielen starten spawn spawnpunkt höhle start einsteigen', en: 'play start spawn spawn point den enter' },
+            tags: { de: 'spielen starten spawn spawnpunkt wählen höhle start einsteigen', en: 'play start spawn spawn point choose den enter' },
             de: `<ol>
 <li>Wähl im Auswahlbildschirm dein Tier aus.</li>
 <li>Wähl, falls angeboten, den <b>Start</b>:
 <ul>
 <li><b>„Wo du es verlassen hast“</b>: dort, wo du zuletzt mit diesem Tier warst.</li>
 <li><b>„In der Höhle“</b>: Hält dein Rudel (oder du als Einzelgänger) ein Revier mit Höhle, kannst du direkt dort starten (siehe <a href="#territory">Reviere</a>).</li>
+<li><b>„Spawnpunkt wählen“</b> (bei einem neuen Tier, neben „Zufälliger Spawnpunkt“): Mit ◀ ▶ blätterst du durch die Startpunkte deiner Art. Die Kamera zeigt dir dein Tier an jedem Punkt, dazu das Gebiet, ob dort ein Revier ist und wem es gehört, wie viele Spieler in der Nähe sind und eine kurze Beschreibung.</li>
 </ul></li>
 <li>Klick auf <b>„In die Wildnis“</b>.</li>
 </ol>
-<p>Ein <b>neues Tier</b> startet an einem Startpunkt seiner Art, in einer Gegend, die zu ihm passt. Ein übernommenes <b>Jungtier</b> startet bei seiner Familie: dort, wo es gerade ist, sonst neben einem Elternteil.</p>
+<p>Ein <b>neues Tier</b> startet an einem Startpunkt seiner Art, in einer Gegend, die zu ihm passt – zufällig oder an dem, den du gewählt hast. Ein übernommenes <b>Jungtier</b> startet bei seiner Familie: dort, wo es gerade ist, sonst neben einem Elternteil.</p>
 <p>Nach jedem Start bist du ein paar Sekunden geschützt (<a href="#start-protection">Spawnschutz</a>), ein neues Tier zusätzlich eine Stunde lang (<a href="#start-newcomer">Neulingsschutz</a>).</p>
 <p>Warst du eine Weile fort, öffnet sich kurz nach dem Start <b>„Seit deinem letzten Besuch“</b>: ein Überblick, was in der Zwischenzeit passiert ist – etwa ein Revier verloren, ein neues Rudelmitglied, ein Wurf oder deine Saisonplatzierung. Abschaltbar in den <a href="#hud-settings">Einstellungen</a>.</p>`,
             en: `<ol>
@@ -221,10 +222,11 @@ export default {
 <ul>
 <li><b>“Where you left it”</b>: the place where you last were with this animal.</li>
 <li><b>“At the den”</b>: if your pack (or you as a loner) holds a territory with a den, you can start right there (see <a href="#territory">Territories</a>).</li>
+<li><b>“Choose a spawn point”</b> (for a new animal, next to “Random spawn point”): ◀ ▶ page through the start points of your species. The camera shows your animal at each point, together with the area, whether there is a territory and who holds it, how many players are near and a short description.</li>
 </ul></li>
 <li>Click <b>“Enter the wild”</b>.</li>
 </ol>
-<p>A <b>new animal</b> starts at a start point of its species, in an area that suits it. A <b>juvenile</b> you took over starts with its family: where it currently is, otherwise next to a parent.</p>
+<p>A <b>new animal</b> starts at a start point of its species, in an area that suits it - a random one or the one you chose. A <b>juvenile</b> you took over starts with its family: where it currently is, otherwise next to a parent.</p>
 <p>After every start you are protected for a few seconds (<a href="#start-protection">spawn protection</a>), a new animal additionally for one hour (<a href="#start-newcomer">newcomer protection</a>).</p>
 <p>If you were away for a while, <b>“Since your last visit”</b> opens shortly after the start: an overview of what happened in the meantime – such as a lost territory, a new pack mate, a litter or your season placing. Can be switched off in the <a href="#hud-settings">settings</a>.</p>`,
         },
