@@ -164,19 +164,18 @@ onUnmounted(() => clearTimeout(copyTimer));
       </div>
       <div class="steps">
         <div class="step"><h3>{{ t('s1_h') }}</h3><p>{{ t('s1') }}</p></div>
-        <div class="step"><h3>{{ t('s2_h') }}</h3><p>{{ t('s2') }}</p></div>
-        <div class="step"><h3>{{ t('s3_h') }}</h3><p>{{ t('s3') }}</p></div>
+        <div class="step"><h3>{{ t('s2_h') }}</h3><p>{{ t('s2') }}</p><div class="step-dls"><a class="step-dl" href="https://redm.net/" target="_blank" rel="noopener">{{ t('s2_dl') }}</a></div></div>
+        <div class="step"><h3>{{ t('s3_h') }}</h3><p>{{ t('s3') }}</p><div class="step-dls"><a class="step-dl" :href="DISCORD_URL" target="_blank" rel="noopener">{{ t('cta_discord') }}</a></div></div>
         <div class="step"><h3>{{ t('s_voice_h') }}</h3><p v-html="t('s_voice')"></p><div class="step-dls"><a class="step-dl" :href="CLIENT_URL">{{ t('s_voice_dl') }}</a><a class="step-dl alt" :href="VOICE_URL">{{ t('s_voice_dl2') }}</a></div></div>
         <div class="step"><h3>{{ t('s4_h') }}</h3><p v-html="t('s4')"></p>
           <span class="copy"><b>connect cfx.re/join/4ggl8rq</b><button id="copy" type="button" @click="copy">{{ copyLabel || t('copy') }}</button></span>
         </div>
       </div>
-      <div class="join-cta">
-        <a class="btn primary" :href="DISCORD_URL" target="_blank" rel="noopener"><span>{{ t('cta_discord') }}</span></a>
-        <SiteLink class="btn" to="/tasten">{{ t('cta_keys') }}</SiteLink>
-        <SiteLink class="btn" to="/handbuch">{{ t('cta_handbook') }}</SiteLink>
-        <p>{{ t('join_note') }}</p>
-      </div>
+      <p class="join-cta">
+        <span>{{ t('join_note') }}</span>
+        <SiteLink to="/tasten">{{ t('cta_keys') }} →</SiteLink>
+        <SiteLink to="/handbuch">{{ t('cta_handbook') }} →</SiteLink>
+      </p>
     </section>
 
     <section id="regeln" aria-labelledby="rules-title">
@@ -326,11 +325,10 @@ onUnmounted(() => clearTimeout(copyTimer));
 :where(.page-home) .step h3 { font-size: 1.35rem; margin-bottom: 0.4rem; }
 :where(.page-home) .step p { color: var(--muted); font-size: 1rem; }
 :where(.page-home) .step code { font-size: 0.9rem; background: rgba(var(--ink-rgb), 0.07); border: 1px solid var(--line); border-radius: 3px; padding: 0.05rem 0.35rem; color: var(--ink); }
-:where(.page-home) .join-cta { margin-top: 1.4rem; display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: stretch; }
-/* The three buttons below the steps: one height and look (the primary one without its glow, which made it larger). */
-:where(.page-home) .join-cta .btn { flex: 1 1 14rem; justify-content: center; min-height: 3.2rem; padding: 0.7rem 1.6rem; }
-:where(.page-home) .join-cta .btn.primary { box-shadow: inset 0 0 0 2px var(--gold), inset 0 0 0 3px var(--brass); }
-:where(.page-home) .join-cta p { flex-basis: 100%; color: var(--muted); font-size: 1rem; }
+:where(.page-home) .join-cta { margin-top: 1.2rem; display: flex; flex-wrap: wrap; gap: 0.4rem 1.6rem; align-items: baseline; color: var(--muted); font-size: 1rem; }
+:where(.page-home) .join-cta span { flex: 1 1 20rem; }
+:where(.page-home) .join-cta a { color: var(--gold); text-decoration: none; font-weight: 600; white-space: nowrap; }
+:where(.page-home) .join-cta a:hover { text-decoration: underline; }
 :where(.page-home) .step .copy { display: flex; flex-wrap: wrap; justify-content: space-between; margin-top: 0.7rem; padding: 0.45rem 0.5rem 0.45rem 0.7rem; font-size: 0.85rem; }
 :where(.page-home) .copy { display: inline-flex; align-items: center; gap: 0.7rem; background: var(--panel); border: 1px solid var(--line); border-radius: 3px; padding: 0.55rem 0.6rem 0.55rem 1rem; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.95rem; color: var(--muted); }
 :where(.page-home) .copy b { color: var(--ink); font-weight: normal; }
